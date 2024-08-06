@@ -116,11 +116,12 @@ comments:
     repo: # <gh-username>/<repo>
     issue_term: # < url | pathname | title | ...>
   # Giscus options › https://giscus.app
+  # 仓库-安装必要内容/填写信息-启用giscus-复制对应内容至以下标签
   giscus:
-    repo: # <gh-username>/<repo>
-    repo_id:
-    category:
-    category_id:
+    repo: DENGYaqi/dengyaqi.github.io
+    repo_id: R_kgDOMffQ-w
+    category: Announcements
+    category_id: DIC_kwDOMffQ-84ChbLc
     mapping: # optional, default to 'pathname'
     strict: # optional, default to '0'
     input_position: # optional, default to 'bottom'
