@@ -8,7 +8,7 @@ pin: true
 ---
 
 ## 快速搭建
-本文博客基于[**Chirpy Jekyll Theme**](https://github.com/cotes2020/jekyll-theme-chirpy)搭建, 阅读方式顺序阅读, 标题-简介-操作流程. 如需了解详细内容, 点击每段标题链接即可.
+本文博客基于 [**Chirpy Jekyll Theme**](https://chirpy.cotes.page/) 搭建, 阅读方式: 顺序阅读, 标题-简介-操作流程. 如需了解详细内容, 点击每段标题链接即可.
 
 ### [**Chirpy Starter**](https://chirpy.cotes.page/posts/getting-started/)
 官方推荐，可专注于写作，升级简单。
@@ -30,7 +30,7 @@ GitHub Codespaces 是一个基于云的即时开发环境，它使用容器为�
 2. 绿色的Code -> Codespaces -> Create a codespaces on main
 3. Codesace是Vscode的IDE，构建好后即可开始写作。
 4. 写作完成后点击源代码管理 - 鼠标移至"更改"栏点击"+", 意味着将此次更改暂存至工作树
-5. 在"消息"内填写此次更改的备注后点击提交 - 点击同步
+5. 在"消息"内填写此次更改的备注后点击提交 - 点击同步更改
 6. 等待Actions自动构建与部署后，可在个人网站查看到更新内容
 
 ### 项目树结构
