@@ -34,7 +34,7 @@ GitHub Codespaces 是一个基于云的即时开发环境，它使用容器为�
 6. 等待Actions自动构建与部署后，可在个人网站查看到更新内容
 
 ### 项目树结构
-1. [_config.yml](http://jekyllcn.com/docs/configuration/)：配置文件, 主要修改url, avatar, timezone和lang。其他内容可点击链接查看修改。
+1. _config.yml：配置文件, 主要修改url, avatar, timezone和lang。其他内容可点击链接查看修改。
 </br></br>
 中文样例: 
 </br> url为博客网址, 在仓库页的Pagers里可找到。例如: https://dengyaqi.github.io/
@@ -51,6 +51,9 @@ GitHub Codespaces 是一个基于云的即时开发环境，它使用容器为�
 1. 点击标题链接 - "仓库"栏内容完成 - 填写仓库名称
 2. 填写完成后在"启动giscus"有相关信息
 3. 在_config.yml找到giscus标签, 填入对应信息。
+
+### 常见问题
+1. 文章内链接只支持https确保安全，如需支持http浏览[该回答](https://github.com/orgs/community/discussions/25470)
 
 ### 其他
 如需了解更多详细内容, 可直接浏览官网: https://chirpy.cotes.page/
