@@ -3,12 +3,12 @@ title: 如何快速构建Github个人博客 - Github Pages
 date: 2024-08-06 10:07:51 +0800
 categories: [Github, Tutorial]
 tags: [GITHUB, GITHUB_PAGES, MARKDOWN, BLOG, CHIRPY, CHIRPY_STARTER, JEKYLL]     # TAG names should always be lowercase
-description: 本文针对人群：快速搭建个人博客，无须本地启动, 不讨论技术。
+description: 入门级快速搭建个人博客
 pin: true
 ---
 
 ## 快速搭建
-本文博客基于 [Chirpy Jekyll Theme](https://github.com/cotes2020/jekyll-theme-chirpy) 搭建, 阅读方式: 顺序阅读, 标题-简介-操作流程. 如需了解详细内容, 点击每段标题链接即可.
+本文博客基于 [Chirpy Jekyll Theme](https://github.com/cotes2020/jekyll-theme-chirpy) 搭建。
 
 ### [Chirpy Starter](https://chirpy.cotes.page/posts/getting-started/)
 官方推荐，可专注于写作，升级简单。
@@ -18,7 +18,7 @@ pin: true
 4. 创建成功
 
 ### [Github Page](https://docs.github.com/zh/pages/quickstart)
-GitHub Pages是一项静态站点托管服务, 它直接从GitHub上的仓库获取HTML、CSS和JavaScript文件, (可选)通过构建过程运行文件, 然后发布网站
+一项静态站点托管服务, 它直接从GitHub上的仓库获取HTML、CSS和JavaScript文件, (可选)通过构建过程运行文件, 然后发布网站。
 1. 回到仓库页
 2. 点击上方Settings 
 3. 左侧Code and automation -> Pages -> Build and deployment 的Source 选择 Github Actions, 意味着任何提交推送到分支都会触发Actions自动构建与部署。
