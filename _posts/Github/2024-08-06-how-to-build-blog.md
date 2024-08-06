@@ -8,7 +8,8 @@ pin: true
 ---
 
 ## 快速搭建
-本文博客基于 [**Chirpy Jekyll Theme**](https://chirpy.cotes.page/) 搭建, 阅读方式: 顺序阅读, 标题-简介-操作流程. 如需了解详细内容, 点击每段标题链接即可.
+本文博客基于Chirpy Jekyll Theme搭建, 项目地址: https://github.com/cotes2020/jekyll-theme-chirpy
+</br>阅读方式: 顺序阅读, 标题-简介-操作流程. 如需了解详细内容, 点击每段标题链接即可.
 
 ### [**Chirpy Starter**](https://chirpy.cotes.page/posts/getting-started/)
 官方推荐，可专注于写作，升级简单。
