@@ -1,14 +1,14 @@
 ---
 title: 【学习篇】CocosCreator学习第一部分 - TypeScript
-date: 2024-08-07 10:14:51 +0800
+date: 2024-08-07 20:14:51 +0800
 categories: [CocosCreator, Blogging]
 tags: [CocosCreator, TypeScript]
-description: TypeScript
+description: TypeScript语法
 pin: true
 ---
 
 ## 学习路径
-跟着飞羽大神的课程学习 : [Cocos Creator零基础小白超神教程](https://www.bilibili.com/video/BV14i4y1o7YF/?spm_id_from=333.999.0.0&vd_source=7a96b0e57dd9994246f754e2a2d3ef5a)。这一篇主要是讲解TypeScript语法，从视频P1-P24，会编程的朋友可以扫一眼从下一篇开始。
+跟着飞羽大神的课程学习 : [Cocos Creator零基础小白超神教程](https://www.bilibili.com/video/BV14i4y1o7YF/?spm_id_from=333.999.0.0&vd_source=7a96b0e57dd9994246f754e2a2d3ef5a)。这一篇主要是讲解TypeScript语法，从视频P1-P24。会编程的朋友可以扫一眼从下一篇开始，或者实际写的时候回来参照一下。
 
 ## Cocos发展史
 CocosCreator的诞生是为了将Cocos2D—x的纯代码编辑，分解成可视化，脚本化等特点，让更多新人轻松上手。CocosCreator是一个IDE，编程思想从面向对象变成了面向组件。支持JavaScript和TypeScript编程语言。
@@ -102,4 +102,34 @@ let newNum : NewNumber = 3;
 document.write(typeof newNum); // 输出还是number类型
 ```
 
+### 运算符
+```typescript
+// 1. 算术运算符 : + - * / %
+let num = 10 % 3;
+document.write(num + "");
 
+// 2. 自增/自减 : ++ --
+let numInCre = 11;
+num++;
+// 注意符号前置和后置的区别
+// 先使用，再自增 num++
+document.write(num++ + ""); // 输出12
+// 先自增，在使用 ++num
+document.write(++num + ""); // 输出13
+
+// 3. 比较运算符：> < >= <= ==(只判断内容) ===(即判断类型也判断内容) !=(只判断内容) !==(即判断类型也判断内容)，返回值一定是布尔值
+num = 3;
+let num2 = "3";
+let res: boolean = num === num2;
+document.write(res + "");
+
+// 4. 逻辑运算符：&&(并且/逻辑与) ||(或者/逻辑或) !true/!false(逻辑非)，把单个比较运算符连接成多个。
+res = num > 2 && num < 10; 
+res = num > 10 || num < 5; 
+res = !(num > 10);
+
+// 5. 赋值运算符 = += -= *= /= %=，也就是自身与后面的值加减乘除。
+let num: number = 3;
+num += 3;
+num = num + 3;
+```
