@@ -408,7 +408,7 @@ per.say();
 ```
 
 ### 接口与属性扩展
-弥补多继承。
+弥补多继承。主要看第二点。
 ```typescript
 // 1. 接口样例 : 人 狼 狼人：人，狼
 class Person{
@@ -436,6 +436,32 @@ class WolfMan extends Person implements IWolff, IDog{
     }
 }
 
-// 2. 属性
+// 2. 属性寄存器 getter setter 注意 加个_用于区分
+class Person{
+    _hp: number = 100;
 
+    // 取值
+    get hp() : number {
+        return this._hp;
+    }
+
+    // 賦值
+    set hp(value : number) {
+        if (value < 0) {
+            this._hp = 0; 
+        } else {
+            this._hp = value;
+        }
+    }
+}
+
+// 不建议的调用形式 : 调用带_，表示直接只用成员属性
+let a = new Person();
+a._hp -= 180;
+document.write(a._hp + "");
+
+// 建议的调用形式 : 调用不带_，表示使用getter setter
+let b = new Person();
+b.hp -= 180;
+document.write(b.hp + "");
 ```
