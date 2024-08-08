@@ -339,8 +339,67 @@ Person.des = "a";
 Person.test();
 ```
 
-### 继承
-现在大部分语言都是单继承
+### 继承与抽象类
+现在大部分语言都是单继承，也就是单父类-多子类。
 ```typescript
+// 1. 普通继承类
+// 父类
+class Person{
+    name: string = "";
+    say(){
+        document.write("我是人类，叫做" + this.name);
+    }
+}
 
+// 子类
+class Student extends Person{
+    num: number = 0;
+    score: number = 0;
+
+    // 对父类say覆盖
+    /*
+    say() {
+        document.write("我是学生，叫做" + this.name);
+    }
+    */
+
+    // 对父类say扩展
+    say() {
+        super.say();
+        document.write("我是学生，叫做" + this.name);
+    }
+}
+
+// 创建子类对象
+let student = new Student(); 
+student.name ="aaa"; 
+student.say();
+
+// 2. 抽象类 : 抽象方法被继承必须被实现 本身不能被实例化为对象，可以被继承
+
+// 抽象父类
+abstract class PersonAB{
+
+    // 一般属性与方法
+    name: string = "";
+    run(){
+        // ...
+    }
+
+    // 抽象方法
+    abstract say() : any;
+}
+
+// 子类
+class StudentAB extends PersonAB{
+    // 必须实现抽象方法
+    say(){
+        // ...
+    }
+}
+
+// 3. 调用注意
+// 父类指针可以指向子类对象
+let per: PersonAB = new StudentAB();
+per.say();
 ```
