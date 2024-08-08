@@ -8,7 +8,7 @@ pin: true
 ---
 
 ## 学习路径
-跟着飞羽大神的课程学习 : [Cocos Creator零基础小白超神教程](https://www.bilibili.com/video/BV14i4y1o7YF/?spm_id_from=333.999.0.0&vd_source=7a96b0e57dd9994246f754e2a2d3ef5a)。这一篇主要是讲解TypeScript语法，从视频P1-P24。会编程的朋友可以扫一眼从下一篇开始，或者实际写的时候回来参照一下。
+跟着飞羽大神的课程学习 : [Cocos Creator零基础小白超神教程](https://www.bilibili.com/video/BV14i4y1o7YF/?spm_id_from=333.999.0.0&vd_source=7a96b0e57dd9994246f754e2a2d3ef5a)。这一篇主要是讲解TypeScript语法，从视频P1-P24。懂编程的朋友可以扫一眼从下一篇开始，或者实际写的时候回来参照一下语法即可。
 
 ## Cocos发展史
 CocosCreator的诞生是为了将Cocos2D—x的纯代码编辑，分解成可视化，脚本化等特点，让更多新人轻松上手。CocosCreator是一个IDE，编程思想从面向对象变成了面向组件。支持JavaScript和TypeScript编程语言。
@@ -33,7 +33,7 @@ document.write(personName);
 ### 变量的类型
 主要从第6个开始看。
 
-```typescript
+```TypeScript
 // 特殊值undefined: 声明变量未赋值
 // let tmp: number;
 
@@ -103,7 +103,7 @@ document.write(typeof newNum); // 输出还是number类型
 ```
 
 ### 运算符
-```typescript
+```TypeScript
 // 1. 算术运算符 : + - * / %
 let num = 10 % 3;
 document.write(num + "");
@@ -132,4 +132,80 @@ res = !(num > 10);
 let num: number = 3;
 num += 3;
 num = num + 3;
+```
+
+### 条件控制语句
+```TypeScript
+// 1. 判断语句
+// age > 18
+let age = 2;
+if (age >= 18) {
+    document.write("成年人");
+} else {
+    document.write("未成年人");
+}
+
+// 0-59 60-79 80-100
+let score = 20;
+if (score >= 0 && score < 60) { 
+    document.write("不合格");
+} else if (score >= 60 && score < 80) { 
+    document.write("合格");
+} else if (score >=80 && score <= 100) { 
+    document.write("优秀");
+} else {
+    document.write("出错");
+}
+
+// 2. 三目运算符 条件？值1 ：值2;
+let num = 105;
+num = num > 100 ? 100 : num;
+
+// 3. 选择结构语句/分支语句
+enum State{
+    idle, 
+    run,
+    attack,
+    die
+}
+let state: State = State.idle;
+switch (state) {
+    case State.idle:
+        document.write("站立"); 
+        break;
+    case State.run:
+        document.write("跑步"); 
+        break;
+    case State.attack:
+        document.write("攻击");
+        break;
+    default:
+        document.write("其他状态");
+}
+```
+
+### 循环控制语句
+```TypeScript
+// 1. whild do循环 0+1+2+...+100
+let i: number = 0;
+let num: number = 0;
+while (i < 101) {
+    num += i;
+    i++;
+}
+document.write(num + "");
+
+// 2. do whil循环
+do {
+    document.write("dowhile循环"); 
+} while (i < 0);
+
+// 3. for循环
+let names: string[] = ["王小虎","李逍遥","赵灵儿"];
+for (let j = 0; j < 3; j++){
+    document.write(names[j]);
+}
+for (let tmpName of names) {
+    document.write(tmpName);
+}
 ```
