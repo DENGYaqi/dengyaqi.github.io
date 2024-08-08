@@ -33,7 +33,7 @@ document.write(personName);
 ### 变量的类型
 主要从第6个开始看。
 
-```TypeScript
+```typescript
 // 特殊值undefined: 声明变量未赋值
 // let tmp: number;
 
@@ -103,7 +103,7 @@ document.write(typeof newNum); // 输出还是number类型
 ```
 
 ### 运算符
-```TypeScript
+```typescript
 // 1. 算术运算符 : + - * / %
 let num = 10 % 3;
 document.write(num + "");
@@ -135,7 +135,7 @@ num = num + 3;
 ```
 
 ### 条件控制语句
-```TypeScript
+```typescript
 // 1. 判断语句
 // age > 18
 let age = 2;
@@ -185,7 +185,7 @@ switch (state) {
 ```
 
 ### 循环控制语句
-```TypeScript
+```typescript
 // 1. whild do循环 0+1+2+...+100
 let i: number = 0;
 let num: number = 0;
@@ -217,7 +217,7 @@ for (let index in names) {
 ```
 
 ### 函数
-```TypeScript
+```typescript
 //函数 流水线—>输入：参数 输出：返回值
 // 1. 无返回值
 function func(char1: string){
