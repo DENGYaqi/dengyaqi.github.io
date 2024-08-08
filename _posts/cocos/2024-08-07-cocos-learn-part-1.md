@@ -253,3 +253,94 @@ let add3 = (num1: number, num2: number) : void => {
 }
 add3();
 ```
+
+### 类和对象: 面向过程编程向面向对象编程转变的过程
+1. 面向过程编程以函数和过程为核心，数据和操作分离，适合简单任务。
+2. 面向对象编程通过类和对象将数据与操作封装在一起，强调抽象、继承和多态，适合复杂系统。面向对象编程更具扩展性和维护性，代码复用性更强。
+```typescript
+// 1. 面向过程编程
+// 说话
+function say(name:string, age:number) {
+    document.write("大家好，我叫" + name + "，今年" + age);
+}
+
+// 跑步
+function run(name: string) {
+    document.write(name + "正在跑步");
+}
+
+// 第一个人物
+let aName: string = "令狐冲";
+let aAge: number = 20;
+let aScore: number = 80;
+say(aName, aAge);
+
+// 第二个人物
+let bName: string = "岳不群"; 
+let bAge: number = 40;
+let bScore: number = 80; 
+run(bName);
+
+// 需要扩展的时候，需要更多的动作与更多的人物参数之类的，代码量多了之后，则容易报错
+
+// 2. 面向对象 类和对象
+// 类 : 模具，抽象，例如人
+// 对象 : 存在的物体，例如小王
+
+// 类创建
+class Person{
+    name: string = "默认";
+    age: number = 0;
+
+    say() {
+    document.write(this.name);
+    }
+}
+
+// 实例化对象
+let a = new Person();
+a.name = "令狐冲";
+a.age = 20;
+a.say();
+
+let b = new Person();
+b.name ="岳不群";
+b.age = 40;
+b.say();
+```
+
+### 构造与静态
+```typescript
+class Person{
+    // 静态属性 : 不属于对象的
+    static des : string; // 对于当前类的描述
+    // 成员属性 : 属于对象的
+    name: string = "默认";
+    age: number = 0;
+
+    // 构造方法
+    constructor(name: string, age: number) { 
+        this.name = name;
+        this.age =age;
+    }
+
+    // 静态方法 : 不属于对象的
+    static test(){
+        // ...
+    }
+
+    // 成员方法 : 属于对象的
+    say() {
+        document.write(this.name);
+    }
+}
+// 调用
+Person.des = "a";
+Person.test();
+```
+
+### 继承
+现在大部分语言都是单继承
+```typescript
+
+```
