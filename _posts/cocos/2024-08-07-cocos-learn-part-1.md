@@ -410,5 +410,32 @@ per.say();
 ### 接口与属性扩展
 弥补多继承。
 ```typescript
+// 1. 接口样例 : 人 狼 狼人：人，狼
+class Person{
+    name: string = "";
+}
+
+interface IWolff{
+    attack() : any;
+}
+
+interface IDog{
+    eat() : any;
+}
+
+class WolfMan extends Person implements IWolff, IDog{
+    
+    // IWolff方法
+    attack(){
+        //...
+    }
+    
+    // Idog方法
+    eat() {
+        // ...
+    }
+}
+
+// 2. 属性
 
 ```
