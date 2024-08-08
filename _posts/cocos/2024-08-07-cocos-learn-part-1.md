@@ -1,5 +1,5 @@
 ---
-title: 【学习篇】CocosCreator学习第一部分 - TypeScript
+title: 【学习篇】CocosCreator学习第一部分 - TypeScript语法
 date: 2024-08-07 20:14:51 +0800
 categories: [CocosCreator, Blogging]
 tags: [CocosCreator, TypeScript]
@@ -208,4 +208,48 @@ for (let j = 0; j < 3; j++){
 for (let tmpName of names) {
     document.write(tmpName);
 }
+// 输出索引
+for (let index in names) {
+    document.write(index);
+}
+
+// 4. 退出循环 break
+```
+
+### 函数
+```TypeScript
+//函数 流水线—>输入：参数 输出：返回值
+// 1. 无返回值
+function func(char1: string){
+    let arr: string[] = ['a', 'b', 'c', 'd', 'e']; 
+    for (let i = 0; i< 5; i++){
+        if (char1 == arr[i]) {
+            document.write("当前是第" + i +"个字符。");
+        }
+    }
+}
+
+func('a');
+func('b');
+func('c');
+
+// 2. 带有返回值
+function add(num1: number, num2: number): number{
+    let num = num1 + num2;
+    return num;
+}
+
+let test = add(3, 4);
+
+// 3. 函数当变量使用
+let add2 = function (num1: number, num2: number) : void{
+    // ...
+}
+add2();
+
+// 4.同上 只是function换成=>
+let add3 = (num1: number, num2: number) : void => {
+    // ...
+}
+add3();
 ```
