@@ -1,5 +1,5 @@
 ---
-title: 【学习篇】CocosCreator学习第一部分 - TypeScript语法
+title: 【学习篇】CocosCreator学习第一部分 - TypeScript
 date: 2024-08-07 20:14:51 +0800
 categories: [CocosCreator, Blogging]
 tags: [CocosCreator, TypeScript]
@@ -574,3 +574,32 @@ let dic: { [key: string]: string } = {
 dic["name3"] = "令狐冲"
 document.write(dic["name3"]);
 ```
+
+### 回调
+函数传参，将一个函数作为参数传递给另一个函数，并在该函数执行时调用传递的函数。回调函数可以是同步的，也可以是异步的。
+
+```typescript
+// 方法一 : 完整结构
+function func(value: Function) { 
+    //...
+    value();
+}
+
+function test() {
+    document.write("test");
+}
+
+func(test);
+
+// 方法二 : 匿名函数
+func(function () {
+    document.write("test2");
+});
+
+// 方法三
+func(() => {
+    document.write("test3");
+});
+```
+
+### 正则表达式
