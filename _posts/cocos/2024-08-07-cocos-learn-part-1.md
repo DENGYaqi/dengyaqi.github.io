@@ -669,3 +669,57 @@ res.forEach(function (value, index){
     document.write(value + " " + index);
 });
 ```
+
+### 访问修饰符
+```typescript
+// 访问修饰符 public公开的 protected受保护的(当前类与子类) private私有的(当前类)
+class Person{
+    private _name: string;
+    
+    set name(value){
+        this._name = value;
+    }
+    
+    get name(){
+        return this._name;
+    }
+}
+
+class Student extends Person{ 
+    constructor() {
+        super(); 
+        this.name;
+    }
+}
+
+let a = new Person();
+a.name;
+```
+
+### 单例模式
+经典设计模式之一，保证一个类仅有一个实例，并提供一个全局访问点。一般管理类会使用。
+```typescript
+// 1. 饿汉式 : 类加载时就创建实例，线程安全且简单明了，但可能会创建过多而不使用的情况存在
+class SoundManager{
+    static Instance = new SoundManager();
+    private constructor(){}
+}
+// 调用声音管理类
+SoundManager.Instance; // 代表属性
+
+// 2. 懒汉式 : 第一次使用时才创建实例，具有延迟加载/懒加载的特点，但需要考虑线程安全和性能问题
+class SoundManager{
+    private static instance : SoundManager;
+    private constructor(){}
+
+    static Instance(){
+        // 当前单例是否产生
+        if(!SoundManager.instance){
+            SoundManager.instance = new SoundManager();
+        }
+        return SoundManager.instance;
+    }
+}
+// 调用声音管理类
+SoundManager.Instance(); // 代表方法
+```
