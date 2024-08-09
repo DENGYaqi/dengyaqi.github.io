@@ -505,3 +505,29 @@ namespace bb{
 let personA = new aa.Person();
 let personB = new bb.Person();
 ```
+
+### 泛型
+同一函数支持多种类型。
+```typescript
+// 方法一 : any 可能导致入参类型与出参类型不一致，不建议使用
+function add(num: any): any{
+    // 若类型相同则+1返回，否则返回自身
+    if (typeof num == "number") { 
+        num++;
+        return num;
+    }
+    return num;
+}
+// 调用
+document.write(add("3") + "");
+
+// 方法二 : 泛型，建议使用
+function add<T>(num: T): T{
+    if (typeof num == "number") {
+        num++;
+        return num;
+    }
+    return num;
+}
+document.write(add<number>(3) + "");
+```
