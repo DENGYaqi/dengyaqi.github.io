@@ -531,3 +531,46 @@ function add<T>(num: T): T{
 }
 document.write(add<number>(3) + "");
 ```
+
+### 集合 : 元祖数组字典
+```typescript
+// 元组 : 多返回值 多类型 可使用
+let hero: [string, number] = ["超人", 100];
+hero[0] = "蝙蝠侠";
+document.write(hero[0]);
+
+// 数组: 2种初始化方式
+let array1: number[] = [1,2,3];
+let array2: Array<number> = new Array<number>(); 
+// 长度
+document.write(array1.length + "");
+// 在数组后面追加元素
+array1.push(4);
+// 在数组前面添加元素
+array1.unshift(0);
+// 删除最后面的元素
+array1.pop();
+// 从第几位开始删除几个: (第几个，一共删几个)
+array1.splice(0, 1);
+// 删除最前面的
+array1.shift();
+// 合并两个数组
+array1 = array1.concat(array2);
+//查找元素位置
+let index = array1.indexOf(3); 
+//排序 正序 倒序
+array1.sort();
+array1.reverse();
+
+//数组["a","b","c"] 也是key value键值对 0:"a" 1:"b" 2:"c" 只是key是固定为number类型的 想自定义key类型可以使用字典
+
+// 字典
+// 初始化
+let dic: { [key: string]: string } = { 
+    "name":"王小虎",
+    "name2": "李逍遥"
+};
+// 添加元素 不存在则直接添加
+dic["name3"] = "令狐冲"
+document.write(dic["name3"]);
+```
