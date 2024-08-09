@@ -465,3 +465,43 @@ let b = new Person();
 b.hp -= 180;
 document.write(b.hp + "");
 ```
+
+### 命名空间
+为解决冲突存在的。代码有效域在命名空间内。
+```typescript
+// 原有问题
+// A代码
+class Person{
+    name: string="";
+}
+// B代码
+class Person{
+    age: number=0;
+}
+
+// 解决方法1 : 命名前添加两个字母
+// A代码
+class AAPerson{
+    name: string="";
+}
+// B代码
+class BBPerson{
+    age: number=0;
+}
+
+// 解决办法2 : 命名空间 namespace export
+namespace aa{
+    export class Person{
+        name: string="";
+    }
+}
+
+namespace bb{
+    export class Person{
+        age: number=0;
+    }
+}
+// 调用
+let personA = new aa.Person();
+let personB = new bb.Person();
+```
