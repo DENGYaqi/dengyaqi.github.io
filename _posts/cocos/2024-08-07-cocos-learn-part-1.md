@@ -844,4 +844,29 @@ let bmw = Car.Create(CarType.Bmw);
 
 ### 链表
 ```typescript
+class Person{
+    name: string;
+    next: Person;
+
+    constructor(name: string) {
+        this.name = name;
+    }
+}
+
+let person = new Person("李逍遥"); 
+person.next = new Person("王小虎"); 
+person.next.next = new Person("赵灵儿");
+
+//删除
+person.next = person.next.next; 
+//添加
+let tmpPerson = new Person("赵四儿"); 
+tmpPerson.next = person.next;
+person.next = tmpPerson;
+
+while (person) {
+    document.write(person.name);
+    //让节点向后移
+    person = person.next;
+}
 ```
