@@ -605,13 +605,13 @@ func(() => {
 ### 正则表达式
 [正则表达式在线测试](https://tool.chinaz.com/regex)
 
-### 定义
+#### 定义
 1. 正则表达式 — 正则表达式使用单个字符串来描述、匹配一系列符合某个句法规则的字符串。在很多文本编辑器里，正则表达式通常被用来检索、替换那些符合某个模式的文本。(大白话 : 查找符合规则的字符)
 2. 原义文本字符 — 正常的文本字符。
 3. 元字符 — 具有特殊意义的专用字符，是代替正常文本字符的字符。(大白话 : 特殊符号)
 4. 限定符 — 限定匹配的数量或特殊条件。(大白话 : 限定字符数量)
 
-### 常用元字符
+#### 常用元字符
 
 |元字符|含义|解释|
 |:---|:---|:---|
@@ -623,7 +623,7 @@ func(() => {
 |^|匹配字符串的开始|
 |$|匹配字符串的结束|
 
-### 常用限定符
+#### 常用限定符
 
 |限定符|含义|
 |:---|:---|
@@ -634,7 +634,7 @@ func(() => {
 |+|重复大于等于1次|
 |?|重复0次或1次|
 
-### 组合使用
+#### 组合使用
 ```re
 ^...$ : 可用于账户密码
 
@@ -659,7 +659,7 @@ QQ号:[1-9][0-9]{4,}
 账号(字母开头，5—16位，允许字母数字下划线): ^[a-zA-Z][a-zA-Z0-9_]{4,15}$
 ```
 
-### 代码使用
+#### 代码使用
 ```typescript
 let reg = /\d{4}-\d{7}/g; 
 let str = "0345-1234567"; 
@@ -779,7 +779,7 @@ class Person{
     set name(value: string) { 
         this._name = value;
         // 发生变化
-        //遍历观察者数组，给所有的观察者发消息
+        // 遍历观察者数组，给所有的观察者发消息
         for (let observer of this.observers){
             observer.nameChanged(this._name);
         }
@@ -802,4 +802,46 @@ let test = new Test();
 //设置为监听对象
 person.observers.push(test);
 person.name = "哈哈哈";
+```
+
+### 工厂模式
+通过使用工厂模式，可以将对象的创建逻辑封装在一个工厂类中，而不是在客户端代码中直接实例化对象。
+```typescript
+enum CarType{
+    Bmw,
+    Audi,
+    Benz
+}
+
+class Car{
+    name: string="";
+    // 工厂方法
+    static Create(carType: CarType): Car {
+        let car: Car;
+        switch (carType) {
+            case CarType.Audi:
+                car = new Audi(); 
+                break;
+            case CarType.Benz:
+                car = new Benz(); 
+                break;
+            case CarType.Bmw:
+                car = new Bmw()
+                break;
+        }
+        return car;
+    }
+}
+
+// 子类
+class Bmw extends Car{}
+class Benz extends Car{}
+class Audi extends Car{}
+
+// 调用
+let bmw = Car.Create(CarType.Bmw);
+```
+
+### 链表
+```typescript
 ```
