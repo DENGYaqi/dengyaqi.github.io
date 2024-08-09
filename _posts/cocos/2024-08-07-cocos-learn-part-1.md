@@ -613,7 +613,7 @@ func(() => {
 
 ### 常用元字符
 
-|元字符|含义|解释
+|元字符|含义|解释|
 |:---|:---|:---|
 |.|匹配除换行符以外的任意字符|一个点一个字符|
 |\w|匹配字母或数字或下划线或汉字|
@@ -724,4 +724,82 @@ class SoundManager{
 }
 // 调用声音管理类
 SoundManager.Instance(); // 代表方法
+```
+
+### 代理模式
+通过引入一个代理对象来控制对原对象的访问。通过不同的代理人可以做出不同的效果。
+```typescript
+interface ICalc{
+    calc(num1:number, num2:number): number;
+}
+
+class Npc1 implements ICalc{
+    calc(num1:number, num2:number) {
+        return num1 + num2;
+    }
+}
+
+class Npc2 implements ICalc{
+    calc(num1:number, num2:number) {
+        return num1 - num2;
+    }
+}
+
+class Person{
+    //代理
+    delegate: ICalc;
+    //计算数字
+    GetNum(num1:number,num2:number) {
+        //拿到num1和2计算后的结果
+        let num = this.delegate.calc(num1, num2);
+        document.write(num + "");
+    }
+}
+
+// 调用
+let person = new Person(); 
+// 设定一个代理 可以让不同的代理去做
+// person.delegate = new Npc1(); 
+person.delegate = new Npc2(); 
+person.GetNum(3, 4);
+```
+
+### 观察者模式
+一种一对多的依赖关系，当一个对象的状态发生改变时，其所有依赖者都会收到通知并自动更新。例如白天黑夜的更换。
+```typescript
+interface IObserver{
+    nameChanged(newName:string):any;
+}
+
+class Person{
+    private _name: string="";
+    // 所有的观察者
+    observers: Array<IObserver> = new Array<IObserver>();
+
+    set name(value: string) { 
+        this._name = value;
+        // 发生变化
+        //遍历观察者数组，给所有的观察者发消息
+        for (let observer of this.observers){
+            observer.nameChanged(this._name);
+        }
+    }
+
+    get name(){
+        return this._name;
+    }
+}
+
+class Test implements IObserver{
+    nameChanged(newName: string){
+        document.write("监听到变化，名字变为" + newName);
+    }
+}
+
+// 调用
+let person = new Person();
+let test = new Test();
+//设置为监听对象
+person.observers.push(test);
+person.name = "哈哈哈";
 ```
