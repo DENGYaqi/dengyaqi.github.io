@@ -1,8 +1,8 @@
 ---
-title: 跟着大佬thmsgbrt构建Github主页 - Github Pages
+title: 跟着大佬thmsgbrt构建Github主页 - Github Actions
 date: 2024-08-02 10:07:51 +0800
 categories: [Github, Tutorial]
-tags: [github, github pages, markdown, chirpy, chirpy starter, jekyll]
+tags: [github, github actions, markdown]
 description: thmsgbrt教程
 pin: true
 ---
@@ -172,6 +172,13 @@ jobs:
 
 ### 最后
 恭喜完成！接下来可以自定义一些内容，thmsgbrt的教程中带有一些例子，可做参考: [Tim Burgan的主页](https://github.com/timburgan)、[Simon Willison的主页](https://github.com/simonw)。
+
+### 自定义内容
+1. [Github Actions的工作流语法](https://docs.github.com/zh/actions/writing-workflows/workflow-syntax-for-github-actions)
+
+#### 贪食蛇效果
+使用Snk的仓库，通过GitHub贡献数据和Git Actions生成贪食蛇效果。
+
 
 ### 回顾
 - 手动生成ReadMe : 修改index.js文件后可通过node index.js自动生成ReadMe.md文件。
