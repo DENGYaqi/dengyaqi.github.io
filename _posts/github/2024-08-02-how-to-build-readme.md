@@ -173,5 +173,6 @@ jobs:
 ### 最后
 恭喜完成！接下来可以自定义一些内容，thmsgbrt的教程中带有一些例子，可做参考: [Tim Burgan的主页](https://github.com/timburgan)、[Simon Willison的主页](https://github.com/simonw)。
 
-### 一些快速指令总结
+### 回顾
 - 手动生成ReadMe : 修改index.js文件后可通过node index.js自动生成ReadMe.md文件。
+- 通过main.mustache修改Readme的内容。
