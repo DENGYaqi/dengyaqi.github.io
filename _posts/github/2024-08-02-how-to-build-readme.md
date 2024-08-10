@@ -31,7 +31,26 @@ _thmsgbrt主页_
 ### 本地启动的项目准备
 作者主要是使用[Mustache](https://www.npmjs.com/package/mustache)去创建模板，和更换标签。Mustache是一种没有逻辑的模板语法，称它为没有逻辑的模板，是因为它没有if语句、else子句和for循环，它只有标签。它通过使用散列或对象中提供的值在模板中展开标记来工作。
 
-1. 将版本库克隆到你的电脑，然后打开终端进入其目录，创建一个新的 npm项目。
+1. IDE我是使用GitHub的codespace，也就是VSCode
+2. [安装node.js](https://nodejs.org/zh-cn/download/package-manager)，我安装的版本是node v20.16.0 (npm v10.8.1)。
+```bash
+nvm install 20
+```
+3. 在终端使用命令创建一个新的npm项目。
 ```bash
 npm init
 ```
+4. 填写项目信息，参考[npm文档](https://docs.npmjs.com/cli/v8/configuring-npm/package-json#license)。
+
+
+|关键词|中文描述|样例|
+|:---|:---|:---|
+|package name|项目名称|HomePage|
+|version|版本号|1.0.0|
+|description|项目描述|GitHub主页|
+|entry point|项目的入口文件|index.js|
+|test command|项目启动时脚本命令|node index.js|
+|git repository|git的仓库地址|https://github.com/DENGYaqi/DENGYaqi.git|
+|keywords|项目关键词||
+|author|作者名字|DENGYaqi|
+|license|发行项目证书|[nmp证书](https://docs.npmjs.com/cli/v8/configuring-npm/package-json#license)|
