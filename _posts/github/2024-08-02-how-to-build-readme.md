@@ -18,8 +18,8 @@ _thmsgbrt主页_
 
 ## 正文介绍
 作者的教程主要是配置GitHub的主页和学习是如何使用GitHub Actions使主页动态化，例如自动获取天气信息之类的。
-</br>
-前面的一些内容主要是作者对项目的一些介绍，例如通过[Puppeteer](https://pptr.dev/)接口获取Instagram账户的信息，还有通过[OpenWeatherMap](https://openweathermap.org/api)获取天气信息、温度和日照时间等。
+
+正文介绍主要是项目使用包之类的，不过多描述，例如通过[Puppeteer](https://pptr.dev/)接口获取Instagram账户的信息，还有通过[OpenWeatherMap](https://openweathermap.org/api)获取天气信息、温度和日照时间等。
 
 ## 教程
 
@@ -121,3 +121,57 @@ function generateReadMe() {
 ```bash
 $ node index.js
 ```
+
+### 使用Github Actions自动化
+1. 使用Actions自动生成Readme.md，Actions最主要的文件就是workflows和yml配置文件。
+```bash
+$ mkdir .github && cd .github && mkdir workflows
+$ cd ./workflows && touch main.yaml
+```
+
+2. 生成main.yml文件后填入以下yml内容。如果想自己设定配置内容，可以阅读[文档](https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows#scheduled-events)。yml内容解释: 
+- 第 3 行至第 8 行定义了何时触发该操作：
+    - 每次推送到主分支时。
+    - 或指定的时间表，此处为6小时。
+
+```yml
+name: README build
+
+on:
+  push:
+    branches:
+      - master
+  schedule:
+    - cron: '0 */6 * * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout current repository to Master branch
+        uses: actions/checkout@v1
+      - name: Setup NodeJs 13.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: '13.x'
+      - name: Cache dependencies and build outputs to improve workflow execution time.
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-js-${{ hashFiles('package-lock.json') }}
+      - name: Install dependencies
+        run: npm install
+      - name: Generate README file
+        run: node index.js
+      - name: Commit and Push new README.md to the repository
+        uses: mikeal/publish-to-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+```
+
+### 最后
+恭喜完成！接下来可以自定义一些内容，thmsgbrt的教程中带有一些例子，可做参考: [Tim Burgan的主页](https://github.com/timburgan)、[Simon Willison的主页](https://github.com/simonw)。
+
+### 一些快速指令总结
+- 手动生成ReadMe : 修改index.js文件后可通过node index.js自动生成ReadMe.md文件。
