@@ -95,7 +95,22 @@ _组件与锚点位置_
     - TRIMMED 表示取原始图片剪裁透明像素后的尺寸
     - RAW 表示取原始图片未剪裁的尺寸
 - Trim 节点约束框内是否包括透明像素区域，勾选此项会去除节点约束框内的透明区域
-- Sprite Atlas 图片资源所属的 Atlas 图集资源
+- Sprite Atlas 图片资源所属的 Atlas 图集资源，例如加载一张图集大图，要使用里面哪个小图就挑哪个。
+
+### 精灵的图集
+1. 如何制作图集(把大量小图放到一个大图里)？
+- 下载[TexturePacker](https://www.codeandweb.com/texturepacker/download)
+- 把所有图片拖入左侧Sprintes 
+- 右侧Framwork选cocos2d-x 
+- 上方点Publish sprite sheet
+- 选择路径保存
+- 生成的plist是小图信息，xml形式保存
+
+2. 如何导入图集
+- 图片 + .plist 拖入assets内
+- plist内可以选小图放到Sprite Frame内，Altas会自动选中plist
+
+## 向量与标量
 
 
 
