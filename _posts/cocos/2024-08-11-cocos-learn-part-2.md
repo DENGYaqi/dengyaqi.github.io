@@ -8,7 +8,7 @@ pin: true
 ---
 
 ## 介绍
-飞羽教程使用的是Cocos 2dx和VS Code编辑器。
+飞羽教程使用的是Cocos 2dx和VS Code编辑器。这一篇主要是讲解Cocos的基本内容，从视频P25-P42。cocos编辑器用的是3dx版本。
 
 ## 环境准备
 Cocos Creator
@@ -22,11 +22,11 @@ VS Code编辑器
 ## 编辑器
 官网编辑器界面功能介绍 : [编辑器界面](https://docs.cocos.com/creator/3.8/manual/zh/editor/)
 
-层级管理器(节点) : 节点的层级关系。
+A. 层级管理器(节点) : 节点的层级关系。
 - 2D对象节点/渲染节点 : 就是可以显示出来的节点，如精灵、粒子。
 - UI节点 : 属于设计游戏界面的节点。如布局、进度条。
 
-属性检查器(组件) : 组件、有几个组件、组件的功能有哪些。
+B. 属性检查器(组件) : 组件、有几个组件、组件的功能有哪些。
 - position 位置 0,0点 = 锚点
 - rotation 旋转 正数右旋转 负数左旋转。鼠标移动到rotation框左边左键单击拖动可以直接旋转调整。
 - scale 缩放 按比例调整大小，默认1比1 例如x0.5则x轴缩一半。
@@ -37,7 +37,7 @@ VS Code编辑器
 - skew 倾斜度 负数左边倾斜 正数右边倾斜
 - group 分组 例如飞机大战可以把飞机放到一组，子弹放到一组，再判断两组之间是否有碰撞。
 
-场景编辑器的按钮 : 
+C. 场景编辑器的按钮 : 
 - 十字箭头(W) : 移动工具，拖拽可修改节点位置，对应position
 - 循环箭头(E) : 旋转工具，拖拽可修改节点角度，对应rotation
 - 大方块包含小方块(R) : 缩放工具，拖拽可修改节点缩放，对应scale
@@ -45,7 +45,8 @@ VS Code编辑器
 - 锚点位置 : 中心/起点
 - 地球锚点 : 箭头朝向以世界坐标系/节点方向为准。
 
-资源管理器(资源) : 所有的资源、资源可以拖拽到层级内，会自动生成节点。
+D. 资源管理器(资源) : 所有的资源、资源可以拖拽到层级内，会自动生成节点。
+- [脚本](#脚本) : 每个组件就是一个脚本。
 
 ## Cocos编程思想([基本概念](https://docs.cocos.com/cocos2d-x/manual/zh/basic_concepts/))
 面向组件的设计。
@@ -139,3 +140,78 @@ _向量的减法，结果为AB向量的平行四边形的对边_
         - 其次，两个向量的大小并不会影响夹角的大小，所以其实|A||B| = 1。所以最后的夹角公式只要反余弦一下就可以了，标量n = cos&，夹角& = n/cos。
     - 两个向量的夹角& = x1 * x2 + y1 * y2 -> n / cosin
     - 叉乘在2d游戏没什么意义所以先不说了。
+
+## 脚本
+每个组件都是一个脚本。资源管理器新增脚本文件后可以直接拖到属性检查器内变成精灵的组件。脚本必须挂载到一个节点/精灵上才会被执行，挂载到多个节点则会被多次执行。
+
+```typescript
+import { _decorator, Component, Label, Node } from 'cc';
+const { ccclass, property } = _decorator; // 导入两个装饰器，ccclass和property
+
+@ccclass('NewComponent')
+export default class NewComponent extends Component {
+
+    @property(Label)
+    label: Label = null;
+
+    @property
+    text: string = "hello";
+
+    // LIFE - CYCLE CALLBACKS
+
+    // 初始化调用
+    protected onLoad(): void {
+        
+    }
+
+    protected onEnable(): void {
+        
+    }
+
+    // 初始化调用
+    start() {
+
+    }
+
+    // 每帧调用
+    update(deltaTime: number) {
+
+    }
+
+    protected lateUpdate(dt: number): void {
+        
+    }
+
+    protected onDisable(): void {
+        
+    }
+
+    protected onDestroy(): void {
+        
+    }
+}
+
+```
+
+### 脚本的组成
+解释 : 
+1. cc是cocos的命名空间。
+2. Component属于cc内的类，必须要继承。
+3. 必须添加@ccclass装饰符，才能在属性检查器内被识别为一个组件。
+4. export default/export : 若有其他脚本想调用本脚本，必须要添加这两个关键字。
+5. @property : 在属性检查器面板显示，并且可修改。优先使用面板的值，代码内的值为默认值。若不是基本类型则必须加括号@property()，括号内为面板显示的类型, 如label。
+6. 若在层级管理器新建newLabel节点，可拖拽到组件面板属性内的label内。代码内的label内容则变成了newLabel节点的属性了。
+
+动作 : 
+1. 修改类的名称，与文件名称一致。
+
+### 脚本生命周期
+若有10个脚本，会每个脚本先执行onLoad()，再从第一个脚本继续执行start()。并不是一个脚本的生命周期都执行完才执行下一个脚本的。
+1. LIFE - CYCLE CALLBACKS下面的函数是已存在的，编辑器会在适当的时候调用。
+2. onLoad() : 初始化调用，脚本被创建即调用。
+3. start() : 初始化调用，与onLoad的区别在于，例如枪和子弹的初始化，子弹必须要在枪之前初始化。
+4. update(deltaTime: number) : 每帧调用。deltaTime表示每一帧的执行时间，也就是上一帧到下一帧的时间。
+5. lateUpdate(dt: number) : 每帧执行完后的收尾工作。
+6. onDestroy() : 销毁时调用
+7. onEnable()与onDestroy()是一对, 可多次执行，是否启用某组件。在属性检查器-组件左边的勾勾。
+
