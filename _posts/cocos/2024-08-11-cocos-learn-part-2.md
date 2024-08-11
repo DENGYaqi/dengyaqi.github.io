@@ -63,7 +63,7 @@ VS Code编辑器
 - 面向组件 : 在npc节点挂上卖东西的组件就等于商店老板，或者在npc组件挂上敌人的组件和刀的组件就是拿刀敌人。
 
 ## 锚点与坐标系
-![组件与锚点位置](/assets/img/cocos/learn_part_2/anchor.png){: .normal }
+![组件与锚点位置](/assets/img/cocos/learn_part_2/anchor.png#center){: .normal }
 _组件与锚点位置_
 
 <p align="center">
