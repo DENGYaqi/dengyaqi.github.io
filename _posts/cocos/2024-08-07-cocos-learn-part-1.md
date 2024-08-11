@@ -1,7 +1,7 @@
 ---
 title: 【学习篇】CocosCreator学习第一部分 - TypeScript
 date: 2024-08-07 20:14:51 +0800
-categories: [CocosCreator, Blogging]
+categories: [CocosCreator]
 tags: [CocosCreator, TypeScript]
 description: TypeScript语法
 pin: true

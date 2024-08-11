@@ -1,7 +1,7 @@
 ---
 title: 如何快速构建Github个人博客 - Github Pages
 date: 2024-08-06 10:07:51 +0800
-categories: [Github, Tutorial]
+categories: [Github]
 tags: [github, github pages, markdown, chirpy, chirpy starter, jekyll] # TAG names should always be lowercase
 description: 入门级快速搭建个人博客
 pin: true

@@ -2,10 +2,13 @@
 title: 【学习篇】CocosCreator学习第二部分 - Cocos Creator
 date: 2024-08-11 10:14:51 +0800
 categories: [CocosCreator]
-tags: [CocosCreator, TypeScript]
+tags: [CocosCreator]
 description: Cocos Creator
 pin: true
 ---
+
+## 介绍
+作者使用的是cocos 2dx和vs code
 
 ## 设置准备
 Cocos Creator
@@ -27,4 +30,5 @@ VS Code编辑器
     - 场景图(Scene Graph)是一种安排场景内对象的数据结构，它把场景内所有的节点(Node)都包含在一个树(tree)上。
 3. [Sprite精灵](https://docs.cocos.com/cocos2d-x/manual/zh/basic_concepts/sprites.html) : 场景的子类，每个场景可包含多个精灵Sprite。场景里所有一切的物体都是精灵，演员、背景、箱子、房子等等都是精灵。
     - 精灵和节点的区别？如果你能控制它，它才是一个精灵，如果无法控制，那就只是一个节点。
-4.
+    - 实现一个精灵的例子 : 父类npc，子类商店老板和敌人，敌人的子类又有拿刀敌人、弓箭敌人、大Boss等等。
+4. 节点Node : 可以挂载组件，
