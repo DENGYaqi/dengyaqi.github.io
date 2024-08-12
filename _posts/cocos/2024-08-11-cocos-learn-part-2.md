@@ -3,12 +3,12 @@ title: 【学习篇】CocosCreator学习第二部分 - Cocos Creator
 date: 2024-08-11 10:14:51 +0800
 categories: [CocosCreator]
 tags: [CocosCreator]
-description: Cocos Creator
+description: Cocos Creator基础
 pin: true
 ---
 
 ## 介绍
-飞羽教程使用的是Cocos 2dx和VS Code编辑器。这一篇主要是讲解Cocos的基本内容，从视频P25-P42。cocos编辑器用的是3dx版本。
+飞羽教程使用的是Cocos 2dx和VS Code编辑器。这一篇主要是讲解Cocos的基本内容，从视频P25-P42，本文的cocos编辑器用的是3dx版本。
 
 ## 环境准备
 Cocos Creator
@@ -22,7 +22,7 @@ VS Code编辑器
 ## 编辑器
 官网编辑器界面功能介绍 : [编辑器界面](https://docs.cocos.com/creator/3.8/manual/zh/editor/)
 
-A. 层级管理器(节点) : 节点的层级关系。
+A. 层级管理器([节点](#节点)) : 节点的层级关系。
 - 2D对象节点/渲染节点 : 就是可以显示出来的节点，如精灵、粒子。
 - UI节点 : 属于设计游戏界面的节点。如布局、进度条。
 
@@ -144,53 +144,44 @@ _向量的减法，结果为AB向量的平行四边形的对边_
 ## 脚本
 每个组件都是一个脚本。资源管理器新增脚本文件后可以直接拖到属性检查器内变成精灵的组件。脚本必须挂载到一个节点/精灵上才会被执行，挂载到多个节点则会被多次执行。
 
+2dx很多方法调用前需要使用命名空间cc.，但是3dx可以直接使用。例如通过路径查找节点，在2dx是cc.find()，在3dx则是find()。
+
 ```typescript
 import { _decorator, Component, Label, Node } from 'cc';
 const { ccclass, property } = _decorator; // 导入两个装饰器，ccclass和property
 
-@ccclass('NewComponent')
+@ccclass('NewComponent') // 属性检查器内被识别为一个组件
 export default class NewComponent extends Component {
 
-    @property(Label)
+    @property(Label) // 属性检查器面板显示 非基本类型加()
     label: Label = null;
 
-    @property
+    @property // 基本类型
     text: string = "hello";
 
     // LIFE - CYCLE CALLBACKS
 
-    // 初始化调用
-    protected onLoad(): void {
-        
-    }
+    // 初始化调用 - 先
+    protected onLoad(): void {}
 
-    protected onEnable(): void {
-        
-    }
+    // 是否启用组件
+    protected onEnable(): void {}
 
-    // 初始化调用
-    start() {
-
-    }
+    // 初始化调用 - 后
+    start() {}
 
     // 每帧调用
-    update(deltaTime: number) {
+    update(deltaTime: number) {}
 
-    }
+    // 每帧执行完后的收尾工作
+    protected lateUpdate(dt: number): void {}
 
-    protected lateUpdate(dt: number): void {
-        
-    }
+    // 是否启用组件
+    protected onDisable(): void {}
 
-    protected onDisable(): void {
-        
-    }
-
-    protected onDestroy(): void {
-        
-    }
+    // 销毁时调用
+    protected onDestroy(): void {}
 }
-
 ```
 
 ### 脚本的组成
@@ -207,7 +198,7 @@ export default class NewComponent extends Component {
 
 ### 脚本生命周期
 若有10个脚本，会每个脚本先执行onLoad()，再从第一个脚本继续执行start()。并不是一个脚本的生命周期都执行完才执行下一个脚本的。
-1. LIFE - CYCLE CALLBACKS下面的函数是已存在的，编辑器会在适当的时候调用。
+1. LIFE - CYCLE CALLBACKS下面的函数是已存在的，编辑器会在适当的时候调用，即使默认生成不会显示，也会调用。
 2. onLoad() : 初始化调用，脚本被创建即调用。
 3. start() : 初始化调用，与onLoad的区别在于，例如枪和子弹的初始化，子弹必须要在枪之前初始化。
 4. update(deltaTime: number) : 每帧调用。deltaTime表示每一帧的执行时间，也就是上一帧到下一帧的时间。
@@ -215,3 +206,68 @@ export default class NewComponent extends Component {
 6. onDestroy() : 销毁时调用
 7. onEnable()与onDestroy()是一对, 可多次执行，是否启用某组件。在属性检查器-组件左边的勾勾。
 
+## 节点
+```typescript
+import { _decorator, Component, find, Label, Node, quat, Sprite, UITransform, v2, v3 } from 'cc';
+const { ccclass, property } = _decorator;
+
+@ccclass('NewComponent')
+export default class NewComponent extends Component {
+
+    @property(Label)
+    label: Label = null;
+
+    @property // 基本类型
+    text: string = "hello";
+
+    // LIFE - CYCLE CALLBACKS
+
+    // 初始化调用 - 后
+    start() {
+        // 1. 节点的使用
+        // 当前节点
+        this.node; // 当前节点为Sprite
+        this.node.removeFromParent; // 从父节点移除当前节点
+
+        // 子节点
+        this.node.children; // 数组 所有的子节点
+        this.node.children[0]; // 获取第一个子节点
+        this.node.getChildByName("abc"); // 通过名字获取子节点
+        this.node.removeAllChildren(); // 移除所有子节点
+        //this.node.removeChild(ddd); // 移除ddd子节点
+
+        // 父节点
+        this.node.getParent(); // 获取父节点
+        this.node.setParent(null); // 设置父节点, null表示最外层
+        //this.node.setParent(ddd); // 设置ddd为父节点, null表示最外层
+
+        // 其他节点
+        find("Cavas/Sprite") // 通过路径获取节点，例如获取同级节点的子节点
+        
+        // 2. 节点的属性
+        // 访问位置
+        this.node.position.x; // 2dx : this.node.x
+        this.node.position.y; // 2dx : this.node.y
+        this.node.setPosition(3, 4);
+        this.node.setPosition(v3(3, 4)); // 2dx : this.node.setPosition(cc.v2(3, 4));
+        this.node.setRotation(quat(1)); // 2dx : this.node.setRotation(cc.quat(1));
+        this.node.setScale(v3(1, 2));
+        // 2dx : this.node.color = cc.Color.RED; // 例如游戏角色死亡闪红一下再设置回来可用
+        // ...
+        
+        // 节点开关
+        this.node.active = false; // 关掉当前节点
+        this.node.active = true; // 开启当前节点
+        // 组件开关
+        this.enabled = false; // 当前组件为NewComponent
+        // 获取组件 获取失败皆为null
+        let sprite = this.getComponent(Sprite); // 获取当前节点内的组件, 括号内填写的是组件类型
+        sprite.enabled = false; // 关闭精灵组件
+        let spriteS = this.getComponents(Sprite); // 获取当前节点内所有的精灵组件
+        this.getComponentInChildren(Sprite); // 获取子节点内的精灵组件
+    }
+
+    // 每帧调用
+    update(deltaTime: number) {}
+}
+```
