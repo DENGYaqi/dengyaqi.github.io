@@ -45,7 +45,7 @@ C. 场景编辑器的按钮 :
 - 锚点位置 : 中心/起点
 - 地球锚点 : 箭头朝向以世界坐标系/节点方向为准。
 
-D. 资源管理器(资源) : 所有的资源、资源可以拖拽到层级内，会自动生成节点。
+D. 资源管理器([资源](#资源)) : 资源、预设体，脚本。资源可以拖拽到层级内，会自动生成节点。
 - [脚本](#脚本) : 每个组件就是一个脚本。
 
 ## Cocos编程思想([基本概念](https://docs.cocos.com/cocos2d-x/manual/zh/basic_concepts/))
@@ -314,6 +314,60 @@ export class Test extends Component {
 
 与一般节点的区别 : 
 - 预设体节点的颜色与一般节点的颜色不同。
+
+## 资源
+
+### [资源的动态加载](https://docs.cocos.com/creator/3.8/manual/zh/asset/dynamic-load-resources.html)
+1. 在资源管理器内的asseerts文件下新增文件resources，命名不能更改。创建成功在属性检查器会生成各式属性与介绍。
+2. 将图片放至resources文件内，图片放置到层级管理器内，点击图片节点，再将脚本拖拽至属性检查器内，将脚本变成图片的组件之一。
+3. 编写脚本动态加载资源结构。
+```typescript
+import { _decorator, Component, instantiate, loader, Node, Prefab, resources, Sprite } from 'cc';
+const { ccclass, property } = _decorator;
+
+@ccclass('Test')
+export class Test extends Component {
+
+    start() {
+        // 从 v2.4 开始，loader等接口不再建议使用，建议用以下的方式。
+        // 由于有可能动态加载的图片是网上的资源，例如 https://www.xxx.com/1.png
+        // 所以 a) 因为网上资源可能耗时很久，所以并不是通过变量获取，而是通过回调函数异步获取。b) 代码1和代码2的执行顺序不定
+        // function内的err为加载时的错误, 若无错误，sp为加载好的资源，可不指定类型，若需指定，可在function前指定类型，指定后所有加载完成的图片都为该类型。
+        resources.load("test/land", String, function(err, sp){
+            // ...代码1
+        });
+        // ...代码2
+    }
+
+    update(deltaTime: number) {}
+}
+```
+
+4. 加载好的资源的使用
+```typescript
+import { _decorator, Component, instantiate, loader, Node, Prefab, resources, Sprite } from 'cc';
+const { ccclass, property } = _decorator;
+
+@ccclass('Test')
+export class Test extends Component {
+
+    start() {
+        let self = this; // 若异步内获取不到则将获取不到的内容赋值到当前函数的作用域内
+        // 加载 SpriteFrame，image是ImageAsset，spriteFrame是image/spriteFrame，texture是image/texture
+        resources.load("test_assets/image/spriteFrame", SpriteFrame, (err, spriteFrame) => {
+            self.node.getComponent(Sprite).spriteFrame = spriteFrame;
+        });
+        // 加载SpriteAtlas(图集)，并且获取其中的一个SpriteFrame
+        // 注意 atlas资源文件(plist)通常会和一个同名的图片文件(png)放在一个目录下, 所以需要在第二个参数指定资源类型
+        resources.load("test_assets/sheep", SpriteAtlas, (err, atlas) => {
+            const frame = atlas.getSpriteFrame('sheep_down_0');
+            sprite.spriteFrame = frame;
+        });
+    }
+
+    update(deltaTime: number) {}
+}
+```
 
 ## Cocos Creator的一些缺点
 1. 在代码内新增的结点无法在层级管理器同步，因为Cocos Creator是cocos的封装，所以有些功能无法完美。
