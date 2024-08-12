@@ -265,9 +265,55 @@ export default class NewComponent extends Component {
         sprite.enabled = false; // 关闭精灵组件
         let spriteS = this.getComponents(Sprite); // 获取当前节点内所有的精灵组件
         this.getComponentInChildren(Sprite); // 获取子节点内的精灵组件
+        
+        // 通过代码的方式创建节点和组件
+        let node = new Node("new"); // 创建一个名为new的节点
+        node.addComponent(Sprite); // 给节点node添加一个精灵组件
     }
 
     // 每帧调用
     update(deltaTime: number) {}
 }
 ```
+
+## 预设体
+预设体的出现：例如当我们需要创建地面1、地面2、地面3，需要新建结点后将资源拖拽进结点的组件内，删除也要操作三次，修改组件属性也要三次等等，同种操作三次非常冗余。
+
+预设体的生成 : 在创建节点设置好属性之类的，再拖拽回资源管理器。
+
+预设体的使用 : 
+1. 再拖拽回层级管理器，作为节点使用。
+2. 在脚本内新建带有@property(Prefab)注解的变量，再把资源管理器内的prefab拖进组件的面板内进行关联。关联完后再在代码内实例化预设体之类的操作。
+
+```typescript
+import { _decorator, Component, instantiate, Node, Prefab, Sprite } from 'cc';
+const { ccclass, property } = _decorator;
+
+@ccclass('Test')
+export class Test extends Component {
+
+    @property(Prefab)
+    pre : Prefab = null;
+
+    start() {
+        // 关联完后
+        // 实例化预设体
+        let node = instantiate(this.pre);
+        // 新的结点一定要设置一个父节点
+        node.setParent(this.node); // 将新增节点作为当前节点的子节点。
+    }
+
+    update(deltaTime: number) {}
+}
+```
+
+预设体的属性 : 在预设体的属性检查器内
+- 更新资源 : 同步更新到所有相同预设体，有些属性不同步，例如位置缩放
+- 取消关联当前的预制件资源 : 不再是预设体节点
+- 保存预设体 : 修改默认的预设体。
+
+与一般节点的区别 : 
+- 预设体节点的颜色与一般节点的颜色不同。
+
+## Cocos Creator的一些缺点
+1. 在代码内新增的结点无法在层级管理器同步，因为Cocos Creator是cocos的封装，所以有些功能无法完美。
