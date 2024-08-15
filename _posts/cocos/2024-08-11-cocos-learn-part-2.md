@@ -390,8 +390,9 @@ export class Test extends Component {
         director.removePersistRootNode(this.node)
 ```
 
-## 键鼠事件
-[Button API](https://docs.cocos.com/creator/3.8/api/zh/class/Button)介绍
+## 键盘、鼠标、触摸与自定义事件
+- [3.8.0事件系统](https://docs.cocos.com/creator/3.8/manual/zh/engine/event/)
+- [Button API](https://docs.cocos.com/creator/3.8/api/zh/class/Button)介绍
 ```typescript
         // 鼠标监听
         // 开始监听 (监听事件名称Node.EventType, 监听函数内容)
@@ -416,6 +417,30 @@ export class Test extends Component {
                 console.debug("按下了a");
             }
         })
+
+        // 自定义事件1
+        // 发送
+        let self = this;
+        this.node.on(Node.EventType.TOUCH_START, function(event: any){
+            self.node.emit("自定义事件");
+        });
+        // 接收
+        this.node.on("自定义事件", function(){
+            console.debug("自定义事件触发");
+        });
+
+        // 自定义事件2
+        // 发送
+        this.node.on(Node.EventType.TOUCH_START, function(event: any){
+            // 2dx : self.node.dispatchEvent(new cc.Event.EventCustom("自定义事件", true));
+            // EventCustom中的true/false冒泡事件，是否冒泡给父节点 : 并不是第一接收类首先处理，而是消息先冒泡到最顶级父类再一层层往下开始处理消息。
+        });
+        // 接收
+        this.node.on("自定义事件", function(){
+            console.debug("自定义事件触发");
+        });
+
+        // 自定义事件3 : 若中大型项目需要消息机制的情况，一般自己写一套，上面两套不是很好用。
 ```
 
 ## Cocos Creator的一些缺点
