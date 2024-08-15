@@ -17,6 +17,7 @@ CocosCreator的诞生是为了将Cocos2D—x的纯代码编辑，分解成可视
 JS的升级，包含JS的所有特性，区别主要在于TS包含a)强类型b)面相对象。可用[JS和TS在线语法对照](https://www.typescriptlang.org/play/?#code/PTAEiJrQ5+MU3NAYlUAqBPADgUwMoGMBOBLFAF1EBR7QYb9AudUBh-gKBFEE34wejNAAOUCo5QTb9ADeUAXjQbPlAaP6BMxSqAwJUDVcoBiVQGbagAzlEqTLgLFAIW6BFf0CbXoCAGGnTCAKg0D3yoFO5E4CDNQNBygSDlAs56BO00Dw+oH95QBSugYO1AWP-79oUAFpQdkBYOUAseUAWD0B5dUBvuUBVeUAcOUB-SNU5BXRsfCJQVUAGdXtdegCgtkBleUAYrLSlTOJAW+jAVZtANz1AODlAaojALrkJXPzfIvZXQDi5QGlbQFXo4MAYFUqMlVABQEXowHxzQHylQF+A1UBMm0BG710aLAB7ADsAZ2IAQ32AUQAPE4BbFAAbNAA1E-wTgCNH0ABeUAAiAASaHu912oAA6rscPcACZ-HYHQ67R4AOlBAHMABRnK63B7PV54D6PACUenopkAnQ6Ab8VAFBy9lUoEAOASALk9ANHygFwCUCANCNmYAG00A36kcqgmQBhcoBjyMAL2aALE1AM6K-RqgAAo1SAQ-lAPYG2nh9G5gFAAwAESoATNIYgGy5QAXNoApxIagBQ5QAA+oBpzTcVEALqZscgUVSANDlADKugF+EwB6Ov0uLo-EA)，边学习边操作。
 
 ### 变量与常量
+
 ```typescript
 //变量
 //声明变量 字母数字下划线 字母下划线 驼峰
@@ -103,6 +104,7 @@ document.write(typeof newNum); // 输出还是number类型
 ```
 
 ### 运算符
+
 ```typescript
 // 1. 算术运算符 : + - * / %
 let num = 10 % 3;
@@ -135,6 +137,7 @@ num = num + 3;
 ```
 
 ### 条件控制语句
+
 ```typescript
 // 1. 判断语句
 // age > 18
@@ -185,6 +188,7 @@ switch (state) {
 ```
 
 ### 循环控制语句
+
 ```typescript
 // 1. whild do循环 0+1+2+...+100
 let i: number = 0;
@@ -312,6 +316,7 @@ b.say();
 ```
 
 ### 构造与静态
+
 ```typescript
 class Person{
     // 静态属性 : 不属于对象的
@@ -409,6 +414,7 @@ per.say();
 
 ### 接口与属性扩展
 弥补多继承。主要看第二点。
+
 ```typescript
 // 1. 接口样例 : 人 狼 狼人：人，狼
 class Person{
@@ -468,6 +474,7 @@ document.write(b.hp + "");
 
 ### 命名空间
 为解决冲突存在的。代码有效域在命名空间内。
+
 ```typescript
 // 原有问题
 // A代码
@@ -508,6 +515,7 @@ let personB = new bb.Person();
 
 ### 泛型
 同一函数支持多种类型。
+
 ```typescript
 // 方法一 : any 可能导致入参类型与出参类型不一致，不建议使用
 function add(num: any): any{
@@ -533,6 +541,7 @@ document.write(add<number>(3) + "");
 ```
 
 ### 集合 : 元祖数组字典
+
 ```typescript
 // 元组 : 多返回值 多类型 可使用
 let hero: [string, number] = ["超人", 100];
@@ -635,6 +644,7 @@ func(() => {
 |?|重复0次或1次|
 
 #### 组合使用
+
 ```re
 ^...$ : 可用于账户密码
 
@@ -660,6 +670,7 @@ QQ号:[1-9][0-9]{4,}
 ```
 
 #### 代码使用
+
 ```typescript
 let reg = /\d{4}-\d{7}/g; 
 let str = "0345-1234567"; 
@@ -673,6 +684,7 @@ res.forEach(function (value, index){
 ```
 
 ### 访问修饰符
+
 ```typescript
 // 访问修饰符 public公开的 protected受保护的(当前类与子类) private私有的(当前类)
 class Person{
@@ -700,6 +712,7 @@ a.name;
 
 ### 单例模式
 经典设计模式之一，保证一个类仅有一个实例，并提供一个全局访问点。一般管理类会使用。
+
 ```typescript
 // 1. 饿汉式 : 类加载时就创建实例，线程安全且简单明了，但可能会创建过多而不使用的情况存在
 class SoundManager{
@@ -728,6 +741,7 @@ SoundManager.Instance(); // 代表方法
 
 ### 代理模式
 通过引入一个代理对象来控制对原对象的访问。通过不同的代理人可以做出不同的效果。
+
 ```typescript
 interface ICalc{
     calc(num1:number, num2:number): number;
@@ -766,6 +780,7 @@ person.GetNum(3, 4);
 
 ### 观察者模式
 一种一对多的依赖关系，当一个对象的状态发生改变时，其所有依赖者都会收到通知并自动更新。例如白天黑夜的更换。
+
 ```typescript
 interface IObserver{
     nameChanged(newName:string):any;
@@ -806,6 +821,7 @@ person.name = "哈哈哈";
 
 ### 工厂模式
 通过使用工厂模式，可以将对象的创建逻辑封装在一个工厂类中，而不是在客户端代码中直接实例化对象。
+
 ```typescript
 enum CarType{
     Bmw,
@@ -843,6 +859,7 @@ let bmw = Car.Create(CarType.Bmw);
 ```
 
 ### 链表
+
 ```typescript
 class Person{
     name: string;

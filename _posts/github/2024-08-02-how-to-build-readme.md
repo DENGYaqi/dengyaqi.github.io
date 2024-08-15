@@ -31,6 +31,7 @@ thmsgbrt主要是使用[Mustache](https://www.npmjs.com/package/mustache)去创�
 
 1. IDE我是使用GitHub的codespace，也就是VSCode
 2. 如果本地没有js : [安装node.js](https://nodejs.org/zh-cn/download/package-manager)，我安装的版本是node v20.16.0 (npm v10.8.1)。
+
 ```bash
 nvm install 20
 ```
@@ -38,6 +39,7 @@ nvm install 20
 ### 创建npm项目
 
 1. 在终端使用命令创建一个新的npm项目。
+
 ```bash
 npm init
 ```
@@ -72,6 +74,7 @@ touch main.mustache
 ```
 
 3. 填入内容 : 
+
 ```java
 // My name is {{name}} and today is {{date}}
 ```
@@ -123,12 +126,14 @@ function generateReadMe() {
 ```
 
 6. 在终端运行命令以生成ReadMe.md文件
+
 ```bash
 node index.js
 ```
 
 ### 使用Github Actions自动化
 1. 使用Actions自动生成Readme.md，Actions最主要的文件就是workflows和yml配置文件。
+
 ```bash
 mkdir .github && cd .github && mkdir workflows
 

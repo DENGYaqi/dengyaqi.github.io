@@ -207,6 +207,7 @@ export default class NewComponent extends Component {
 7. onEnable()与onDestroy()是一对, 可多次执行，是否启用某组件。在属性检查器-组件左边的勾勾。
 
 ## 节点
+
 ```typescript
 import { _decorator, Component, find, Label, Node, quat, Sprite, UITransform, v2, v3 } from 'cc';
 const { ccclass, property } = _decorator;
@@ -321,6 +322,7 @@ export class Test extends Component {
 1. 在资源管理器内的asseerts文件下新增文件resources，命名不能更改。创建成功在属性检查器会生成各式属性与介绍。
 2. 将图片放至resources文件内，图片放置到层级管理器内，点击图片节点，再将脚本拖拽至属性检查器内，将脚本变成图片的组件之一。
 3. 编写脚本动态加载资源结构。
+
 ```typescript
 import { _decorator, Component, instantiate, loader, Node, Prefab, resources, Sprite } from 'cc';
 const { ccclass, property } = _decorator;
@@ -344,6 +346,7 @@ export class Test extends Component {
 ```
 
 4. 加载好的资源的使用
+
 ```typescript
         let self = this; // 若异步内获取不到则将获取不到的内容赋值到当前函数的作用域内
         // 加载 SpriteFrame，image是ImageAsset，spriteFrame是image/spriteFrame，texture是image/texture
@@ -364,6 +367,7 @@ export class Test extends Component {
 1. 新建场景 : 文件 -> 新建场景
 2. 保存场景/重载场景 : 层级管理器更新为新的场景，新老场景都会在资源管理器显示，可双击打开
 3. 切换场景 : 
+
 ```typescript
         // 1. 小资源加载方式
         // 2dx : 加个cc.在director前面即可
@@ -381,6 +385,7 @@ export class Test extends Component {
         });
 ```
 4. 永久性节点 : 例如场景1的墙面跟场景2的墙面是一样的，那切换场景则希望不再重新加载相同资源，可以直接使用。
+
 ```typescript
         // 2dx
         cc.game.addPersistRootNode(this.node)
@@ -394,6 +399,7 @@ export class Test extends Component {
 - [3.8.0事件系统](https://docs.cocos.com/creator/3.8/manual/zh/engine/event/)
 - [Button API](https://docs.cocos.com/creator/3.8/api/zh/class/Button)介绍
 - 自定义事件3 : 若中大型项目需要消息机制的情况，一般自己写一套，cocos的两套不是很好用。
+
 ```typescript
         // 鼠标监听
         // 开始监听 (监听事件名称Node.EventType, 监听函数内容)
@@ -451,6 +457,7 @@ export class Test extends Component {
 3. 圆形碰撞组件(CircleCollider2D) : 同上
 4. 多边形碰撞组件(PolygonCollider2D) : 同上
 5. [3.8.0碰撞回调](https://docs.cocos.com/creator/3.8/manual/zh/physics-2d/physics-2d-contact-callback.html)
+
 ```typescript
 @ccclass('TestContactCallBack')
 export class TestContactCallBack extends Component {
