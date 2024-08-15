@@ -32,14 +32,14 @@ thmsgbrt主要是使用[Mustache](https://www.npmjs.com/package/mustache)去创�
 1. IDE我是使用GitHub的codespace，也就是VSCode
 2. 如果本地没有js : [安装node.js](https://nodejs.org/zh-cn/download/package-manager)，我安装的版本是node v20.16.0 (npm v10.8.1)。
 ```bash
-$ nvm install 20
+nvm install 20
 ```
 
 ### 创建npm项目
 
 1. 在终端使用命令创建一个新的npm项目。
 ```bash
-$ npm init
+npm init
 ```
 2. 填写项目信息，参考[npm文档](https://docs.npmjs.com/cli/v8/configuring-npm/package-json#license)。完成后若想修改信息可在package.json修改。
 
@@ -62,24 +62,21 @@ $ npm init
 - package-lock.json文件的作用: a)记录模块与模块之间的依赖关系 b)锁定包的版本 c)记录项目所依赖第三方包的树状结构和包的下载地址，加快重新安装的下载速度。
 
 ```bash
-$ npm i mustache
+npm i mustache
 ```
 
 2. 创建mustache模板，打开main.mustache文件，填入最简单的: My name is {{name}} and today is {{date}}.
 
 ```bash
-$ touch main.mustache
+touch main.mustache
 ```
 
-3. 填入内容
-```text
-My name is {{name}} and today is {{date}}
-```
+3. 填入内容 : My name is {{name}} and today is {{date}}
 
-4. 通过Mustache生成ReadMe.md文件。
+4. 通过index文件里的Mustache生成ReadMe.md文件。
 
 ```bash
-$ touch index.js
+touch index.js
 ```
 
 5. 在index.js文件内填入以下内容。修改name为你的名字，其他可看情况修改。
@@ -124,14 +121,15 @@ function generateReadMe() {
 
 6. 在终端运行命令以生成ReadMe.md文件
 ```bash
-$ node index.js
+node index.js
 ```
 
 ### 使用Github Actions自动化
 1. 使用Actions自动生成Readme.md，Actions最主要的文件就是workflows和yml配置文件。
 ```bash
-$ mkdir .github && cd .github && mkdir workflows
-$ cd ./workflows && touch main.yaml
+mkdir .github && cd .github && mkdir workflows
+
+cd ./workflows && touch main.yaml
 ```
 
 2. 生成main.yml文件后填入以下yml内容。如果想自己设定配置内容，可以阅读[文档](https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows#scheduled-events)。yml内容解释: 
