@@ -71,7 +71,10 @@ npm i mustache
 touch main.mustache
 ```
 
-3. 填入内容 : My name is {{name}} and today is {{date}}
+3. 填入内容 : 
+```java
+// My name is {{name}} and today is {{date}}
+```
 
 4. 通过index文件里的Mustache生成ReadMe.md文件。
 
