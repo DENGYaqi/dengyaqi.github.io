@@ -369,5 +369,39 @@ export class Test extends Component {
 }
 ```
 
+## 场景管理
+场景的切换，例如新手村到襄阳城的场景、打怪场景等等。
+
+1. 新建场景 : 文件 -> 新建场景
+2. 保存场景/重载场景 : 层级管理器更新为新的场景，新老场景都会在资源管理器显示，可双击打开
+3. 切换场景 : 
+```typescript
+        // 1. 小资源加载方式
+        // 2dx : 加个cc.在director前面即可
+        // 3dx
+        director.loadScene("scene_name", function(){
+            //  当前已经加载到新的场景里了
+        });
+
+        // 2. 大资源加载方式
+        director.preloadScene("scene_name", function(){
+            // 这个场景加载到内存，还未使用
+            
+            // 使用场景
+            director.loadScene("scene_name");
+        });
+```
+4. 永久性节点 : 例如场景1的墙面跟场景2的墙面是一样的，那切换场景则希望不再重新加载相同资源，可以直接使用。
+```typescript
+        // 2dx
+        cc.game.addPersistRootNode(this.node)
+        cc.game.removePersistRootNode(this.node)
+        // 3dx
+        director.addPersistRootNode(this.node);
+        director.removePersistRootNode(this.node)
+```
+
+
+
 ## Cocos Creator的一些缺点
 1. 在代码内新增的结点无法在层级管理器同步，因为Cocos Creator是cocos的封装，所以有些功能无法完美。
