@@ -393,6 +393,7 @@ export class Test extends Component {
 ## 键盘、鼠标、触摸与自定义事件
 - [3.8.0事件系统](https://docs.cocos.com/creator/3.8/manual/zh/engine/event/)
 - [Button API](https://docs.cocos.com/creator/3.8/api/zh/class/Button)介绍
+- 自定义事件3 : 若中大型项目需要消息机制的情况，一般自己写一套，cocos的两套不是很好用。
 ```typescript
         // 鼠标监听
         // 开始监听 (监听事件名称Node.EventType, 监听函数内容)
@@ -443,8 +444,56 @@ export class Test extends Component {
         // 自定义事件3 : 若中大型项目需要消息机制的情况，一般自己写一套，上面两套不是很好用。
 ```
 
+## 碰撞检测
+只有在节点添加了碰撞组件才能使用碰撞系统。具体查看 : [物理系统API](https://docs.cocos.com/creator/3.8/api/zh/physics-system-readme)、[物理系统介绍](https://docs.cocos.com/creator/3.8/manual/zh/physics/)、[碰撞组件介绍](https://docs.cocos.com/creator/3.8/manual/zh/physics-2d/physics-2d-collider.html)。
+1. 添加组件 : 属性检查器 -> 添加组件 -> 搜索"Colliders"
+2. 盒碰撞组件(BoxCollider2D) : 添加后周围有绿色线框，size绿线框宽高 offset绿线框偏移、edit是否允许手动调整绿线框、tag发生碰撞后可用标签判断哪个组件被哪个组件碰撞了。
+3. 圆形碰撞组件(CircleCollider2D) : 同上
+4. 多边形碰撞组件(PolygonCollider2D) : 同上
+5. [3.8.0碰撞回调](https://docs.cocos.com/creator/3.8/manual/zh/physics-2d/physics-2d-contact-callback.html)
+```typescript
+@ccclass('TestContactCallBack')
+export class TestContactCallBack extends Component {
+    start () {
+        // 注册单个碰撞体的回调函数
+        let collider = this.getComponent(Collider2D);
+        if (collider) {
+            collider.on(Contact2DType.BEGIN_CONTACT, this.onBeginContact, this);
+            collider.on(Contact2DType.END_CONTACT, this.onEndContact, this);
+            collider.on(Contact2DType.PRE_SOLVE, this.onPreSolve, this);
+            collider.on(Contact2DType.POST_SOLVE, this.onPostSolve, this);
+        }
+
+        // 注册全局碰撞回调函数
+        if (PhysicsSystem2D.instance) {
+            PhysicsSystem2D.instance.on(Contact2DType.BEGIN_CONTACT, this.onBeginContact, this);
+            PhysicsSystem2D.instance.on(Contact2DType.END_CONTACT, this.onEndContact, this);
+            PhysicsSystem2D.instance.on(Contact2DType.PRE_SOLVE, this.onPreSolve, this);
+            PhysicsSystem2D.instance.on(Contact2DType.POST_SOLVE, this.onPostSolve, this);
+        }
+    }
+    onBeginContact (selfCollider: Collider2D, otherCollider: Collider2D, contact: IPhysics2DContact | null) {
+        // 只在两个碰撞体开始接触时被调用一次
+        console.log('onBeginContact');
+    }
+    onEndContact (selfCollider: Collider2D, otherCollider: Collider2D, contact: IPhysics2DContact | null) {
+        // 只在两个碰撞体结束接触时被调用一次
+        console.log('onEndContact');
+    }
+    onPreSolve (selfCollider: Collider2D, otherCollider: Collider2D, contact: IPhysics2DContact | null) {
+        // 每次将要处理碰撞体接触逻辑时被调用
+        console.log('onPreSolve');
+    }
+    onPostSolve (selfCollider: Collider2D, otherCollider: Collider2D, contact: IPhysics2DContact | null) {
+        // 每次处理完碰撞体接触逻辑时被调用
+        console.log('onPostSolve');
+    }
+}
+```
+
 ## Cocos Creator的一些缺点
 1. 在代码内新增的结点无法在层级管理器同步，因为Cocos Creator是cocos的封装，所以有些功能无法完美。
 
 ## 2dx和3dx语法上的一些区别
 1. 有些2dx方法在3dx过时了，或者想在2dx使用3dx的函数，基本都是2dx函数或变量前有cc.的前缀，只不过在3dx隐藏了，或者有些方法挪动函数位置了，例如addPersistRootNode()函数从game模块挪动到director模块内了。
+2. 一般在对应版本的API里面也可以查到哪些函数过时，对应替换的是哪个函数。
