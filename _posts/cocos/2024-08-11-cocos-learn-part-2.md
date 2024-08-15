@@ -491,6 +491,10 @@ export class TestContactCallBack extends Component {
 }
 ```
 
+## 微信飞机大战
+1. 3dx
+2. 2dx
+
 ## Cocos Creator的一些缺点
 1. 在代码内新增的结点无法在层级管理器同步，因为Cocos Creator是cocos的封装，所以有些功能无法完美。
 
