@@ -8,7 +8,7 @@ pin: true
 ---
 
 ## 介绍
-飞羽教程使用的是Cocos 2dx和VS Code编辑器。这一篇主要是讲解Cocos的基本内容，从视频P25-P42，本文的cocos编辑器用的是3dx版本。
+飞羽教程使用的是Cocos 2dx和VS Code编辑器。这一篇主要是讲解Cocos的基本内容，从视频P25-P42，本文的cocos编辑器用的是3dx版本，有些函数过时了，可在[3.8的API文档](https://docs.cocos.com/creator/3.8/api/zh/)内查询到对应函数。
 
 ## 环境准备
 Cocos Creator
@@ -345,13 +345,6 @@ export class Test extends Component {
 
 4. 加载好的资源的使用
 ```typescript
-import { _decorator, Component, instantiate, loader, Node, Prefab, resources, Sprite } from 'cc';
-const { ccclass, property } = _decorator;
-
-@ccclass('Test')
-export class Test extends Component {
-
-    start() {
         let self = this; // 若异步内获取不到则将获取不到的内容赋值到当前函数的作用域内
         // 加载 SpriteFrame，image是ImageAsset，spriteFrame是image/spriteFrame，texture是image/texture
         resources.load("test_assets/image/spriteFrame", SpriteFrame, (err, spriteFrame) => {
@@ -363,10 +356,6 @@ export class Test extends Component {
             const frame = atlas.getSpriteFrame('sheep_down_0');
             sprite.spriteFrame = frame;
         });
-    }
-
-    update(deltaTime: number) {}
-}
 ```
 
 ## 场景管理
@@ -401,7 +390,36 @@ export class Test extends Component {
         director.removePersistRootNode(this.node)
 ```
 
+## 键鼠事件
+[Button API](https://docs.cocos.com/creator/3.8/api/zh/class/Button)介绍
+```typescript
+        // 鼠标监听
+        // 开始监听 (监听事件名称Node.EventType, 监听函数内容)
+        this.node.on(Node.EventType.MOUSE_DOWN, function(event: any){
+            console.debug("鼠标按下啦" + event.getLocation());
+            // 左右键判断
+            if(event.getButton() == EventMouse.BUTTON_RIGHT){
+                console.debug("右键");
+            }
+            if(event.getButton() == EventMouse.BUTTON_LEFT){
+                console.debug("左键");
+            }
+        });
+        // 可在onDestroy关闭监听
+        this.node.off(Node.EventType.MOUSE_DOWN);
 
+        // 键盘监听 2dx : systemEvent 3dx : input
+        input.on(Input.EventType.KEY_DOWN, function(event){
+            console.debug("ASCII码" + event.keyCode);
+            // 判断按下的键 2dx : cc.macro.KEY.a 3dx : KeyCode.KEY_A
+            if(event.keyCode == KeyCode.KEY_A){
+                console.debug("按下了a");
+            }
+        })
+```
 
 ## Cocos Creator的一些缺点
 1. 在代码内新增的结点无法在层级管理器同步，因为Cocos Creator是cocos的封装，所以有些功能无法完美。
+
+## 2dx和3dx语法上的一些区别
+1. 有些2dx方法在3dx过时了，或者想在2dx使用3dx的函数，基本都是2dx函数或变量前有cc.的前缀，只不过在3dx隐藏了，或者有些方法挪动函数位置了，例如addPersistRootNode()函数从game模块挪动到director模块内了。
