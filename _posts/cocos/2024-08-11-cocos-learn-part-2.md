@@ -500,7 +500,7 @@ export class TestContactCallBack extends Component {
 
 ## 微信飞机大战
 1. 2dx笔记
-编译器版本3.8.1。Canvas大小 : 项目 - 项目设置 - 项目数据 - 设计宽度和设计高度
+编译器版本2.3.2。
 
 - 基础操作
     - 加载资源 : 将资源拖拽进资源管理器
@@ -526,7 +526,14 @@ export class TestContactCallBack extends Component {
 
 - 敌人
     - 添加碰撞 : 点击敌人节点 - 属性检查器 - 添加组件 - Box Collider - 打开Editer - 手动调整碰撞范围 绿线框
-    - 静态碰撞 : 设置Box Collider的tag为1，表示敌人
+    - 静态碰撞 : 设置Box Collider的tag为1，表示敌人，设置碰撞
+    - 加载爆炸图片并在一定时间内销毁
+    - 添加状态是否死亡，避免死亡后再往下移动
+    - 随机生成敌人 : 将敌人节点设置为预设体，添加EnemyManager节点，生成对应脚本，定时器随机在x轴生成敌人
+
+2. 3dx
+- Canvas大小 : 项目 - 项目设置 - 项目数据 - 设计宽度和设计高度
+- 评论区樵夫的项目可点击[此处](https://gitee.com/marksirl/cocos-plane-war)下载查看
 
 ## Cocos Creator的一些缺点
 1. 在代码内新增的结点无法在层级管理器同步，因为Cocos Creator是cocos的封装，所以有些功能无法完美。
