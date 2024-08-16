@@ -68,3 +68,12 @@ pin: true
             cc.audioEngine.setVolum(audioId, 1);
         });
 ```
+
+## 物理系统
+物理引擎，需要开启刚体Rigidbody，开启后节点会受到物理的影响、重力的影响。具体查看 : [物理系统API](https://docs.cocos.com/creator/3.8/api/zh/physics-system-readme)、[物理系统介绍](https://docs.cocos.com/creator/3.8/manual/zh/physics/)。
+
+1. 节点挂载刚体组件 - 节点挂载对应脚本 - 编写脚本
+
+```typescript
+
+``` 

@@ -451,7 +451,7 @@ export class Test extends Component {
 ```
 
 ## 碰撞检测
-只有在节点添加了碰撞组件才能使用碰撞系统。具体查看 : [物理系统API](https://docs.cocos.com/creator/3.8/api/zh/physics-system-readme)、[物理系统介绍](https://docs.cocos.com/creator/3.8/manual/zh/physics/)、[碰撞组件介绍](https://docs.cocos.com/creator/3.8/manual/zh/physics-2d/physics-2d-collider.html)。
+只有在节点添加了碰撞组件才能使用碰撞系统。具体查看 : [碰撞组件介绍](https://docs.cocos.com/creator/3.8/manual/zh/physics-2d/physics-2d-collider.html)。
 1. 添加组件 : 属性检查器 -> 添加组件 -> 搜索"Colliders"
 2. 盒碰撞组件(BoxCollider2D) : 添加后周围有绿色线框，size绿线框宽高 offset绿线框偏移、edit是否允许手动调整绿线框、tag发生碰撞后可用标签判断哪个组件被哪个组件碰撞了。
 3. 圆形碰撞组件(CircleCollider2D) : 同上
