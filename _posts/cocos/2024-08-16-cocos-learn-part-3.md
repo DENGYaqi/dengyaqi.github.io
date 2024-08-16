@@ -70,10 +70,37 @@ pin: true
 ```
 
 ## 物理系统
-物理引擎，需要开启刚体Rigidbody，开启后节点会受到物理的影响、重力的影响。具体查看 : [物理系统API](https://docs.cocos.com/creator/3.8/api/zh/physics-system-readme)、[物理系统介绍](https://docs.cocos.com/creator/3.8/manual/zh/physics/)。
+物理引擎，需要开启刚体Rigidbody，开启后节点会受到物理的影响、重力的影响。具体查看 : [2D刚体组件](https://docs.cocos.com/creator/3.8/manual/zh/physics-2d/physics-2d-rigid-body.html)、[RigidBody2D API](https://docs.cocos.com/creator/3.8/api/zh/class/RigidBody2D)。
 
 1. 节点挂载刚体组件 - 节点挂载对应脚本 - 编写脚本
 
 ```typescript
 
 ``` 
+
+- 刚体属性说明
+
+|属性|说明|
+|:---|:---|
+|Group|刚体的分组。通过 碰撞矩阵 可设置不同分组间碰撞的可能性|
+|EnabledContactListener|开启监听碰撞回调|
+|Bullet|这个刚体是否是一个快速移动的刚体，并且需要禁止穿过其他快速移动的刚体|
+|Type|刚体类型，详情请参考下方 刚体类型|
+|AllowSleep|是否允许刚体休眠|
+|物理配置|中可调整休眠的临界值|
+|GravityScale|重力缩放比例 仅对 Dynamic 类型的刚体生效|
+|LinearDamping|移动速度衰减系数|
+|AngularDamping|旋转速度衰减系数|
+|LinearVelocity|移动速度 仅对 Dynamic 和 Kinematic 类型的刚体生效|
+|AngularVelocity|旋转速度 仅对 Dynamic 和 Kinematic 类型的刚体生效|
+|FixedRotation|是否固定旋转|
+|AwakeOnLoad|加载完成后立刻唤醒刚体|
+
+- 刚体类型
+
+|刚体类型|说明|
+|:---|:---|
+|Static|静态刚体，零质量，零速度，即不会受到重力或速度影响，但是可以设置他的位置来进行移动。该类型通常用于制作场景|
+|Dynamic|动态刚体，有质量，可以设置速度，会受到重力影响。唯一可以通过 applyForce 和 applyTorque 等方法改变受力的刚体类型|
+|Kinematic|运动刚体，零质量，可以设置速度，不会受到重力的影响，但是可以设置速度来进行移动|
+|Animated|动画刚体，在上面已经提到过，从 Kinematic 衍生的类型，主要用于刚体与动画编辑结合使用|
