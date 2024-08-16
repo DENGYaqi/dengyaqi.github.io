@@ -70,7 +70,7 @@ pin: true
 ```
 
 ## 物理系统
-物理引擎，需要开启刚体Rigidbody，开启后节点会受到物理的影响、重力的影响。具体查看 : [2D刚体组件](https://docs.cocos.com/creator/3.8/manual/zh/physics-2d/physics-2d-rigid-body.html)、[RigidBody2D API](https://docs.cocos.com/creator/3.8/api/zh/class/RigidBody2D)。
+物理引擎，之后游戏基本是用这个，之前的物理碰撞用的比较少，看情况。开启刚体Rigidbody，开启后节点会受到物理的影响、重力的影响。具体查看 : [2D刚体组件](https://docs.cocos.com/creator/3.8/manual/zh/physics-2d/physics-2d-rigid-body.html)、[RigidBody2D API](https://docs.cocos.com/creator/3.8/api/zh/class/RigidBody2D)。
 
 1. 开启物理系统 : 节点挂载刚体组件 - 节点挂载对应脚本 - 编写脚本
 
@@ -110,5 +110,68 @@ pin: true
 2. 具体使用
 
 ```typescript
+    start() {
+        // 获取刚体
+        let rbody = this.getComponent(RigidBody2D);
+        // 赋予力 参数一force : x和y方向的力 单位牛，参数二point : 力给在物体的哪里 例如箱子上方还是下方 参数三 : 是否立刻运用
+        rbody.applyForce(new Vec2(1000, 0), new Vec2(50, 100), true);
+        // 赋予力2 中心一个力 更常用
+        rbody.applyForceToCenter(new Vec2(1000, 0), true);
 
+        // 速度 每秒多少像素 不用设置多大 匀速运动尽量用速度而不是力
+        rbody.linearVelocity = new Vec2(500, 0);
+    }
+
+    // 碰撞的回调
+    onBeginContact (selfCollider: Collider2D, otherCollider: Collider2D, contact: IPhysics2DContact | null) {
+        // 只在两个碰撞体开始接触时被调用一次
+        console.log('发生碰撞');
+        
+        // 碰撞点 例如枪碰到墙会产生火花
+        let points = contact.getWorldManifold().points;
+        // 可能会多个点碰撞，但是基本都是只有一个点
+        let point = points[0];
+
+        // 法线 垂直于某个面的线 例如电线杆是地面的法线，这里的法线是从碰撞点出来的法线
+        let normal = contact.getWorldManifold().normal;
+    }
+
+    onEndContact (selfCollider: Collider2D, otherCollider: Collider2D, contact: IPhysics2DContact | null) {
+        // 只在两个碰撞体结束接触时被调用一次
+        console.log('结束碰撞');
+    }
+
+    onPreSolve (selfCollider: Collider2D, otherCollider: Collider2D, contact: IPhysics2DContact | null) {
+        // 每次将要处理碰撞体接触逻辑时被调用
+        console.log('onPreSolve');
+    }
+
+    onPostSolve (selfCollider: Collider2D, otherCollider: Collider2D, contact: IPhysics2DContact | null) {
+        // 每次处理完碰撞体接触逻辑时被调用
+        console.log('onPostSolve');
+    }
 ```
+
+3. 碰撞
+若需要物理组件带有碰撞效果，则需要使用物理组件内的碰撞。
+- Physics2D
+    - RigidBody2D
+    - Colliders
+        - BoxCollider2D
+        - CircleCollider2D
+        - PolygonCollider2D
+    - Joints
+
+- 碰撞体属性说明
+
+|刚体类型|说明|理解|
+|:---|:---|:---|
+|Editing|是否对碰撞组件进行编辑。勾选后可以在场景内编辑碰撞组件的位置、样式和大小。详情请参考下方 编辑碰撞组件|
+|Tag|标签。当发生碰撞后，可根据 Tag 区分不同碰撞组件|
+|Group|碰撞组件分组。通过 碰撞矩阵 可设置不同分组间碰撞的可能性|
+|Sensor|指明碰撞组件是否为传感器类型，传感器类型的碰撞组件会产生碰撞回调，但是不会发生物理碰撞效果。（一般和rigidbody2d一起使用时，开启Enabled Contact Listener可以监听碰撞的回调事件。如：onBeginContact，onEndContact, 通过搜索文档可以了解如何监听这两个回调事件）|
+|Density|碰撞组件的密度，用于刚体的质量计算|
+|Friction|碰撞组件摩擦力系数，碰撞组件接触时的运动会受到摩擦力影响|
+|Restitution|碰撞组件的弹性系数，指明碰撞组件碰撞时是否会受到弹力影响|会弹起来|
+|Offset|碰撞组件相对于节点中心的偏移|
+
