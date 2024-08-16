@@ -180,12 +180,12 @@ pin: true
 
 ### 射线
 
-![射线](/assets/img/cocos/learn_part_3/radial.png){: .normal }
+![射线](/assets/img/cocos/learn_part_3/radial.png){: width="300" height="300" }
 _射线穿过一个刚体_
 
 射线可以从两点之间打出一条线，可以得到这个线穿过的刚体，若穿过了，可以得到线穿过刚体和穿出刚体的点信息之类的。
 
-![迷宫](/assets/img/cocos/learn_part_3/labyrinth.png){: width="400" height="400" }
+![迷宫](/assets/img/cocos/learn_part_3/labyrinth.png){: width="300" height="300" }
 _迷宫中左为玩家右为敌人_
 
-- 射线的用处 : 例如上图需要给敌人做一个逻辑，
+- 射线的用处 : 例如上图需要给敌人做一个巡逻的逻辑，例如前方100米有刚体则180度转身，没有则继续前进巡逻。

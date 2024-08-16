@@ -68,7 +68,7 @@ D. 资源管理器([资源](#资源)) : 资源、预设体，脚本。资源可�
 ## 锚点与坐标系
 
 ### 锚点
-![组件与锚点位置](/assets/img/cocos/learn_part_2/anchor.png){: .normal }
+![组件与锚点位置](/assets/img/cocos/learn_part_2/anchor.png){: width="300" height="300" }
 _组件与锚点位置_
 
 功能一 : 组件自带坐标，锚点默认在组件上的0.5, 0.5的位置上，假设节点是一张图片，若想将锚点放置于图片左下角，则锚点坐标为0, 0，右上角为1, 1，左上角0, 1，右下角1, 0。
@@ -123,12 +123,12 @@ _组件与锚点位置_
 - 单位化，归一化 : 把向量转为单位向量的过程。因为向量的大小并不影响向量的方向。
 
 ### 向量的运算及意义
-![向量的加法](/assets/img/cocos/learn_part_2/vector_add.png){: .normal }
+![向量的加法](/assets/img/cocos/learn_part_2/vector_add.png){: width="300" height="300" }
 _向量的加法，结果为AB向量的平行四边形的对角线_
 
 - 加法 : A(x1, y1) + B(x2, y2) = x1 + x2, y1 + y2，例如向量A(1, 2) + 向量B(2, 1) = 向量C(3, 3)，向量C其实就是向量AB平行四边形的对角线。
 
-![向量的加法](/assets/img/cocos/learn_part_2/vector_sub.png){: .normal }
+![向量的加法](/assets/img/cocos/learn_part_2/vector_sub.png){: width="300" height="300" }
 _向量的减法，结果为AB向量的平行四边形的对边_
 
 - 减法 : A(x1, y1) - B(x2, y2) = x1 - x2, y1 - y2，例如向量A(1, 2) + 向量B(2, 1) = 向量C(-1, 1)，也是平行四边形的对边。
