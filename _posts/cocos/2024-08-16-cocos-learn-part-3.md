@@ -188,4 +188,31 @@ _射线穿过一个刚体_
 ![迷宫](/assets/img/cocos/learn_part_3/labyrinth.png){: width="300" height="300" }
 _迷宫中左为玩家右为敌人_
 
-- 射线的用处 : 例如上图需要给敌人做一个巡逻的逻辑，例如前方100米有刚体则180度转身，没有则继续前进巡逻。
+- 射线的用处 : 例如上图需要给敌人做一个巡逻的逻辑，例如前方100米有刚体则180度转身，没有则继续前进巡逻。则只需给敌人上射线进行刚体检测即可。
+
+```typescript
+    protected onLoad(): void {
+        PhysicsSystem2D.instance.enable = true;
+
+        // 打出一条射线 
+        // 前两个参数 : 从当前节点到新建的节点，例如当前节点为小鸟 新建节点为天空 
+        // 第三个参数 射线的类型
+        // ERaycast2DType.Any : 射线射到第一个刚体第一个碰到的点。检测射线路径上任意的碰撞体，一旦检测到任何碰撞体，将立刻结束检测其他的碰撞体，最快。
+        // ERaycast2DType.Closest : 射线射到每个刚体第一个碰到的点。检测射线路径上最近的碰撞体，这是射线检测的默认值，稍慢。
+        // ERaycast2DType.All : 射线射到所有刚体的点。检测射线路径上的所有碰撞体，检测到的结果顺序不是固定的。在这种检测类型下，一个碰撞体可能会返回多个结果，这是因为 Box2D 是通过检测夹具（fixture）来进行物体检测的，而一个碰撞体中可能由多个夹具（fixture）组成的，慢。
+        // ERaycast2DType.AllClosest : 跟Closest差不多。检测射线路径上所有碰撞体，但是会对返回值进行删选，只返回每一个碰撞体距离射线起始点最近的那个点的相关信息，最慢。
+        const results = PhysicsSystem2D.instance.raycast(this.node.getPosition(), new Vec2(this.node.getPosition().x, this.node.getPosition().y + 100), ERaycast2DType.All, mask);
+        
+        for (const i = 0; i < results.length; i++) {
+            const result = results[i];
+            // 射线碰到的碰撞器 可以通过tag值判断射线碰到哪个碰撞器
+            const collider = result.collider;
+            // 射线碰到的点
+            const point = result.point;
+            // 射线碰到的法线
+            const normal = result.normal;
+            // 指定相交点在射线上的分数。
+            const fraction = result.fraction;
+        }
+    }
+```
