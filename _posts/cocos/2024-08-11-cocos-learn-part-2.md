@@ -1,6 +1,6 @@
 ---
 title: 【学习篇】CocosCreator学习第二部分 - Cocos Creator
-date: 2024-08-11 10:14:51 +0800
+date: 2024-08-11 10:00:00 +0800
 categories: [CocosCreator]
 tags: [CocosCreator]
 description: Cocos Creator基础
