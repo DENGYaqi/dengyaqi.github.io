@@ -194,6 +194,8 @@ _迷宫中左为玩家右为敌人_
     protected onLoad(): void {
         PhysicsSystem2D.instance.enable = true;
 
+        // 射线检测 注意 在3dx内是用世界坐标
+        
         // 打出一条射线 
         // 前两个参数 : 从当前节点到新建的节点，例如当前节点为小鸟 新建节点为天空 
         // 第三个参数 射线的类型
@@ -201,7 +203,7 @@ _迷宫中左为玩家右为敌人_
         // ERaycast2DType.Closest : 射线射到每个刚体第一个碰到的点。检测射线路径上最近的碰撞体，这是射线检测的默认值，稍慢。
         // ERaycast2DType.All : 射线射到所有刚体的点。检测射线路径上的所有碰撞体，检测到的结果顺序不是固定的。在这种检测类型下，一个碰撞体可能会返回多个结果，这是因为 Box2D 是通过检测夹具（fixture）来进行物体检测的，而一个碰撞体中可能由多个夹具（fixture）组成的，慢。
         // ERaycast2DType.AllClosest : 跟Closest差不多。检测射线路径上所有碰撞体，但是会对返回值进行删选，只返回每一个碰撞体距离射线起始点最近的那个点的相关信息，最慢。
-        const results = PhysicsSystem2D.instance.raycast(this.node.getPosition(), new Vec2(this.node.getPosition().x, this.node.getPosition().y + 100), ERaycast2DType.All, mask);
+        const results = PhysicsSystem2D.instance.raycast(this.node.getWorldPosition(), new Vec2(this.node.getWorldPosition().x, this.node.getWorldPosition().y + 100), ERaycast2DType.All, mask);
         
         for (const i = 0; i < results.length; i++) {
             const result = results[i];
@@ -216,3 +218,46 @@ _迷宫中左为玩家右为敌人_
         }
     }
 ```
+
+### 射线练习
+1. 使用单色节点新建两堵墙和单个玩家 
+2. 在3dx需要给两堵墙添加rigidBody和boxBody两个组件
+3. 新建脚本挂载到玩家上
+4. 编写脚本
+
+```typescript
+    // 方向 向上正1 向下负1
+    dir : Vec2 = v2(0, 1);
+
+    protected onLoad(): void {
+        // 开启物理引擎
+        PhysicsSystem2D.instance.enable = true;
+    }
+
+    start() {
+
+    }
+
+    update(deltaTime: number) {
+        // 移动
+        this.node.setPosition(
+            this.node.getPosition().x += this.dir.x * 100 * deltaTime, 
+            this.node.getPosition().y += this.dir.y * 100 * deltaTime
+        );
+
+        // 射线检测 注意 在3dx内是用世界坐标
+        const results = PhysicsSystem2D.instance.raycast(
+            this.node.getWorldPosition(), 
+            new Vec2(this.node.getWorldPosition().x, this.node.getWorldPosition().y + this.dir.y * 100), // x轴的第一个点跟玩家的x是一致的，所以是垂直的。y轴则是玩家纵轴的中心点 + 一个方向(向上/向下) + 检测的距离(也就是检测多远)。
+            ERaycast2DType.Closest // 检测单点即可
+        );
+
+        console.debug("射线是否碰触" + results.length);
+
+        // 若检测到刚体
+        if(results.length > 0){
+            this.dir.y *= -1; // 180度转向
+        }
+    }
+```
+
