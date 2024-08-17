@@ -262,7 +262,9 @@ _迷宫中左为玩家右为敌人_
 ```
 
 ## 动作系统
-在3dx中action已过时了，使用tween，也就是[缓动系统](https://docs.cocos.com/creator/3.0/manual/zh/tween/)。淡入淡出，跳跃等动作用的是[Easing](https://docs.cocos.com/creator/3.0/api/zh/modules/tween.html#tweeneasing)执行。
+在3dx中action已过时了，使用tween，也就是[缓动系统](https://docs.cocos.com/creator/3.0/manual/zh/tween/)。淡入淡出，跳跃等动作用的是[Easing](https://docs.cocos.com/creator/3.0/api/zh/modules/tween.html#tweeneasing)执行。包括即时动作等概念也在里面。
+
+如需查看2dx的动作系统作为对比，可点击[动作系统](https://docs.cocos.com/creator/2.4/manual/zh/scripting/actions.html)。
 
 ```typescript
         // 3dx的动作系统 : 缓动系统
@@ -293,3 +295,12 @@ _迷宫中左为玩家右为敌人_
 
         // Easing使用方式 : 例如跳跃 .to(3, new Vec3(10, 10, 10), { easing: 'bounceInOut' })
 ```
+
+### 容器动作
+定义 : 也就是动作队列，一系列的动作，例如一秒消失再一秒出现。
+
+3dx : 在3dx中使用缓动系统中的队列 : 也就是 then 插入一个 Tween 到缓动队列中。
+
+动作执行序列 : 串行动作用then，并行动作使用union()，也就是将多个动作合并一起执行。
+
+动作的回调 : 先执行动作后再执行回调函数内的代码，例如一个灯闪烁三次就爆炸。在3dx中新增了onStart、onUpdate、onComplete等属性，这些属性是回调函数，调用时会传入缓动的目标。
