@@ -195,7 +195,7 @@ _迷宫中左为玩家右为敌人_
         PhysicsSystem2D.instance.enable = true;
 
         // 射线检测 注意 在3dx内是用世界坐标
-        
+
         // 打出一条射线 
         // 前两个参数 : 从当前节点到新建的节点，例如当前节点为小鸟 新建节点为天空 
         // 第三个参数 射线的类型
@@ -261,3 +261,35 @@ _迷宫中左为玩家右为敌人_
     }
 ```
 
+## 动作系统
+在3dx中action已过时了，使用tween，也就是[缓动系统](https://docs.cocos.com/creator/3.0/manual/zh/tween/)。淡入淡出，跳跃等动作用的是[Easing](https://docs.cocos.com/creator/3.0/api/zh/modules/tween.html#tweeneasing)执行。
+
+```typescript
+        // 3dx的动作系统 : 缓动系统
+        // 绝对位置移动 TO : 两秒从(300, 300)移动到(200, 200)
+        const tw2 = new Tween(this.node) // 当前位置300, 300
+            .to(2, { position: new Vec3(200, 200, 0) })
+            .start();
+
+        // 停止动作
+        tw2.stop;
+        // 遇到标签2就停止动作
+        tw2.tag(2).stop;
+
+        // 相对位置移动 BY : 两秒从(300, 300)移动到(300 + 200, 300 + 200)
+        const tw3 = new Tween(this.node) // 当前位置300, 300
+            .by(2, { position: new Vec3(200, 200, 0) })
+            .start();
+
+        // 常用动作 : 缩放、旋转、移动
+        let scale = new Tween(this.node)
+        .to(1, { scale: new Vec3(2, 2, 2) })
+
+        let rotate = new Tween(this.node)
+            .to(1, { rotation: new Quat(Math.sin(90), Math.sin(90), Math.sin(90), Math.cos(90)) })
+
+        let move = new Tween(this.node)
+            .to(1, { position: new Vec3(100, 100, 100) })
+
+        // Easing使用方式 : 例如跳跃 .to(3, new Vec3(10, 10, 10), { easing: 'bounceInOut' })
+```
