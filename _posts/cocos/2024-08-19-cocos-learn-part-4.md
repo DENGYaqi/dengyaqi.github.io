@@ -46,4 +46,13 @@ pin: true
 ### 屏幕适配
 所有的UI都放在Canvas下面。使用[Widge组件](https://docs.cocos.com/creator/3.5/manual/zh/ui-system/components/editor/widget.html)。
 
+## 按钮与布局
+[控件库](https://docs.cocos.com/creator/2.4/manual/zh/getting-started/basics/editor-panels/node-library.html) : 面板 - 节点预制库
+
+### 按钮
+[Button组件](https://docs.cocos.com/creator/3.8/manual/zh/ui-system/components/editor/button.html)
+1. Interactable 是否交互，不勾选按钮置灰。
+2. Sprite Transition 在不同点击状态可以存放不同的图片
+
+
 
