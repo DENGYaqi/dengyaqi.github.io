@@ -19,6 +19,10 @@ pin: true
 ```html
 <color=green>I'm green</color>
 ```
+点击click me!文字则会调用handler函数
+```html
+<on click="handler"> click me! </on>
+```
 
 
 
