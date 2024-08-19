@@ -10,14 +10,12 @@ pin: true
 ## 介绍
 这部分内容主要介绍Cocos Creator的UI系统。从视频52到视频66。
 
-1. 屏幕Canvas
-3dx的[Canvas组件](https://docs.cocos.com/creator/3.8/manual/zh/ui-system/components/editor/canvas.html)介绍。Canvas代表屏幕、屏幕内的所有物体都会被Camera渲染出来。主要就是改动画布大小的时候需要在项目设置内修改。
+## 屏幕Canvas
+3dx的[Canvas组件](https://docs.cocos.com/creator/3.8/manual/zh/ui-system/components/editor/canvas.html)介绍。Canvas代表屏幕、屏幕内的所有物体都会被Camera渲染出来。主要就是改动画布大小的时候需要在项目设置内修改。Label : 文本，font字体
 
-2. Label : 文本，font字体
+## [富文本RichText](https://docs.cocos.com/creator/3.8/manual/zh/ui-system/components/editor/richtext.html)
 
-3. [富文本RichText](https://docs.cocos.com/creator/3.8/manual/zh/ui-system/components/editor/richtext.html) : 支持标签系统。
-
-- 如果需要一段话内的某个字变成红色，则直接使用标签即可，例如
+- 支持标签系统。如果需要一段话内的某个字变成红色，则直接使用标签即可，例如
 
 ```html
 <color=green>I'm green</color>
@@ -37,5 +35,11 @@ pin: true
 这是一个地面<img src="land" clik="handler"/>吗？
 ```
 
+## 屏幕适配与遮罩
 
+### [遮罩](https://docs.cocos.com/creator/3.8/manual/zh/ui-system/components/editor/mask.html)
+定义 : 例如原本的图片是长方形，但是QQ头像的框是圆形，只显示原圆形内部的图像。
+创建遮罩 : 新增父子节点(只对父子节点有效) - 在父节点添加渲染组件Mask - 例如子节点小鸟是圆形的，父节点是正方形的，遮罩后只显示正方形的。
+
+### 屏幕适配
 
