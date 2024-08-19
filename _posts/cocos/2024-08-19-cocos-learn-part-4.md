@@ -68,3 +68,6 @@ pin: true
 3. Brake 惯性的快慢
 4. Scroll Events跟Button的触发事件差不多
 
+[ProgressBar组件](https://docs.cocos.com/creator/3.8/manual/zh/ui-system/components/editor/progress.html)
+1. 常用的进度条
+
