@@ -71,3 +71,8 @@ pin: true
 [ProgressBar组件](https://docs.cocos.com/creator/3.8/manual/zh/ui-system/components/editor/progress.html)
 1. 常用的进度条
 
+## 输入框
+可输入账号密码、邮箱地址、聊天输入框等等。使用[EditBox组件](https://docs.cocos.com/creator/3.8/manual/zh/ui-system/components/editor/editbox.html)。
+1. Placeholder : 占位符，若Text为空，则显示该内容。
+2. ReturnType : 回车键的样式，例如手机键盘回车按钮上显示什么字符。
+3. InputFlag : 输入标识，在国内对密码比较有用，不会显示明文。
