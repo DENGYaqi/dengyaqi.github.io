@@ -63,4 +63,8 @@ pin: true
 
 ## 滑动进度控件
 [ScrollView组件](https://docs.cocos.com/creator/3.8/manual/zh/ui-system/components/editor/scrollview.html)
+1. 真正的内容是content子节点
+2. Inertia 是否添加惯性
+3. Brake 惯性的快慢
+4. Scroll Events跟Button的触发事件差不多
 
