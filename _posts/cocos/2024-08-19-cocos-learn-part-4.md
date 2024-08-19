@@ -19,7 +19,7 @@ pin: true
 ```html
 <color=green>I'm green</color>
 ```
-点击click me!文字则会调用handler函数
+新建richtext节点 - 新建脚本挂载上节点 - 节点新增Richtext组件 - 组件内的Sring内添加以下标签内容 - 点击click me!文字则会调用handler函数
 ```html
 <on click="handler"> click me! </on>
 ```
