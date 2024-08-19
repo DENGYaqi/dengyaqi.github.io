@@ -53,6 +53,6 @@ pin: true
 [Button组件](https://docs.cocos.com/creator/3.8/manual/zh/ui-system/components/editor/button.html)
 1. Interactable 是否交互，不勾选按钮置灰。
 2. Sprite Transition 在不同点击状态可以存放不同的图片
-
+3. 按钮触发事件 : button节点挂载脚本 - button属性Click Events修改为1 - 并将button节点拖回这个Click Events属性内。
 
 
