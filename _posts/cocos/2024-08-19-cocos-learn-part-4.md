@@ -53,6 +53,14 @@ pin: true
 [Button组件](https://docs.cocos.com/creator/3.8/manual/zh/ui-system/components/editor/button.html)
 1. Interactable 是否交互，不勾选按钮置灰。
 2. Sprite Transition 在不同点击状态可以存放不同的图片
-3. 按钮触发事件 : button节点挂载脚本 - button属性Click Events修改为1 - 并将button节点拖回这个Click Events属性内。
+3. 按钮触发事件 : button节点挂载脚本 - button属性Click Events修改为1 - 并将button节点拖回这个Click Events属性内的[0]下的cc.Node内，第二个框选择脚本。第三个框选择函数。
 
+### 布局
+[Layout组件](https://docs.cocos.com/creator/3.8/manual/zh/ui-system/components/editor/layout.html)
+1. Resize Mode缩放模式 : CONTAINER 父节点适应子节点的宽、CHILD子节点适应父节点的宽
+2. Padding 边距
+3. Spacing X 每个子节点的边距
+
+## 滑动进度控件
+[ScrollView组件](https://docs.cocos.com/creator/3.8/manual/zh/ui-system/components/editor/scrollview.html)
 
