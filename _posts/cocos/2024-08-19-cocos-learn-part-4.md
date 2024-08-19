@@ -15,7 +15,7 @@ pin: true
 
 2. Label : 文本，font字体
 
-3. [富文本RichText](https://docs.cocos.com/creator/3.8/manual/zh/ui-system/components/editor/richtext.html) : 支持标签系统，
+3. [富文本RichText](https://docs.cocos.com/creator/3.8/manual/zh/ui-system/components/editor/richtext.html) : 支持标签系统。
 
 - 如果需要一段话内的某个字变成红色，则直接使用标签即可，例如
 
@@ -31,7 +31,11 @@ pin: true
 
 - 嵌套标签
 
-- 图文混排 : 
+- 图文混排 : 文字内添加表情包 - 在Richtext组件内有Image Atlas属性 - 将图集拖拽至该属性内 - 编写String属性
+
+```html
+这是一个地面<img src="land" clik="handler"/>吗？
+```
 
 
 
