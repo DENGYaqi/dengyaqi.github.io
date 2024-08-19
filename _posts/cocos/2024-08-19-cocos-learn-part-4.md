@@ -15,14 +15,23 @@ pin: true
 
 2. Label : 文本，font字体
 
-3. [富文本RichText](https://docs.cocos.com/creator/3.8/manual/zh/ui-system/components/editor/richtext.html) : 支持标签系统，如果需要一段话内的某个字变成红色，则直接使用标签即可，例如
+3. [富文本RichText](https://docs.cocos.com/creator/3.8/manual/zh/ui-system/components/editor/richtext.html) : 支持标签系统，
+
+- 如果需要一段话内的某个字变成红色，则直接使用标签即可，例如
+
 ```html
 <color=green>I'm green</color>
 ```
-新建richtext节点 - 新建脚本挂载上节点 - 节点新增Richtext组件 - 组件内的Sring内添加以下标签内容 - 点击click me!文字则会调用handler函数
+
+- 新建richtext节点 - 新建脚本挂载上节点 - 节点新增Richtext组件 - 组件内的Sring内添加以下标签内容 - 点击click me!文字则会调用handler函数
+
 ```html
 <on click="handler"> click me! </on>
 ```
+
+- 嵌套标签
+
+- 图文混排 : 
 
 
 
