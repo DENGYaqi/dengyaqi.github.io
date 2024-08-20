@@ -3,7 +3,7 @@ title: 【中级篇】与面试官聊20分钟Java线程池
 date: 2024-08-07 10:14:51 +0800
 categories: [Java]
 tags: [java, thread pool] # TAG names should always be lowercase
-description: 一文理解Java线程池
+description: Java线程池进阶
 pin: true
 ---
 
