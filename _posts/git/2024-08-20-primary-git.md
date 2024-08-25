@@ -38,6 +38,7 @@ git config --global --list
 接收到新的需求，通常使用该需求名称创建一个自己的分支，例如新需求是搜索引擎新增搜索条件，则可命名为ES新增搜索条件。一般在大厂都是可以界面操作。
 
 ```git
+新建并切换分支 : git checkout -b <branchname>
 拉取远端代码 : git fetch
 提交暂存区内容 : git push
 合并分支 : git merge --no-ff origin/master
