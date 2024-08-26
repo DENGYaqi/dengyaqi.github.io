@@ -149,5 +149,5 @@ Git是分布式版本控制系统。
 - 入门 : [廖雪峰的Git教程](https://liaoxuefeng.com/books/git/what-is-git/index.html)。
 - 面试 : 入门教程大致看一遍后到[面试鸭](https://www.mianshiya.com/category/%E5%90%8E%E7%AB%AF)进行刷题 : Git基础面试题、Git进阶面试题、Git操作面试题、Git概念面试题、Git协作应用面试题。
 刷题时尽量先用自己的语言回答一遍，理解题目 - 自己的话回答(不懂的地方可以先自行查询) - 查看答案。
-- 工作 : 最常用的命令是在工作中[常用的一些版本控制命令](#最常用的命令)。[官方的git命令](https://tsejx.github.io/devops-guidebook/code/git/commit/)快速查看。
+- 工作 : 最常用的命令是在工作中。[官方的git命令](https://tsejx.github.io/devops-guidebook/code/git/commit/)快速查看。
 - 日常 : 到GitHub上实践。
