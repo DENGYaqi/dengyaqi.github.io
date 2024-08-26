@@ -11,7 +11,7 @@ pin: true
 该部分为了解Git基础，通过[Runoob.com](https://www.runoob.com/git/git-workspace-index-repo.html)、[廖雪峰的Git教程](https://liaoxuefeng.com/books/git/what-is-git/index.html)、[面试鸭](https://www.mianshiya.com/category/%E5%90%8E%E7%AB%AF)的Git基础面试题等内容进行汇总整理。旨在快速了解Git的主要概念，并且能在初级后端面试中用自己的话回答Git的基础概念，还有一些工作中常用的命令总结。
 
 ## 定义
-Git是分布式版本控制系统，例如在线word文档每保存一次就有一个存档，也就是文件的版本控制。Git命令是为管理存档所产生的一系列操作，例如存储代码、跟踪修订历史记录、合并代码更改、恢复较早版本代码等。为完成这些操作Git诞生了<font color=red>>3个工作区域、5种文件状态与分支</font的主要概念。GitHub是管理这些存档的一个网站。
+Git是分布式版本控制系统，例如在线word文档每保存一次就有一个存档，也就是文件的版本控制。Git命令是为管理存档所产生的一系列操作，例如存储代码、跟踪修订历史记录、合并代码更改、恢复较早版本代码等。为完成这些操作Git诞生了<font color=red>>3个工作区域、5种文件状态与分支</font>的主要概念。GitHub是管理这些存档的一个网站。
 
 ## 3个工作区域 
 主要有工作区、暂存区、版本库这3个工作区域。还有2个常提到的概念，本地仓库与远程仓库。
