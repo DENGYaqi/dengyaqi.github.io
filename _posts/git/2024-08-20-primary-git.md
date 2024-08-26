@@ -1,5 +1,5 @@
 ---
-title: Git学习记录
+title: 【学习篇】Git第一部分
 date: 2024-08-20 10:14:51 +0800
 categories: [Git]
 tags: [Git]
@@ -8,14 +8,59 @@ pin: true
 ---
 
 ## 介绍
-Git是分布式版本控制系统。
-- 入门 : [廖雪峰的Git教程](https://liaoxuefeng.com/books/git/what-is-git/index.html)。
-- 面试 : 入门教程大致看一遍后到[面试鸭](https://www.mianshiya.com/category/%E5%90%8E%E7%AB%AF)进行刷题 : Git基础面试题、Git进阶面试题、Git操作面试题、Git概念面试题、Git协作应用面试题。
-刷题时尽量先用自己的语言回答一遍，理解题目 - 自己的话回答(不懂的地方可以先自行查询) - 查看答案。
-- 工作 : 最常用的命令是在工作中[常用的一些版本控制命令](#最常用的命令)。[官方的git命令](https://tsejx.github.io/devops-guidebook/code/git/commit/)快速查看。
-- 日常 : 到GitHub上实践。
+该部分为了解Git基础，通过[Runoob.com](https://www.runoob.com/git/git-workspace-index-repo.html)、[廖雪峰的Git教程](https://liaoxuefeng.com/books/git/what-is-git/index.html)、[面试鸭](https://www.mianshiya.com/category/%E5%90%8E%E7%AB%AF)的Git基础面试题进行汇总整理。旨在快速了解Git的主要概念，并且能在面试中用自己的话回答Git的基础概念，还有一些工作中常用的命令总结。
 
 ## 主要概念
+
+### 定义
+Git是分布式版本控制系统，例如在线word文档每保存一次就有一个存档，也就是文件的版本控制。Git命令是为管理存档所产生的一系列操作，例如存储代码、跟踪修订历史记录、合并代码更改、恢复较早版本代码等。为完成这些操作Git诞生了3个工作区域、5种文件状态与分支的主要概念。GitHub是管理这些存档的一个网站。
+
+### 3个工作区域 
+主要有工作区、暂存区、版本库这3个工作区域。还有2个常提到的概念，本地仓库与远程仓库。
+
+1. 工作区(workspace) : 就是你在电脑里能看到的目录。
+
+2. 暂存区(stage/index) : 一般存放在.git目录下的index文件(.git/index)中，所以我们把暂存区有时也叫作索引。
+
+3. 版本库(Repository) : 工作区有一个隐藏目录.git，这个不算工作区，而是Git的版本库。创建Git版本库时，Git自动为我们创建了唯一一个master分支，时间线与Head指针，包含项目的所有版本历史记录。
+
+*<font color=red>本地仓库</font>也就是你电脑带有.git文件的工作区，<font color=red>远程仓库</font>就是另一台电脑带有.git文件的工作区，一般来说就是Github网站的某个电脑。
+
+### 5种状态
+Git的文件状态主要有以下几种，并且几种状态是可以通过Git命令交换的。
+
+1. 未追踪(Untracked) : 在工作区修改的，但是还没进行小保存的内容。也就是还没到暂存区内。可以通过`git add`存到暂存区，将状态变为Staged。为啥叫未追踪，其实就是Git不会对其进行管理和跟踪，相当于我们写了一堆论文断电就没了的内容。
+
+2. 暂存(Staged) : 相当于小保存了，大保存时会带上这些内容。可以用`git commit` 进行大保存，也就是存入版本库。将状态修改为Unmodified状态。
+
+3. 未修改(Unmodified)：这里的文件是会被Git管理和追踪的。这个状态也表示在上一次提交后没有被修改过。它们的内容与最后一次的提交版本一致。
+<font color=red>也就是说这些内容是最新的</font>。如果这里的文件进行修改，状态则会变为Modified。
+
+4. 修改(Modified) : 这里的文件也是会被Git管理和追踪的，并且在上一次提交后被修改了。Git会对这些文件的修改进行检测和跟踪。
+
+5. 忽略(Ignored): 这些文件被Git配置文件(.gitignore)明确指定为需要被忽略的文件，不会被添加到版本库中。
+
+可以使用`git status`命令查看当前文件的状态。可以根据文件的状态，决定下一步的操作，如执行git add命令将文件从修改状态变为暂存状态，执行git commit命令将文件从暂存状态变为已提交状态等。
+
+### 分支
+分支主要涉及时间线、matser分支与Head指针这三个概念。
+
+在创建版本库时会有一条主的时间线，也就是matser。如果把master比作树干，那么分支就是树枝。每次提交的
+
+因为多人更改同一个项目的代码如果是串行关系，类似于很多人在现场吃同一块蛋糕(有点脏兮兮的)，而且最后吃完也不记得是谁在什么时间咬了哪，为了避免这种情况，Git在创建版本库的时候，会自动生成一个matser的蛋糕，并允许每个人基于其他蛋糕(可以是master也可以是其他)造一个自己的蛋糕，这样每次吃都有记录，也可以并行吃，最后吃完蛋糕的时候可以两个人对比着谁咬得好进行合并，最后形成一个完美的吃蛋糕回忆录。
+
+好了，回到分支这个概念。 分支主要分为几种类型 : 
+- 主分支(main/master)：存储生产代码。
+- 开发分支(develop)：存储即将发布的代码。
+- 功能分支(feature)：从 develop 分支创建，用于开发新功能。
+- 发布分支(release)：从 develop 分支创建，用于准备发布。
+- 热修复分支(hotfix)：从 main 分支创建，用于紧急修复生产问题。
+
+## 操作流程
+创建工作区，在你电脑找一个存放项目的位置，完成后使用`git init`命令将工作区变成版本库，之后就可以在该工作区内做各种项目的修改，修改完成后通过`git add`命令将修改存入暂存区，类似于一个小保存，最后再通过`git commit`将一系列的小保存提交到本地Matser分支或者用`git checkout -b`创建分支，类似于一个大保存。`git push`将本地分支推送到远程仓库的分支，`git merge`将两个分支合并，本地分支合并到远程分支后一般就没什么用了，可以用`git branch -d`删除该分支。
+
+
+
 1. 工作区、版本库和暂存区 : 工作区是电脑中的一个文件夹、版本库是带有.git文件的文件夹、暂存区是临时存文件变更的位置，叫stage或index，git add的区域。
 
 2. [分支](https://liaoxuefeng.com/books/git/branch/create/index.html)与HEAD指针 : 
@@ -46,7 +91,7 @@ git config --global --list
 ## 最常用的命令
 在工作中，每天第一件事就是看情况拉取项目中matser的内容，避免太久没有拉取产生过多的冲突，例如冲突过多的情况，在找相关同事解决冲突的时候会产生一些不必要的错误。
 
-### 创建分支
+### 工作常用
 接收到新的需求，通常使用该需求名称创建一个自己的分支，例如新需求是搜索引擎新增搜索条件，则可命名为ES新增搜索条件。一般在大厂都是可以界面操作。
 
 ```git
@@ -61,3 +106,21 @@ git config --global --list
 回滚提交 : git reset <commit-id>
 ```
 *[快进模式Fast forward](https://liaoxuefeng.com/books/git/branch/policy/index.html) : 在这种模式下，删除分支后，会丢掉分支信息。不使用该模式时，Git就会在merge时生成一个新的commit，这样，从分支历史上就可以看出分支信息。
+
+## 分支
+
+```bash
+删除分支 : 
+```
+
+
+
+
+
+
+Git是分布式版本控制系统。
+- 入门 : [廖雪峰的Git教程](https://liaoxuefeng.com/books/git/what-is-git/index.html)。
+- 面试 : 入门教程大致看一遍后到[面试鸭](https://www.mianshiya.com/category/%E5%90%8E%E7%AB%AF)进行刷题 : Git基础面试题、Git进阶面试题、Git操作面试题、Git概念面试题、Git协作应用面试题。
+刷题时尽量先用自己的语言回答一遍，理解题目 - 自己的话回答(不懂的地方可以先自行查询) - 查看答案。
+- 工作 : 最常用的命令是在工作中[常用的一些版本控制命令](#最常用的命令)。[官方的git命令](https://tsejx.github.io/devops-guidebook/code/git/commit/)快速查看。
+- 日常 : 到GitHub上实践。
