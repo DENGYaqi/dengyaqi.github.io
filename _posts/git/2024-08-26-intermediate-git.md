@@ -16,5 +16,6 @@ pin: true
 - GitLab：提供类似 GitHub 的功能，并且有l自托管的选项，企业可以在自己的服务器上安装GitLab。它还支持CI(持续集成)/CD(持续部署)功能。
 - Bitbucket：支持Git 和Mercurial 两种版本控制系统，集成了CI/CD 并且与lAtlassian 产品如 Jira 等紧密集成。
 
-
-
+2. git pull request 和 git branch 命令有哪些区别？
+Git Pull Request（PR）是一种代码评审机制，用于在分布式版本控制系统（如GitHub、GitLab、Bitbucket）中协作开发项目。Pull Request允许开发人员在分支上完成功能开发或修复后，向项目的主分支提出代码合并请求。其他团队成员或项目维护者可以在合并之前对代码进行评审、讨论、测试和修改，从而保证代码的质量和项目的整体稳定性。
+Git branch是分支操作命令。
