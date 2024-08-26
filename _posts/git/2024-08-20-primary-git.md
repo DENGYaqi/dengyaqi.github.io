@@ -24,6 +24,12 @@ Git是分布式版本控制系统，例如在线word文档每保存一次就有�
 
 *<font color=red>本地仓库</font>也就是你电脑带有.git文件的工作区，<font color=red>远程仓库</font>就是另一台电脑带有.git文件的工作区，一般来说就是Github网站的某个电脑。
 
+### 操作流程
+本地仓库 : 
+创建工作区，在你电脑找一个存放项目的位置，完成后使用`git init`命令将工作区变成版本库，之后就可以在该工作区内做各种项目的修改，修改完成后通过`git add`命令将修改存入暂存区，类似于一个小保存，最后再通过`git commit`将一系列的小保存提交到本地Matser分支或者用`git checkout -b`创建分支，类似于一个大保存。
+远程仓库 : 
+远程仓库创建方式跟本地仓库差不多，一般在Github上界面操作一下即可。创建好之后回到本地仓库可以使用`git push`将本地分支推送到远程仓库的分支，`git merge`将两个分支合并，本地分支合并到远程分支后一般就没什么用了，可以用`git branch -d`删除该分支。
+
 ### 常用命令
 
 ```bash
@@ -57,7 +63,7 @@ git status ：展示工作区及暂存区域中不同状态的文件。
 ```
 
 ## 分支
-分支主要涉及提交时间线、matser分支与Head指针这三个概念。为了方便理解，我将Master分支分为了Master的提交时间线与Master分支。其他分支也一样。
+分支主要涉及提交时间线、matser分支与Head指针这三个概念。为了方便理解，我将Master分支分为了Master的提交时间线与Master指针。其他分支也一样。
 
 1. 时间线 : 每次提交，Git都把它们串成一条时间线，所以也可以叫做提交的时间线，最初的提交时间线也叫做Master分支。在创建版本库时Git会创建一个提交时间线、Master(分支和指针)和Head(指针)。
 2. Master指针 : 指向Master分支最新的提交。
@@ -103,7 +109,7 @@ _流程5_
 其实就是通过Head来回指向的一种操作。
 
 分支中还有两个概念是解决冲突和回滚。
-- 解决冲突 : 就是两个人修改了相同位置的代码，但是修改内容不同，Git不知道要用谁的，需要你手动解决一下。例如有三个分支ABC，A是master分支，B是同事分支，C是你的分支，B先提交分支到A并合并了，之后是你C分支提交，Git发现你修改的内容跟同事是同一位置的代码，这时你就拉个会问一下同事讨论一下要哪个部分就行。
+- 解决冲突 : 就是两个人修改了相同位置的代码，但是修改内容不同，Git不知道要用谁的，需要你手动解决一下。例如有三个分支ABC，A是master分支，B是同事分支，C是你的分支，B先提交分支到A并合并了，之后是你C分支提交，Git发现你修改的内容跟同事是同一位置的代码，这时你就拉个会问一下同事讨论一下要哪个部分就行。Git用<<<<<<<，=======，>>>>>>>标记出不同分支的内容，我们修改后需要使用git add和git commit进行保存再提交。
 - 回滚 : 就是回到某次提交。例如不小心删了某段重要代码或者误操作之类的。
 
 ### 分支的管理
@@ -124,74 +130,16 @@ git merge <name> : 合并某分支到当前分支
 git branch -d <name> : 删除分支
 ```
 
-## 操作流程
-本地仓库 : 
-创建工作区，在你电脑找一个存放项目的位置，完成后使用`git init`命令将工作区变成版本库，之后就可以在该工作区内做各种项目的修改，修改完成后通过`git add`命令将修改存入暂存区，类似于一个小保存，最后再通过`git commit`将一系列的小保存提交到本地Matser分支或者用`git checkout -b`创建分支，类似于一个大保存。
-远程仓库 : 
-创建方式跟本地仓库差不多，一般在Github上界面操作一下即可。创建好之后可以使用`git push`将本地分支推送到远程仓库的分支，`git merge`将两个分支合并，本地分支合并到远程分支后一般就没什么用了，可以用`git branch -d`删除该分支。
-
-
-
-1. 工作区、版本库和暂存区 : 工作区是电脑中的一个文件夹、版本库是带有.git文件的文件夹、暂存区是临时存文件变更的位置，叫stage或index，git add的区域。
-
-2. [分支](https://liaoxuefeng.com/books/git/branch/create/index.html)与HEAD指针 : 
-    - 时间线 : 每次提交，Git都把它们串成一条时间线，这条时间线就是一个分支。
-    - 主分支 : 在Git里，这个分支叫主分支，即master分支。
-    - HEAD指针 : 指向master的一个指针叫HEAD。
-    - 分支合并流程 : 假设有一个dev分支push了内容，则dev先于master，dev合并到master后，matser与dev指针并列。
-
-3. [本地仓库与远程仓库](https://liaoxuefeng.com/books/git/branch/collaboration/index.html)的区别 : 远程仓库的默认名称是origin。
-
-### 配置Git
-```git
-# 配置git
-git config --global user.name "Your Name"
-git config --global user.email "email@example.com"
-
-# 查看当前用户(global)配置
-git config --global --list
-```
-
-## 添加内容
-```git
-添加文件(本地文件添加到暂存区) : git add <file>
-(本次提交的说明)将暂存区内容提交到当前分支 : git commit -m 'message'
-把本地master的内容推送到远程origin : git push origin master
-```
-
 ## 工作中常用的命令
-在工作中，每天第一件事就是看情况拉取项目中matser的内容，避免太久没有拉取产生过多的冲突，例如冲突过多的情况，在找相关同事解决冲突的时候会产生一些不必要的错误。
+在工作中，每天第一件事就是看情况拉取项目中matser的内容，避免太久没有拉取产生过多的冲突，过多冲突解决起来也是需要很长时间很耗时的。
 
-### 工作常用
-接收到新的需求，通常使用该需求名称创建一个自己的分支，例如新需求是搜索引擎新增搜索条件，则可命名为ES新增搜索条件。一般在大厂都是可以界面操作。
+### 常用命令
 
 ```git
-查看状态 : git status
-切换分支 : git checkout
-基于当前分支新建并切换分支 : git checkout -b <branchname>
-拉取远端代码 : git fetch
-提交暂存区内容 : git push
-合并分支 : git merge --no-ff origin/master
-解决冲突 : Git用<<<<<<<，=======，>>>>>>>标记出不同分支的内容，我们修改如下后保存再提交，使用git add和git commit
-放弃本次合并 : git merge --abort
-回滚提交 : git reset <commit-id>
+git fetch : 拉取远端代码
+git checkout -b <branchname> : 基于当前分支新建并切换分支
+git merge --no-ff origin/master : 非快进模式合并分支
+git merge --abort : 放弃本次合并
+git reset <commit-id> : 回滚提交
 ```
 *[快进模式Fast forward](https://liaoxuefeng.com/books/git/branch/policy/index.html) : 在这种模式下，删除分支后，会丢掉分支信息。不使用该模式时，Git就会在merge时生成一个新的commit，这样，从分支历史上就可以看出分支信息。
-
-## 分支
-
-```bash
-删除分支 : 
-```
-
-
-
-
-
-
-Git是分布式版本控制系统。
-- 入门 : [廖雪峰的Git教程](https://liaoxuefeng.com/books/git/what-is-git/index.html)。
-- 面试 : 入门教程大致看一遍后到[面试鸭](https://www.mianshiya.com/category/%E5%90%8E%E7%AB%AF)进行刷题 : Git基础面试题、Git进阶面试题、Git操作面试题、Git概念面试题、Git协作应用面试题。
-刷题时尽量先用自己的语言回答一遍，理解题目 - 自己的话回答(不懂的地方可以先自行查询) - 查看答案。
-- 工作 : 最常用的命令是在工作中。[官方的git命令](https://tsejx.github.io/devops-guidebook/code/git/commit/)快速查看。
-- 日常 : 到GitHub上实践。
