@@ -90,13 +90,12 @@ pin: true
 ### 进阶命令大全
 
 ```bash
-git branch --merged                                       # 查看已经合并的分支。如果存在，说明已经被合并；如果不存在，则表示没有被合并。
-git remote add upstream <第二个远程仓库的URL>                # 添加远程仓库
-git revert <commit-hash>                                  # 撤销一个提交(已提交的情况)
-git reset --hard <commit-hash>                            # 丢弃工作目录的更改(未提交的情况)
-git reset --soft <commit-hash>                            # 保留工作目录的更改(未提交的情况)
-git commit -S -m "提交信息"                                # 签署签名提交
-git log --show-signature                                  # 验证/查看提交的签名
-git show --show-signature                                 # 验证/查看提交的签名
-
+git branch --merged                                   	# 查看已经合并的分支。如果存在，说明已经被合并；如果不存在，则表示没有被合并。
+git remote add upstream <第二个远程仓库的URL>            	# 添加远程仓库
+git revert <commit-hash>                              	# 撤销一个提交(已提交的情况)
+git reset --hard <commit-hash>                        	# 丢弃工作目录的更改(未提交的情况)
+git reset --soft <commit-hash>                        	# 保留工作目录的更改(未提交的情况)
+git commit -S -m "提交信息"                            	# 签署签名提交
+git log --show-signature                              	# 验证/查看提交的签名
+git show --show-signature                             	# 验证/查看提交的签名
 ```
