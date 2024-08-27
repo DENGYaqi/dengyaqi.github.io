@@ -1,6 +1,6 @@
 ---
 title: 跟着大佬thmsgbrt构建Github主页 - Github Actions
-date: 2024-08-02 10:07:51 +0800
+date: 2024-08-02 10:00:00 +0800
 categories: [Github]
 tags: [github, github actions, markdown]
 description: thmsgbrt教程

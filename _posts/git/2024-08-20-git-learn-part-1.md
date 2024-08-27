@@ -1,6 +1,6 @@
 ---
 title: 20分钟了解Git
-date: 2024-08-20 10:14:51 +0800
+date: 2024-08-20 10:00:00 +0800
 categories: [Git]
 tags: [Git]
 description: Git基础
