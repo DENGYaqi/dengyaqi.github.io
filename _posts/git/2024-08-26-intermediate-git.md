@@ -10,9 +10,9 @@ pin: true
 ## 介绍
 在了解[Git基础](https://dengyaqi.github.io/posts/primary-git/)后，本文为Git的进阶扩展，并且在[面试鸭](https://www.mianshiya.com/bank/1815649098609254402)中Git相关的主题从中等到困难中选出一些代表性的问题，以便于更好的理解Git。主要介绍一些概念，具体的命令或者连续操作可以到[DevOps Guidebook](https://tsejx.github.io/devops-guidebook/code/git)或者[git官网](https://git-scm.com/book/zh/v2)查看。
 
-## 扩展概念
+## 1. 扩展概念
 
-### 团队合作
+### 1.1 团队合作
 1. Pull Request(PR) : PR是一种代码评审机制，用于在分布式版本控制系统（如GitHub、GitLab、Bitbucket）中协作开发项目。Pull Request允许开发人员在分支上完成功能开发或修复后，向项目的主分支提出代码合并请求。其他团队成员或项目维护者可以在合并之前对代码进行评审、讨论、测试和修改，从而保证代码的质量和项目的整体稳定性。
 
 2. Merge Request(MR) : 其实官网的大概意思就是这两个是同一个东西，只是名称不同。一般我们一般我们执行分支合并，需要执行`git pull`和`git merge`这两个命令，Github选择了第一个，GitLab选择了第二个。
@@ -20,7 +20,7 @@ pin: true
     Merge or pull requests are created in a git management application and ask an assigned person to merge two branches. Tools such as GitHub and Bitbucket choose the name pull request since the first manual action would be to pull the feature branch. Tools such as GitLab and Gitorious choose the name merge request since that is the final action that is requested of the assignee.
 ```
 
-### Git的工作流程(Workflow)
+### 1.2 Git的工作流程(Workflow)
 是指团队在使用Git进行版本控制时，如何组织和管理代码开发、协作和发布的实践。根据团队的需求和项目的复杂性，
 常见的Git工作流程有几种模式，每种模式都有其适用的场景和特点。
 1. 集中式工作流Centralized Workflow : 所有开发人员在同一个主分支（main 或 master）上工作。适用于小型团队或简单项目，开发过程简单、冲突较少。
@@ -35,38 +35,35 @@ pin: true
 4. Forking工作流 : 每个开发人员都有自己的Git仓库副本fork，在自己的仓库中进行开发，完成后向主仓库提交拉取请求Pull Request。适用于开源项目或大型团队，能够有效管理外部贡献者和多个开发人员之间的代码贡献。
 5. GitHub Flow工作流 : 是一种简单的工作流，专注于快速开发和部署，通常只使用 master 和功能分支。适用于需要快速迭代和频繁部署的项目，特别是小型团队或敏捷开发流程。
 
-## 命令解析
+## 2. 命令解析
 
-### 分支命令
+### 2.1 分支命令
 - `git rebase`: 与`git merge`一样，是用于整合来自不同分支的更改的命令，一般情况不推荐使用，特别是在主分支上不能使用，会影响其他人的时间线。可在自己的分支上使用，使仓库历史更加美观和易于理解。使用完后用git reset只能回到某个提交记录，不能使时间线的状态恢复。原理是复制，它的具体操作是将当前分支的提交一一应用在目标分支的最顶端。
 - `git cherry—pick` : 命令通常是用来将某一提交(或一系列提交)应用到当前分支的。但是如果你只想对特定文件的更改进行cherry—pick操作，可以借助暂存区来实现。
 
-### 临时区命令
+### 2.2 临时区命令
 - `git stash` : 会把当前工作目录和暂存区的改动临时存储起来，并恢复工作目录的干净状态。这在你需要切换分支，又不希望提交未完成的工作的情况下非常有用。当你不再需要某个保存的stash记录时，`git stash drop`命令可以将其删除。
 
-### 历史记录
+### 2.3 历史记录
 - `git blame` : 用于逐行追踪文件的修改历史，显示每一行代码的最后一次修改是谁做的、在哪个提交（commit）中做的、以及修改的时间。
 - `git reflog` : 恢复已删除的分支，但是尽快，因为如果执行了`git gc`，不再引用的对象可能会被永久删除。可以使用`git fsck`或者`git fsck --lost-found`命令检查对象库的状态，并列出可恢复的对象。它会在 .git/lost—found 目录下创建一系列对象文件，这些对象文件包含了无法引用的提交、树和对象。具体操作 : a) 运行git reflog命令来寻找该分支删除前的最近一次提交记录。b）找到目标分支删除前的那次提交的哈希值。c）使用该哈希值创建一个新的分支，效果等同于恢复之前的分支。例如：`git checkout -b branch_name <commit_hash>`
 
-### 子模块/子树
+### 2.4 子模块/子树
 - `git subtree` : 是一种将一个Git仓库的某个子目录与另一个Git仓库进行整合的方法。这使得你可以把一个仓库的子部分“嵌入”到另一个仓库中，同时仍然保持它们在各自仓库中的独立性。subtree提供了一种比子模块(submodule)更简单的链接多个代码库的方法，因为子树的文件是完全合并到主项目中的，并不依赖外部额外的配置或理解。使用场景 : 当你需要将一个开源库或另一个项目的一部分嵌入到你的项目中，并希望统一进行版本控制时。或者如果你是一个在多个项目间共享库的开发团队。subtree操作通常需要`-squash`参数将历史记录压缩成一个单独的提交，这样可以保持项目历史的简洁。正确使用prefix路径是必要的，确保合并的子树内容不会覆盖到主项目中的其他文件。
 - `git submodule` : Submodule 是 Git 的一个功能，允许你把一个 Git 仓库作为另一个 Git 仓库的子目录进行管理。它们特别适用于需要包含外部依赖库或各种独立模块的项目。通常，当你添加 submodule 时，主仓库只会记录 submodule 当前指向的 commit 哈希值。
 - 浅克隆（Shallow Clone）是在克隆 Git 仓库时，不将整个仓库的历史记录和所有提交一起克隆下来，而仅克隆最新的几次提交。这样可以减少获取数据的时间和空间使用，是处理大规模或远程仓库时的常用技巧。
 
-### 垃圾收集器
+### 2.5 垃圾收集器
 - `git gc` : Git作为一个分布式版本控制系统，会在使用过程中生成大量的数据对象，包括commits、blobs、trees、和 tags。这些对象是文件系统中实际存储的数据，从而可以进行版本管理。在开发周期中，很多临时分支、未被合并的commit、过时的对象都会积累，如果不加以清理，会导致存储空间浪费以及降低操作性能。适用场景垃圾收集器在一些特定场景下尤为重要，如长期运行的仓库、大规模分支操作后、大量重写历史(如rebase或filter—branch)的操作之后。
 通过`git gc`命令来触发 a) 自动移除未引用的对象 b) 压缩对象库 : 将多个小对象打包成一个大的 pack 文件，同时删除旧的、不再需要的 loose objects。c) 优化引用树 : 清理和重新组织引用（如分支、标签）的结构，使其更加高效。
 
-## 进阶操作
-1. 配置和使用多个远程仓库 : 为何需要?例如origin是自己的github上的远程仓库，upstream是fork原始作者的仓库，主要用于同步最新代码。具体操作 : 添加新的远程仓库upstream : `git remote add upstream <第二个远程仓库的 URL>`、查看所有远程仓库 : `git remote -v`、将upstream的某个分支合并到本地分支 : `git merge upstream/分支名`、推送代码到执行的远程仓库 : `git push origin 分支名`。
-
-## 分支系统
+### 2.6 分支系统
 分支系统主要有Git、SVN以及Mercurial。它们各自有着不同的特点和优缺点。
 1. Git：Git是目前最流行的分布式版本控制系统。它的主要优点是分散式管理，能够让每个开发者拥有自己的本地仓库，并且分支操作非常轻量级、快速。Git 还有强大的协作功能，比如 pull request、代码审查等。但是，Git 的学习曲线相对较陡，对新手不太友好。
 2. SVN(Subversion)：SVN 是集中式版本控制系统。它的优点是操作简便，适合团队合作，权限管理相对容易。劣势在于分支操作因为是集中式的，可能会比较耗时。SVN 也不如 Git 在本地开发时那么灵活。
 3. Mercurial： Mercurial也是一种分布式版本控制系统。它的优点是与 Git 相似，分支操作快速、轻量，并且界面友好，命令相对简单明了，比较适合新手使用。缺点在于社区不如 Git活跃，扩展性和生态系统相对较弱。
 
-## 面试题
+## 3. 面试题
 1. 常见的远程Git仓库托管平台
 常见的远程Git仓库托管平台包括 GitHub、GitLab 和 Bitbucket。这些平台都提供丰富的功能，支持代码托管、版本控制和协作开发。
 - GitHub：全球最流行的Git 仓库托管服务，它不仅提供私有和公开仓库，还具备强大的社区和项目管理功能。
@@ -87,15 +84,46 @@ pin: true
 - .gitignore 文件：确保不必要的文件（如临时文件、编译输出等）不会被提交到代码库中，从而保持提交历史的简洁和有意义。
 - 标签（Tags） ：使用标签为重要的版本创建标记，方便追踪和回溯历史版本。例如，发布一个新版本时，可以使用 git tag v1.0.0 来创建一个版本标签。
 
-### 进阶命令大全
+4. 什么是Git的软重置、混合重置和硬重置？
+Git的重置操作分为三种主要类型：软重置(--soft)、混合重置(--mixed)和硬重置(--hard)。它们的主要区别在于如何对待暂存区和工作目录的改变。如果需要回滚到某个commit，但不希望丢失工作目录中的改动，可优先考虑--soft或--mixed。
+- 软重置(--soft) : 只改变当前分支的HEAD指向到指定的 commit，不修改暂存区和工作目录。即使我们感知到HEAD发生了改变，但暂存区和工作目录中的文件内容保持不变。
+  应用场景：当你认为最新的几次commit有点仓促，需要合并成一个更大的commit时，可以使用软重置把这些 commit 回退到暂存区，进行修改后再提交。实现步骤：
+  执行 git reset ——soft <commit>，回退到指定 commit。
+- 混合重置(--mixed) : 是 Git重置的默认方式。除了改变HEAD，还会重置暂存区(即索引)，而工作目录保持不变。这意味着文件已经提交了，但在工作目录中的更改并没有被删除。
+  应用场景：如果你希望返回到某一个历史版本，同时保留这些版本之后对文件的改动，这些改动会被重新放置在工作目录中。但是我们可能希望这类变更不直接提交，需要在暂存区控制。
+  执行 git reset ——mixed <commit>，回退并将文件放到工作目录中。
+- 硬重置(--hard) : 最强大的重置类型，改变HEAD、暂存区以及工作目录。等于完全回滚到指定的 commit，所有未提交的更改和已暂存的文件统统被丢弃。
+  应用场景：将当前状态回滚到某个版本，完全摒弃对文件的任何改动。在多个分支的开发环境里，如果误操作提交了一些不必要的代码，想要完全清理干净，就可以使用这种方式。
+  执行 git reset ——hard <commit>，除了 HEAD 和暂存区被重置，工作目录也会被重置到指定 commit。
+
+## 4. 进阶命令大全
 
 ```bash
 git branch --merged                                   	# 查看已经合并的分支。如果存在，说明已经被合并；如果不存在，则表示没有被合并。
-git remote add upstream <第二个远程仓库的URL>            	# 添加远程仓库
 git revert <commit-hash>                              	# 撤销一个提交(已提交的情况)
 git reset --hard <commit-hash>                        	# 丢弃工作目录的更改(未提交的情况)
 git reset --soft <commit-hash>                        	# 保留工作目录的更改(未提交的情况)
 git commit -S -m "提交信息"                            	# 签署签名提交
 git log --show-signature                              	# 验证/查看提交的签名
 git show --show-signature                             	# 验证/查看提交的签名
+
+# 配置和使用多个远程仓库
+git remote add upstream <第二个远程仓库的URL>     			    # 添加远程仓库
+git remote -v											                      # 查看所有远程仓库
+git merge upstream/分支名								                # 将upstream的某个分支合并到本地分支
+git push origin 分支名									                  # 推送代码到执行的远程仓库
+
+# Git钩子hooks检查代码质量
+cd .git/hooks
+touch pre-commit
+chmod +x pre-commit
+
+# pre-commit文件中添加检查代码质量的脚本
+#!/bin/sh
+npm run lint
+RESULT=$?
+if [ $RESULT -ne 0 ]; then
+  echo 'Linting failed, cannot commit changes'
+  exit 1
+fi
 ```
