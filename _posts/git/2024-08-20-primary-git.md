@@ -24,17 +24,6 @@ Git是分布式版本控制系统，例如在线word文档每保存一次就有�
 
 *<font color=red>本地仓库</font>也就是你电脑带有.git文件的工作区，<font color=red>远程仓库</font>就是另一台电脑带有.git文件的工作区，一般来说就是Github网站的某个电脑。
 
-### 常用命令
-
-```bash
-git clone ：将远程仓库clone到本地计算机。
-git pull ：拉取远程仓库的数据。
-git add ：将内容从工作目录添加到暂存区。
-git commit ：所有暂存的文件提交到本地仓库。
-git push ：将本地仓库的记录提交到远程仓库。
-git reset HEAD <file> ：从暂存区移除指定文件。
-git checkout -- <file> ：从本地仓库恢复指定文件。
-```
 ### 操作流程
 
 本地仓库 : 
@@ -56,12 +45,7 @@ Git的文件状态主要有以下几种，并且这几种状态是可以通过Gi
 
 5. 忽略(Ignored): 这些文件被Git配置文件(.gitignore)明确指定为需要被忽略的文件，不会被添加到版本库中。
 
-### 常用命令
 可以使用`git status`命令查看当前文件的状态。可以根据文件的状态，决定下一步的操作，如执行git add命令将文件从修改状态变为暂存状态，执行git commit命令将文件从暂存状态变为已提交状态等。
-
-```bash
-git status ：展示工作区及暂存区域中不同状态的文件。
-```
 
 ## 分支
 分支主要涉及提交时间线、matser分支与Head指针这三个概念。为了方便理解，我将Master分支分为了Master的提交时间线与Master指针。其他分支也一样。
@@ -116,16 +100,6 @@ _流程5_
 ## 其他
 1. 标签主要是给某一次提交打个标签，一般是比较重要时刻，例如发布节点(v1.0、v2.0)。
 
-### 常用命令
-```bash
-git branch : 查看分支
-git branch <name> : 创建分支
-git checkout <name>或者git switch <name> : 切换分支
-git checkout -b <name>或者git switch -c <name> : 创建+切换分支
-git merge <name> : 合并某分支到当前分支
-git branch -d <name> : 删除分支
-```
-
 ## 工作中常用的命令
 在工作中，每天第一件事就是看情况拉取项目中matser的内容，避免太久没有拉取产生过多的冲突，过多冲突解决起来也是很耗时的。新需求新分支，分支功能开发完成后，并在开发环境(dev)自测好了之后再让测试测一下，再推到测试环境(sit)合并到master分支。关于环境与迭代会在另外一篇文章内展开。
 
@@ -139,3 +113,81 @@ git merge --abort : 放弃本次合并
 git reset <commit-id> : 回滚提交
 ```
 *[快进模式Fast forward](https://liaoxuefeng.com/books/git/branch/policy/index.html) : 在这种模式下，删除分支后，会丢掉分支信息。不使用该模式时，Git就会在merge时生成一个新的commit，这样，从分支历史上就可以看出分支信息。
+
+## 基础命令大全
+```bash
+git init                                                  # 初始化本地git仓库（创建新仓库）
+git config --global user.name "xxx"                       # 配置用户名
+git config --global user.email "xxx@xxx.com"              # 配置邮件
+git clone git+ssh://git@192.168.53.168/VT.git             # clone远程仓库
+git status                                                # 查看当前版本状态（是否修改）
+git add xyz                                               # 添加xyz文件至index
+git add .                                                 # 增加当前子目录下所有更改过的文件至index
+git commit -m 'xxx'                                       # 提交
+git commit --amend -m 'xxx'                               # 合并上一次提交（用于反复修改）
+git commit -am 'xxx'                                      # 将add和commit合为一步
+git rm xxx                                                # 删除index中的文件
+git rm -r *                                               # 递归删除
+git log                                                   # 显示提交日志
+git log -1                                                # 显示1行日志 -n为n行
+git log --stat                                            # 显示提交日志及相关变动文件
+git show dfb02e6e4f2f7b573337763e5c0013802e392818         # 显示某个提交的详细内容
+git show dfb02                                            # 可只用commitid的前几位
+git tag                                                   # 显示已存在的tag
+git tag -a v2.0 -m 'xxx'                                  # 增加v2.0的tag
+git show v2.0                                             # 显示v2.0的日志及详细内容
+git log v2.0                                              # 显示v2.0的日志
+git diff                                                  # 显示所有未添加至index的变更
+git diff --cached                                         # 显示所有已添加index但还未commit的变更
+git diff HEAD^                                            # 比较与上一个版本的差异
+git diff HEAD -- ./lib                                    # 比较与HEAD版本lib目录的差异
+git diff origin/master..master                            # 比较远程分支master上有本地分支master上没有的
+git diff origin/master..master --stat                     # 只显示差异的文件，不显示具体内容
+git remote add origin git+ssh://git@192.168.53.168/VT.git # 增加远程定义（用于push/pull/fetch）
+git branch                                                # 显示本地分支
+git branch --contains 50089                               # 显示包含提交50089的分支
+git branch -a                                             # 显示所有分支
+git branch -r                                             # 显示所有原创分支
+git branch --merged                                       # 显示所有已合并到当前分支的分支
+git branch --no-merged                                    # 显示所有未合并到当前分支的分支
+git checkout -b master_copy                               # 从当前分支创建新分支master_copy并检出
+git checkout -b master master_copy                        # 上面的完整版
+git checkout features/performance                         # 检出已存在的features/performance分支
+git checkout --track hotfixes/BJVEP933                    # 检出远程分支hotfixes/BJVEP933并创建本地跟踪分支
+git checkout v2.0                                         # 检出版本v2.0
+git checkout -b devel origin/develop                      # 从远程分支develop创建新本地分支devel并检出
+git checkout -- README                                    # 检出head版本的README文件（可用于修改错误回退）
+git merge origin/master                                   # 合并远程master分支至当前分支
+git cherry-pick ff44785404a8e                             # 合并提交ff44785404a8e的修改
+git push origin master                                    # 将当前分支push到远程master分支
+git push origin :hotfixes/BJVEP933                        # 删除远程仓库的hotfixes/BJVEP933分支
+git push --tags                                           # 把所有tag推送到远程仓库
+git fetch                                                 # 获取所有远程分支（不更新本地分支，另需merge）
+git fetch --prune                                         # 获取所有原创分支并清除服务器上已删掉的分支
+git pull origin master                                    # 获取远程分支master并merge到当前分支
+git mv README README2                                     # 重命名文件README为README2
+git reset --hard HEAD                                     # 将当前版本重置为HEAD（通常用于merge失败回退）
+git branch -d hotfixes/BJVEP933                           # 删除分支hotfixes/BJVEP933（本分支修改已合并到其他分支）
+git branch -D hotfixes/BJVEP933                           # 强制删除分支hotfixes/BJVEP933
+git ls-files                                              # 列出git index包含的文件
+git show-branch                                           # 图示当前分支历史
+git show-branch --all                                     # 图示所有分支历史
+git whatchanged                                           # 显示提交历史对应的文件修改
+git revert dfb02e6e4f2f7b573337763e5c0013802e392818       # 撤销提交dfb02e6e4f2f7b573337763e5c0013802e392818
+git ls-tree HEAD                                          # 内部命令：显示某个git对象
+git rev-parse v2.0                                        # 内部命令：显示某个ref对于的SHA1 HASH
+git reflog                                                # 显示所有提交，包括孤立节点
+git show HEAD@{5}
+git show master@{yesterday}                               # 显示master分支昨天的状态
+git log --pretty=format:'%h %s' --graph                   # 图示提交日志
+git show HEAD~3
+git show -s --pretty=raw 2be7fcb476
+git stash                                                 # 暂存当前修改，将所有至为HEAD状态
+git stash list                                            # 查看所有暂存
+git stash show -p stash@{0}                               # 参考第一次暂存
+git stash apply stash@{0}                                 # 应用第一次暂存
+git grep "delete from"                                    # 文件中搜索文本“delete from”
+git grep -e '#define' --and -e SORT_DIRENT                
+git gc                                                    # 触发垃圾回收器
+git fsck
+```
