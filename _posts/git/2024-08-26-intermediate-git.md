@@ -108,7 +108,7 @@ git log --show-signature                              	# 验证/查看提交的�
 git show --show-signature                             	# 验证/查看提交的签名
 
 # 配置和使用多个远程仓库
-git remote add upstream <第二个远程仓库的URL>     			    # 添加远程仓库
+git remote add upstream <第二个远程仓库的URL>              # 添加远程仓库
 git remote -v											                      # 查看所有远程仓库
 git merge upstream/分支名								                # 将upstream的某个分支合并到本地分支
 git push origin 分支名									                  # 推送代码到执行的远程仓库
