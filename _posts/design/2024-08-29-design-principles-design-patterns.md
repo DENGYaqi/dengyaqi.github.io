@@ -6,7 +6,3 @@ tags: [Design]
 description: 设计原则与设计模式基础
 pin: true
 ---
-
-## 介绍
-
-## 总结
