@@ -3,12 +3,12 @@ title: Java开发思考
 date: 2024-08-28 10:00:00 +0800
 categories: [Java]
 tags: [java]
-description: JVM进阶
+description: Java思考
 pin: true
 ---
 
 ## 介绍
-本文主要介绍一些Java开发途中的思考与回答。
+本文主要记录一些Java开发途中的问题。
 
 1. 为什么不可变对象天生就是线程安全的？
 
