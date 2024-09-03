@@ -8,7 +8,7 @@ pin: true
 ---
 
 ## 介绍
-上一篇讲完了Java基础的核心思想，这一篇主要介绍Java容器的概念，和主要容器的实现方式与其数据结构。
+上一篇讲完了[Java基础的核心思想](https://dengyaqi.github.io/posts/java/)，这一篇主要介绍Java容器的概念，和主要容器的实现方式与其数据结构。
 
 ## Java容器
 Java 容器是 Java 集合框架（Java Collections Framework，简称 JCF）的核心组成部分，用于存储和操作一组数据对象。Java 容器提供了灵活的接口和实现类，支持各种数据结构，如列表、集合、映射、队列等。容器通常分为两类：Collection 容器和 Map 容器。
