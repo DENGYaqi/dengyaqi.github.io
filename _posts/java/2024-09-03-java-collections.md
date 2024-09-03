@@ -112,8 +112,8 @@ Set 是一种不允许重复元素的集合，通常用于存储无序且唯一�
 #### 3. TreeSet的红黑树
 红黑树是一种自平衡的二叉搜索树，它保证了在最坏情况下的操作时间复杂度为 O(log n)。
 
-![组件与锚点位置](/assets/img/cocos/learn_part_2/anchor.png){: width="300" height="300" }
-_组件与锚点位置_
+![红黑树样例](assets/img/java/red_black_tree_example.svg.png){: width="300" height="300" }
+_红黑树样例_
 
   - 概念解释
     - 节点颜色 : 每个节点都是红色或黑色。
