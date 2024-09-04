@@ -95,4 +95,4 @@ _从Java源代码到最终实际执行的指令序列_
 总的来说，多线程和异步编程都是为了更好地利用CPU资源和时间。接下来我们就说说，Java是如何解决这几个并发问题的。
 
 ## Java内存模型(Java Memory Model)
-1. 是Java虚拟机规范中定义的一个抽象概念，它描述了在多线程环境下，如何保证共享数据的正确性。JMM本质上可以理解为，Java内存模型规范了JVM如何提供按需禁用缓存和编译优化的方法。具体来说，这些方法包括 : `volatile`、`synchronized`和`final`三个关键字、Happens-Before规则。
+Java内存模型规范了JVM如何提供按需禁用缓存和编译优化的方法。具体来说，这些方法包括 : `volatile`、`synchronized`和`final`三个关键字、Happens-Before规则。在[该文章](https://pdai.tech/md/java/jvm/java-jvm-jmm.html)中对于JMM的描述很详细，在此只做归纳与总结。
