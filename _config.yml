@@ -16,7 +16,7 @@ timezone: Asia/Shanghai
 
 title: 噔噔的博客 # the main title
 
-tagline: 技术沉淀与日常记录 # it will display as the sub-title
+tagline: 架构师之路记录 # it will display as the sub-title
 
 description: >- # used by seo meta and the atom feed
   A minimal, responsive and feature-rich Jekyll theme for technical writing.
