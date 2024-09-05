@@ -39,19 +39,21 @@ GitHub Codespaces 是一个基于云的即时开发环境，它使用容器为�
 ### 项目树结构
 1. [_config.yml](https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md)：配置文件, 主要修改url, avatar, timezone和lang。其他内容可点击链接查看修改。
 
-中文样例: 
+   中文样例:
 
-url为博客网址, 在仓库页的Pagers里可找到。例如: https://dengyaqi.github.io/
+   url为博客网址, 在仓库页的Pagers里可找到。例如: https://dengyaqi.github.io/
 
-avatar需要把图片上传到路径./asserts/img内后在配置文件的avatar标签中设置url路径，例如: https://dengyaqi.github.io/assets/img/avatar.jpg
+   avatar需要把图片上传到路径./asserts/img内后在配置文件的avatar标签中设置url路径，例如: https://dengyaqi.github.io/assets/img/avatar.jpg
 
-timezone: Asia/Shanghai, 配置内有链接可查找。
+   timezone: Asia/Shanghai, 配置内有链接可查找。
 
-lang: zh-CH, 首页中的关键词会自动翻译。
+   lang: zh-CH, 首页中的关键词会自动翻译。
 
 2. [_post](https://chirpy.cotes.page/posts/write-a-new-post/): 文章存放位置, 在该文件夹内新增格式为`YYYY-MM-DD-TITLE.md`的文档即可, 至于markdown语法建议边写边学, 不用专门学习, 例如可以对照[**代码版本**](https://github.com/cotes2020/jekyll-theme-chirpy/blob/master/_posts/2019-08-08-text-and-typography.md?plain=1)与[**网页版本**](https://chirpy.cotes.page/posts/text-and-typography/#paragraph)了解哪些语法对应哪些格式。
 
 3. _data: 元数据, 例如用户信息，联系信息等。可创建一个[authors.yml](https://chirpy.cotes.page/posts/write-a-new-post/#author-information)用于配置用户信息, 这样可自动覆盖其他需要用户信息的配置，无须再手动配置。
+
+4. favicons: [网站图标教程](https://chirpy.cotes.page/posts/customize-the-favicon/)
 
 ### [GitHub Discussions](https://giscus.app/zh-CN)
 利用 GitHub Discussions 实现的评论系统
