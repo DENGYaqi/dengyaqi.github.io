@@ -2,7 +2,7 @@
 title: 解决 http.proxy has multiple values问题
 date: 2024-08-28 10:00:00 +0800
 categories: [Issue]
-tags: [Git]
+tags: [git]
 description: Git issue resolve
 pin: true
 ---
