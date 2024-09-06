@@ -1,7 +1,7 @@
 ---
 title: 20分钟了解Java容器
 date: 2024-09-03 10:00:00 +0800
-categories: [Java Collections Framework]
+categories: [Java]
 tags: [java]
 description: Java容器
 pin: true
