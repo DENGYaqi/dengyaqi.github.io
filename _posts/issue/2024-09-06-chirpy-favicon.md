@@ -1,9 +1,9 @@
 ---
 title: 解决Chirpy自定义网站图标无法显示问题
-date: 2024-08-28 10:00:00 +0800
+date: 2024-09-06 10:00:00 +0800
 categories: [Issue]
-tags: [GitHub]
-description: GitHub issue resolve - Chirpy Customize the Favicon
+tags: [github]
+description: Github issue resolve - Chirpy Customize the Favicon
 pin: true
 ---
 
