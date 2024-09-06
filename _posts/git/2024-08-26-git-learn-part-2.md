@@ -2,7 +2,7 @@
 title: 与面试官聊20分钟Git
 date: 2024-08-26 10:00:00 +0800
 categories: [Git]
-tags: [Git]
+tags: [git]
 description: Git进阶
 pin: true
 ---
