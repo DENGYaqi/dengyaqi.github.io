@@ -97,4 +97,6 @@ _从Java源代码到最终实际执行的指令序列_
 ## Java内存模型(Java Memory Model)
 Java内存模型规范了JVM如何提供按需禁用缓存和编译优化的方法。具体来说，这些方法包括 : `volatile`、`synchronized`和`final`三个关键字、Happens-Before规则。这个章节总结自[深入理解Java内存模型](https://www.infoq.cn/minibook/java_memory_model)，建议大家可以看看。
 
+![JMM总结笔记](/assets/img/java/jmm_watermark.png)
+_JMM总结笔记_
 
