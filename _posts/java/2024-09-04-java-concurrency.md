@@ -1,5 +1,5 @@
 ---
-title: 20分钟了解Java并发
+title: 20分钟了解Java并发编程
 date: 2024-09-04 10:00:00 +0800
 categories: [Java]
 tags: [java]
@@ -9,7 +9,7 @@ pin: true
 ---
 
 ## 介绍
-上一篇讲完了[Java容器](https://dengyaqi.github.io/posts/java-collections/)的概念与其底层数据结构原理，这一篇主要介绍Java并发的概念。
+上一篇讲完了[Java容器](https://dengyaqi.github.io/posts/java-collections/)的概念与其底层数据结构原理，这一篇主要介绍Java并发编程的概念。这篇文件的内容基于[Java多线程与并发](https://pdai.tech/md/java/thread/java-thread-x-overview.html)进行总结归纳。
 
 ## 理论基础
 
@@ -69,6 +69,13 @@ _JMM总结笔记(仅供学习使用，禁止商用)_
 总的来说，JMM是用于约束和规范编译器和处理器重排序的行为，接下来我们继续看看，Java从语言层面为开发者提供的多线程并发工具 : volatile、synchronized 和 final 。这些关键字通过遵循 JMM 的规则来保证多线程环境中的正确性。
 
 ## 3. 关键字 volatile、synchronized 和 final
+
+### synchronized详解
+这一节主要总结自文章[synchronized详解](https://pdai.tech/md/java/thread/java-thread-x-key-synchronized.html)，其中的关于JVM部分可继续阅读[与面试官聊20分钟JVM](https://dengyaqi.github.io/posts/jvm/)。
+
+### volatile详解
+
+### final详解
 
 ## 词典
 
