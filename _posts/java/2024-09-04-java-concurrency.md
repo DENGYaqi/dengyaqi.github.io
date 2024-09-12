@@ -74,6 +74,11 @@ _JMM总结笔记(仅供学习使用，禁止商用)_
 ##### synchronized详解
 这一节主要总结自文章[synchronized详解](https://pdai.tech/md/java/thread/java-thread-x-key-synchronized.html)，其中的关于JVM部分可继续阅读[与面试官聊20分钟JVM](https://dengyaqi.github.io/posts/jvm/)。
 
+![synchronized总结笔记](/assets/img/java/synchronized_watermark.png)
+_synchronized总结笔记(仅供学习使用，禁止商用)_
+
+在能选择的情况下，既不要用Lock也不要用synchronized关键字，用java.util.concurrent包中的各种各样的类，如果不用该包下的类，在满足业务的情况下，可以使用synchronized关键，因为代码量少，避免出错。
+
 ##### volatile详解
 
 ##### final详解
