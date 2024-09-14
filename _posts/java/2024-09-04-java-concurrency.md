@@ -80,6 +80,7 @@ _synchronized总结笔记(仅供学习使用，禁止商用)_
 在能选择的情况下，既不要用Lock也不要用synchronized关键字，用java.util.concurrent包中的各种各样的类，如果不用该包下的类，在满足业务的情况下，可以使用synchronized关键，因为代码量少，避免出错。
 
 ##### volatile详解
+主要是
 
 ##### final详解
 
