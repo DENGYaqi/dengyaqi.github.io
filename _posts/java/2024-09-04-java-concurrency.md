@@ -130,6 +130,9 @@ public void run() {
 
 ##### final详解
 
+![final总结笔记](/assets/img/java/final_watermark.png)
+_final总结笔记(仅供学习使用，禁止商用)_
+
 ## 词典
 
 ### 时钟周期
