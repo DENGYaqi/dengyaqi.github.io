@@ -133,6 +133,8 @@ public void run() {
 ![final总结笔记](/assets/img/java/final_watermark.png)
 _final总结笔记(仅供学习使用，禁止商用)_
 
+使用final的条件和局限性 : 当声明一个 final 成员时，必须在构造函数退出前设置它的值。
+
 ## 词典
 
 ### 时钟周期
