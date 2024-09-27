@@ -80,7 +80,53 @@ _synchronized总结笔记(仅供学习使用，禁止商用)_
 在能选择的情况下，既不要用Lock也不要用synchronized关键字，用java.util.concurrent包中的各种各样的类，如果不用该包下的类，在满足业务的情况下，可以使用synchronized关键，因为代码量少，避免出错。
 
 ##### volatile详解
-介绍
+
+![volatile总结笔记](/assets/img/java/volatile_watermark.png)
+_volatile总结笔记(仅供学习使用，禁止商用)_
+
+注意使用volitale前的三个条件: 
+
+1. 在使用volatile的场景中，写操作不能依赖该变量的当前值来进行计算
+   当我们对一个变量执行“读取-修改-写入”这种复合操作时，如果该操作依赖于当前的值，volatile 不能保证操作是线程安全的。
+   例如，递增操作 counter++，这个操作分为三个步骤：读取、修改、写入。
+
+```java
+volatile int count = 0;
+
+public void increment() {
+    count++;  // 非原子操作，多个线程可能导致结果错误
+}
+```
+
+2. 在多线程环境中，如果某个变量的值变化会影响其他变量的值或状态（即存在不变性约束），volatile 不能保证多个变量之间的状态一致性。
+
+```java
+volatile boolean ready = false;
+int data = 0;
+
+public void update() {
+    data = 100;  // data 和 ready 之间有约束关系
+    ready = true;
+}
+```
+
+3. 只有当变量的状态与程序中其他部分没有关联或依赖时，才能安全地使用volatile。
+
+```java
+// 适合使用volatile样例
+
+volatile boolean shutdown = false;
+
+public void shutdown() {
+    shutdown = true;  // shutdown 变量独立，且只需要保证可见性
+}
+
+public void run() {
+    while (!shutdown) {
+        // 继续执行任务
+    }
+}
+```
 
 ##### final详解
 
