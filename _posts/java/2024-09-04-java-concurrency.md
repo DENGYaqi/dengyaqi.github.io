@@ -135,6 +135,11 @@ _final总结笔记(仅供学习使用，禁止商用)_
 
 使用final的条件和局限性 : 当声明一个 final 成员时，必须在构造函数退出前设置它的值。
 
+### 线程安全与其实现办法、并发总结
+
+![java并发总结笔记](/assets/img/java/java_concurrency_watermark.png)
+_java并发总结笔记(仅供学习使用，禁止商用)_
+
 ## 词典
 
 ### 时钟周期
