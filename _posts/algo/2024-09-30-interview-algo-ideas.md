@@ -58,14 +58,53 @@ _算法核心框架样例(仅供学习使用，禁止商用)_
 
 算法优化，拿空间换时间。
 
-### 递归框架
-
+1. 数组框架
 ```java
+void traverse(int[] arr){
+  for(int i = 0; i < arr.length; i++){
+    // 迭代访问arr[i]
+  }
+}
 ```
 
-1. 确定递归函数的参数和返回值
-2. 确定终止条件
-3. 确定单层递归的逻辑
+2. 递归框架
+- 确定递归函数的参数和返回值
+- 确定终止条件
+- 确定单层递归的逻辑(处理当前层逻辑)
+- (非必要)回溯：有时需要在递归返回时恢复之前的状态，常见于回溯问题。
+
+```java
+public void recursiveFunction(int level, int param) {
+    // 确定终止条件
+    if (level > MAX_LEVEL) {
+        return;
+    }
+
+    // 处理当前层逻辑
+    process(level, param);
+
+    // 进入下一层递归
+    recursiveFunction(level + 1, newParam);
+
+    // 如果有需要，恢复当前层状态（回溯）
+}
+```
+
+2. 链表框架
+有迭代访问(for)和递归访问两种形式。
+
+```java
+void traverse(ListNode head){
+  for(ListNode p = head; p != null; p = p.next){
+    // 迭代访问p.val
+  }
+}
+
+void traverse(ListNode head){
+  // 递归访问head.val
+  traverse(head.next);
+}
+```
 
 ### 二叉树框架
 只要涉及递归的问题，都是树的问题。大部分算法技巧，本质上都是树的遍历问题。
