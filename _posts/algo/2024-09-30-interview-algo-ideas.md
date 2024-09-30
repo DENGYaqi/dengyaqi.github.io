@@ -24,6 +24,26 @@ pin: true
 
 - `n` : 大O表示法内的`n`一般代表算法输入的数组长度。
 
+## 编程语言基础
+
+Java 语言
+- 数组 : array
+- 动态数组 : ArrayList
+- 列表 : list
+- 映射 : map
+- 哈希表 : HashMap
+- 堆栈 : stack
+- 队列 : queue
+- 双链表 : LinkedList
+- 哈希集合 : HashSet
+- 字符串 : String
+
+ C++语言
+ - 动态数组类型 : vector，类似java的ArrayList
+ - 字符串 : string
+ - 哈希表 : unordered_map
+ - 
+
 ## 算法核心框架
 
 ![算法核心框架样例](/assets/img/algo/algo_framework_watermark.png)
@@ -34,6 +54,14 @@ _算法核心框架样例(仅供学习使用，禁止商用)_
 数据结构最底层的存储方式只有两种 : 数组(顺序存储，内存地址连续)和链表(链式存储，内存地址不连续)，其他的数据结构都是由此发展。
 
 基本操作无非就是遍历 + 访问，其实就是增删改查，也有两种形式 : 线性(for/while)和非线性(递归)。
+
+### 链表式框架
+适用于二叉树遍历、链表遍历
+```java
+
+```
+
+### 动态规划框架
 
 
 ## 微调思路
