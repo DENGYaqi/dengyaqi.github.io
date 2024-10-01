@@ -126,7 +126,8 @@ void traverse(TreeNode root){
 ### 链表式框架
 适用于二叉树遍历、链表遍历
 ```java
-
+for{
+}
 ```
 
 ### 动态规划框架
