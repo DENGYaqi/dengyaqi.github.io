@@ -17,31 +17,64 @@ pin: true
 3. 组织解答则是根据选好的算法核心和具体的题目，进行应对和调整，因为算法核心并不一定能完全的对应上题目的解答，此时还需要对算法核心做一些微小的调整。
 
 ## 基础词汇
+很多时候看不懂题目是因为不了解某个词汇，下面有100个在leetcode题目中最常见的词汇与其定义。
 
-- 时间复杂度 : a) 衡量一个算法的执行效率 b) 用大O表示法表示(类似 O(1), O(n^2))，都是估计值，不需要精确计算 c) 看 for 循环的嵌套层数即可。
+```text
+序列(sequence): 有序的元素集合, 有限或无限, 每个元素都有一个特定的位置或索引，如数列(自然数序列 1,2,3,4,...1,2,3,4,...)、字符串、数组。
+子序列(Subsequence)
+子数组(Subarray) : 
+子字符串(Substring)
+最长公共子序列(Longest Common Subsequence,LCS)
+最长递增子序列(Longest Increasing Subsequence,LIS)
+最大子段和(Maximum Subarray Sum)
+最小子段和(Minimum Subarray Sum)
 
-- 空间复杂度 : a) 衡量算法的内存消耗 b) 同上 c) 看算法声明了多少空间来存储数据。
+前缀和（Prefix Sum）
+后缀和（Suffix Sum）
+区间和（Range Sum）
+滑动窗口（Sliding Window）
+区间最值（Range Maximum/Minimum Query, RMQ）
+最长回文子串（Longest Palindromic Substring）
+最长重复子串（Longest Repeated Substring）
+连续子数组积（Product of Subarray）
+区间最大差值（Range Maximum Difference）
+区间最小值（Range Minimum Query）
+最大连续和（Maximum Continuous Sum）
+最小连续和（Minimum Continuous Sum）
+连续相同元素个数（Length of Consecutive Equal Elements）
+非递减子段（Non-decreasing Subarray）
+非递增子段（Non-increasing Subarray）
+递增子段（Increasing Subarray）
+递减子段（Decreasing Subarray）
+区间求和（Range Sum Query）
+最大长度区间（Maximum Length Subarray）
+最小长度区间（Minimum Length Subarray）
+最长单调递增子段（Longest Monotonically Increasing Subsequence）
+最长单调递减子段（Longest Monotonically Decreasing Subsequence）
+区间和大于K的子数组（Subarray with Sum Greater than K）
+区间和等于K的子数组（Subarray with Sum Equals K）
+最长0和1相等的子数组（Longest Subarray with Equal Number of 0s and 1s）
+最大平均子数组（Maximum Average Subarray）
+最小平均子数组（Minimum Average Subarray）
+最长不重复子串（Longest Substring Without Repeating Characters）
+最长相同字符子串（Longest Substring with Same Characters）
+最长公共前缀（Longest Common Prefix）
+最小窗口子串（Minimum Window Substring）
+区间反转（Range Reversal）
+区间更新（Range Update）
+区间最小差值（Minimum Range Difference）
+最短连续子数组（Shortest Continuous Subarray）
+最长连续递增序列（Longest Continuous Increasing Sequence）
+最长连续递减序列（Longest Continuous Decreasing Sequence）
+最长交替子序列（Longest Alternating Subsequence）
+连续1的最长子串（Longest Substring of Consecutive 1's）
+连续0的最长子串（Longest Substring of Consecutive 0's）
+区间异或和（Range XOR Sum）
+连续元素乘积最大子数组（Maximum Product Subarray）
+最长不重复区间（Longest Non-repeating Subarray）
+```
 
-- `n` : 大O表示法内的`n`一般代表算法输入的数组长度。
-
-## 编程语言基础
-
-Java 语言
-- 数组 : array
-- 动态数组 : ArrayList
-- 列表 : list
-- 映射 : map
-- 哈希表 : HashMap
-- 堆栈 : stack
-- 队列 : queue
-- 双链表 : LinkedList
-- 哈希集合 : HashSet
-- 字符串 : String
-
- C++语言
- - 动态数组类型 : vector，类似java的ArrayList
- - 字符串 : string
- - 哈希表 : unordered_map
+## 算法基础
 
 ## 算法核心框架
 
@@ -118,15 +151,6 @@ void traverse(TreeNode root){
   // 中序位置
   traverse(root.right);
   // 后序位置
-}
-```
-
-
-
-### 链表式框架
-适用于二叉树遍历、链表遍历
-```java
-for{
 }
 ```
 
