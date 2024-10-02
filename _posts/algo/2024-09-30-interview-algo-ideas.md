@@ -17,92 +17,34 @@ pin: true
 3. 组织解答则是根据选好的算法核心和具体的题目，进行应对和调整，因为算法核心并不一定能完全的对应上题目的解答，此时还需要对算法核心做一些微小的调整。
 
 ## 基础词汇
-很多时候看不懂题目是因为不了解某个词汇，下面有leetcode题目中最常见的词汇与其定义。
+很多时候看不懂题目是因为不了解某个词汇，下面有leetcode题目中最常见的词汇与其定义，按照数据结构的类型进行分类举例。
 
 ### 序列
-有序的元素集合, 有限或无限, 每个元素都有一个特定的位置或索引，如数列(自然数序列 1,2,3,4,...1,2,3,4,...)、字符串(由一系列字符组成的序列，如 "hello")、数组( [3,1,4,1,5])。
+有序的元素集合, 有限或无限, 每个元素都有一个特定的位置或索引，如数列(自然数序列 1,2,3,4,...1,2,3,4,...)、字符串(由一系列字符组成的序列，如 "hello")、数组( [3,1,4,1,5])。下方表格只记录一些典型的，例如非递增序列，同理也会有非递减序列，原理是一样的，就不重复记录了。
 
 |相关词汇|定义|关键词记忆|
 |:---|:---|:---|
 |子序列(Subsequence)|从序列中按顺序提取部分元素形成的新序列，不要求元素连续|原顺序，不一定连续|
 |连续子序列(Contiguous Subsequence)|从序列中按顺序提取部分元素形成的新序列，不要求元素连续|原顺序，不一定连续|
+|非递增序列(Non-increasing Sequence)|序列中的元素按不增顺序排列|非递增|
 |最长公共子序列(Longest Common Subsequence, LCS)|两个或多个序列中最长的按顺序出现的公共子序列|相同的，最长的，子序列|
 |最长递增子序列(Longest Increasing Subsequence, LIS)|一个最长的子序列，序列中的元素是按严格递增的顺序排列的|最长，递增排列|
+|序列求和(Sequence Sum)|序列中所有元素的总和|元素，总和|
+|切片(Slicing)|从一个序列中提取出特定部分的操作|提取|
+
+### 特定操作
+|操作|定义|
+|:---|:---|
+|切片(Slicing)|从一个序列中提取出特定部分的操作|
 
 ### 总结
 看完上述的词汇后，是不是发现有些内容非常相似，在此做个总结。
-
-|数据结构|名称|连续性|顺序|限度|
-|:---|:---|:---|:---|:---|
-|数组|子数组|连续|有序|有限或无限|
-||子段|连续|有序|有限或无限|
-||子段|连续|有序|有限或无限|
-|字符串|子段|连续|有序|有限或无限|
-||子段|连续|有序|有限或无限|
-||子段|连续|有序|有限或无限|
 
 |相关词汇|定义|
 |:---|:---|
 |子..(Sub..)|“部分”或“从属”的关系|
 |递增..(Inc..)|元素值随着索引的增加而增大的性质|
 |公共..(Common..)|多个数据结构中相同的内容|
-
-最长递增子序列（Longest Increasing Subsequence, LIS）：序列中最长的严格递增子序列。
-
-```text
-序列(sequence): 有序的元素集合, 有限或无限, 每个元素都有一个特定的位置或索引，如数列(自然数序列 1,2,3,4,...1,2,3,4,...)、字符串、数组。
-子序列(Subsequence)
-子数组(Subarray) : 
-子字符串(Substring)
-最长公共子序列(Longest Common Subsequence,LCS)
-最长递增子序列(Longest Increasing Subsequence,LIS)
-最大子段和(Maximum Subarray Sum)
-最小子段和(Minimum Subarray Sum)
-
-前缀和（Prefix Sum）
-后缀和（Suffix Sum）
-区间和（Range Sum）
-滑动窗口（Sliding Window）
-区间最值（Range Maximum/Minimum Query, RMQ）
-最长回文子串（Longest Palindromic Substring）
-最长重复子串（Longest Repeated Substring）
-连续子数组积（Product of Subarray）
-区间最大差值（Range Maximum Difference）
-区间最小值（Range Minimum Query）
-最大连续和（Maximum Continuous Sum）
-最小连续和（Minimum Continuous Sum）
-连续相同元素个数（Length of Consecutive Equal Elements）
-非递减子段（Non-decreasing Subarray）
-非递增子段（Non-increasing Subarray）
-递增子段（Increasing Subarray）
-递减子段（Decreasing Subarray）
-区间求和（Range Sum Query）
-最大长度区间（Maximum Length Subarray）
-最小长度区间（Minimum Length Subarray）
-最长单调递增子段（Longest Monotonically Increasing Subsequence）
-最长单调递减子段（Longest Monotonically Decreasing Subsequence）
-区间和大于K的子数组（Subarray with Sum Greater than K）
-区间和等于K的子数组（Subarray with Sum Equals K）
-最长0和1相等的子数组（Longest Subarray with Equal Number of 0s and 1s）
-最大平均子数组（Maximum Average Subarray）
-最小平均子数组（Minimum Average Subarray）
-最长不重复子串（Longest Substring Without Repeating Characters）
-最长相同字符子串（Longest Substring with Same Characters）
-最长公共前缀（Longest Common Prefix）
-最小窗口子串（Minimum Window Substring）
-区间反转（Range Reversal）
-区间更新（Range Update）
-区间最小差值（Minimum Range Difference）
-最短连续子数组（Shortest Continuous Subarray）
-最长连续递增序列（Longest Continuous Increasing Sequence）
-最长连续递减序列（Longest Continuous Decreasing Sequence）
-最长交替子序列（Longest Alternating Subsequence）
-连续1的最长子串（Longest Substring of Consecutive 1's）
-连续0的最长子串（Longest Substring of Consecutive 0's）
-区间异或和（Range XOR Sum）
-连续元素乘积最大子数组（Maximum Product Subarray）
-最长不重复区间（Longest Non-repeating Subarray）
-```
 
 ## 算法基础
 
