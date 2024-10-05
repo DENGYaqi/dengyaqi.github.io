@@ -124,7 +124,7 @@ public void recursiveFunction(int level, int param) {
 ```
 
 2. 链表框架
-有迭代访问(for)和递归访问两种形式。
+基础遍历 : 有迭代访问(for)和递归访问两种形式。
 
 ```java
 void traverse(ListNode head){
@@ -138,9 +138,22 @@ void traverse(ListNode head){
   traverse(head.next);
 }
 ```
+
 链表中间节点 : 
 快慢指针 : 快指针走两步、慢指针走一步，快指针到终点时，慢指针刚好到中间节点。
 需要考虑快指针什么时间停止。
+
+```java
+    public ListNode middleNode(ListNode head) {
+        ListNode fast = head;
+        ListNode slow = head;
+        while(fast != null && fast.next != null){
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+        return slow;
+    }
+```
 
 ### 二叉树框架
 只要涉及递归的问题，都是树的问题。大部分算法技巧，本质上都是树的遍历问题。
