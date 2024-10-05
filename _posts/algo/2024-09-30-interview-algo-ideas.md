@@ -137,6 +137,8 @@ void traverse(ListNode head){
   // 递归访问head.val
   traverse(head.next);
 }
+
+// 快慢指针 : 快指针走两步、慢指针走一步，快指针到终点时，慢指针刚好到中间节点。
 ```
 
 ### 二叉树框架
