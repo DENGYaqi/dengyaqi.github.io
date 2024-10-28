@@ -172,8 +172,6 @@ void traverse(TreeNode root){
 
 ## 微调思路
 
-## 总结
-
 ## 参考资料
 
 1. [labuladong的算法笔记](https://labuladong.online/algo/home/)
