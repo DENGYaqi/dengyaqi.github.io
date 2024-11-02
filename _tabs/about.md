@@ -10,7 +10,6 @@ header:
   - text: |
       <span style="font-size: 1.2em; font-weight: bold;">Applying for: Cooking Engineer</span>
   - text: <span class="iconify" data-icon="tabler:phone"></span> (+1) 123-456-7890
-    newLine: [true](https://dengyaqi.github.io/)
   - text: <span class="iconify" data-icon="tabler:mail"></span> icancook@email.com
     link: mailto:icancook@email.com
   - text: <span class="iconify" data-icon="tabler:brand-github"></span> Renovamen
