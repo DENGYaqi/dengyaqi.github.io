@@ -1,4 +1,6 @@
 ---
+icon: fas fa-info-circle
+order: 4
 name: Haha Ha
 header:
   - text: |
@@ -10,9 +12,6 @@ header:
     link: https://github.com/Renovamen
   - text: <span class="iconify" data-icon="charm:person"></span> zxh.me
     link: https://zxh.me
-    # the default layout is 'page'
-icon: fas fa-info-circle
-order: 4
 ---
 
 <!-- Important: Replace all template content, especially contact details, with your own information. -->
