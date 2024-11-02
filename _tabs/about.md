@@ -8,8 +8,6 @@ order: 4
 > Add Markdown syntax content to file `_tabs/about.md`{: .filepath } and it will show up on this page.
 {: .prompt-tip }
 
-<img style="float:right;border-radius:50%;width:70px;padding:6px" src="avatar-man.jpg" />
-
 <span style="float:right;padding:6px"> 
   someone@email.com <br> mobile: +852 xxxxxxxx <br> Nationality: Chinese
 </span>
