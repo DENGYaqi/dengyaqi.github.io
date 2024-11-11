@@ -174,6 +174,8 @@ void traverse(TreeNode root){
 
 ## 参考资料
 
+## 总结
+
 1. [labuladong的算法笔记](https://labuladong.online/algo/home/)
 
 2. [代码随想录](https://programmercarl.com/)
