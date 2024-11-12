@@ -8,9 +8,7 @@ pin: true
 ---
 
 ## 介绍
-本文为英语语法总结，基于Pocket英语语法 : [重头开始学英语，零基础语法入门](https://www.bilibili.com/video/BV1Rs41127xW/?spm_id_from=333.337.search-card.all.click&vd_source=7a96b0e57dd9994246f754e2a2d3ef5a)。
-
-包含了课程笔记和笔记总结。
+本文为英语语法总结，基于Pocket英语语法 : [重头开始学英语，零基础语法入门](https://www.bilibili.com/video/BV1Rs41127xW/?spm_id_from=333.337.search-card.all.click&vd_source=7a96b0e57dd9994246f754e2a2d3ef5a)。包含了课程笔记和笔记总结。
 
 ## 课程笔记
 
