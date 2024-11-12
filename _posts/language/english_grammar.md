@@ -29,21 +29,17 @@ pin: true
 
 - 基本句式
 
-1) 基本句式一，主语加谓语 S V
+1) 基本句式一，主语加谓语 S V，The universe remains. (宇宙长存)
 
-2) 基本句式二，主语加系动词加表语 S V P
+2) 基本句式二，主语加系动词加表语 S V P，The universe remains. (宇宙长存)
 
-3) 基本句式三，主语加谓语加宾语 S V O
+3) 基本句式三，主语加谓语加宾语 S V O，He took his bag and left. (他拿着书包离开了)
 
-4) 基本句式四，主语加谓语加间接宾语加直接宾语 S V o O
+4) 基本句式四，主语加谓语加间接宾语加直接宾语 S V o O，Her father bought her a dictionary. (她爸爸给她买了一本词典)
 
-5) 基本句式五，主语加谓语加宾语加宾补. S V O C
+5) 基本句式五，主语加谓语加宾语加宾补. S V O C，We make him our monitor.(我们选他当班长)
 
-句式一，The universe remains.
-句式二，The food is delicious.
-句式三，He took his bag and left.
-句式四，Her father bought her a dictionary.
-句式五，We make him our monitor.
+总结，英语的基本句式跟中文的语序是一致的，但是其他句式就跟中文语序不一致，例如倒装句、副词提前句和复杂的长句子。最终送大家一句名言 : Nothing is impossible to a willing heart!(有志者事竟成！)
 
 ### 第二讲，be动词的形式和用法，be动词的形式
 be, is, am, are, was, were, being, been.
