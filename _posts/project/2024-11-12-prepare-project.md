@@ -1,9 +1,9 @@
 ---
-title: 个人项目开始前的准备工作
+title: SpringCloud搭建【1】
 date: 2024-11-12 10:00:00 +0800
-categories: [project]
-tags: [project]
-description: 业务方向、技术选型、Java后端
+categories: [SpringCloud]
+tags: [SpringCloud]
+description: 业务方向、技术选型、Java后端、SpringCloud
 pin: true
 ---
 
@@ -12,4 +12,18 @@ pin: true
 
 ## 业务方向
 首先选择项目的方向，例如本地生活、跨境电商、预订系统、音视频，具体可以从各大招聘平台去多刷想找的职位主要聚集在什么业务上，这样做出来的项目既可以为下份工作铺垫，又可以提前熟悉技术框架。
+
+## 技术选型
+当前项目选择以SpringCloud作为网站搭建，SpringCloud作为今日最热门的云应用开发工具，基于Spring Boot实现，包含了各类分布式所需的组件，例如 : 
+
+- 分布式/版本化配置 : 
+- 服务注册和发现
+- 路由
+- 服务到服务的调用
+- 负载均衡
+- 短路器
+- 全局锁
+- 领导选举和集群状态
+- 分布式消息传递
+
 
