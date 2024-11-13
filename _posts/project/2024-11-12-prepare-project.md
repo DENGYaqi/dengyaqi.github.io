@@ -35,6 +35,8 @@ SpringCloud是基于SpringBoot之上的用来快速构建微服务系统的工�
 - Spring Cloud Config : 配置管理开发工具包，可以让你把配置放到远程服务器，目前支持本地存储、Git以及Subversion。
 - Spring Cloud Gateway : 基于Spring框架的API网关，Zuul的下一代。主要负责将客户端请求转发到后端微服务，同时实现一些高级功能，如负载均衡、安全认证和流量控制等。
 - Spring Cloud Netflix : 是对Netflix开发的一套分布式服务框架的封装，包括Eureka(服务注册和发现)、Ribbon(提供客户端负责均衡功能)、Hystrix(熔断器)、Zuul(服务网关)、Gateway(Zuul的下一代，也是网关)
+- Spring Cloud Consul : 基于Hashicorp Consul的服务治理组件。帮助在微服务架构中实现服务注册与发现、分布式配置管理和健康检查等功能。
+- Spring Cloud Data Flow : 强大的数据流和批处理平台，集成了 Spring Cloud Stream 和 Spring Batch。
 
 
 
