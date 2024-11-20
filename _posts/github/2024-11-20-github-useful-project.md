@@ -11,3 +11,5 @@ pin: true
 例如 : 用代码处理excel的重复工作
 
 2. sheetJS库 : https://github.com/SheetJS/sheetjs
+
+3. NLP民工的乐园: 几乎最全的中文NLP资源库 : https://github.com/fighting41love/funNLP
