@@ -9,3 +9,5 @@ pin: true
 
 1. 几乎可以操作excel的所有功能 : https://github.com/exceljs/exceljs?tab=readme-ov-file
 例如 : 用代码处理excel的重复工作
+
+2. sheetJS库 : https://github.com/SheetJS/sheetjs
