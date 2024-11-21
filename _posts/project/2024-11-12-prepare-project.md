@@ -57,11 +57,10 @@ SpringCloud是基于SpringBoot之上的用来快速构建微服务系统的工�
 - Spring Cloud Security：安全工具包，为你的应用程序添加安全控制，主要是指OAuth2。
 - Spring Cloud CLI：基于 Spring Boot CLI，可以让你以命令行方式快速建立云组件。 
 
-### Spring Cloud Alibaba
-Spring Cloud Alibaba是阿里巴巴结合自身丰富的微服务实践而推出的微服务开发的一站式解决方案。选择Alibaba主要有三个原因 : 
+## 手脚架搭建
+[Spring Initializr](https://start.spring.io/)，在该网站可快速搭建。但是首要是了解需要哪些依赖，选择合适自己业务的依赖。
 
-1. 中文教材，易于学习与实践。
-2. 国内使用人数多，不仅工作中用到的概率很大。
-3. 组件Sentinel对于跨境电商有明显的案例可借鉴，天猫双11。
+### Dependencies
+以下为大部分大型业务项目都需要的依赖。
 
-## 总结
+
