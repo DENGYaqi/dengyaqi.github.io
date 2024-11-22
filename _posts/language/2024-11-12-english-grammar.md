@@ -71,7 +71,7 @@ be动词的否定 : 在am, is, are, was, were后面加Not，
 
 缩略式 : am not, isn't, aren't, wasn't, weren't
 
-提问 : be 动词放到句首，其他顺序不变。
+提问 : be 动词放到句首，其他顺序不变。回答时用对应be动词即可。
 
 ### 第四讲，代词的主格和宾格
 主格代词I, he, she, it, you, we, they.，
