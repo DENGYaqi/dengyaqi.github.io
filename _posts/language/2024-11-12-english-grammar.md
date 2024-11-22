@@ -44,6 +44,7 @@ pin: true
 ### 第二讲，be动词的形式和用法，be动词的形式
 
 - be动词的形式 :be, is, am, are, was, were, being, been.
+- be翻译 : 是...
 
 |be动词|时态|位置|例子|
 |:---|:---|:---|:---|
@@ -57,9 +58,12 @@ pin: true
 |been|过去分词||they have been back他们已经回来了(现在完成时时态)|
 
 - be动词的用法 : 后面接名词，形容词地点副词或短语作补足语.
-The man is a teacher,
-Mary's dress are colorful,
-My mother was in the kitchen.
+
+1) The man is a teacher, a teacher是一个补足语，在补充说明man的职业。
+
+2) Mary's dress are colorful, 玛丽的新裙子是五颜六色的，colorful也是补足语，补充说明裙子的颜色。
+
+3) My mother was in the kitchen, in the kitchen补充说明妈妈的位置在哪。
 
 ### 第三讲，be动词的否定提问回答
 be动词的否定，在am,is,are,was,were后面加Not，缩略式am not, isn't,aren't,wasn't,weren't
