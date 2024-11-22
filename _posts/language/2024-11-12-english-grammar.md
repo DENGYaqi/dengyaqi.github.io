@@ -42,7 +42,20 @@ pin: true
 总结，英语的基本句式跟中文的语序是一致的，但是其他句式就跟中文语序不一致，例如倒装句、副词提前句和复杂的长句子。最终送大家一句名言 : Nothing is impossible to a willing heart!(有志者事竟成！)
 
 ### 第二讲，be动词的形式和用法，be动词的形式
-be, is, am, are, was, were, being, been.
+
+- be动词的形式 :be, is, am, are, was, were, being, been.
+
+|be动词|时态||
+|:---|:---|:---|
+|be|原型||
+|is|一般现在时||
+|am|~||
+|are|~||
+|was|过去时|使用在单数主语的后面|
+|were|~|使用在复数主语的后面|
+|being|现在分词||
+|been|过去分词||
+
 The man is back,
 they are back,
 he was back,
