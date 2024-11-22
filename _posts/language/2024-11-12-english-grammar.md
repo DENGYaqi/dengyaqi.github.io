@@ -94,7 +94,7 @@ be动词的否定 : 在am, is, are, was, were后面加Not。
 1) 单数形式 : mine我的, yours你的, his他的/hers她的/its它们的, one's某人的
 2) 复数形式 : ours我们的, yours你们的, theirs他们的。例句 : The book is ours. 这本书是我们的。ours名词性物主代词，后面不能再接book了。
 
-总结
+第4、5讲 代词的总结
 
 |主格|宾格|形容词性物主代词|名词性物主代词|
 |:---|:---|:---|:---|
