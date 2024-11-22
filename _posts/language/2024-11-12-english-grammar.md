@@ -1,5 +1,5 @@
 ---
-title: 英语语法
+title: Pocket英语
 date: 2024-11-12 10:00:00 +0800
 categories: [language]
 tags: [english]
@@ -67,15 +67,18 @@ pin: true
 
 ### 第三讲，be动词的否定提问回答
 
-be动词的否定 : 在am, is, are, was, were后面加Not，
+be动词的否定 : 在am, is, are, was, were后面加Not。
 
-缩略式 : am not, isn't, aren't, wasn't, weren't
+缩略式 : am not, isn't, aren't, wasn't, weren't。
 
 提问 : be 动词放到句首，其他顺序不变。回答时用对应be动词即可。
 
 ### 第四讲，代词的主格和宾格
-主格代词I, he, she, it, you, we, they.，
-宾格代词Me, him, her, it, you, us, them.放在动词的后面，是动词的作用
+代词 : 代替人或事物的名词称为代词。通常有主格和宾格的区分，主格代替人或事物(主语)，宾格代替人或事物(宾语)。
+
+主格代词I, he, she, it, you, we, they. 做主语的代词叫主格形式，放在主语的位置上。
+
+宾格代词Me, him, her, it, you, us, them. 做宾语的代词叫宾格形式，放在动词的后面，是动词的作用对象。
 
 ### 第六讲 反身代词，反身代词，通常作宾语或者同位语
 Myself, yourself, herself, himself, itself, yourselves,ourselves, themselves.
