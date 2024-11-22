@@ -45,24 +45,18 @@ pin: true
 
 - be动词的形式 :be, is, am, are, was, were, being, been.
 
-|be动词|时态||
-|:---|:---|:---|
-|be|原型||
-|is|一般现在时||
-|am|~||
-|are|~||
-|was|过去时|使用在单数主语的后面|
-|were|~|使用在复数主语的后面|
-|being|现在分词||
-|been|过去分词||
+|be动词|时态|位置|例子|
+|:---|:---|:---|:---|
+|be|原型|||
+|is|一般现在时||The man is back那个男人回来了|
+|am|~|||
+|are|~||they are back他们回来了|
+|was|过去时|使用在单数主语的后面|he was back他那个时候回来了|
+|were|~|使用在复数主语的后面|they were back他们那个时候回来了|
+|being|现在分词|||
+|been|过去分词||they have been back他们已经回来了(现在完成时时态)|
 
-The man is back,
-they are back,
-he was back,
-they were back,
-they have been back.
-
-be动词的用法，后面接名词，形容词地点副词或短语作补足语.
+- be动词的用法 : 后面接名词，形容词地点副词或短语作补足语.
 The man is a teacher,
 Mary's dress are colorful,
 My mother was in the kitchen.
