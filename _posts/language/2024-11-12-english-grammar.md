@@ -80,6 +80,20 @@ be动词的否定 : 在am, is, are, was, were后面加Not。
 
 宾格代词Me, him, her, it, you, us, them. 做宾语的代词叫宾格形式，放在动词的后面，是动词的作用对象。
 
+### 第五讲，名词性/形容词性物主代词
+物主代词 : 物的主人的代词，例如 某人的、某事物的。有两种形式，名词性或形容词性。
+形容词 : 可以修饰名词的成分。
+
+- 形容词性物主代词 : 像形容词一样，修饰后面名词的物主代词。共同特点，后面都要接一个名词。
+
+1) 单数形式 : my我的, your你的, his他的/her她的/its它们的, one's某人的。例句 : This is my book，my是形容词性物主代词，修饰后面的名词book。
+2) 复数形式 : our我们的, your你们的, their他们的。例句 : We love our motherland, 我们爱我们的祖国。同上。
+
+- 名词性物主代词 : 像名词一样，物的主人，但是要像名词一样的去使用。也就是说要独立的像名词一样的成分。
+
+1) 单数形式 : mine我的, yours你的, his他的/hers她的/its它们的, one's某人的
+2) 复数形式 : ours我们的, yours你们的, theirs他们的
+
 ### 第六讲 反身代词，反身代词，通常作宾语或者同位语
 Myself, yourself, herself, himself, itself, yourselves,ourselves, themselves.
  
