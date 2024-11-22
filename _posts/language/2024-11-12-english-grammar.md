@@ -57,7 +57,7 @@ pin: true
 |being|现在分词|||
 |been|过去分词||they have been back他们已经回来了(现在完成时时态)|
 
-- be动词的用法 : 后面接名词，形容词地点副词或短语作补足语.
+- be动词的用法 : 后面接名词，形容词地点副词或短语作补足语. 就是起到联系的作用。
 
 1) The man is a teacher, a teacher是一个补足语，在补充说明man的职业。
 
@@ -66,8 +66,12 @@ pin: true
 3) My mother was in the kitchen, in the kitchen补充说明妈妈的位置在哪。
 
 ### 第三讲，be动词的否定提问回答
-be动词的否定，在am,is,are,was,were后面加Not，缩略式am not, isn't,aren't,wasn't,weren't
-提问：be 动词放到句首，其他顺序不变。
+
+be动词的否定 : 在am, is, are, was, were后面加Not，
+
+缩略式 : am not, isn't, aren't, wasn't, weren't
+
+提问 : be 动词放到句首，其他顺序不变。
 
 ### 第四讲，代词的主格和宾格
 主格代词I, he, she, it, you, we, they.，
