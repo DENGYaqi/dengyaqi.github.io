@@ -29,7 +29,7 @@ zk在实现分布式锁上，可以做到强一致性，关于分布式锁的相
 
 ### 1、zoo.conf配置文件说明
 
-~~~ mark
+~~~ shell
 # zookeeper时间配置中的基本单位（毫秒）
 tickTime=2000
 
