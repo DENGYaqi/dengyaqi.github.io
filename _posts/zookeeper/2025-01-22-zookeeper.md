@@ -17,8 +17,6 @@ pin: true
 
 - 分布式协调组件
 
-![image-20220809180930381](C:\Users\chenkangwei\AppData\Roaming\Typora\typora-user-images\image-20220809180930381.png)
-
 在分布式系统中，需要有zookeeper作为分布式协调组件，协调分布式系统中的状态
 
 - 分布式锁
@@ -27,15 +25,9 @@ zk在实现分布式锁上，可以做到强一致性，关于分布式锁的相
 
 - 无状态化的实现
 
-![image-20220809181204520](C:\Users\chenkangwei\AppData\Roaming\Typora\typora-user-images\image-20220809181204520.png)
-
-
-
 ## 二、搭建ZooKeeper服务器
 
 ### 1、zoo.conf配置文件说明
-
-![image-20220728122837255](C:\Users\chenkangwei\AppData\Roaming\Typora\typora-user-images\image-20220728122837255.png)
 
 ### 2、Zookeeper服务器的操作命令
 
@@ -59,8 +51,6 @@ zk在实现分布式锁上，可以做到强一致性，关于分布式锁的相
 ./bin/zkServer.sh stop ../conf/zoo.cfgs
 ~~~
 
-
-
 ## 三、Zookeeper内部的数据模型
 
 ### 1、zk是如何保存数据的
@@ -68,8 +58,6 @@ zk在实现分布式锁上，可以做到强一致性，关于分布式锁的相
 zk中的数据是保存在节点上的，节点就是znode，多个znode之间构成一棵树的目录结构。
 
 Zookeeper的数据模型是什么样子呢？类似于数据结构中的树，同时也很像文件系统的目录
-
-![image-20220730140949264](C:\Users\chenkangwei\AppData\Roaming\Typora\typora-user-images\image-20220730140949264.png)
 
 树是由节点所组成，Zookeeper的数据存储也同样是基于节点，这种节点叫做Znode，但是不同于树的节点，Znode的引用方式是路劲引用，类似于文件路径：
 
@@ -109,8 +97,6 @@ zk中的znode包含了四个部分
 2、持久序号节点：创建出的节点，根据先后顺序，会在节点之后带上一个数值，越后执行数值越大，适用于分布式锁的应用场景-单调递增
 
 3、临时节点：临时节点是在会话结束后，自动被删除的，通过这个特性，zk可以实现服务注册与发现的效果。
-
-![image-20220731112738604](C:\Users\chenkangwei\AppData\Roaming\Typora\typora-user-images\image-20220731112738604.png)
 
 临时序号节点：跟持久序号节点相同，适用于临时的分布式锁
 
@@ -351,8 +337,6 @@ void delete() throws Exception {
   - 如果不是读锁的话，则上锁失败，为最小节点设置监听。阻塞等待，zk的watch机制会当最小节点发生变化时通知当前节点，再执行第二步的流程
   - 如果是读锁的话，则上锁成功。
 
-![image-20220803113613263](C:\Users\chenkangwei\AppData\Roaming\Typora\typora-user-images\image-20220803113613263.png)
-
 ### 3、zk如何上写锁
 
 - 创建一个临时序号节点，节点的数据是write，表示写锁
@@ -361,13 +345,9 @@ void delete() throws Exception {
   - 如果是，则上写锁成功
   - 如果不是，说明前面还有锁，则上锁失败，监听最小节点，如果最小节点有变化，则再执行第二步。
 
-![image-20220803131735990](C:\Users\chenkangwei\AppData\Roaming\Typora\typora-user-images\image-20220803131735990.png)
-
 ### 4、羊群效应
 
 如果用上述的上锁方式，只要有节点发生变化，就会触发其他节点的监听事件，这样对zk的压力非常大，而羊群效应，可以调整成链式监听。解决这个问题。
-
-![image-20220803132335122](C:\Users\chenkangwei\AppData\Roaming\Typora\typora-user-images\image-20220803132335122.png)
 
 ### 5、Curator实现读写锁
 
@@ -427,8 +407,6 @@ void testGetWriteLock()throws Exception{
 
 - 客户端调用getData方法，watch参数是true。服务端接到请求，返回节点数据，并且在对应的哈希表里插入被Watch的Znode路径，以及Watcher列表。
 
-![image-20220805110155620](C:\Users\chenkangwei\AppData\Roaming\Typora\typora-user-images\image-20220805110155620.png)
-
 - 当被Watch的Znode已删除，服务端会查找哈希表，找到该Znode对应的所有Watcher，异步通知客户端，并且删除哈希表中对应的key-value。
 
 ### 2、zkCli客户端使用Watch
@@ -472,10 +450,6 @@ zookeeper集群中的节点有三种角色
 - Leader：处理集群的所有事务请求，集群中只有一个Leader
 - Follwoer：只能处理读请求，参与Leader选举
 - Observer：只能处理读请求，提升集群读的性能，但不能参与Leader选举
-
-![image-20220808125935899](C:\Users\chenkangwei\AppData\Roaming\Typora\typora-user-images\image-20220808125935899.png)
-
-
 
 ### 2、集群搭建
 
@@ -530,8 +504,6 @@ zookeeper集群中的节点有三种角色
 
 zookeeper作为非常重要的分布式协调组件，需要进行集群部署，集群中会以一主多从的形式进行部署。zookeeper为了保证数据的一致性，使用了ZAB（Zookeeper Atomic Broadcast）协议，这个协议解决了Zookeeper的崩溃恢复和主从数据同步的问题。
 
-![image-20220808210504841](C:\Users\chenkangwei\AppData\Roaming\Typora\typora-user-images\image-20220808210504841.png)
-
 ### 2、ZAB协议定义的四种节点状态
 
 - Looking：选举状态
@@ -540,15 +512,11 @@ zookeeper作为非常重要的分布式协调组件，需要进行集群部署�
 
 ### 3、集群上线Leader选举过程
 
-![image-20220809105704498](C:\Users\chenkangwei\AppData\Roaming\Typora\typora-user-images\image-20220809105704498.png)
-
 ### 4、崩溃恢复时的Leader选举
 
 Leader建立完后，Leader周期性地不断向Follower发送心跳（ping命令，没有内容的socket）。当Leader崩溃后，Follower发现socket通道已关闭，于是Follower开始进入到Looking状态，重新回到上一节中的Leader选举状态，此时集群不能对外提供服务。
 
 ### 5、主从服务器之间的数据同步
-
-![image-20220809113705630](C:\Users\chenkangwei\AppData\Roaming\Typora\typora-user-images\image-20220809113705630.png)
 
 ### 6、Zookeeper中的NIO与BIO的应用
 
@@ -580,8 +548,6 @@ CAP理论为：一个分布式系统最多只能同时满足一致性（Consiste
 
 分区容错性指"the system continues to operate despite arbitrary message loss or failure of part of the system"，即分布式系统在遇到某节点或网络分区故障的时候，仍然能够对外提供满足一致性或可用性的服务。——避免单点故障，就要进行冗余部署，冗余部署相当于是服务的分区，这样的分区就具备了容错性。
 
-![image-20220809175052274](C:\Users\chenkangwei\AppData\Roaming\Typora\typora-user-images\image-20220809175052274.png)
-
 ### BASE理论
 
 eBay的架构师Dan Pritchett源于对大规模分布式系统的实践总结，在ACM上发表文章提出BASE理论，BASE理论是对CAP理论的延伸，核心思想是即使无法做到强一致性《Strong Consistency，CAP的一致性就是强一致性)，但应用可以采用适合的方式达到最终一致性(Eventual Consitency) 。
@@ -603,6 +569,4 @@ eBay的架构师Dan Pritchett源于对大规模分布式系统的实践总结，
 ### Zookeeper追求的一致性
 
 Zookeeper在数据同步时，追求的并不是强一致性，而是顺序一致性（事务id的单调递增）
-
-![image-20220809215756108](C:\Users\chenkangwei\AppData\Roaming\Typora\typora-user-images\image-20220809215756108.png)
 
