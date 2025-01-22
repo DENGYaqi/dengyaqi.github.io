@@ -29,6 +29,31 @@ zk在实现分布式锁上，可以做到强一致性，关于分布式锁的相
 
 ### 1、zoo.conf配置文件说明
 
+~~~ mark
+# zookeeper时间配置中的基本单位（毫秒）
+tickTime=2000
+
+#允许follower初始化连接到leader最大时长，它表示tickTime时间倍数即：
+initLimit*tickTimeinitLimit=10
+
+#允许follower与leader数据同步最大时长，它表示tickTime时间倍数
+syncLimit=5
+
+#zookeper数据存储目录及日志保存目录（如果没有指明dataLogDir，则日志也保存在这个文件中）dataDir=/tmp/zookeeper
+
+#对客户端提供的端口号
+clientPort=2181
+
+#单个客户端与zookeeper最大并发连接数
+maxClientCnxns=60
+
+# 保存的数据快照数量，之外的将会被清除
+autopurge.snapRetainCount=3
+
+#自动触发清除任务时间间隔，小时为单位。默认为0，表示不自动清除。
+autopurge.purgeInterval=1
+~~~
+
 ### 2、Zookeeper服务器的操作命令
 
 重命名conf中的文件zoo_sample.cfg->zoo.cfg
