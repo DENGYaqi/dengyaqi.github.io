@@ -27,7 +27,7 @@ zk在实现分布式锁上，可以做到强一致性，关于分布式锁的相
 
 ## 二、搭建ZooKeeper服务器
 
-### 1、安装流程(mac)
+### 1、安装与启动流程(mac)
 
 -> 搭建JDK环境 
 
@@ -48,6 +48,14 @@ zk在实现分布式锁上，可以做到强一致性，关于分布式锁的相
 -> 重命名文件名称`mv zoo_sample.cfg zoo.cfg`
 
 -> 启动服务器`./zkServer.sh start ../conf/zoo.cfg`(若不指名配置文件，则会自动寻找zoo.cfg文件)
+
+~~~ shell
+# 启动成功显示
+/usr/bin/java
+ZooKeeper JMX enabled by default
+Using config: ../conf/zoo.cfg
+Starting zookeeper ... STARTED
+~~~ 
 
 ### 2、zoo.conf配置文件说明
 
