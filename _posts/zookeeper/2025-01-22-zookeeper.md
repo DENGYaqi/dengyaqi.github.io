@@ -29,7 +29,7 @@ zk在实现分布式锁上，可以做到强一致性，关于分布式锁的相
 
 ### 1、安装流程(mac)
 
-搭建JDK环境 -> [zookeeper官网](https://zookeeper.apache.org/releases.html)下载稳定的release版本 -> 在`/usr/local`新建文件夹zookeeper -> 将下载好的文件解压至`/usr/local/zookeeper`内并删除压缩文件 -> 进入zookeeper文件内
+搭建JDK环境 -> [zookeeper官网](https://zookeeper.apache.org/releases.html)下载稳定的release版本 -> 在`/usr/local`新建文件夹zookeeper -> 将下载好的文件解压至`/usr/local/zookeeper`内并删除压缩文件 -> 进入zookeeper文件内 -> 启动前需配置文件 -> 进入`/conf`可根据`zoo_sample.cfg`创建配置文件 ->
 
 ### 2、zoo.conf配置文件说明
 
@@ -43,7 +43,8 @@ initLimit*tickTimeinitLimit=10
 #允许follower与leader数据同步最大时长，它表示tickTime时间倍数
 syncLimit=5
 
-#zookeper数据存储目录及日志保存目录（如果没有指明dataLogDir，则日志也保存在这个文件中）dataDir=/tmp/zookeeper
+#持久化机制 : zookeper数据存储目录及日志保存目录（如果没有指明dataLogDir，则日志也保存在这个文件中）
+dataDir=/tmp/zookeeper
 
 #对客户端提供的端口号
 clientPort=2181
