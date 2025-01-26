@@ -101,19 +101,19 @@ autopurge.purgeInterval=1
 
 重启zk服务器：
 
-~~~ mark
+~~~ shell
 ./bin/zkServer.sh start ./conf/zoo.cfg
 ~~~
 
 查看zk服务器的状态：
 
-~~~ mark
+~~~ shell
 ./bin/zkServer.sh status ./conf/zoo.cfg
 ~~~
 
 状态解析 : 
 
-~~~ mark
+~~~ shell
 客户端端口Client port found: 2181.
 客户端地址Client address: localhost.
 SSL认证Client SSL: false.
@@ -122,8 +122,15 @@ SSL认证Client SSL: false.
 
 停止服务器：
 
-~~~ mark
+~~~ shell
 ./bin/zkServer.sh stop ./conf/zoo.cfgs
+~~~
+
+从客户端/命令行(可将命令写入，让其与zkServer交互)连接到服务器
+
+~~~ shell
+# 必须先启动服务器
+./bin/zkCli.sh
 ~~~
 
 ## 三、Zookeeper内部的数据模型
