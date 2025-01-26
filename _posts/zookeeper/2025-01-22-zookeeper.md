@@ -164,7 +164,11 @@ Zookeeper的数据模型是什么样子呢？类似于数据结构中的树，�
 
 -> 创建持久化节点`create /test1` 并查看内部数据结构`ls /`
 
--> 往节点2内存储数据abc`create /test2 abc`，获取节点2的数据`get /test2`
+-> 往节点2内存储数据abc`create /test2 abc`
+
+-> 获取节点2的数据`get /test2`
+
+-> 查看节点2详细信息`get /test2 -s`，[节点解析](#查看节点)
 
 ### 2、zk中的znode是什么样的数据结构
 
