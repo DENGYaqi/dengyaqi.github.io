@@ -27,7 +27,11 @@ zk在实现分布式锁上，可以做到强一致性，关于分布式锁的相
 
 ## 二、搭建ZooKeeper服务器
 
-### 1、zoo.conf配置文件说明
+### 1、安装流程(mac)
+
+[zookeeper官网](https://zookeeper.apache.org/releases.html)下载稳定的release版本 -> 在`/usr/local`新建文件夹zookeeper -> 将下载好的文件解压至`/usr/local/zookeeper`内并删除压缩文件 -> 进入zookeeper文件内
+
+### 2、zoo.conf配置文件说明
 
 ~~~ shell
 # zookeeper时间配置中的基本单位（毫秒）
@@ -54,7 +58,7 @@ autopurge.snapRetainCount=3
 autopurge.purgeInterval=1
 ~~~
 
-### 2、Zookeeper服务器的操作命令
+### 3、Zookeeper服务器的操作命令
 
 重命名conf中的文件zoo_sample.cfg->zoo.cfg
 
@@ -75,12 +79,6 @@ autopurge.purgeInterval=1
 ~~~ mark
 ./bin/zkServer.sh stop ../conf/zoo.cfgs
 ~~~
-
-### 3、安装流程
-
-mac版本 : 
-
-[zookeeper官网](https://zookeeper.apache.org/releases.html)下载稳定的release版本 -> 在`/usr/local`新建文件夹zookeeper -> 将下载好的文件解压至`/usr/local/zookeeper`内并删除压缩文件 -> 进入zookeeper文件内
 
 ## 三、Zookeeper内部的数据模型
 
