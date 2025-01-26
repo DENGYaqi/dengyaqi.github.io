@@ -126,11 +126,19 @@ SSL认证Client SSL: false.
 ./bin/zkServer.sh stop ./conf/zoo.cfgs
 ~~~
 
+### 4、Zookeeper客户端的操作命令
+
 从客户端/命令行(可将命令写入，让其与zkServer交互)连接到服务器
 
 ~~~ shell
 # 必须先启动服务器
 ./bin/zkCli.sh
+~~~
+
+查询内部数据结构
+
+~~~ shell
+ls /
 ~~~
 
 ## 三、Zookeeper内部的数据模型
@@ -279,10 +287,6 @@ zk通过两种形式的持久化，在恢复时先恢复快照文件中的数据
   ~~~
 
 - 在另一个会话中必须先使用账号密码，才能拥有操作节点的权限
-
-- 查询内部数据结构
-
-- ls /
 
 ## 五、Curator客户端的使用
 
