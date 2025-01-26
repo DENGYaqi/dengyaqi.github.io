@@ -43,7 +43,7 @@ initLimit*tickTimeinitLimit=10
 #允许follower与leader数据同步最大时长，它表示tickTime时间倍数
 syncLimit=5
 
-#持久化机制 : zookeper数据存储目录及日志保存目录（如果没有指明dataLogDir，则日志也保存在这个文件中）
+#持久化机制 : zookeper数据存储目录及日志保存目录（如果没有指明dataLogDir，则日志也保存在这个文件中，若需分开则配置dataLogDir=/tmp/zookeeper）
 dataDir=/tmp/zookeeper
 
 #对客户端提供的端口号
