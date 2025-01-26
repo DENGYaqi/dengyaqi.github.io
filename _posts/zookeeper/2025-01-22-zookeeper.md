@@ -145,6 +145,8 @@ ls /
 
 -> 创建持久化节点`create /test1` 并查看内部数据结构`ls /`
 
+-> 往节点2内存储数据abc`create /test2 abc`，获取节点2的数据`get /test2`
+
 ## 三、Zookeeper内部的数据模型
 
 ### 1、zk是如何保存数据的
