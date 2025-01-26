@@ -76,6 +76,12 @@ autopurge.purgeInterval=1
 ./bin/zkServer.sh stop ../conf/zoo.cfgs
 ~~~
 
+### 3、安装流程
+
+mac版本 : 
+
+[zookeeper官网](https://zookeeper.apache.org/releases.html)下载稳定的release版本 -> 在`/usr/local`新建文件夹zookeeper -> 将下载好的文件解压至`/usr/local/zookeeper`内并删除压缩文件 -> 进入zookeeper文件内
+
 ## 三、Zookeeper内部的数据模型
 
 ### 1、zk是如何保存数据的
