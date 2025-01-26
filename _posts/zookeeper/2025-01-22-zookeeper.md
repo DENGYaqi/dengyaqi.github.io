@@ -208,7 +208,7 @@ zk中的znode包含了四个部分
 
 Container节点（3.5.3版本新增）：Container容器节点，当容器中没有任何子节点，该容器节点会被zk定期删除
 
-TTL节点：可以指定节点的到期时间，到期后被zk定时删除。只能通过系统配置zookeeper.extendedTypeEnablee=true开启
+TTL节点：可以指定节点的到期时间，到期后被zk定时删除。只能通过系统配置zookeeper.extendedTypeEnablee=true开启。(TTL生存时间)
 
 #### 3.1、Zookeeper客户端创建不同类型节点流程样例
 
