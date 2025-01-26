@@ -30,13 +30,24 @@ zk在实现分布式锁上，可以做到强一致性，关于分布式锁的相
 ### 1、安装流程(mac)
 
 -> 搭建JDK环境 
+
 -> [zookeeper官网](https://zookeeper.apache.org/releases.html)下载稳定的release版本 
--> 在`/usr/local`新建文件夹zookeeper -> 将下载好的文件解压至`/usr/local/zookeeper`内并删除压缩文件 
+
+-> 进入超级用户模式`sudo -s`，退出则`exit`，或者`sudo -i`，退出则`logout`
+
+-> 在`/usr/local`新建文件夹zookeeper 
+
+-> 将下载好的文件解压至`/usr/local/zookeeper`内并删除压缩文件 
+
 -> 进入zookeeper文件内 
+
 -> 启动前需配置文件 
--> 进入`/conf`可根据`zoo_sample.cfg`创建/修改配置文件 
--> 进入`zoo_sample.cfg`只修改数据及日志存放文件位置`dataDir=/usr/local/zookeeper/zkdata`
--> 重命名文件名称`sudo mv zoo_sample.cfg zoo.cfg`
+
+-> 进入`vim ./conf/zoo_sample.cfg`只修改数据及日志存放文件位置`dataDir=/usr/local/zookeeper/zkdata`
+
+-> 重命名文件名称`mv zoo_sample.cfg zoo.cfg`
+
+-> 启动服务器`./zkServer.sh start ../conf/zoo.cfg`(若不指名配置文件，则会自动寻找zoo.cfg文件)
 
 ### 2、zoo.conf配置文件说明
 
