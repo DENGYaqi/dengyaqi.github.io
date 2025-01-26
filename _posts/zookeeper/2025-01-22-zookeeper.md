@@ -216,6 +216,12 @@ TTL节点：可以指定节点的到期时间，到期后被zk定时删除。只
 
 -> 创建持久序号节点`create -s /test3`，再次创建`create -s /test3`，无报错，`ls /`查看，带有序号顺序。
 
+-> 创建临时节点`create -e /test4`
+
+-> 创建临时序号节点`create -e -s /test4`
+
+-> 创建容器节点`create -c /test5`，创建子节点`create /test5/sub1`，删除子节点`delete /test5/sub1`, 60s后test5容器内无节点则自动删除。
+
 ### 4、zk的数据持久化
 
 zk的数据是运行在内存中，zk提供了两种持久化机制：
