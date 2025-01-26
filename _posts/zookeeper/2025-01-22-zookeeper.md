@@ -95,7 +95,7 @@ autopurge.purgeInterval=1
 
 ### 3、Zookeeper服务器的操作命令
 
-重命名conf中的文件zoo_sample.cfg->zoo.cfg
+若不指名配置文件，也就是删除`../conf/zoo.cfg`，则会自动寻找zoo.cfg文件
 
 重启zk服务器：
 
