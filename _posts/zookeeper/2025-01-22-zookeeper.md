@@ -109,6 +109,15 @@ autopurge.purgeInterval=1
 ./bin/zkServer.sh status ../conf/zoo.cfg
 ~~~
 
+状态解析 : 
+
+~~~ mark
+客户端端口Client port found: 2181.
+客户端地址Client address: localhost.
+SSL认证Client SSL: false.
+模式单点模式Mode: standalone
+~~~
+
 停止服务器：
 
 ~~~ mark
