@@ -95,18 +95,20 @@ autopurge.purgeInterval=1
 
 ### 3、Zookeeper服务器的操作命令
 
-若不指名配置文件，也就是删除`../conf/zoo.cfg`，则会自动寻找zoo.cfg文件
+若不指名配置文件，也就是删除`../conf/zoo.cfg`，则会自动寻找zoo.cfg文件。
+
+当前路径 : /usr/local/zookeeper/apache-zookeeper-3.7.0-bin
 
 重启zk服务器：
 
 ~~~ mark
-./bin/zkServer.sh start ../conf/zoo.cfg
+./bin/zkServer.sh start ./conf/zoo.cfg
 ~~~
 
 查看zk服务器的状态：
 
 ~~~ mark
-./bin/zkServer.sh status ../conf/zoo.cfg
+./bin/zkServer.sh status ./conf/zoo.cfg
 ~~~
 
 状态解析 : 
@@ -121,7 +123,7 @@ SSL认证Client SSL: false.
 停止服务器：
 
 ~~~ mark
-./bin/zkServer.sh stop ../conf/zoo.cfgs
+./bin/zkServer.sh stop ./conf/zoo.cfgs
 ~~~
 
 ## 三、Zookeeper内部的数据模型
