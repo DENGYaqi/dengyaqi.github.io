@@ -29,7 +29,7 @@ zk在实现分布式锁上，可以做到强一致性，关于分布式锁的相
 
 ### 1、安装流程(mac)
 
-[zookeeper官网](https://zookeeper.apache.org/releases.html)下载稳定的release版本 -> 在`/usr/local`新建文件夹zookeeper -> 将下载好的文件解压至`/usr/local/zookeeper`内并删除压缩文件 -> 进入zookeeper文件内
+搭建JDK环境 -> [zookeeper官网](https://zookeeper.apache.org/releases.html)下载稳定的release版本 -> 在`/usr/local`新建文件夹zookeeper -> 将下载好的文件解压至`/usr/local/zookeeper`内并删除压缩文件 -> 进入zookeeper文件内
 
 ### 2、zoo.conf配置文件说明
 
