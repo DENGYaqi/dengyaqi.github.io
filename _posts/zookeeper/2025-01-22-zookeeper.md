@@ -206,6 +206,12 @@ Container节点（3.5.3版本新增）：Container容器节点，当容器中没
 
 TTL节点：可以指定节点的到期时间，到期后被zk定时删除。只能通过系统配置zookeeper.extendedTypeEnablee=true开启
 
+#### 3.1、Zookeeper客户端创建不同类型节点流程样例
+
+-> 创建持久节点`create /test3`，再次创建同名持久节点`create /test3`，报错`Node already exists: /test3`
+
+-> 创建持久序号节点`create -s /test3`，再次创建`create -s /test3`，无报错，`ls /`查看，带有序号顺序。
+
 ### 4、zk的数据持久化
 
 zk的数据是运行在内存中，zk提供了两种持久化机制：
