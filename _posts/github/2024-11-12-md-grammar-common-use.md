@@ -47,3 +47,6 @@ _组件与锚点位置_
 
 [3.8的API文档](https://docs.cocos.com/creator/3.8/api/zh/)
 
+5. 重点
+
+**重点**
