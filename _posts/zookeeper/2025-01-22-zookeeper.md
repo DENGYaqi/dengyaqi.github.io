@@ -306,19 +306,23 @@ zk通过两种形式的持久化，在恢复时先恢复快照文件中的数据
 
 ### 3、权限设置
 
-- 注册当前会话的账号和密码：
+- 注册当前会话的账号和密码：addauth(添加权限) digest(摘要) xiaowang(账号) : 123456(密码)
 
   ~~~mark
   addauth digest xiaowang:123456
   ~~~
 
-- 创建节点并设置权限（指定该节点的用户，以及用户所拥有的权限s）
+- 创建节点并设置权限（指定该节点的用户，以及用户所拥有的权限s）: /test-node(持久节点) abcd(节点内数据) cdwra(创建删除可读可写)
 
   ~~~ mark
   create /test-node abcd auth:xiaowang:123456:cdwra
   ~~~
 
-- 在另一个会话中必须先使用账号密码，才能拥有操作节点的权限
+- 在另一个会话中必须先使用账号密码，才能拥有操作节点的权限，无权限则会显示以下类似报错
+  ~~~ mark
+  get /test-node
+  Insufficient permission : /test-node
+  ~~~
 
 ## 五、Curator客户端的使用
 
