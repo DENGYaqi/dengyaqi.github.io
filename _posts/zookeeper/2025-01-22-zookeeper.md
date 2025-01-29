@@ -535,8 +535,6 @@ void testGetWriteLock()throws Exception{
 }
 ~~~
 
-
-
 ## 七、zk的watch机制
 
 ### 1、Watch机制介绍
@@ -549,16 +547,20 @@ void testGetWriteLock()throws Exception{
 
 - 当被Watch的Znode已删除，服务端会查找哈希表，找到该Znode对应的所有Watcher，异步通知客户端，并且删除哈希表中对应的key-value。
 
+客户端使用了NIO通信模式监听服务端的调用。
+
 ### 2、zkCli客户端使用Watch
 
 ~~~ shell
 create /test date
 get -w /test	一次性监听节点
-ls -w /test		监听目录，创建和删除子节点会收到通知。但是子节点中新增节点不会被监听到
-ls -R -w /test	监听子节点中节点的变化，但内容的变化不会收到通知
+ls -w /test		监听目录，创建和删除子节点会收到通知。但是子节点中新增节点不会被监听到(监听单层级)
+ls -R -w /test	监听子节点中节点的变化，但内容的变化不会收到通知(监听所有层级)
 ~~~
 
 ### 3、Curator客户端使用Watch
+
+通过NodeCache节点缓存对象设置一个监听器。
 
 ~~~ java
 @Test
@@ -571,8 +573,10 @@ public void addNodeListener() throws Exception{
             printNodeData();
         }
     )};
+
     nodeCache.start();
-    //System.in.read();
+    // 阻塞做测试
+    System.in.read();
 }
 
 public void printNodeData() throws Exception{
@@ -669,8 +673,6 @@ Leader建立完后，Leader周期性地不断向Follower发送心跳（ping命�
 ## 十、CAP理论
 
 2000年7月，加州大学伯克利分校的 Eric Brewer教授在ACM PODC会议上提出CAP猜想。2年后，麻省理工学院的Seth Gilbert和 Nancy Lynch 从理论上证明了CAP。之后，CAP理论正式成为分布式计算领域的公认定理。
-
-
 
 ### CAP理论
 
