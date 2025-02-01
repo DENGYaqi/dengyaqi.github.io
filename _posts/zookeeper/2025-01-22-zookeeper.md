@@ -664,7 +664,7 @@ zookeeper集群中的节点有三种角色
   # the port at which the clients will connect
   clientPort=2181
   
-  #2001为集群通信端口，3001为集群选举端口，observer（观察者身份）
+  #服务器ip:端口1:端口2(:身份描述)。2001为集群数据通信端口，3001为集群选举端口，observer（观察者身份）
   server.1=192.168.200.128:2001:3001
   server.2=192.169.200.128:2002:3002
   server.3=192.168.200.128:2003:3003
