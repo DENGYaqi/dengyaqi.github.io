@@ -764,12 +764,16 @@ Leader建立完后，Leader周期性地不断向Follower发送心跳（ping命�
 
 ### 5、主从服务器之间的数据同步
 
+二阶段提交
+
 ![主从服务器之间的数据同步](/assets/img/zookeeper/主从服务器之间的数据同步.png){: width="300" height="300" }
+
+如果网络动荡，leader的半数以上的ack可包含自己的ack，即可执行commit，避免第二台机器因为网络原因无法收到数据或发送ack给leader。
 
 ### 6、Zookeeper中的NIO与BIO的应用
 
-- NIO
-  - 用于被客户端连接的2181端口，使用的是NIO模式与客户端建立连接
+- NIO(多路复用:把所有请求放到一个队列中，避免阻塞)
+  - 用于被客户端连接的21801端口，使用的是NIO模式与客户端建立连接
   - 客户端开启Watch时，也使用NIO，等待Zookeeper服务器的回调
 - BIO
   - 集群在选举时，多个节点之间的投票通信端口，使用BIO进行通信
@@ -790,9 +794,9 @@ CAP理论为：一个分布式系统最多只能同时满足一致性（Consiste
 
 可用性指"Reads and writes always succeed"，即服务一直可用，而且是正常响应时间。
 
-- 分区容错性(Partition tolerance)
+- 分区容错性(Partition tolerance)(**必须满足**)
 
-分区容错性指"the system continues to operate despite arbitrary message loss or failure of part of the system"，即分布式系统在遇到某节点或网络分区故障的时候，仍然能够对外提供满足一致性或可用性的服务。——避免单点故障，就要进行冗余部署，冗余部署相当于是服务的分区，这样的分区就具备了容错性。
+分区容错性指"the system continues to operate despite arbitrary message loss or failure of part of the system"，即分布式系统在遇到某节点或网络分区故障的时候，仍然能够对外提供满足一致性或可用性的服务。——避免单点故障，就要进行冗余部署，**冗余部署**相当于是服务的分区，这样的分区就具备了容错性。
 
 ### BASE理论
 
@@ -802,7 +806,7 @@ eBay的架构师Dan Pritchett源于对大规模分布式系统的实践总结，
 
 基本可用是指分布式系统在出现故障的时候，允许损失部分可用性，即保证核心可用。
 
-电商大促时，为了应对访问量激增，部分用户可能会被引导到降级页面，服务层也可能只提供降级服务。这就是损失部分可用性的体现。
+电商大促时，为了应对访问量激增，部分用户可能会被引导到降级页面，服务层也可能只提供降级服务。这就是损失部分可用性的体现。例如在双11的时候，注册、评论、退款功能不能对外开放，因为这些不是核心业务。核心业务是登录、搜索、加购物车、下单等等。
 
 - 软状态(Soft State)
 
@@ -815,4 +819,3 @@ eBay的架构师Dan Pritchett源于对大规模分布式系统的实践总结，
 ### Zookeeper追求的一致性
 
 Zookeeper在数据同步时，追求的并不是强一致性，而是顺序一致性（事务id的单调递增）
-
