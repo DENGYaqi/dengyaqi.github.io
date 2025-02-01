@@ -591,6 +591,8 @@ public void printNodeData() throws Exception{
 
 ### 1、Zookeeper集群角色
 
+![集群角色](/assets/img/zookeeper/集群角色.png){: width="300" height="300" }
+
 zookeeper集群中的节点有三种角色
 
 - Leader：处理集群的所有事务请求，集群中只有一个Leader
@@ -633,7 +635,7 @@ zookeeper集群中的节点有三种角色
 
   ~~~ shell
   vim zoo1.cfg
-  复制配置内容到zoo1.cfg
+  复制下面shell的配置内容到zoo1.cfg
 
   拷贝复制
   cp zoo1.cfg zoo2.cfg
@@ -642,11 +644,13 @@ zookeeper集群中的节点有三种角色
 
   修改各个配置文件的dataDir与客户端端口，如
   dataDir=/usr/local/zookeeper/zkdata/zk2
-  clientPort=2182
+  clientPort=21802
+  admin.serverPort=8082
   ~~~
 
-  配置内容 : 第一台服务器节点配置文件的内容，首先修改dataDir的路径为zk1，其次是集群各个节点的通信
-  (因为当前为了教学方便所以将四个节点创建在同一台服务器)
+  配置内容 : 第一台服务器节点配置文件的内容，首先修改dataDir的路径为zk1，其次是集群各个节点的通信。
+  注意 : 因为当前为了教学方便所以将四个节点创建在同一台服务器。服务器ip需改成自己电脑的ip，可以用`ifconfig en0`查看，inet后既是自己的ip。其次需要添加   
+  `admin.serverPort=8081`，避免`8080`端口已经被使用。如有其他问题，可在`/usr/local/zookeeper/apache-zookeeper-3.7.2-bin/logs`内查看对应ip的日志解决。
   
   ~~~ shell
   # The number of milliseconds of each tick
@@ -661,10 +665,13 @@ zookeeper集群中的节点有三种角色
   # do not use /tmp for storage, /tmp here is just 
   # example sakes. 修改对应的zk1 zk2 zk3 zk4
   dataDir=/usr/local/zookeeper/zkdata/zk1
-  # the port at which the clients will connect
-  clientPort=2181
-  
-  #服务器ip:端口1:端口2(:身份描述)。2001为集群数据通信端口，3001为集群选举端口，observer（观察者身份）
+  # 客户端端口，修改对应的端口为21802 21803 21804
+  clientPort=21801
+
+  # 修改对应的端口为8082 8083 8084
+  admin.serverPort=8081
+
+  # 自己的服务器ip:端口1:端口2(:身份描述)。2001为集群数据通信端口，3001为集群选举端口，observer（观察者身份）
   server.1=192.168.200.128:2001:3001
   server.2=192.169.200.128:2002:3002
   server.3=192.168.200.128:2003:3003
@@ -683,10 +690,46 @@ zookeeper集群中的节点有三种角色
   ./zkServer.sh start ../conf/zoo4.cfg
   ~~~
 
-  ### 3、连接Zookeeper集群
+- 查看4台服务器节点状态
+
+进入路径/usr/local/zookeeper/apache-zookeeper-3.7.2-bin/bin，以下命令查看不同服务器节点，在mode可看到不同节点的对应角色
 
   ~~~ shell
-  ./bin/zkCli.sh -server 192.168.200.128:2181,192.168.200.128:2182,192.168.200.128:2183
+  >>> ./zkServer.sh status ../conf/zoo1.cfg
+  /usr/bin/java
+  ZooKeeper JMX enabled by default
+  Using config: ../conf/zoo1.cfg
+  Client port found: 21801. Client address: localhost. Client SSL: false.
+  Mode: follower
+
+  >>> ./zkServer.sh status ../conf/zoo2.cfg
+  ZooKeeper JMX enabled by default
+  Using config: ../conf/zoo2.cfg
+  Client port found: 21802. Client address: localhost. Client SSL: false.
+  Mode: leader
+
+  >>> ./zkServer.sh status ../conf/zoo3.cfg
+  /usr/bin/java
+  ZooKeeper JMX enabled by default
+  Using config: ../conf/zoo3.cfg
+  Client port found: 21803. Client address: localhost. Client SSL: false.
+  Mode: follower
+
+  >>> ./zkServer.sh status ../conf/zoo4.cfg
+  /usr/bin/java
+  ZooKeeper JMX enabled by default
+  Using config: ../conf/zoo4.cfg
+  Client port found: 21804. Client address: localhost. Client SSL: false.
+  Mode: observer
+
+  ~~~
+
+  ### 3、使用客户端连接Zookeeper集群
+
+  注意: 最好是写完整的集群ip和端口，每个机器通过逗号隔开
+  
+  ~~~ shell
+  ./zkCli.sh -server 192.168.200.128:21801,192.168.200.128:21802,192.168.200.128:21803,192.168.200.128:21804
   ~~~
 
 ## 九、ZAB协议
