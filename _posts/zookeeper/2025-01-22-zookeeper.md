@@ -819,3 +819,17 @@ eBay的架构师Dan Pritchett源于对大规模分布式系统的实践总结，
 ### Zookeeper追求的一致性
 
 Zookeeper在数据同步时，追求的并不是强一致性，而是顺序一致性（事务id的单调递增）
+
+### 复习
+
+- 搭建Zookeeper服务器，熟练掌握各种zkCli命令
+
+- 掌握Curator第三方工具的使用
+
+- 搭建Zookeeper集群，掌握集群的节点状态、客户端连接等等操作
+
+- 重点掌握zk集群的leader选举流程
+
+- 重点掌握zk集群的数据同步流程
+
+- 思考CAP定理和BASE理论及ZK追求的数据一致性
