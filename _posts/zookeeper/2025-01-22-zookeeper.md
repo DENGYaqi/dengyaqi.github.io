@@ -587,6 +587,8 @@ public void printNodeData() throws Exception{
 
 ## 八、Zookeeper集群实战
 
+集群中的节点是服务器节点。并不是znode。
+
 ### 1、Zookeeper集群角色
 
 zookeeper集群中的节点有三种角色
@@ -599,19 +601,53 @@ zookeeper集群中的节点有三种角色
 
 搭建4个节点，其中一个节点为Observer
 
-- 创建4个节点的myid并设值
-
-  在usr/local/zookeeper中创建一下四个文件
+- 停止zkServer.sh
 
   ~~~ shell
-  /usr/local/zookeeper/zkdata/zk1# echo 1 > myid
-  /usr/local/zookeeper/zkdata/zk2# echo 2 > myid
-  /usr/local/zookeeper/zkdata/zk3# echo 3 > myid
-  /usr/local/zookeeper/zkdata/zk4# echo 4 > myid
+  ./bin/zkServer.sh stop
   ~~~
 
-- 编写4个zoo.cfg
+- 创建4个服务器节点的myid并设值
 
+  在usr/local/zookeeper/zkdata中创建一下四个文件, 再在各个文件内创建一个myid文件，并标注唯一标识
+
+  ~~~ shell
+  mkdir zk1 zk2 zk3 zk4
+  cd zk1
+  vim myid
+  输入1(目前服务器节点的唯一标识)
+  
+  其他zk也如此，可用以下命令快速创建
+  echo 2 > ./zk2/myid
+  echo 3 > ./zk3/myid
+  echo 4 > ./zk4/myid
+
+  检查是否创建成功
+  cd zk4
+  cat myid
+  ~~~
+
+- 编写4个zoo.cfg来启动4个服务器节点
+
+进入路径/usr/local/zookeeper/apache-zookeeper-3.7.2-bin/conf
+
+  ~~~ shell
+  vim zoo1.cfg
+  复制配置内容到zoo1.cfg
+
+  拷贝复制
+  cp zoo1.cfg zoo2.cfg
+  cp zoo1.cfg zoo3.cfg
+  cp zoo1.cfg zoo4.cfg
+
+  修改各个配置文件的dataDir与客户端端口，如
+  dataDir=/usr/local/zookeeper/zkdata/zk2
+  clientPort=2182
+  ~~~
+
+  配置内容 : 第一台服务器节点配置文件的内容，首先修改dataDir的路径为zk1，其次是集群各个节点的通信
+  (因为当前为了教学方便所以将四个节点创建在同一台服务器)
+  
   ~~~ shell
   # The number of milliseconds of each tick
   tickTime=2000
@@ -634,6 +670,17 @@ zookeeper集群中的节点有三种角色
   server.3=192.168.200.128:2003:3003
   server.4=192.168.200.128:2004:3004:observer
   
+  ~~~
+
+- 启动4台服务器节点
+
+进入路径/usr/local/zookeeper/apache-zookeeper-3.7.2-bin/bin
+
+  ~~~ shell
+  ./zkServer.sh start ../conf/zoo1.cfg
+  ./zkServer.sh start ../conf/zoo2.cfg
+  ./zkServer.sh start ../conf/zoo3.cfg
+  ./zkServer.sh start ../conf/zoo4.cfg
   ~~~
 
   ### 3、连接Zookeeper集群
