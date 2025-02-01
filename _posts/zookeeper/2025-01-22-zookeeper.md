@@ -760,9 +760,11 @@ zookeeper作为非常重要的分布式协调组件，需要进行集群部署�
 
 ### 4、崩溃恢复时的Leader选举
 
-Leader建立完后，Leader周期性地不断向Follower发送心跳（ping命令，没有内容的socket）。当Leader崩溃后，Follower发现socket通道已关闭，于是Follower开始进入到Looking状态，重新回到上一节中的Leader选举状态，此时集群不能对外提供服务。
+Leader建立完后，Leader周期性地不断向Follower发送心跳（ping命令，没有内容的socket）。当Leader崩溃后，Follower发现socket通道已关闭，于是Follower开始进入到Looking状态，重新回到上一节中的Leader选举过程，此时集群不能对外提供服务。
 
 ### 5、主从服务器之间的数据同步
+
+![主从服务器之间的数据同步](/assets/img/zookeeper/主从服务器之间的数据同步.png){: width="300" height="300" }
 
 ### 6、Zookeeper中的NIO与BIO的应用
 
