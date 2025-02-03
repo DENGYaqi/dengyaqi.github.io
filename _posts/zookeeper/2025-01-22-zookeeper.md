@@ -1,5 +1,5 @@
 ---
-title: Zookeeper
+title: Zookeeper原理解析与实战
 date: 2025-01-26 10:00:00 +0800
 categories: [Zookeeper]
 tags: [zookeeper]
