@@ -74,6 +74,51 @@ Thread.sleep(100); // 每次分配后休眠100毫秒
 ![VisualVM分析](/assets/img/chaos/VisualVM分析.png){: width="400" height="400" }
 _VisualVM分析_
 
+### 元空间溢出`java.lang.OutOfMemoryError: Metaspace`
+
+1. 存储结构
+
+元空间内主要存放类结构信息、方法信息、字段信息、常量池()、注解等。
+
+此外，还可能包括方法字节码、静态变量（在Java 8之后，静态变量被移到堆中，但需要确认是否正确）以及一些JIT优化信息。需要验证这些信息的准确性，比如静态变量是否真的在堆中，避免错误。
+
+2. 造成原因并模拟
+
+造成的主要原因是动态生成大量类(如反射、CGLIB代理)，又或者元空间(Metaspace)配置过小。
+
+```java
+// 示例代码：通过CGLIB动态生成类触发元空间溢出
+public class MetaspaceOOM {
+    public static void main(String[] args) {
+        Enhancer enhancer = new Enhancer();
+        enhancer.setSuperclass(OOMObject.class);
+        enhancer.setUseCache(false); // 禁用缓存，强制生成新类
+        enhancer.setCallback((MethodInterceptor) (obj, method, args1, proxy) -> proxy.invokeSuper(obj, args1));
+        while (true) {
+            enhancer.create();
+        }
+    }
+    static class OOMObject {}
+}
+```
+
+可以通过设置参数提前触发 
+
+```bash
+-XX:MaxMetaspaceSize=10m  # 限制元空间为10MB
+```
+
+![元空间溢出](/assets/img/chaos/元空间溢出.png){: width="400" height="400" }
+_元空间溢出_
+
+3. 修复方法
+
+如果是线上环境，可以做几手准备，首先使用`-XX:MaxMetaspaceSize=256m`参数增加元空间大小，其次在 VisualVM 的 “Classes” 选项卡中可以看到当前加载的类数量以及它们所属的 ClassLoader。如果发现某个 ClassLoader 的实例数量异常高，并且对应的类不断累积，可能就是泄漏的症状。
+
+同时在 “Monitor” 或 “Sampler” 中观察内存使用情况也能提供参考。
+
+### 栈溢出`java.lang.StackOverflowError`
+
 
 ## 流量洪峰
 
