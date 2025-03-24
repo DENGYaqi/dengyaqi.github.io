@@ -217,6 +217,30 @@ _采样器_
 - 检查代码中是否及时释放直接内存（如显式调用System.gc()或Cleaner）。
 - 调整直接内存大小（-XX:MaxDirectMemorySize）。
 
+### 线程数溢出`java.lang.OutOfMemoryError: unable to create new native thread`
+
+1. 造成原因并模拟
+
+注意：线程数量超出系统限制，导致系统资源耗尽。会导致系统重启，请勿随意使用。或者使用`ulimit -u 1000  # 限制最大线程数为 1000`限制最大线程数。
+
+```java
+// 示例代码：无限创建线程
+public class ThreadOOM {
+    public static void main(String[] args) {
+        while (true) {
+            new Thread(() -> {
+                try { Thread.sleep(Integer.MAX_VALUE); } catch (Exception e) {}
+            }).start();
+        }
+    }
+}
+```
+
+2. 修复方法
+
+- 优化代码，使用线程池替代独立线程。
+- 调整系统线程数限制（ulimit -u）。
+
 ## 流量洪峰
 
 ### JMeter 下载
