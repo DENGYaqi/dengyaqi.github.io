@@ -163,6 +163,60 @@ _Thread查看_
 
 理解了溢出原因，修复可以通过查看是否终止条件不够严格，又或者使用尾递归优化，减少栈帧占用，又或者可以通过`-Xxx16m`设置线程栈空间。
 
+### 直接内存溢出`java.lang.OutOfMemoryError: Direct buffer memory`
+
+1. 造成原因并模拟
+
+主要因为频繁使用NIO的ByteBuffer.allocateDirect()分配直接内存。还有未及时释放直接内存（如未调用Cleaner释放）。
+
+```java
+// 示例代码：无限分配直接内存
+public class DirectMemoryOOM {
+    public static void main(String[] args) throws Exception {
+        List<ByteBuffer> list = new ArrayList<>();
+        while (true) {
+            list.add(ByteBuffer.allocateDirect(1024 * 1024)); // 每次分配1MB
+        }
+    }
+}
+```
+
+设置参数触发
+
+```bash
+-XX:MaxDirectMemorySize=10m # 限制直接内存为10MB
+```
+
+![直接内存溢出](/assets/img/chaos/直接内存溢出.png){: width="400" height="400" }
+_直接内存溢出_
+
+直接内存溢出可以在VisualVM查看 Metaspace 和 Native Memory
+
+1) 打开 VisualVM，连接到目标 JVM 进程
+2) 切换到 Monitor
+
+   - 选项卡关注 Heap 和 Metaspace 使用情况
+   - 如果 Heap 未满，但仍然发生 OOM，可能是 直接内存溢出
+
+3) 切换到 Threads 选项卡
+
+   - 如果线程大量阻塞在 DirectByteBuffer 相关方法，可能是直接内存泄漏
+
+4) 打开 Sampler（采样器）
+
+   - 选择 "Memory"，然后点击 "Heap Dump"，分析 DirectByteBuffer 对象
+
+![直接内存泄漏_元空间查看](/assets/img/chaos/直接内存泄漏_元空间查看.png){: width="400" height="400" }
+_元空间查看_
+
+![直接内存溢出_采样器](/assets/img/chaos/直接内存溢出_采样器.png){: width="400" height="400" }
+_采样器_
+
+2. 修复方法
+
+- 检查代码中是否及时释放直接内存（如显式调用System.gc()或Cleaner）。
+- 调整直接内存大小（-XX:MaxDirectMemorySize）。
+
 ## 流量洪峰
 
 ### JMeter 下载
