@@ -42,7 +42,9 @@ MAT(Memory Analyzer Tool)是 Eclipse Foundation 开发的 Java 堆转储分析�
 ```
 
 `-XX:+HeapDumpOnOutOfMemoryError`：OOM时自动生成堆转储。
+
 `-XX:HeapDumpPath`：指定转储文件路径。
+
 即使程序瞬间崩溃，仍会生成`heapdump.hprof`，使用MAT分析即可定位问题。
 
 注意：如果在启动时配置了 JVM 堆内存参数，例如设置了过低的最大堆内存 (-Xmx) 或最小堆内存 (-Xms)，即使删除了触发内存溢出的代码，JVM 仍然可能因为内存限制而报堆内存溢出错误。所以不需要就不设置。
@@ -71,3 +73,73 @@ Thread.sleep(100); // 每次分配后休眠100毫秒
 
 ![VisualVM分析](/assets/img/chaos/VisualVM分析.png){: width="400" height="400" }
 _VisualVM分析_
+
+
+## 流量洪峰
+
+### JMeter 下载
+
+在这里使用的测试工具主要是jmeter，所以使用前先下载一个。
+
+官网下载[JMeter](https://jmeter.apache.org/download_jmeter.cgi)，我一般解压到`/usr/local`，解压完成后进入`/usr/local/bin`文件，使用命令`sh jmeter`打开jmeter。
+
+汉化 : 
+
+(仅对本次打开有效)打开后选择Options --> Choose Language --> Chinese。
+
+(永久有效)或者修改`/bin/jmeter.properties`中`language=zh_CN`，保存并重启。
+
+### 新增测试接口
+
+新建一个REST接口Controller暴露一个 GET 接口 /api/test/trafficpeak。每个请求执行时，会模拟一定的业务处理（这里以休眠 50 毫秒为例）。你可以根据实际场景修改模拟逻辑。
+```
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class TrafficPeakController {
+
+    @GetMapping("/api/test/trafficpeak")
+    public ResponseEntity<String> testTrafficPeak() {
+        try {
+            // 模拟业务处理（例如 50 毫秒的耗时操作）
+            Thread.sleep(50);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            return ResponseEntity.status(500).body("Internal Error");
+        }
+        return ResponseEntity.ok("Processed by thread " + Thread.currentThread().getName());
+    }
+}
+```
+
+配置（可选）：线程池调整
+
+如果你希望在高并发场景下更好地控制线程资源，可以通过配置线程池来管理任务执行。以下提供一个基于 Spring 的线程池配置示例，在这种场景下可配合异步调用使用，但对 JMeter 直接调用 HTTP 接口的场景，默认线程池也可以满足需求。
+
+```java
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+
+@Configuration
+public class ThreadPoolConfig {
+
+    @Bean
+    public ThreadPoolTaskExecutor taskExecutor() {
+        ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
+        executor.setCorePoolSize(50);      // 核心线程数，根据实际情况调整
+        executor.setMaxPoolSize(200);      // 最大线程数
+        executor.setQueueCapacity(1000);   // 队列容量
+        executor.setThreadNamePrefix("Test-");
+        executor.initialize();
+        return executor;
+    }
+}
+```
+
+可以通过`http://localhost:8080/api/test/trafficpeak`查看是否启动成功
+
+### 使用JMeter测试
+
