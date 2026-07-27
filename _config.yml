@@ -19,7 +19,7 @@ title: 噔噔的博客 # the main title
 tagline: 零点场 Zero-point energy # it will display as the sub-title
 
 description: >- # used by seo meta and the atom feed
-  日常记录与技术总结.
+  日常记录与技术总结，逐步整理 AI、RAG、知识图谱与开源贡献记录.
 
 # Fill in the protocol & hostname for your site.
 # e.g. 'https://username.github.io', note that it does not end with a '/'.
