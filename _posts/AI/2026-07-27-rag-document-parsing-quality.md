@@ -4,6 +4,7 @@ date: 2026-07-27 15:55:00 +0800
 categories: [AI, RAG]
 tags: [rag, document-parsing, ocr, docling, open-source]
 description: 从文档进入知识库之前的解析、切分、结构保留和测试样本说起，整理 RAG 工程中容易被低估的上游环节。
+pin: true
 ---
 
 ## 问题从哪里开始

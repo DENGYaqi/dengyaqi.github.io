@@ -4,6 +4,7 @@ date: 2026-07-27 09:40:00 +0800
 categories: [Work]
 tags: [knowledge, ai, rag, open-source]
 description: 把博客作为知识记录、知识推广和开源贡献复盘的长期阵地。
+pin: true
 ---
 
 ## 为什么要重新整理
