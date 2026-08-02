@@ -1,8 +1,8 @@
 ---
 title: 人工智能训练师四级易错题总结
 date: 2024-10-26 10:00:00 +0800
-categories: [AI]
-tags: [ai]
+categories: [AI, Guide]
+tags: [ai-guide, ai, exam]
 description: 中国人工智能训练师入门考试
 pin: true
 ---

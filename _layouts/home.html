@@ -14,16 +14,15 @@ layout: page
     <p class="zero-kicker">Zero-point field / AI Engineering Notes</p>
   </div>
 
-  <h1>AI 工程落地笔记</h1>
+  <h1>从会用 AI，到把 AI 做成可靠系统</h1>
   <p class="zero-lead">
-    从 RAG、知识图谱、文档解析到后端系统，把真实工作中的判断整理成清晰、克制、可验证的公开笔记。
+    这里先讲清楚 AI 是什么、工具怎么装、token 怎么用，再进入 RAG、知识图谱、工程化和后端系统。
   </p>
 
   <div class="zero-tags" aria-label="核心方向">
-    <span>AI R&amp;D Lead</span>
-    <span>RAG</span>
-    <span>Knowledge Graph</span>
-    <span>Document Parsing</span>
+    <span>AI 使用入门</span>
+    <span>AI 核心能力</span>
+    <span>AI 工程化</span>
     <span>Backend Systems</span>
   </div>
 </section>
@@ -35,20 +34,20 @@ layout: page
   </div>
 
   <div class="zero-track-grid">
-    <a class="zero-track" href="{{ '/categories/ai/' | relative_url }}">
+    <a class="zero-track" href="{{ '/ai/#ai-guide' | relative_url }}">
       <span>01</span>
-      <h3>AI Engineering</h3>
-      <p>LLM 应用后端、Agent 工作流、模型服务、可观测性与真实业务落地。</p>
+      <h3>AI 使用入门</h3>
+      <p>AI 基础概念、NLP/CV/硬件、模型 token、Codex、CC-Switch、Skills 和本机配置。</p>
     </a>
-    <a class="zero-track" href="{{ '/tags/rag/' | relative_url }}">
+    <a class="zero-track" href="{{ '/ai/#ai-core' | relative_url }}">
       <span>02</span>
-      <h3>RAG &amp; Document Parsing</h3>
-      <p>PDF、Word、OCR、表格结构、chunk、检索排序与回答质量验证。</p>
+      <h3>AI 核心能力</h3>
+      <p>RAG、文档解析、OCR、知识图谱、检索、chunk 和回答质量验证。</p>
     </a>
-    <a class="zero-track" href="{{ '/tags/knowledge-graph/' | relative_url }}">
+    <a class="zero-track" href="{{ '/ai/#ai-engineering' | relative_url }}">
       <span>03</span>
-      <h3>Knowledge Graph</h3>
-      <p>本体论、业务概念建模、实体关系抽取与结构化知识表达。</p>
+      <h3>AI 工程化</h3>
+      <p>Agent 工作流、模型服务、评测体系、可观测性、上下文工程、成本和稳定性。</p>
     </a>
     <a class="zero-track" href="{{ '/categories/java/' | relative_url }}">
       <span>04</span>
@@ -58,28 +57,41 @@ layout: page
   </div>
 </section>
 
-<section class="zero-section" aria-label="精选 AI 文章">
+<section class="zero-section" aria-label="推荐阅读路径">
   <div class="zero-section__header">
-    <p>Selected Notes</p>
-    <h2>精选 AI 工程笔记</h2>
+    <p>Reading Path</p>
+    <h2>推荐阅读路径</h2>
   </div>
 
   <div class="zero-feature-list">
-    {% assign selected_count = 0 %}
-    {% for post in site.posts %}
-      {% if selected_count < 4 %}
-        {% if post.categories contains 'AI' or post.tags contains 'rag' or post.tags contains 'knowledge-graph' %}
-          {% assign selected_count = selected_count | plus: 1 %}
-          <article class="zero-feature">
-            <a href="{{ post.url | relative_url }}">
-              <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y.%m.%d" }}</time>
-              <h3>{{ post.title }}</h3>
-              <p>{{ post.description | default: post.excerpt | strip_html | strip_newlines | truncate: 120 }}</p>
-            </a>
-          </article>
-        {% endif %}
-      {% endif %}
-    {% endfor %}
+    <article class="zero-feature">
+      <a href="{{ '/ai/#ai-guide' | relative_url }}">
+        <time>01</time>
+        <h3>先从 AI 使用入门开始</h3>
+        <p>按概念、token、Codex、本机配置、工具箱和安全边界的顺序，补齐普通开发者使用 AI 的基础路线。</p>
+      </a>
+    </article>
+    <article class="zero-feature">
+      <a href="{{ '/posts/rag-document-parsing-quality/' | relative_url }}">
+        <time>02</time>
+        <h3>再看 RAG 文档解析链路</h3>
+        <p>理解文档进入知识库之前，解析、结构保留和测试样本为什么会影响检索质量。</p>
+      </a>
+    </article>
+    <article class="zero-feature">
+      <a href="{{ '/ai/#ai-engineering' | relative_url }}">
+        <time>03</time>
+        <h3>然后进入 AI 工程化</h3>
+        <p>从 Agent、模型服务、评测、trace、上下文工程和成本稳定性，理解 AI 应用如何进入真实系统。</p>
+      </a>
+    </article>
+    <article class="zero-feature">
+      <a href="{{ '/categories/java/' | relative_url }}">
+        <time>04</time>
+        <h3>最后回到后端基本盘</h3>
+        <p>Java、并发、JVM、数据库、消息队列和风控中台经验，是把 AI 能力落到系统里的底座。</p>
+      </a>
+    </article>
   </div>
 </section>
 

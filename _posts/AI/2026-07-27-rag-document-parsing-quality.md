@@ -1,8 +1,8 @@
 ---
 title: RAG 文档解析链路：解析质量如何决定检索质量
 date: 2026-07-27 15:55:00 +0800
-categories: [AI, RAG]
-tags: [rag, document-parsing, ocr, docling, retrieval, open-source]
+categories: [AI, Core]
+tags: [ai-core, rag, document-parsing, ocr, docling, retrieval, open-source]
 description: 记录 RAG 入库前的文档解析、结构保留、切分验证和开源复现思路，解释为什么上游质量会直接影响检索与回答。
 pin: true
 ---

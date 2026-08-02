@@ -19,7 +19,7 @@ title: 邓雅琪 # the main title
 tagline: AI 工程笔记 / Zero-point field # it will display as the sub-title
 
 description: >- # used by seo meta and the atom feed
-  邓雅琪的 AI 工程落地笔记，持续记录 RAG、知识图谱、文档解析、后端系统与开源复现。
+  邓雅琪的 AI 技术博客：从 AI 使用入门，到 RAG、知识图谱、AI 工程化和后端系统，把真实工作中的判断整理成清晰、可验证的公开笔记。
 
 # Fill in the protocol & hostname for your site.
 # e.g. 'https://username.github.io', note that it does not end with a '/'.

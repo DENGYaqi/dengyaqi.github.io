@@ -1,8 +1,8 @@
 ---
 title: 博客重构路线：把知识记录变成 AI 工程作品集
 date: 2026-07-27 09:40:00 +0800
-categories: [AI, Roadmap]
-tags: [knowledge, knowledge-graph, ai, rag, open-source, portfolio]
+categories: [AI, Core]
+tags: [ai-core, knowledge, knowledge-graph, ai, rag, open-source, portfolio]
 description: 说明这个博客后续如何围绕 AI 工程、RAG、知识图谱和开源复现持续更新，避免只变成零散笔记。
 pin: true
 ---
