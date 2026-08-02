@@ -1,9 +1,9 @@
 ---
-title: 博客重构路线：把知识记录变成 AI 工程作品集
+title: 博客重构路线：从会用 AI 到可靠系统
 date: 2026-07-27 09:40:00 +0800
-categories: [AI, Core]
-tags: [ai-core, knowledge, knowledge-graph, ai, rag, open-source, portfolio]
-description: 说明这个博客后续如何围绕 AI 工程、RAG、知识图谱和开源复现持续更新，避免只变成零散笔记。
+categories: [AI, Guide]
+tags: [ai-guide, ai-roadmap, ai, rag, knowledge-graph, engineering, portfolio]
+description: 说明这个博客后续如何围绕 AI 使用入门、AI 核心能力、AI 工程化和后端系统持续更新，避免只变成零散笔记。
 pin: true
 ---
 
@@ -11,7 +11,7 @@ pin: true
 
 这个博客最早是我的技术学习笔记，里面有 Git、Java、Kafka、Zookeeper、Cocos、AI 训练师考试等内容。它们不需要被推翻，因为这些内容记录了我真实走过的技术路径。
 
-接下来我希望把博客继续当成长期知识库来维护：一部分记录工程经验，一部分做知识推广，一部分沉淀 AI、RAG、知识图谱和开源贡献。
+接下来我希望把博客继续当成长期知识库来维护：先讲清楚 AI 怎么用，再讲 RAG、文档解析、知识图谱这些核心能力，最后沉淀 AI 工程化和后端系统里的真实判断。
 
 开源贡献不是博客的全部，它只是其中一条实践线。更重要的是把我做过、理解过、踩过坑的知识整理成别人也能读懂、能复现、能继续追问的内容。
 
@@ -21,21 +21,21 @@ pin: true
 
 | 主线 | 记录内容 |
 | --- | --- |
-| AI 工程 | RAG、文档解析、OCR、知识库、Agent、LLM 应用后端 |
-| 知识建模 | 知识图谱、本体论、业务概念建模、结构化知识表达 |
-| 后端系统 | Java、并发、JVM、数据库、消息队列、工程稳定性 |
-| 开源复现 | issue 复现、PR 记录、维护者反馈、测试和文档补充 |
+| AI 使用入门 | AI 是什么、NLP/CV/硬件、模型 token、Codex、API key、本机工具配置和安全边界 |
+| AI 核心能力 | RAG、文档解析、OCR、知识图谱、检索、chunk 和回答质量验证 |
+| AI 工程化 | Agent 工作流、模型服务、评测体系、可观测性、上下文工程、成本、延迟和稳定性 |
+| Backend Systems | Java、并发、JVM、数据库、消息队列、风控中台和工程稳定性 |
 
-旧文章会继续保留，新文章会逐渐补齐 AI 工程和知识建模这两条主线。
+旧文章会继续保留，新文章会优先补齐第一条线和第三条线：一条帮助读者真正开始使用 AI，一条解释 AI 应用如何进入可靠系统。
 
 ## 6 周执行节奏
 
-1. 第 1 周：整理博客与 GitHub 的公开入口，只做轻量修改，不大改人设。
-2. 第 2 周：写一篇 RAG 或文档解析相关的技术文章，尽量从实际工程问题出发。
-3. 第 3 周：筛选 Docling、Langfuse、LlamaIndex、LangGraph、RAG-Anything 或 LightRAG 中适合入手的 issue。
-4. 第 4 周：完成一个小而真实的开源 PR，优先选择测试补充、文档示例、兼容性修复或文档解析边界问题。
-5. 第 5 周：写一篇 PR 复盘，记录问题背景、复现方式、修复思路、测试命令和维护者反馈。
-6. 第 6 周：继续筛第二个 issue，同时整理一篇知识图谱、RAG 或 Agent 工程实践文章。
+1. 第 1 周：整理博客与 GitHub 的公开入口，让首页、AI 路线页和 GitHub 主页讲同一套内容结构。
+2. 第 2 周：写一篇 AI 使用入门文章，先讲清楚 AI 的“大脑、身体和工具”。
+3. 第 3 周：写一篇 token/API key/Codex 本机配置文章，补上真实可操作的工具入口和安全边界。
+4. 第 4 周：写一篇 RAG 或文档解析相关的技术文章，尽量从实际工程问题出发。
+5. 第 5 周：筛选 Docling、Langfuse、LlamaIndex、LangGraph、RAG-Anything 或 LightRAG 中适合入手的 issue，优先选择测试补充、文档示例、兼容性修复或文档解析边界问题。
+6. 第 6 周：写一篇 AI 工程化复盘，记录评测、trace、上下文工程、模型服务或开源 PR 的问题背景、复现方式、测试命令和结果。
 
 ## 写作原则
 
@@ -48,10 +48,10 @@ pin: true
 
 ## 下一步
 
-下一篇文章优先写 RAG 文档解析链路：从 PDF、Word、图片、表格进入知识库之前，为什么解析质量会直接影响检索和回答效果。
+下一篇文章优先写 AI 使用入门：AI 是什么，为什么可以先把它理解成“大脑、身体和工具”。
 
-这条线会自然连接到后续的 Docling、RAG-Anything、LightRAG 等开源项目贡献。
+这条线会继续连接到 token、API key、Codex、CC-Switch、Skills 和本机工具配置。等读者能真正用起来以后，再进入 RAG 文档解析、知识图谱和 AI 工程化。
 
 ## English Summary
 
-This blog will gradually become a public portfolio for AI engineering, RAG, knowledge modeling, and open-source reproduction notes. The goal is not to post for activity alone, but to turn real engineering work into clear, reusable, and verifiable writing.
+This blog will gradually become a public portfolio that starts with practical AI usage, then moves into RAG, document parsing, knowledge graphs, AI engineering, and backend systems. The goal is not to post for activity alone, but to turn real engineering work into clear, reusable, and verifiable writing.

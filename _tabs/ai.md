@@ -36,7 +36,10 @@ title: ai
 
 **适合谁看**：会写代码，但还没有系统理解 AI 工具链、模型 token、本机配置和安全边界的人。
 
-**先读什么**：先建立“AI 的大脑和身体”这张图，再进入模型账号、API key、Codex、Skills 和本机工具配置。
+**先读什么**：
+
+- [博客重构路线：从会用 AI 到可靠系统]({{ '/posts/knowledge-record-and-open-source-plan/' | relative_url }})
+- 接着建立“AI 的大脑和身体”这张图，再进入模型账号、API key、Codex、Skills 和本机工具配置。
 
 **后续文章计划**：
 
@@ -58,7 +61,6 @@ title: ai
 **先读什么**：
 
 - [RAG 文档解析链路：解析质量如何决定检索质量]({{ '/posts/rag-document-parsing-quality/' | relative_url }})
-- [博客重构路线：把知识记录变成 AI 工程作品集]({{ '/posts/knowledge-record-and-open-source-plan/' | relative_url }})
 
 **后续文章计划**：围绕 OCR、表格结构、chunk、知识图谱、本体论、检索排序和回答质量验证继续展开。
 
