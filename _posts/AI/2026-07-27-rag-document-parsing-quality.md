@@ -5,6 +5,7 @@ categories: [AI, RAG]
 tags: [rag, document-parsing, ocr, docling, open-source]
 description: 从文档进入知识库之前的解析、切分、结构保留和测试样本说起，整理 RAG 工程中容易被低估的上游环节。
 pin: true
+image:
 ---
 
 ## 问题从哪里开始
@@ -67,3 +68,7 @@ Langfuse Python SDK 则在另一侧：它关注 LLM 应用的观测、trace 和�
 我会先把本地 Docling 环境跑通，再围绕一个明确 issue 做复现。每次贡献都尽量保留四样东西：最小样本、失败现象、修复思路、测试命令。
 
 博客会继续记录这条路线。开源贡献不是为了把主页装饰得更好看，而是让真实工程经验慢慢变成公开、可验证、别人也能复用的知识。
+
+## English Summary
+
+Document parsing quality is an upstream reliability problem in RAG systems. If titles, tables, OCR text, and page-level structure are lost before chunking, retrieval and generation will amplify that noise. I plan to validate parsing quality with small public samples, saved intermediate outputs, repeatable tests, and open-source contribution notes.

@@ -1,0 +1,105 @@
+---
+layout: page
+---
+
+{% include lang.html %}
+
+<section class="zero-hero" aria-label="邓雅琪 AI 工程笔记">
+  <div class="zero-hero__meta">
+    <div class="zero-mark" aria-hidden="true">
+      <span class="zero-mark__axis zero-mark__axis--x"></span>
+      <span class="zero-mark__axis zero-mark__axis--y"></span>
+      <span class="zero-mark__dot"></span>
+    </div>
+    <p class="zero-kicker">Zero-point field / AI Engineering Notes</p>
+  </div>
+
+  <h1>AI 工程落地笔记</h1>
+  <p class="zero-lead">
+    从 RAG、知识图谱、文档解析到后端系统，把真实工作中的判断整理成清晰、克制、可验证的公开笔记。
+  </p>
+
+  <div class="zero-tags" aria-label="核心方向">
+    <span>AI R&amp;D Lead</span>
+    <span>RAG</span>
+    <span>Knowledge Graph</span>
+    <span>Document Parsing</span>
+    <span>Backend Systems</span>
+  </div>
+</section>
+
+<section class="zero-section" aria-label="内容主线">
+  <div class="zero-section__header">
+    <p>Content Tracks</p>
+    <h2>四条长期主线</h2>
+  </div>
+
+  <div class="zero-track-grid">
+    <a class="zero-track" href="{{ '/categories/ai/' | relative_url }}">
+      <span>01</span>
+      <h3>AI Engineering</h3>
+      <p>LLM 应用后端、Agent 工作流、模型服务、可观测性与真实业务落地。</p>
+    </a>
+    <a class="zero-track" href="{{ '/tags/rag/' | relative_url }}">
+      <span>02</span>
+      <h3>RAG &amp; Document Parsing</h3>
+      <p>PDF、Word、OCR、表格结构、chunk、检索排序与回答质量验证。</p>
+    </a>
+    <a class="zero-track" href="{{ '/tags/knowledge-graph/' | relative_url }}">
+      <span>03</span>
+      <h3>Knowledge Graph</h3>
+      <p>本体论、业务概念建模、实体关系抽取与结构化知识表达。</p>
+    </a>
+    <a class="zero-track" href="{{ '/categories/java/' | relative_url }}">
+      <span>04</span>
+      <h3>Backend Systems</h3>
+      <p>Java、并发、JVM、数据库、消息队列、风控中台和工程稳定性。</p>
+    </a>
+  </div>
+</section>
+
+<section class="zero-section" aria-label="精选 AI 文章">
+  <div class="zero-section__header">
+    <p>Selected Notes</p>
+    <h2>精选 AI 工程笔记</h2>
+  </div>
+
+  <div class="zero-feature-list">
+    {% assign selected_count = 0 %}
+    {% for post in site.posts %}
+      {% if selected_count < 4 %}
+        {% if post.categories contains 'AI' or post.tags contains 'rag' or post.tags contains 'knowledge-graph' %}
+          {% assign selected_count = selected_count | plus: 1 %}
+          <article class="zero-feature">
+            <a href="{{ post.url | relative_url }}">
+              <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y.%m.%d" }}</time>
+              <h3>{{ post.title }}</h3>
+              <p>{{ post.description | default: post.excerpt | strip_html | strip_newlines | truncate: 120 }}</p>
+            </a>
+          </article>
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+  </div>
+</section>
+
+<section class="zero-section zero-section--latest" aria-label="最新文章">
+  <div class="zero-section__header">
+    <p>Latest</p>
+    <h2>最新记录</h2>
+  </div>
+
+  <div id="post-list" class="zero-latest-list">
+    {% for post in site.posts limit: 8 %}
+      <article class="zero-latest">
+        <a href="{{ post.url | relative_url }}">
+          <div>
+            <h3>{{ post.title }}</h3>
+            <p>{{ post.description | default: post.excerpt | strip_html | strip_newlines | truncate: 110 }}</p>
+          </div>
+          <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y.%m.%d" }}</time>
+        </a>
+      </article>
+    {% endfor %}
+  </div>
+</section>

@@ -2,9 +2,10 @@
 title: 我的知识记录与开源贡献规划
 date: 2026-07-27 09:40:00 +0800
 categories: [Work]
-tags: [knowledge, ai, rag, open-source]
+tags: [knowledge, knowledge-graph, ai, rag, open-source]
 description: 把博客作为知识记录、知识推广和开源贡献复盘的长期阵地。
 pin: true
+image:
 ---
 
 ## 为什么要重新整理
@@ -54,3 +55,7 @@ pin: true
 下一篇文章优先写 RAG 文档解析链路：从 PDF、Word、图片、表格进入知识库之前，为什么解析质量会直接影响检索和回答效果。
 
 这条线会自然连接到后续的 Docling、RAG-Anything、LightRAG 等开源项目贡献。
+
+## English Summary
+
+This blog will gradually become a public knowledge base for AI engineering, RAG, knowledge modeling, and open-source contribution notes. The goal is not to post for activity alone, but to turn real engineering work into clear, reusable, and verifiable writing.
