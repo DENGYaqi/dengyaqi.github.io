@@ -31,8 +31,8 @@ pin: true
 ## 6 周执行节奏
 
 1. 第 1 周：整理博客与 GitHub 的公开入口，让首页、AI 路线页和 GitHub 主页讲同一套内容结构。
-2. 第 2 周：写一篇 AI 使用入门文章，先讲清楚 AI 的“大脑、身体和工具”。
-3. 第 3 周：写一篇 token/API key/Codex 本机配置文章，补上真实可操作的工具入口和安全边界。
+2. 第 2 周：先写一篇 Codex 安装指南，让读者能在 Windows、macOS、Linux 和 WSL2 里把工具跑起来。
+3. 第 3 周：补一篇 AI 使用入门文章，讲清楚 AI 的“大脑、身体和工具”，再连接 token、API key 和本机配置。
 4. 第 4 周：写一篇 RAG 或文档解析相关的技术文章，尽量从实际工程问题出发。
 5. 第 5 周：筛选 Docling、Langfuse、LlamaIndex、LangGraph、RAG-Anything 或 LightRAG 中适合入手的 issue，优先选择测试补充、文档示例、兼容性修复或文档解析边界问题。
 6. 第 6 周：写一篇 AI 工程化复盘，记录评测、trace、上下文工程、模型服务或开源 PR 的问题背景、复现方式、测试命令和结果。
@@ -48,9 +48,9 @@ pin: true
 
 ## 下一步
 
-下一篇文章优先写 AI 使用入门：AI 是什么，为什么可以先把它理解成“大脑、身体和工具”。
+第一篇实操文章先从 Codex 安装开始。因为对普通开发者来说，先把工具装起来、跑起来，后面的概念才不会悬空。
 
-这条线会继续连接到 token、API key、Codex、CC-Switch、Skills 和本机工具配置。等读者能真正用起来以后，再进入 RAG 文档解析、知识图谱和 AI 工程化。
+这条线会继续连接到 AI 基础概念、token、API key、CC-Switch、Skills 和本机工具配置。等读者能真正用起来以后，再进入 RAG 文档解析、知识图谱和 AI 工程化。
 
 ## English Summary
 

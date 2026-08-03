@@ -38,6 +38,7 @@ title: ai
 
 **先读什么**：
 
+- [Codex 入门：如何在 Windows、macOS、Linux 和 WSL2 安装 Codex]({{ '/posts/codex-install-windows-macos-linux-wsl/' | relative_url }})
 - [博客重构路线：从会用 AI 到可靠系统]({{ '/posts/knowledge-record-and-open-source-plan/' | relative_url }})
 - 接着建立“AI 的大脑和身体”这张图，再进入模型账号、API key、Codex、Skills 和本机工具配置。
 
@@ -47,7 +48,7 @@ title: ai
 2. 普通开发者如何开始使用 AI
 3. 模型 token 是什么，应该去哪里获取
 4. 如何在本机配置 OpenAI API Key
-5. Codex 入门：桌面端、CLI 和 IDE 怎么选
+5. Codex 使用：第一次启动、登录和选择工作目录
 6. AI 工具箱：CC-Switch、Skills、常用命令与安全边界
 
 **资料来源约定**：OpenAI 相关教程以官方文档为准，包括 [Codex quickstart](https://developers.openai.com/codex/quickstart)、[Codex CLI](https://developers.openai.com/codex/cli)、[Codex IDE](https://developers.openai.com/codex/ide)、[Build skills](https://developers.openai.com/codex/build-skills)、[API quickstart](https://developers.openai.com/api/docs/quickstart) 和 [API authentication](https://developers.openai.com/api/reference/overview/)。CC-Switch、Skills.sh 这类工具会按第三方工具介绍，不写成官方能力。
