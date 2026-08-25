@@ -1,0 +1,32 @@
+---
+layout: default
+body_class: blog-page
+---
+
+<header class="page-header">
+  <h1>Blog</h1>
+  <p>技术笔记、工程记录和 AI 学习路线。文章来自当前 Jekyll posts，不做占位。</p>
+  <div class="topic-list" style="justify-content:center;margin-top:2rem;">
+    <a class="topic" href="{{ '/categories/' | relative_url }}">分类</a>
+    <a class="topic" href="{{ '/tags/' | relative_url }}">标签</a>
+    <a class="topic" href="{{ '/archives/' | relative_url }}">归档</a>
+    <a class="topic" href="{{ '/ai/' | relative_url }}">AI 路线</a>
+  </div>
+</header>
+
+<main class="container">
+  <section>
+    <div class="post-grid">
+      {% for post in site.posts %}
+        <a class="post-card fade-up" href="{{ post.url | relative_url }}">
+          <time class="post-date" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y.%m.%d" }}</time>
+          <h3>{{ post.title }}</h3>
+          <p>{{ post.description | default: post.excerpt | strip_html | strip_newlines | truncate: 140 }}</p>
+          <div class="post-tags">
+            {% for tag in post.tags limit: 3 %}<span class="post-tag">{{ tag }}</span>{% endfor %}
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+  </section>
+</main>

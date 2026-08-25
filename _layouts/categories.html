@@ -1,0 +1,27 @@
+---
+layout: default
+body_class: dark-page
+---
+
+<header class="page-header">
+  <h1>分类</h1>
+  <p>按主题浏览已有文章。</p>
+</header>
+
+<main class="container">
+  <section>
+    <div class="post-grid">
+      {% assign sorted_categories = site.categories | sort %}
+      {% for category in sorted_categories %}
+        {% assign name = category | first %}
+        {% assign posts = category | last %}
+        {% assign category_slug = name | slugify %}
+        <a class="post-card fade-up" href="{{ '/categories/' | append: category_slug | append: '/' | relative_url }}">
+          <time class="post-date">{{ posts | size }} 篇</time>
+          <h3>{{ name }}</h3>
+          <p>{{ posts | map: 'title' | join: ' / ' | truncate: 120 }}</p>
+        </a>
+      {% endfor %}
+    </div>
+  </section>
+</main>

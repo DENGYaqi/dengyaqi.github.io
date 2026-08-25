@@ -1,0 +1,40 @@
+---
+layout: default
+---
+
+<main class="article-shell">
+  <article>
+    <header class="article-header">
+      <h1>{{ page.title }}</h1>
+      {% if page.description %}<p class="article-desc">{{ page.description }}</p>{% endif %}
+      <p class="article-meta">
+        {{ page.date | date: "%Y.%m.%d" }}
+        {% if page.categories.size > 0 %} · {{ page.categories | join: " / " }}{% endif %}
+      </p>
+    </header>
+
+    <div class="article-content">
+      {{ content }}
+    </div>
+
+    <div class="article-tail">
+      {% for tag in page.tags %}
+        {% assign tag_slug = tag | slugify %}
+        <a class="post-tag" href="{{ '/tags/' | append: tag_slug | append: '/' | relative_url }}">{{ tag }}</a>
+      {% endfor %}
+    </div>
+
+    <nav class="post-nav" aria-label="文章导航">
+      {% if page.previous.url %}
+        <a href="{{ page.previous.url | relative_url }}">上一篇<br>{{ page.previous.title }}</a>
+      {% else %}
+        <span>上一篇<br>没有了</span>
+      {% endif %}
+      {% if page.next.url %}
+        <a href="{{ page.next.url | relative_url }}">下一篇<br>{{ page.next.title }}</a>
+      {% else %}
+        <span>下一篇<br>没有了</span>
+      {% endif %}
+    </nav>
+  </article>
+</main>

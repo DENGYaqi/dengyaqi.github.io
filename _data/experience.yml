@@ -1,0 +1,51 @@
+- title: "AI 研发主管"
+  company: "杭州格耐马网络科技有限公司 / 杭州，中国"
+  date: "2026.04 - 至今"
+  summary: "负责 AI 研发方向规划、技术路线选型与项目交付推进，推动企业级 AI 业务平台、Agent/RAG/Workflow、数据治理和业务副驾驶从 0 到 1 落地。"
+  bullets:
+    - "对接业务、产品、前后端与运维资源，推进需求拆解、研发排期、上线验收、生产问题追踪和迭代治理。"
+    - "建设企业级 AI 平台、RAG 知识库、MCP 工具调用、Skills 能力包、组织权限、审计追踪和外部系统集成。"
+  tags: ["AI Platform", "Agent", "RAG", "Workflow"]
+
+- title: "资深软件开发工程师"
+  company: "软通动力技术服务上海有限公司 / 上海，中国"
+  date: "2025.05 - 2026.04"
+  summary: "负责 RAG 系统、向量知识库、智能问答引擎与 AI 自动编码平台研发，推动 AI 工具从技术验证走向可交付应用。"
+  bullets:
+    - "主导多 Agent 协同、LangGraph 工作流、流式响应和模型服务接入能力建设。"
+    - "围绕文档解析、PgVector、Redis、Django/FastAPI 和多模型 LLM 搭建企业级知识问答链路。"
+  tags: ["LangGraph", "PgVector", "LLM", "FastAPI"]
+
+- title: "高级 Java 开发工程师"
+  company: "北京汉克时代科技有限公司 / 蚂蚁网商风控"
+  date: "2023.06 - 2024.10"
+  summary: "驻场蚂蚁集团网商风控项目组，负责一站式策略研发、行业风险管理及风险策略等风控中台后端开发。"
+  bullets:
+    - "参与系统架构设计、需求拆解、后端开发和团队技术协作，提升风控中台整体效率。"
+    - "覆盖策略研发、低代码策略引擎、分布式风控搜索和高并发业务系统建设。"
+  tags: ["Java", "SofaBoot", "Elasticsearch", "Risk"]
+
+- title: "安卓软件开发工程师"
+  company: "浙江清华柔性电子技术研究院 / 杭州，中国"
+  date: "2021.11 - 2022.12"
+  summary: "负责医疗方向安卓软件的全栈开发，覆盖软件设计、编码调试、设备交互、云端通信和发布后支持。"
+  bullets:
+    - "基于 Android 原生、Jetpack、MVVM、蓝牙协议和 Retrofit/OkHttp 构建实时设备数据链路。"
+    - "持续优化不同设备和系统版本兼容性、后台服务稳定性和内存问题。"
+  tags: ["Android", "Kotlin", "Bluetooth", "IoT"]
+
+- title: "自由职业者"
+  company: "巴黎，法国"
+  date: "2019.10 - 2021.08"
+  summary: "负责 NLP 算法开发、Java Web 应用设计及安卓软件开发，通过项目制方式交付不同业务场景的技术解决方案。"
+  bullets:
+    - "覆盖自然语言处理、Web 应用、移动端开发和数据处理相关项目。"
+  tags: ["NLP", "Java Web", "Android"]
+
+- title: "自然语言处理工程师"
+  company: "Yseop / 巴黎，法国"
+  date: "2019.04 - 2019.09"
+  summary: "负责知识图谱项目研究，包括知识本体融合算法研发与验证，并完成 Lexicon 网站的全栈开发。"
+  bullets:
+    - "参与知识图谱、本体融合、检索准确度提升和全栈应用开发。"
+  tags: ["NLP", "Knowledge Graph", "Ontology"]

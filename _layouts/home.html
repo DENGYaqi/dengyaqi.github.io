@@ -1,117 +1,144 @@
 ---
-layout: page
+layout: default
 ---
 
-{% include lang.html %}
+<section class="hero">
+  <div class="shape shape-1"></div>
+  <div class="shape shape-2"></div>
+  <div class="shape shape-3"></div>
+  <div class="shape shape-4"></div>
+  <div class="grid-lines">
+    <div class="grid-line"></div>
+    <div class="grid-line"></div>
+    <div class="grid-line"></div>
+    <div class="grid-line"></div>
+  </div>
+  <div class="particles">
+    <div class="particle" style="left: 5%; animation-delay: 0s; animation-duration: 10s;"></div>
+    <div class="particle" style="left: 18%; animation-delay: 1.5s; animation-duration: 12s;"></div>
+    <div class="particle" style="left: 31%; animation-delay: 3s; animation-duration: 11s;"></div>
+    <div class="particle" style="left: 44%; animation-delay: 0.5s; animation-duration: 13s;"></div>
+    <div class="particle" style="left: 57%; animation-delay: 2s; animation-duration: 10s;"></div>
+    <div class="particle" style="left: 70%; animation-delay: 4s; animation-duration: 14s;"></div>
+    <div class="particle" style="left: 83%; animation-delay: 1s; animation-duration: 11s;"></div>
+    <div class="particle" style="left: 95%; animation-delay: 3.5s; animation-duration: 12s;"></div>
+  </div>
 
-<section class="zero-hero" aria-label="邓雅琪 AI 工程笔记">
-  <div class="zero-hero__meta">
-    <div class="zero-mark" aria-hidden="true">
-      <span class="zero-mark__axis zero-mark__axis--x"></span>
-      <span class="zero-mark__axis zero-mark__axis--y"></span>
-      <span class="zero-mark__dot"></span>
+  <div class="hero-container">
+    <div class="hero-content">
+      <div class="hero-tag">AI Engineering / RAG / Knowledge Graph</div>
+      <h1>让AI能力进入<span class="highlight">生产系统</span></h1>
+      <p>
+        我是邓雅琪。这里记录我从 NLP、知识图谱、Java 后端到 AI 工程化的学习和实践，
+        包括 RAG、文档解析、Agent、检索质量和可落地的系统设计。
+      </p>
+      <div class="btn-group">
+        <a href="{{ '/resume/' | relative_url }}" class="btn btn-primary">查看简历</a>
+        <a href="{{ '/blog/' | relative_url }}" class="btn btn-outline">阅读博客</a>
+      </div>
     </div>
-    <p class="zero-kicker">Zero-point field / AI Engineering Notes</p>
-  </div>
-
-  <h1>从会用 AI，到把 AI 做成可靠系统</h1>
-  <p class="zero-lead">
-    这里先讲清楚 AI 是什么、工具怎么装、token 怎么用，再进入 RAG、知识图谱、工程化和后端系统。
-  </p>
-
-  <div class="zero-tags" aria-label="核心方向">
-    <span>AI 使用入门</span>
-    <span>AI 核心能力</span>
-    <span>AI 工程化</span>
-    <span>Backend Systems</span>
+    <div class="hero-image">
+      <img src="{{ '/assets/img/hero-high-altitude.jpg' | relative_url }}" alt="邓雅琪在中国最高海拔市纪念石旁">
+    </div>
   </div>
 </section>
 
-<section class="zero-section" aria-label="内容主线">
-  <div class="zero-section__header">
-    <p>Content Tracks</p>
-    <h2>四条长期主线</h2>
-  </div>
-
-  <div class="zero-track-grid">
-    <a class="zero-track" href="{{ '/ai/#ai-guide' | relative_url }}">
-      <span>01</span>
-      <h3>AI 使用入门</h3>
-      <p>AI 基础概念、NLP/CV/硬件、模型 token、Codex、CC-Switch、Skills 和本机配置。</p>
-    </a>
-    <a class="zero-track" href="{{ '/ai/#ai-core' | relative_url }}">
-      <span>02</span>
-      <h3>AI 核心能力</h3>
-      <p>RAG、文档解析、OCR、知识图谱、检索、chunk 和回答质量验证。</p>
-    </a>
-    <a class="zero-track" href="{{ '/ai/#ai-engineering' | relative_url }}">
-      <span>03</span>
-      <h3>AI 工程化</h3>
-      <p>Agent 工作流、模型服务、评测体系、可观测性、上下文工程、成本和稳定性。</p>
-    </a>
-    <a class="zero-track" href="{{ '/categories/java/' | relative_url }}">
-      <span>04</span>
-      <h3>Backend Systems</h3>
-      <p>Java、并发、JVM、数据库、消息队列、风控中台和工程稳定性。</p>
-    </a>
-  </div>
-</section>
-
-<section class="zero-section" aria-label="推荐阅读路径">
-  <div class="zero-section__header">
-    <p>Reading Path</p>
-    <h2>推荐阅读路径</h2>
-  </div>
-
-  <div class="zero-feature-list">
-    <article class="zero-feature">
-      <a href="{{ '/ai/#ai-guide' | relative_url }}">
-        <time>01</time>
-        <h3>先从 AI 使用入门开始</h3>
-        <p>按概念、token、Codex、本机配置、工具箱和安全边界的顺序，补齐普通开发者使用 AI 的基础路线。</p>
-      </a>
-    </article>
-    <article class="zero-feature">
-      <a href="{{ '/posts/rag-document-parsing-quality/' | relative_url }}">
-        <time>02</time>
-        <h3>再看 RAG 文档解析链路</h3>
-        <p>理解文档进入知识库之前，解析、结构保留和测试样本为什么会影响检索质量。</p>
-      </a>
-    </article>
-    <article class="zero-feature">
-      <a href="{{ '/ai/#ai-engineering' | relative_url }}">
-        <time>03</time>
-        <h3>然后进入 AI 工程化</h3>
-        <p>从 Agent、模型服务、评测、trace、上下文工程和成本稳定性，理解 AI 应用如何进入真实系统。</p>
-      </a>
-    </article>
-    <article class="zero-feature">
-      <a href="{{ '/categories/java/' | relative_url }}">
-        <time>04</time>
-        <h3>最后回到后端基本盘</h3>
-        <p>Java、并发、JVM、数据库、消息队列和风控中台经验，是把 AI 能力落到系统里的底座。</p>
-      </a>
-    </article>
-  </div>
-</section>
-
-<section class="zero-section zero-section--latest" aria-label="最新文章">
-  <div class="zero-section__header">
-    <p>Latest</p>
-    <h2>最新记录</h2>
-  </div>
-
-  <div id="post-list" class="zero-latest-list">
-    {% for post in site.posts limit: 8 %}
-      <article class="zero-latest">
-        <a href="{{ post.url | relative_url }}">
-          <div>
-            <h3>{{ post.title }}</h3>
-            <p>{{ post.description | default: post.excerpt | strip_html | strip_newlines | truncate: 110 }}</p>
+<section id="experience" class="experience-section">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="section-tag">Experience</div>
+      <h2 class="section-title">Where I've Worked</h2>
+    </div>
+    <div class="timeline compact-timeline">
+      {% for item in site.data.experience limit: 4 %}
+        <article class="timeline-item fade-up">
+          <div class="timeline-card">
+            <div class="timeline-header">
+              <div>
+                <h3 class="timeline-title">{{ item.title }}</h3>
+                <p class="timeline-company">{{ item.company }}</p>
+              </div>
+              <span class="timeline-date">{{ item.date }}</span>
+            </div>
+            <p class="timeline-summary">{{ item.summary }}</p>
+            <div class="exp-tags">
+              {% for tag in item.tags limit: 4 %}
+                <span class="exp-tag">{{ tag }}</span>
+              {% endfor %}
+            </div>
           </div>
-          <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y.%m.%d" }}</time>
+        </article>
+      {% endfor %}
+    </div>
+    <div class="contact-cta fade-up">
+      <a href="{{ '/resume/' | relative_url }}" class="btn btn-primary">View Full Resume</a>
+    </div>
+  </div>
+</section>
+
+<section id="skills" class="skills-section">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="section-tag">Skills</div>
+      <h2 class="section-title">What I Work With</h2>
+    </div>
+    <div class="skills-grid">
+      <article class="skill-card fade-up"><h3>AI Engineering</h3><div class="tags"><span class="tag">RAG</span><span class="tag">LangChain</span><span class="tag">LangGraph</span><span class="tag">vLLM</span><span class="tag">PgVector</span><span class="tag">OCR</span></div></article>
+      <article class="skill-card fade-up"><h3>Backend Development</h3><div class="tags"><span class="tag">Java</span><span class="tag">Python</span><span class="tag">SpringBoot</span><span class="tag">Django</span><span class="tag">FastAPI</span></div></article>
+      <article class="skill-card fade-up"><h3>Data & Search</h3><div class="tags"><span class="tag">MySQL</span><span class="tag">Redis</span><span class="tag">Elasticsearch</span><span class="tag">Knowledge Graph</span></div></article>
+      <article class="skill-card fade-up"><h3>Infrastructure</h3><div class="tags"><span class="tag">Kafka</span><span class="tag">RocketMQ</span><span class="tag">Kubernetes</span><span class="tag">GitHub Actions</span></div></article>
+    </div>
+  </div>
+</section>
+
+<section class="projects-section">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="section-tag">Projects</div>
+      <h2 class="section-title">Featured Work</h2>
+    </div>
+    <div class="projects-grid">
+      <article class="project-card fade-up"><h3>沉浸式开发 AI 自动编码系统</h3><p>基于 FastAPI、LangChain、LangGraph 和 vLLM，构建多 Agent 协同、意图路由、工作流处理和流式响应能力。</p><div class="project-tags"><span class="project-tag">FastAPI</span><span class="project-tag">LangGraph</span><span class="project-tag">vLLM</span></div></article>
+      <article class="project-card fade-up"><h3>AI 智能文档解析与知识问答系统</h3><p>基于 Django、PgVector、Redis 和多模型 LLM，建设企业级知识管理、文档解析、智能问答和内容生成平台。</p><div class="project-tags"><span class="project-tag">Django</span><span class="project-tag">PgVector</span><span class="project-tag">RAG</span></div></article>
+      <article class="project-card fade-up"><h3>后端工程与风控系统</h3><p>把缓存、消息队列、检索、权限、任务调度和可观测性放回真实业务系统里打磨。</p><div class="project-tags"><span class="project-tag">Java</span><span class="project-tag">Kafka</span><span class="project-tag">System Design</span></div></article>
+    </div>
+  </div>
+</section>
+
+<section class="skills-section">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="section-tag">Latest</div>
+      <h2 class="section-title">Latest Posts</h2>
+    </div>
+    <div class="post-grid">
+      {% for post in site.posts limit: 6 %}
+        <a class="post-card fade-up" href="{{ post.url | relative_url }}">
+          <time class="post-date" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y.%m.%d" }}</time>
+          <h3>{{ post.title }}</h3>
+          <p>{{ post.description | default: post.excerpt | strip_html | strip_newlines | truncate: 120 }}</p>
         </a>
-      </article>
-    {% endfor %}
+      {% endfor %}
+    </div>
+    <div class="contact-cta fade-up">
+      <a href="{{ '/blog/' | relative_url }}" class="btn btn-primary">View All Posts</a>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact-section">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="section-tag">Contact</div>
+      <h2 class="section-title">Let's Connect</h2>
+    </div>
+    <div class="contact-grid">
+      <a href="mailto:{{ site.social.email }}" class="contact-card fade-up"><h4>Email</h4><p>{{ site.social.email }}</p></a>
+      <a href="https://github.com/{{ site.github.username }}" target="_blank" rel="noopener" class="contact-card fade-up"><h4>GitHub</h4><p>{{ site.github.username }}</p></a>
+      <a href="https://x.com/{{ site.twitter.username }}" target="_blank" rel="noopener" class="contact-card fade-up"><h4>X</h4><p>@{{ site.twitter.username }}</p></a>
+    </div>
+    <div class="contact-cta fade-up">
+      <a href="mailto:{{ site.social.email }}" class="contact-email">{{ site.social.email }}</a>
+    </div>
   </div>
 </section>

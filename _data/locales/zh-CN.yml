@@ -8,6 +8,8 @@ layout:
 tabs:
   home: 首页
   ai: AI 路线
+  blog: 博客
+  resume: 简历
   categories: 分类
   tags: 标签
   archives: 归档

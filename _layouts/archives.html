@@ -1,0 +1,27 @@
+---
+layout: default
+body_class: dark-page
+---
+
+<header class="page-header">
+  <h1>归档</h1>
+  <p>按时间回看所有记录。</p>
+</header>
+
+<main class="container">
+  <section>
+    <div class="archive-list">
+      {% for post in site.posts %}
+        {% assign current_year = post.date | date: "%Y" %}
+        {% if current_year != year %}
+          {% assign year = current_year %}
+          <h2 class="archive-year">{{ year }}</h2>
+        {% endif %}
+        <a class="post-card fade-up" href="{{ post.url | relative_url }}">
+          <time class="post-date">{{ post.date | date: "%m.%d" }}</time>
+          <h3>{{ post.title }}</h3>
+        </a>
+      {% endfor %}
+    </div>
+  </section>
+</main>

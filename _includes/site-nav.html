@@ -1,0 +1,18 @@
+<nav class="site-nav" aria-label="主导航">
+  <div class="nav-inner">
+    <a href="{{ '/' | relative_url }}" class="logo">{{ site.title }}<span>.</span></a>
+    <button class="nav-toggle" type="button" aria-label="打开导航" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="{{ '/' | relative_url }}" class="{% if page.url == '/' %}active{% endif %}">首页</a></li>
+      <li><a href="{{ '/about/' | relative_url }}" class="{% if page.url == '/about/' %}active{% endif %}">关于我</a></li>
+      <li><a href="{{ '/resume/' | relative_url }}" class="{% if page.url == '/resume/' %}active{% endif %}">简历</a></li>
+      <li><a href="{{ '/blog/' | relative_url }}" class="{% if page.url == '/blog/' or page.layout == 'post' %}active{% endif %}">博客</a></li>
+      <li><a href="{{ '/ai/' | relative_url }}" class="{% if page.url == '/ai/' %}active{% endif %}">AI 路线</a></li>
+      <li><a href="{{ '/#contact' | relative_url }}">联系</a></li>
+    </ul>
+  </div>
+</nav>
