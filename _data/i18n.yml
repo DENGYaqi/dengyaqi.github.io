@@ -154,6 +154,7 @@ zh:
     experience_title: 工作经历
     resume_tag: 简历
     resume_title: 完整简历
+    download_pdf: 下载 PDF
     education_tag: 教育
     education_title: 教育背景
     education:
@@ -173,9 +174,8 @@ zh:
         school: 深圳职业技术大学
         date: 2010.09 - 2013.06
         desc: 全日制专科。
-    image_alt_1: 邓雅琪简历第一页
-    image_alt_2: 邓雅琪简历第二页
-    image_alt_3: 邓雅琪简历第三页
+    image_alt_prefix: 邓雅琪简历第
+    image_alt_suffix: 页
   blog:
     title: 博客
     description: 技术笔记、工程记录和 AI 学习路线。
@@ -367,6 +367,7 @@ en:
     experience_title: Work Experience
     resume_tag: Resume
     resume_title: Full Resume
+    download_pdf: Download PDF
     education_tag: Education
     education_title: Academic Background
     education:
@@ -386,9 +387,8 @@ en:
         school: Shenzhen Polytechnic University
         date: 2010.09 - 2013.06
         desc: Full-time associate degree.
-    image_alt_1: Deng Yaqi resume page one
-    image_alt_2: Deng Yaqi resume page two
-    image_alt_3: Deng Yaqi resume page three
+    image_alt_prefix: "Deng Yaqi resume page "
+    image_alt_suffix: ""
   blog:
     title: Blog
     description: Engineering notes, AI learning paths, and field records.
@@ -580,6 +580,7 @@ ja:
     experience_title: 職務経験
     resume_tag: 職務経歴
     resume_title: 職務経歴書
+    download_pdf: PDF をダウンロード
     education_tag: 教育
     education_title: 学歴
     education:
@@ -599,9 +600,8 @@ ja:
         school: 深圳職業技術大学
         date: 2010.09 - 2013.06
         desc: 全日制専科。
-    image_alt_1: 鄧雅琪の職務経歴書 1 ページ目
-    image_alt_2: 鄧雅琪の職務経歴書 2 ページ目
-    image_alt_3: 鄧雅琪の職務経歴書 3 ページ目
+    image_alt_prefix: "鄧雅琪の職務経歴書 "
+    image_alt_suffix: " ページ目"
   blog:
     title: ブログ
     description: 技術メモ、AI 学習ロードマップ、実務の記録。
@@ -793,9 +793,9 @@ fr:
     experience_title: Expérience professionnelle
     resume_tag: CV
     resume_title: CV complet
-    image_alt_1: CV de Deng Yaqi page un
-    image_alt_2: CV de Deng Yaqi page deux
-    image_alt_3: CV de Deng Yaqi page trois
+    download_pdf: Télécharger le PDF
+    image_alt_prefix: "CV de Deng Yaqi page "
+    image_alt_suffix: ""
     education_tag: Formation
     education_title: Formation
     education:

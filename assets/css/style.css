@@ -1018,6 +1018,11 @@ section {
   gap: 1rem;
 }
 
+.resume-actions {
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
 .resume-images img {
   width: 100%;
   border: 1px solid rgba(0, 0, 0, 0.08);

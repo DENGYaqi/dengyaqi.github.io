@@ -84,10 +84,14 @@ layout: default
         <div class="section-tag">{{ t.resume.resume_tag }}</div>
         <h2 class="section-title">{{ t.resume.resume_title }}</h2>
       </div>
+      <div class="resume-actions fade-up">
+        <a class="btn btn-primary" href="{{ '/assets/files/resume/deng-yaqi-ai-rd-resume.pdf' | relative_url }}" target="_blank" rel="noopener">{{ t.resume.download_pdf }}</a>
+      </div>
       <div class="resume-images fade-up">
-        <img src="{{ '/assets/img/about/my_cv-1.png' | relative_url }}" alt="{{ t.resume.image_alt_1 }}">
-        <img src="{{ '/assets/img/about/my_cv-2.png' | relative_url }}" alt="{{ t.resume.image_alt_2 }}">
-        <img src="{{ '/assets/img/about/my_cv-3.png' | relative_url }}" alt="{{ t.resume.image_alt_3 }}">
+        {% for page_num in (1..5) %}
+          {% capture resume_image %}/assets/img/about/resume-{{ page_num }}.png{% endcapture %}
+          <img src="{{ resume_image | relative_url }}" alt="{{ t.resume.image_alt_prefix }}{{ page_num }}{{ t.resume.image_alt_suffix }}">
+        {% endfor %}
       </div>
     </div>
   </section>
