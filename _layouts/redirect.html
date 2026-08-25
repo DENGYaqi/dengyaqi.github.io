@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% assign target = page.redirect_to | default: '/zh/' %}
+    <link rel="canonical" href="{{ target | absolute_url }}">
+    <meta http-equiv="refresh" content="0; url={{ target | relative_url }}">
+    <title>Redirecting | {{ site.title }}</title>
+  </head>
+  <body>
+    <p><a href="{{ target | relative_url }}">Redirecting...</a></p>
+  </body>
+</html>

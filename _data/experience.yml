@@ -1,51 +1,187 @@
-- title: "AI 研发主管"
-  company: "杭州格耐马网络科技有限公司 / 杭州，中国"
-  date: "2026.04 - 至今"
-  summary: "负责 AI 研发方向规划、技术路线选型与项目交付推进，推动企业级 AI 业务平台、Agent/RAG/Workflow、数据治理和业务副驾驶从 0 到 1 落地。"
+- key: ai_rd_lead
+  title:
+    zh: AI 研发主管
+    en: AI R&D Lead
+    ja: AI 研究開発リード
+    fr: Responsable R&D IA
+  company:
+    zh: 杭州格耐马网络科技有限公司 / 杭州，中国
+    en: Hangzhou Genaima Network Technology Co., Ltd. / Hangzhou, China
+    ja: 杭州格耐马ネットワークテクノロジー / 中国・杭州
+    fr: Hangzhou Genaima Network Technology Co., Ltd. / Hangzhou, Chine
+  date:
+    zh: 2026.04 - 至今
+    en: 2026.04 - Present
+    ja: 2026.04 - 現在
+    fr: 2026.04 - présent
+  summary:
+    zh: 负责 AI 研发方向规划、技术路线选型与项目交付推进，推动企业级 AI 业务平台、Agent/RAG/Workflow、数据治理和业务副驾驶从 0 到 1 落地。
+    en: Leads AI R&D planning, technical direction, and project delivery, bringing enterprise AI platforms, Agent/RAG workflows, data governance, and business copilots from zero to one.
+    ja: AI 研究開発の方向設計、技術選定、プロジェクト推進を担当し、企業向け AI プラットフォーム、Agent/RAG/Workflow、データガバナンス、業務 Copilot を 0 から 1 へ立ち上げ。
+    fr: Pilote la planification R&D IA, les choix techniques et la livraison, avec des plateformes IA d'entreprise, workflows Agent/RAG, gouvernance des données et copilotes métier de zéro à un.
   bullets:
-    - "对接业务、产品、前后端与运维资源，推进需求拆解、研发排期、上线验收、生产问题追踪和迭代治理。"
-    - "建设企业级 AI 平台、RAG 知识库、MCP 工具调用、Skills 能力包、组织权限、审计追踪和外部系统集成。"
-  tags: ["AI Platform", "Agent", "RAG", "Workflow"]
+    zh:
+      - 对接业务、产品、前后端与运维资源，推进需求拆解、研发排期、上线验收、生产问题追踪和迭代治理。
+      - 建设企业级 AI 平台、RAG 知识库、MCP 工具调用、Skills 能力包、组织权限、审计追踪和外部系统集成。
+    en:
+      - Coordinates business, product, frontend, backend, and operations resources across requirements, delivery planning, release validation, production issue tracking, and iteration.
+      - Builds enterprise AI platforms, RAG knowledge bases, MCP tool calling, Skills packages, organization permissions, audit trails, and external integrations.
+    ja:
+      - 業務、プロダクト、フロントエンド、バックエンド、運用と連携し、要件分解、開発計画、リリース検証、本番問題追跡、改善を推進。
+      - 企業向け AI プラットフォーム、RAG 知識ベース、MCP ツール呼び出し、Skills パッケージ、権限、監査ログ、外部連携を構築。
+    fr:
+      - Coordonne métier, produit, frontend, backend et opérations pour cadrage, planning, validation de mise en ligne, suivi production et itérations.
+      - Construit plateformes IA d'entreprise, bases RAG, appels d'outils MCP, packages Skills, permissions, audit trail et intégrations externes.
+  tags: [AI Platform, Agent, RAG, Workflow]
 
-- title: "资深软件开发工程师"
-  company: "软通动力技术服务上海有限公司 / 上海，中国"
-  date: "2025.05 - 2026.04"
-  summary: "负责 RAG 系统、向量知识库、智能问答引擎与 AI 自动编码平台研发，推动 AI 工具从技术验证走向可交付应用。"
+- key: senior_software_engineer_isoftstone
+  title:
+    zh: 资深软件开发工程师
+    en: Senior Software Development Engineer
+    ja: シニアソフトウェア開発エンジニア
+    fr: Ingénieure logicielle senior
+  company:
+    zh: 软通动力技术服务上海有限公司 / 上海，中国
+    en: iSoftStone Technology Service Shanghai Co., Ltd. / Shanghai, China
+    ja: iSoftStone Technology Service Shanghai / 中国・上海
+    fr: iSoftStone Technology Service Shanghai Co., Ltd. / Shanghai, Chine
+  date: 2025.05 - 2026.04
+  summary:
+    zh: 负责 RAG 系统、向量知识库、智能问答引擎与 AI 自动编码平台研发，推动 AI 工具从技术验证走向可交付应用。
+    en: Developed RAG systems, vector knowledge bases, intelligent Q&A engines, and AI coding platforms, moving AI tools from proofs of concept toward deliverable applications.
+    ja: RAG システム、ベクトル知識ベース、智能問答エンジン、AI 自動コーディング基盤を開発し、AI ツールを検証段階から納品可能なアプリケーションへ推進。
+    fr: Développement de systèmes RAG, bases vectorielles, moteurs QA intelligents et plateformes de codage IA, pour faire passer les outils IA du POC à l'application livrable.
   bullets:
-    - "主导多 Agent 协同、LangGraph 工作流、流式响应和模型服务接入能力建设。"
-    - "围绕文档解析、PgVector、Redis、Django/FastAPI 和多模型 LLM 搭建企业级知识问答链路。"
-  tags: ["LangGraph", "PgVector", "LLM", "FastAPI"]
+    zh:
+      - 主导多 Agent 协同、LangGraph 工作流、流式响应和模型服务接入能力建设。
+      - 围绕文档解析、PgVector、Redis、Django/FastAPI 和多模型 LLM 搭建企业级知识问答链路。
+    en:
+      - Led multi-agent collaboration, LangGraph workflows, streaming responses, and model service integration.
+      - Built enterprise knowledge Q&A pipelines around document parsing, PgVector, Redis, Django/FastAPI, and multi-model LLMs.
+    ja:
+      - マルチ Agent 協調、LangGraph ワークフロー、ストリーミング応答、モデルサービス連携を主導。
+      - 文書解析、PgVector、Redis、Django/FastAPI、複数 LLM を組み合わせた企業向け知識 QA パイプラインを構築。
+    fr:
+      - Pilotage de la collaboration multi-agent, workflows LangGraph, réponses en streaming et intégration de services de modèles.
+      - Construction de chaînes QA d'entreprise avec parsing documentaire, PgVector, Redis, Django/FastAPI et plusieurs LLM.
+  tags: [LangGraph, PgVector, LLM, FastAPI]
 
-- title: "高级 Java 开发工程师"
-  company: "北京汉克时代科技有限公司 / 蚂蚁网商风控"
-  date: "2023.06 - 2024.10"
-  summary: "驻场蚂蚁集团网商风控项目组，负责一站式策略研发、行业风险管理及风险策略等风控中台后端开发。"
+- key: senior_java_engineer_risk
+  title:
+    zh: 高级 Java 开发工程师
+    en: Senior Java Developer
+    ja: シニア Java 開発エンジニア
+    fr: Développeuse Java senior
+  company:
+    zh: 北京汉克时代科技有限公司 / 蚂蚁网商风控
+    en: Beijing Hanke Times Technology Co., Ltd. / Ant Group MYbank Risk Control
+    ja: 北京漢克時代科技 / Ant Group MYbank リスク管理
+    fr: Beijing Hanke Times Technology Co., Ltd. / Risque MYbank Ant Group
+  date: 2023.06 - 2024.10
+  summary:
+    zh: 驻场蚂蚁集团网商风控项目组，负责一站式策略研发、行业风险管理及风险策略等风控中台后端开发。
+    en: Worked onsite with Ant Group's MYbank risk-control team, developing backend capabilities for strategy R&D, industry risk management, and risk strategy platforms.
+    ja: Ant Group MYbank リスク管理チームに常駐し、戦略開発、業界リスク管理、リスク戦略基盤のバックエンド開発を担当。
+    fr: Mission sur site dans l'équipe risque MYbank d'Ant Group, avec développement backend pour la R&D stratégie, la gestion des risques sectoriels et les plateformes de stratégie risque.
   bullets:
-    - "参与系统架构设计、需求拆解、后端开发和团队技术协作，提升风控中台整体效率。"
-    - "覆盖策略研发、低代码策略引擎、分布式风控搜索和高并发业务系统建设。"
-  tags: ["Java", "SofaBoot", "Elasticsearch", "Risk"]
+    zh:
+      - 参与系统架构设计、需求拆解、后端开发和团队技术协作，提升风控中台整体效率。
+      - 覆盖策略研发、低代码策略引擎、分布式风控搜索和高并发业务系统建设。
+    en:
+      - Contributed to architecture, requirement breakdown, backend development, and technical collaboration to improve risk-control platform efficiency.
+      - Worked on strategy development, low-code strategy engines, distributed risk search, and high-concurrency business systems.
+    ja:
+      - アーキテクチャ設計、要件分解、バックエンド開発、技術連携を通じてリスク管理基盤の効率を改善。
+      - 戦略開発、ローコード戦略エンジン、分散リスク検索、高並行業務システムを担当。
+    fr:
+      - Contribution à l'architecture, découpage des besoins, développement backend et collaboration technique pour améliorer l'efficacité de la plateforme risque.
+      - Travail sur la R&D stratégie, moteurs low-code, recherche distribuée de risque et systèmes métier à forte concurrence.
+  tags: [Java, SofaBoot, Elasticsearch, Risk]
 
-- title: "安卓软件开发工程师"
-  company: "浙江清华柔性电子技术研究院 / 杭州，中国"
-  date: "2021.11 - 2022.12"
-  summary: "负责医疗方向安卓软件的全栈开发，覆盖软件设计、编码调试、设备交互、云端通信和发布后支持。"
+- key: android_engineer
+  title:
+    zh: 安卓软件开发工程师
+    en: Android Software Engineer
+    ja: Android ソフトウェアエンジニア
+    fr: Ingénieure Android
+  company:
+    zh: 浙江清华柔性电子技术研究院 / 杭州，中国
+    en: Zhejiang Tsinghua Flexible Electronics Technology Institute / Hangzhou, China
+    ja: 浙江清華柔性電子技術研究院 / 中国・杭州
+    fr: Institut Zhejiang Tsinghua de technologie électronique flexible / Hangzhou, Chine
+  date: 2021.11 - 2022.12
+  summary:
+    zh: 负责医疗方向安卓软件的全栈开发，覆盖软件设计、编码调试、设备交互、云端通信和发布后支持。
+    en: Built medical Android software end to end, covering design, coding, debugging, device interaction, cloud communication, and post-release support.
+    ja: 医療向け Android ソフトウェアを設計、実装、デバッグ、デバイス連携、クラウド通信、リリース後サポートまで一貫して担当。
+    fr: Développement complet de logiciels Android médicaux, de la conception au code, debug, interaction avec appareils, communication cloud et support post-release.
   bullets:
-    - "基于 Android 原生、Jetpack、MVVM、蓝牙协议和 Retrofit/OkHttp 构建实时设备数据链路。"
-    - "持续优化不同设备和系统版本兼容性、后台服务稳定性和内存问题。"
-  tags: ["Android", "Kotlin", "Bluetooth", "IoT"]
+    zh:
+      - 基于 Android 原生、Jetpack、MVVM、蓝牙协议和 Retrofit/OkHttp 构建实时设备数据链路。
+      - 持续优化不同设备和系统版本兼容性、后台服务稳定性和内存问题。
+    en:
+      - Built realtime device data flows with native Android, Jetpack, MVVM, Bluetooth protocols, and Retrofit/OkHttp.
+      - Improved device and OS compatibility, background service stability, and memory behavior.
+    ja:
+      - Android ネイティブ、Jetpack、MVVM、Bluetooth プロトコル、Retrofit/OkHttp でリアルタイムデータ連携を構築。
+      - 端末・OS 互換性、バックグラウンドサービスの安定性、メモリ問題を継続改善。
+    fr:
+      - Construction de flux de données temps réel avec Android natif, Jetpack, MVVM, Bluetooth et Retrofit/OkHttp.
+      - Amélioration de la compatibilité appareils/OS, stabilité des services en arrière-plan et mémoire.
+  tags: [Android, Kotlin, Bluetooth, IoT]
 
-- title: "自由职业者"
-  company: "巴黎，法国"
-  date: "2019.10 - 2021.08"
-  summary: "负责 NLP 算法开发、Java Web 应用设计及安卓软件开发，通过项目制方式交付不同业务场景的技术解决方案。"
+- key: freelancer_paris
+  title:
+    zh: 自由职业者
+    en: Freelancer
+    ja: フリーランス
+    fr: Freelance
+  company:
+    zh: 巴黎，法国
+    en: Paris, France
+    ja: フランス・パリ
+    fr: Paris, France
+  date: 2019.10 - 2021.08
+  summary:
+    zh: 负责 NLP 算法开发、Java Web 应用设计及安卓软件开发，通过项目制方式交付不同业务场景的技术解决方案。
+    en: Delivered project-based technical solutions across NLP algorithms, Java web applications, and Android software.
+    ja: NLP アルゴリズム、Java Web アプリ、Android ソフトウェアなど、プロジェクト単位で技術ソリューションを提供。
+    fr: Livraison de solutions techniques en mode projet autour d'algorithmes NLP, d'applications Java Web et de logiciels Android.
   bullets:
-    - "覆盖自然语言处理、Web 应用、移动端开发和数据处理相关项目。"
-  tags: ["NLP", "Java Web", "Android"]
+    zh:
+      - 覆盖自然语言处理、Web 应用、移动端开发和数据处理相关项目。
+    en:
+      - Covered natural language processing, web applications, mobile development, and data-processing projects.
+    ja:
+      - 自然言語処理、Web アプリ、モバイル開発、データ処理関連プロジェクトを担当。
+    fr:
+      - Projets de traitement automatique du langage, applications web, développement mobile et traitement de données.
+  tags: [NLP, Java Web, Android]
 
-- title: "自然语言处理工程师"
-  company: "Yseop / 巴黎，法国"
-  date: "2019.04 - 2019.09"
-  summary: "负责知识图谱项目研究，包括知识本体融合算法研发与验证，并完成 Lexicon 网站的全栈开发。"
+- key: nlp_engineer_yseop
+  title:
+    zh: 自然语言处理工程师
+    en: Natural Language Processing Engineer
+    ja: 自然言語処理エンジニア
+    fr: Ingénieure en traitement automatique du langage
+  company:
+    zh: Yseop / 巴黎，法国
+    en: Yseop / Paris, France
+    ja: Yseop / フランス・パリ
+    fr: Yseop / Paris, France
+  date: 2019.04 - 2019.09
+  summary:
+    zh: 负责知识图谱项目研究，包括知识本体融合算法研发与验证，并完成 Lexicon 网站的全栈开发。
+    en: Researched knowledge graph projects, including ontology-fusion algorithm development and validation, and completed full-stack development for the Lexicon website.
+    ja: 知識グラフプロジェクトを研究し、本体融合アルゴリズムの開発・検証と Lexicon サイトのフルスタック開発を担当。
+    fr: Recherche sur des projets de graphes de connaissances, développement et validation d'algorithmes de fusion d'ontologies, et développement full-stack du site Lexicon.
   bullets:
-    - "参与知识图谱、本体融合、检索准确度提升和全栈应用开发。"
-  tags: ["NLP", "Knowledge Graph", "Ontology"]
+    zh:
+      - 参与知识图谱、本体融合、检索准确度提升和全栈应用开发。
+    en:
+      - Worked on knowledge graphs, ontology fusion, retrieval accuracy improvement, and full-stack application development.
+    ja:
+      - 知識グラフ、本体融合、検索精度改善、フルスタックアプリ開発に参加。
+    fr:
+      - Travail sur graphes de connaissances, fusion d'ontologies, amélioration de la précision de recherche et développement full-stack.
+  tags: [NLP, Knowledge Graph, Ontology]

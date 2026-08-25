@@ -1,0 +1,7 @@
+{% assign target = include.target | default: page.redirect_to | default: '/zh/' %}
+<main class="content-wrapper">
+  <article class="content-section">
+    <p><a href="{{ target | relative_url }}">Redirecting...</a></p>
+    <meta http-equiv="refresh" content="0; url={{ target | relative_url }}">
+  </article>
+</main>

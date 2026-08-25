@@ -1,4 +1,6 @@
 <head>
+  {% assign lang = page.lang | default: 'zh' %}
+  {% assign t = site.data.i18n[lang] %}
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#e85d04">
@@ -9,13 +11,22 @@
     {% unless page.layout == 'home' %}
       {{ page.nav_title | default: page.title | default: site.title }} |
     {% endunless %}
-    {{ site.title }}
+    {{ t.site.suffix | default: site.title }}
   </title>
 
   <link rel="icon" href="{{ '/assets/img/favicons/favicon.ico' | relative_url }}">
   <link rel="alternate" type="application/rss+xml" title="{{ site.title }} RSS" href="{{ '/feed.xml' | absolute_url }}">
+  {% if page.lang_urls %}
+    {% for pair in page.lang_urls %}
+      {% assign alt_lang = pair[0] %}
+      {% assign alt_url = pair[1] %}
+      {% assign alt_t = site.data.i18n[alt_lang] %}
+      <link rel="alternate" hreflang="{{ alt_t.html_lang | default: alt_lang }}" href="{{ alt_url | absolute_url }}">
+    {% endfor %}
+    <link rel="alternate" hreflang="x-default" href="{{ page.lang_urls.zh | absolute_url }}">
+  {% endif %}
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="{{ '/assets/css/style.css?v=rajath-frame-20260826' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/css/style.css?v=i18n-20260826' | relative_url }}">
 </head>

@@ -2,20 +2,23 @@
 layout: default
 ---
 
+{% assign lang = page.lang | default: 'zh' %}
+{% assign t = site.data.i18n[lang] %}
+
 <header class="resume-header">
-  <h1>邓雅琪</h1>
-  <p>AI 工程化 / RAG / 知识图谱 / Java 后端</p>
+  <h1>{{ t.site.title }}</h1>
+  <p>{{ t.resume.subtitle }}</p>
 </header>
 
 <main>
   <section class="summary-section">
     <div class="container">
       <div class="section-header fade-up">
-        <div class="section-tag">Summary</div>
-        <h2 class="section-title">About Me</h2>
+        <div class="section-tag">{{ t.resume.summary_tag }}</div>
+        <h2 class="section-title">{{ t.resume.summary_title }}</h2>
       </div>
       <div class="summary-card fade-up">
-        法国索邦大学语言与计算机硕士，主修 NLP。职业路径从 NLP、知识图谱与本体融合开始，经过 Android 与 Java 后端工程、风控中台和分布式系统建设，现在负责 AI 研发规划、企业级 AI 平台、RAG、Agent Workflow、数据治理和业务系统落地。
+        {{ t.resume.summary }}
       </div>
     </div>
   </section>
@@ -23,8 +26,8 @@ layout: default
   <section class="experience-section">
     <div class="container">
       <div class="section-header fade-up">
-        <div class="section-tag">Experience</div>
-        <h2 class="section-title">Career Journey</h2>
+        <div class="section-tag">{{ t.resume.experience_tag }}</div>
+        <h2 class="section-title">{{ t.resume.experience_title }}</h2>
       </div>
       <div class="timeline">
         {% for item in site.data.experience %}
@@ -32,14 +35,15 @@ layout: default
             <div class="timeline-card">
               <div class="timeline-header">
                 <div>
-                  <h3 class="timeline-title">{{ item.title }}</h3>
-                  <p class="timeline-company">{{ item.company }}</p>
+                  <h3 class="timeline-title">{{ item.title[lang] | default: item.title.zh }}</h3>
+                  <p class="timeline-company">{{ item.company[lang] | default: item.company.zh }}</p>
                 </div>
-                <span class="timeline-date">{{ item.date }}</span>
+                <span class="timeline-date">{{ item.date[lang] | default: item.date }}</span>
               </div>
-              <p class="timeline-summary">{{ item.summary }}</p>
+              <p class="timeline-summary">{{ item.summary[lang] | default: item.summary.zh }}</p>
               <ul class="timeline-list">
-                {% for bullet in item.bullets %}
+                {% assign bullets = item.bullets[lang] | default: item.bullets.zh %}
+                {% for bullet in bullets %}
                   <li>{{ bullet }}</li>
                 {% endfor %}
               </ul>
@@ -55,16 +59,35 @@ layout: default
     </div>
   </section>
 
+  <section class="edu-section">
+    <div class="container">
+      <div class="section-header fade-up">
+        <div class="section-tag">{{ t.resume.education_tag }}</div>
+        <h2 class="section-title">{{ t.resume.education_title }}</h2>
+      </div>
+      <div class="cert-grid">
+        {% for item in t.resume.education %}
+          <article class="cert-card fade-up">
+            <span class="exp-tag">{{ item.date }}</span>
+            <h3>{{ item.degree }}</h3>
+            <p><strong>{{ item.school }}</strong></p>
+            <p>{{ item.desc }}</p>
+          </article>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
   <section class="skills-section">
     <div class="container">
       <div class="section-header fade-up">
-        <div class="section-tag">Resume</div>
-        <h2 class="section-title">Full Resume</h2>
+        <div class="section-tag">{{ t.resume.resume_tag }}</div>
+        <h2 class="section-title">{{ t.resume.resume_title }}</h2>
       </div>
       <div class="resume-images fade-up">
-        <img src="{{ '/assets/img/about/my_cv-1.png' | relative_url }}" alt="邓雅琪简历第一页">
-        <img src="{{ '/assets/img/about/my_cv-2.png' | relative_url }}" alt="邓雅琪简历第二页">
-        <img src="{{ '/assets/img/about/my_cv-3.png' | relative_url }}" alt="邓雅琪简历第三页">
+        <img src="{{ '/assets/img/about/my_cv-1.png' | relative_url }}" alt="{{ t.resume.image_alt_1 }}">
+        <img src="{{ '/assets/img/about/my_cv-2.png' | relative_url }}" alt="{{ t.resume.image_alt_2 }}">
+        <img src="{{ '/assets/img/about/my_cv-3.png' | relative_url }}" alt="{{ t.resume.image_alt_3 }}">
       </div>
     </div>
   </section>

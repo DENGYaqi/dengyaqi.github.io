@@ -3,6 +3,9 @@ layout: default
 body_class: ai-page
 ---
 
+{% assign lang = page.lang | default: 'zh' %}
+{% assign t = site.data.i18n[lang] %}
+
 <header class="page-header dark-grid-header">
   <div class="shape shape-1"></div>
   <div class="shape shape-4"></div>
@@ -13,9 +16,9 @@ body_class: ai-page
     <div class="grid-line"></div>
   </div>
   <div class="container">
-    <div class="section-tag">AI Roadmap</div>
-    <h1>AI 路线</h1>
-    <p>{{ page.description }}</p>
+    <div class="section-tag">{{ t.ai.header_tag }}</div>
+    <h1>{{ t.ai.title }}</h1>
+    <p>{{ t.meta.ai_description }}</p>
   </div>
 </header>
 
@@ -23,13 +26,13 @@ body_class: ai-page
   <section class="skills-section">
     <div class="container">
       <div class="section-header fade-up">
-        <div class="section-tag">Path</div>
-        <h2 class="section-title">从工具到系统</h2>
+        <div class="section-tag">{{ t.ai.path_tag }}</div>
+        <h2 class="section-title">{{ t.ai.path_title }}</h2>
       </div>
       <div class="path-grid">
-        <a class="skill-card path-card fade-up" href="#ai-guide"><span>01</span><h3>AI 使用入门</h3><p>模型、token、Codex、本机配置、CC-Switch、Skills 和常用工具。</p></a>
-        <a class="skill-card path-card fade-up" href="#ai-core"><span>02</span><h3>AI 核心能力</h3><p>RAG、文档解析、OCR、知识图谱、检索、chunk 和质量验证。</p></a>
-        <a class="skill-card path-card fade-up" href="#ai-engineering"><span>03</span><h3>AI 工程化</h3><p>Agent 工作流、模型服务、评测体系、可观测性、上下文工程和稳定性。</p></a>
+        {% for card in t.ai.cards %}
+          <a class="skill-card path-card fade-up" href="#{{ card.id }}"><span>{{ card.no }}</span><h3>{{ card.title }}</h3><p>{{ card.desc }}</p></a>
+        {% endfor %}
       </div>
     </div>
   </section>
@@ -37,38 +40,38 @@ body_class: ai-page
   <section class="experience-section">
     <div class="container">
       <div class="section-header fade-up">
-        <div class="section-tag">Reading</div>
-        <h2 class="section-title">Reading Path</h2>
+        <div class="section-tag">{{ t.ai.reading_tag }}</div>
+        <h2 class="section-title">{{ t.ai.reading_title }}</h2>
       </div>
       <div class="timeline compact-timeline">
         <article id="ai-guide" class="timeline-item fade-up">
           <div class="timeline-card">
-            <div class="timeline-header"><div><h3 class="timeline-title">AI 使用入门</h3><p class="timeline-company">适合会写代码，但还没有系统理解 AI 工具链的人。</p></div><span class="timeline-date">01</span></div>
+            <div class="timeline-header"><div><h3 class="timeline-title">{{ t.ai.cards[0].title }}</h3><p class="timeline-company">{{ t.ai.guide_desc }}</p></div><span class="timeline-date">01</span></div>
             <ul class="timeline-list">
-              <li><a href="{{ '/posts/codex-install-windows-macos-linux-wsl/' | relative_url }}">Codex 入门：Windows、macOS、Linux 和 WSL2 安装手册</a></li>
-              <li><a href="{{ '/posts/skills-sh-install-guide/' | relative_url }}">Skills.sh 入门：如何给 Codex 下载和安装 Skills</a></li>
-              <li><a href="{{ '/posts/cc-switch-install-guide/' | relative_url }}">CC Switch 入门：Windows、macOS 和 Linux 安装手册</a></li>
-              <li><a href="{{ '/posts/knowledge-record-and-open-source-plan/' | relative_url }}">博客重构路线：从会用 AI 到可靠系统</a></li>
+              {% assign guide_slugs = "2026-08-03-codex-install-windows-macos-linux-wsl,2026-08-03-skills-sh-install-guide,2026-08-03-cc-switch-install-guide,2026-07-27-knowledge-record-and-open-source-plan" | split: "," %}
+              {% for key in guide_slugs %}
+                {% assign post = site.posts | where_exp: "item", "item.path contains key" | first %}
+                {% if post %}<li><a href="{{ post | i18n_post_url: lang | relative_url }}">{{ post | i18n_post_title: lang, site.data.post_translations }}</a></li>{% endif %}
+              {% endfor %}
             </ul>
           </div>
         </article>
         <article id="ai-core" class="timeline-item fade-up">
           <div class="timeline-card">
-            <div class="timeline-header"><div><h3 class="timeline-title">AI 核心能力</h3><p class="timeline-company">适合希望理解 RAG、文档解析、知识图谱和检索质量的人。</p></div><span class="timeline-date">02</span></div>
+            <div class="timeline-header"><div><h3 class="timeline-title">{{ t.ai.cards[1].title }}</h3><p class="timeline-company">{{ t.ai.core_desc }}</p></div><span class="timeline-date">02</span></div>
             <ul class="timeline-list">
-              <li><a href="{{ '/posts/rag-document-parsing-quality/' | relative_url }}">RAG 文档解析链路：解析质量如何决定检索质量</a></li>
+              {% assign core_post = site.posts | where_exp: "item", "item.path contains '2026-07-27-rag-document-parsing-quality'" | first %}
+              {% if core_post %}<li><a href="{{ core_post | i18n_post_url: lang | relative_url }}">{{ core_post | i18n_post_title: lang, site.data.post_translations }}</a></li>{% endif %}
             </ul>
           </div>
         </article>
         <article id="ai-engineering" class="timeline-item fade-up">
           <div class="timeline-card">
-            <div class="timeline-header"><div><h3 class="timeline-title">AI 工程化</h3><p class="timeline-company">适合希望把 AI 能力做成稳定产品或内部系统的人。</p></div><span class="timeline-date">03</span></div>
+            <div class="timeline-header"><div><h3 class="timeline-title">{{ t.ai.cards[2].title }}</h3><p class="timeline-company">{{ t.ai.engineering_desc }}</p></div><span class="timeline-date">03</span></div>
             <ol class="timeline-list number-list">
-              <li>AI 应用为什么需要评测</li>
-              <li>Agent 工作流不是堆工具调用</li>
-              <li>Langfuse 这类 trace 工具解决什么问题</li>
-              <li>上下文工程：为什么不是把资料都塞进去</li>
-              <li>模型服务的成本、延迟和稳定性取舍</li>
+              {% for item in t.ai.engineering_items %}
+                <li>{{ item }}</li>
+              {% endfor %}
             </ol>
           </div>
         </article>
@@ -79,16 +82,16 @@ body_class: ai-page
   <section class="skills-section">
     <div class="container">
       <div class="section-header fade-up">
-        <div class="section-tag">Published</div>
-        <h2 class="section-title">已发布 AI 文章</h2>
+        <div class="section-tag">{{ t.ai.published_tag }}</div>
+        <h2 class="section-title">{{ t.ai.published_title }}</h2>
       </div>
       <div class="post-grid">
         {% for post in site.posts %}
           {% if post.categories contains 'AI' %}
-            <a class="post-card fade-up" href="{{ post.url | relative_url }}">
+            <a class="post-card fade-up" href="{{ post | i18n_post_url: lang | relative_url }}">
               <time class="post-date">{{ post.date | date: "%Y.%m.%d" }}</time>
-              <h3>{{ post.title }}</h3>
-              <p>{{ post.description | default: post.excerpt | strip_html | strip_newlines | truncate: 120 }}</p>
+              <h3>{{ post | i18n_post_title: lang, site.data.post_translations }}</h3>
+              <p>{{ post | i18n_post_description: lang, site.data.post_translations | strip_html | strip_newlines | truncate: 120 }}</p>
             </a>
           {% endif %}
         {% endfor %}

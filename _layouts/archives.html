@@ -3,9 +3,12 @@ layout: default
 body_class: dark-page
 ---
 
+{% assign lang = page.lang | default: 'zh' %}
+{% assign t = site.data.i18n[lang] %}
+
 <header class="page-header">
-  <h1>归档</h1>
-  <p>按时间回看所有记录。</p>
+  <h1>{{ t.meta.archives_title }}</h1>
+  <p>{{ t.blog.description }}</p>
 </header>
 
 <main class="container">
@@ -17,9 +20,9 @@ body_class: dark-page
           {% assign year = current_year %}
           <h2 class="archive-year">{{ year }}</h2>
         {% endif %}
-        <a class="post-card fade-up" href="{{ post.url | relative_url }}">
+        <a class="post-card fade-up" href="{{ post | i18n_post_url: lang | relative_url }}">
           <time class="post-date">{{ post.date | date: "%m.%d" }}</time>
-          <h3>{{ post.title }}</h3>
+          <h3>{{ post | i18n_post_title: lang, site.data.post_translations }}</h3>
         </a>
       {% endfor %}
     </div>

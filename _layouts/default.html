@@ -1,7 +1,9 @@
+{% assign lang = page.lang | default: 'zh' %}
+{% assign t = site.data.i18n[lang] %}
 <!DOCTYPE html>
-<html lang="{{ page.lang | default: site.lang | default: 'zh-CN' }}">
+<html lang="{{ page.html_lang | default: t.html_lang | default: 'zh-CN' }}">
   {% include head.html %}
-  <body class="{{ page.body_class | default: layout.body_class }}">
+  <body class="{{ page.body_class | default: layout.body_class }} lang-{{ lang }}">
     {% include site-nav.html %}
     {{ content }}
     {% include site-footer.html %}

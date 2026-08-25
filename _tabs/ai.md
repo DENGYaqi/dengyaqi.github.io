@@ -1,5 +1,6 @@
 ---
-layout: ai
+layout: redirect
+redirect_to: /zh/ai/
 order: 5
 title: ai
 nav_title: AI 路线

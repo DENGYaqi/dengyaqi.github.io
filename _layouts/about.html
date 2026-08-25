@@ -3,12 +3,15 @@ layout: default
 body_class: about-page
 ---
 
+{% assign lang = page.lang | default: 'zh' %}
+{% assign t = site.data.i18n[lang] %}
+
 <div class="world-bg"></div>
 
 <header class="about-hero">
   <div>
-    <h1>邓雅琪</h1>
-    <p>AI 研发主管 / RAG 与 Agent 工程化 / 后端系统</p>
+    <h1>{{ t.site.title }}</h1>
+    <p>{{ t.about.subtitle }}</p>
   </div>
 </header>
 

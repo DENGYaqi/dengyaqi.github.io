@@ -2,6 +2,10 @@
 layout: default
 ---
 
+{% assign lang = page.lang | default: 'zh' %}
+{% assign t = site.data.i18n[lang] %}
+{% assign lang_base = '/' | append: lang %}
+
 <section class="hero">
   <div class="shape shape-1"></div>
   <div class="shape shape-2"></div>
@@ -26,19 +30,21 @@ layout: default
 
   <div class="hero-container">
     <div class="hero-content">
-      <div class="hero-tag">AI Engineering / RAG / Knowledge Graph</div>
-      <h1>让AI能力进入<span class="highlight">生产系统</span></h1>
+      <div class="hero-tag">{{ t.home.tag }}</div>
+      <h1>
+        <span>{{ t.home.title_line_1 | default: t.home.title_prefix }}</span>
+        <span class="highlight">{{ t.home.title_line_2 | default: t.home.title_highlight }}</span>
+      </h1>
       <p>
-        我是邓雅琪。这里记录我从 NLP、知识图谱、Java 后端到 AI 工程化的学习和实践，
-        包括 RAG、文档解析、Agent、检索质量和可落地的系统设计。
+        {{ t.home.intro }}
       </p>
       <div class="btn-group">
-        <a href="{{ '/resume/' | relative_url }}" class="btn btn-primary">查看简历</a>
-        <a href="{{ '/blog/' | relative_url }}" class="btn btn-outline">阅读博客</a>
+        <a href="{{ lang_base | append: '/resume/' | relative_url }}" class="btn btn-primary">{{ t.home.primary_button }}</a>
+        <a href="{{ lang_base | append: '/blog/' | relative_url }}" class="btn btn-outline">{{ t.home.secondary_button }}</a>
       </div>
     </div>
     <div class="hero-image">
-      <img src="{{ '/assets/img/hero-high-altitude.jpg' | relative_url }}" alt="邓雅琪在中国最高海拔市纪念石旁">
+      <img src="{{ '/assets/img/hero-high-altitude.jpg' | relative_url }}" alt="{{ t.home.hero_alt }}">
     </div>
   </div>
 </section>
@@ -46,8 +52,8 @@ layout: default
 <section id="experience" class="experience-section">
   <div class="container">
     <div class="section-header fade-up">
-      <div class="section-tag">Experience</div>
-      <h2 class="section-title">Where I've Worked</h2>
+      <div class="section-tag">{{ t.home.experience_tag }}</div>
+      <h2 class="section-title">{{ t.home.experience_title }}</h2>
     </div>
     <div class="timeline compact-timeline">
       {% for item in site.data.experience limit: 4 %}
@@ -55,12 +61,12 @@ layout: default
           <div class="timeline-card">
             <div class="timeline-header">
               <div>
-                <h3 class="timeline-title">{{ item.title }}</h3>
-                <p class="timeline-company">{{ item.company }}</p>
+                <h3 class="timeline-title">{{ item.title[lang] | default: item.title.zh }}</h3>
+                <p class="timeline-company">{{ item.company[lang] | default: item.company.zh }}</p>
               </div>
-              <span class="timeline-date">{{ item.date }}</span>
+              <span class="timeline-date">{{ item.date[lang] | default: item.date }}</span>
             </div>
-            <p class="timeline-summary">{{ item.summary }}</p>
+            <p class="timeline-summary">{{ item.summary[lang] | default: item.summary.zh }}</p>
             <div class="exp-tags">
               {% for tag in item.tags limit: 4 %}
                 <span class="exp-tag">{{ tag }}</span>
@@ -71,7 +77,7 @@ layout: default
       {% endfor %}
     </div>
     <div class="contact-cta fade-up">
-      <a href="{{ '/resume/' | relative_url }}" class="btn btn-primary">View Full Resume</a>
+      <a href="{{ lang_base | append: '/resume/' | relative_url }}" class="btn btn-primary">{{ t.home.full_resume }}</a>
     </div>
   </div>
 </section>
@@ -79,14 +85,20 @@ layout: default
 <section id="skills" class="skills-section">
   <div class="container">
     <div class="section-header fade-up">
-      <div class="section-tag">Skills</div>
-      <h2 class="section-title">What I Work With</h2>
+      <div class="section-tag">{{ t.home.skills_tag }}</div>
+      <h2 class="section-title">{{ t.home.skills_title }}</h2>
     </div>
     <div class="skills-grid">
-      <article class="skill-card fade-up"><h3>AI Engineering</h3><div class="tags"><span class="tag">RAG</span><span class="tag">LangChain</span><span class="tag">LangGraph</span><span class="tag">vLLM</span><span class="tag">PgVector</span><span class="tag">OCR</span></div></article>
-      <article class="skill-card fade-up"><h3>Backend Development</h3><div class="tags"><span class="tag">Java</span><span class="tag">Python</span><span class="tag">SpringBoot</span><span class="tag">Django</span><span class="tag">FastAPI</span></div></article>
-      <article class="skill-card fade-up"><h3>Data & Search</h3><div class="tags"><span class="tag">MySQL</span><span class="tag">Redis</span><span class="tag">Elasticsearch</span><span class="tag">Knowledge Graph</span></div></article>
-      <article class="skill-card fade-up"><h3>Infrastructure</h3><div class="tags"><span class="tag">Kafka</span><span class="tag">RocketMQ</span><span class="tag">Kubernetes</span><span class="tag">GitHub Actions</span></div></article>
+      {% for skill in t.home.skills %}
+        <article class="skill-card fade-up">
+          <h3>{{ skill.title }}</h3>
+          <div class="tags">
+            {% for tag in skill.tags %}
+              <span class="tag">{{ tag }}</span>
+            {% endfor %}
+          </div>
+        </article>
+      {% endfor %}
     </div>
   </div>
 </section>
@@ -94,13 +106,21 @@ layout: default
 <section class="projects-section">
   <div class="container">
     <div class="section-header fade-up">
-      <div class="section-tag">Projects</div>
-      <h2 class="section-title">Featured Work</h2>
+      <div class="section-tag">{{ t.home.projects_tag }}</div>
+      <h2 class="section-title">{{ t.home.projects_title }}</h2>
     </div>
     <div class="projects-grid">
-      <article class="project-card fade-up"><h3>沉浸式开发 AI 自动编码系统</h3><p>基于 FastAPI、LangChain、LangGraph 和 vLLM，构建多 Agent 协同、意图路由、工作流处理和流式响应能力。</p><div class="project-tags"><span class="project-tag">FastAPI</span><span class="project-tag">LangGraph</span><span class="project-tag">vLLM</span></div></article>
-      <article class="project-card fade-up"><h3>AI 智能文档解析与知识问答系统</h3><p>基于 Django、PgVector、Redis 和多模型 LLM，建设企业级知识管理、文档解析、智能问答和内容生成平台。</p><div class="project-tags"><span class="project-tag">Django</span><span class="project-tag">PgVector</span><span class="project-tag">RAG</span></div></article>
-      <article class="project-card fade-up"><h3>后端工程与风控系统</h3><p>把缓存、消息队列、检索、权限、任务调度和可观测性放回真实业务系统里打磨。</p><div class="project-tags"><span class="project-tag">Java</span><span class="project-tag">Kafka</span><span class="project-tag">System Design</span></div></article>
+      {% for project in t.home.projects %}
+        <article class="project-card fade-up">
+          <h3>{{ project.title }}</h3>
+          <p>{{ project.desc }}</p>
+          <div class="project-tags">
+            {% for tag in project.tags %}
+              <span class="project-tag">{{ tag }}</span>
+            {% endfor %}
+          </div>
+        </article>
+      {% endfor %}
     </div>
   </div>
 </section>
@@ -108,20 +128,20 @@ layout: default
 <section class="skills-section">
   <div class="container">
     <div class="section-header fade-up">
-      <div class="section-tag">Latest</div>
-      <h2 class="section-title">Latest Posts</h2>
+      <div class="section-tag">{{ t.home.latest_tag }}</div>
+      <h2 class="section-title">{{ t.home.latest_title }}</h2>
     </div>
     <div class="post-grid">
       {% for post in site.posts limit: 6 %}
-        <a class="post-card fade-up" href="{{ post.url | relative_url }}">
+        <a class="post-card fade-up" href="{{ post | i18n_post_url: lang | relative_url }}">
           <time class="post-date" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y.%m.%d" }}</time>
-          <h3>{{ post.title }}</h3>
-          <p>{{ post.description | default: post.excerpt | strip_html | strip_newlines | truncate: 120 }}</p>
+          <h3>{{ post | i18n_post_title: lang, site.data.post_translations }}</h3>
+          <p>{{ post | i18n_post_description: lang, site.data.post_translations | strip_html | strip_newlines | truncate: 120 }}</p>
         </a>
       {% endfor %}
     </div>
     <div class="contact-cta fade-up">
-      <a href="{{ '/blog/' | relative_url }}" class="btn btn-primary">View All Posts</a>
+      <a href="{{ lang_base | append: '/blog/' | relative_url }}" class="btn btn-primary">{{ t.home.all_posts }}</a>
     </div>
   </div>
 </section>
@@ -129,8 +149,8 @@ layout: default
 <section id="contact" class="contact-section">
   <div class="container">
     <div class="section-header fade-up">
-      <div class="section-tag">Contact</div>
-      <h2 class="section-title">Let's Connect</h2>
+      <div class="section-tag">{{ t.home.contact_tag }}</div>
+      <h2 class="section-title">{{ t.home.contact_title }}</h2>
     </div>
     <div class="contact-grid">
       <a href="mailto:{{ site.social.email }}" class="contact-card fade-up"><h4>Email</h4><p>{{ site.social.email }}</p></a>

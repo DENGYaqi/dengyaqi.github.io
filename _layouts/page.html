@@ -3,6 +3,9 @@ layout: default
 body_class: standard-page
 ---
 
+{% assign lang = page.lang | default: 'zh' %}
+{% assign t = site.data.i18n[lang] %}
+
 <header class="page-header">
   <h1>{{ page.nav_title | default: page.title }}</h1>
   {% if page.description %}<p>{{ page.description }}</p>{% endif %}

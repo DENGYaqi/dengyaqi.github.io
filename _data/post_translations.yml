@@ -1,0 +1,419 @@
+2024-08-02-how-to-build-readme:
+  title:
+    zh: "跟着大佬 thmsgbrt 构建 Github 主页 - Github Actions"
+    en: "Building a GitHub Homepage with thmsgbrt - GitHub Actions"
+    ja: "thmsgbrt を参考に GitHub ホームページを作る - GitHub Actions"
+    fr: "Construire une page GitHub avec thmsgbrt - GitHub Actions"
+  description:
+    zh: "thmsgbrt 教程"
+    en: "A tutorial based on thmsgbrt's setup."
+    ja: "thmsgbrt の構成を参考にしたチュートリアル。"
+    fr: "Tutoriel basé sur la configuration de thmsgbrt."
+
+2024-08-06-how-to-build-blog:
+  title:
+    zh: "如何快速构建 Github 个人博客 - Github Pages"
+    en: "How to Quickly Build a Personal Blog with GitHub Pages"
+    ja: "GitHub Pages で個人ブログをすばやく作る方法"
+    fr: "Créer rapidement un blog personnel avec GitHub Pages"
+  description:
+    zh: "入门级快速搭建个人博客"
+    en: "A beginner-friendly guide to building a personal blog."
+    ja: "個人ブログをすばやく構築するための入門ガイド。"
+    fr: "Guide d'initiation pour créer rapidement un blog personnel."
+
+2024-08-07-cocos-learn-part-1:
+  title:
+    zh: "CocosCreator 学习第一部分 - TypeScript"
+    en: "Cocos Creator Learning Part 1 - TypeScript"
+    ja: "Cocos Creator 学習 Part 1 - TypeScript"
+    fr: "Apprendre Cocos Creator Partie 1 - TypeScript"
+  description:
+    zh: "TypeScript 语法"
+    en: "TypeScript syntax."
+    ja: "TypeScript の構文。"
+    fr: "Syntaxe TypeScript."
+
+2024-08-07-jvm:
+  title:
+    zh: "与面试官聊 20 分钟 JVM"
+    en: "Talking JVM with an Interviewer for 20 Minutes"
+    ja: "面接官と 20 分で話す JVM"
+    fr: "Parler de la JVM en entretien pendant 20 minutes"
+  description:
+    zh: "JVM 基础"
+    en: "JVM basics."
+    ja: "JVM の基礎。"
+    fr: "Bases de la JVM."
+
+2024-08-07-thread-pool:
+  title:
+    zh: "与面试官聊 20 分钟 Java 线程池"
+    en: "Talking Java Thread Pools with an Interviewer for 20 Minutes"
+    ja: "面接官と 20 分で話す Java スレッドプール"
+    fr: "Parler des pools de threads Java en entretien pendant 20 minutes"
+  description:
+    zh: "Java 线程池进阶"
+    en: "Advanced Java thread pools."
+    ja: "Java スレッドプールの応用。"
+    fr: "Notions avancées sur les pools de threads Java."
+
+2024-08-11-cocos-learn-part-2:
+  title:
+    zh: "CocosCreator 学习第二部分 - Cocos Creator"
+    en: "Cocos Creator Learning Part 2 - Cocos Creator"
+    ja: "Cocos Creator 学習 Part 2 - Cocos Creator"
+    fr: "Apprendre Cocos Creator Partie 2 - Cocos Creator"
+  description:
+    zh: "Cocos Creator 基础"
+    en: "Cocos Creator basics."
+    ja: "Cocos Creator の基礎。"
+    fr: "Bases de Cocos Creator."
+
+2024-08-16-cocos-learn-part-3:
+  title:
+    zh: "CocosCreator 学习第三部分 - Cocos Creator"
+    en: "Cocos Creator Learning Part 3 - Cocos Creator"
+    ja: "Cocos Creator 学習 Part 3 - Cocos Creator"
+    fr: "Apprendre Cocos Creator Partie 3 - Cocos Creator"
+  description:
+    zh: "Cocos Creator 进阶"
+    en: "Advanced Cocos Creator."
+    ja: "Cocos Creator の応用。"
+    fr: "Cocos Creator avancé."
+
+2024-08-19-cocos-learn-part-4:
+  title:
+    zh: "CocosCreator 学习第四部分 - Cocos Creator"
+    en: "Cocos Creator Learning Part 4 - Cocos Creator"
+    ja: "Cocos Creator 学習 Part 4 - Cocos Creator"
+    fr: "Apprendre Cocos Creator Partie 4 - Cocos Creator"
+  description:
+    zh: "Cocos Creator 的 UI 系统"
+    en: "The Cocos Creator UI system."
+    ja: "Cocos Creator の UI システム。"
+    fr: "Le système UI de Cocos Creator."
+
+2024-08-20-git-learn-part-1:
+  title:
+    zh: "20 分钟了解 Git"
+    en: "Understanding Git in 20 Minutes"
+    ja: "20 分でわかる Git"
+    fr: "Comprendre Git en 20 minutes"
+  description:
+    zh: "Git 基础"
+    en: "Git basics."
+    ja: "Git の基礎。"
+    fr: "Bases de Git."
+
+2024-08-26-devOps:
+  title:
+    zh: "20 分钟了解 DevOps"
+    en: "Understanding DevOps in 20 Minutes"
+    ja: "20 分でわかる DevOps"
+    fr: "Comprendre DevOps en 20 minutes"
+  description:
+    zh: "DevOps 基础"
+    en: "DevOps basics."
+    ja: "DevOps の基礎。"
+    fr: "Bases de DevOps."
+
+2024-08-26-git-learn-part-2:
+  title:
+    zh: "与面试官聊 20 分钟 Git"
+    en: "Talking Git with an Interviewer for 20 Minutes"
+    ja: "面接官と 20 分で話す Git"
+    fr: "Parler de Git en entretien pendant 20 minutes"
+  description:
+    zh: "Git 进阶"
+    en: "Advanced Git."
+    ja: "Git の応用。"
+    fr: "Git avancé."
+
+2024-08-28-git-config-proxy:
+  title:
+    zh: "解决 http.proxy has multiple values 问题"
+    en: "Fixing the 'http.proxy has multiple values' Issue"
+    ja: "'http.proxy has multiple values' 問題の解決"
+    fr: "Résoudre l'erreur 'http.proxy has multiple values'"
+  description:
+    zh: "Git 问题处理"
+    en: "A Git troubleshooting note."
+    ja: "Git トラブルシューティングメモ。"
+    fr: "Note de dépannage Git."
+
+2024-08-28-java:
+  title:
+    zh: "20 分钟了解 Java"
+    en: "Understanding Java in 20 Minutes"
+    ja: "20 分でわかる Java"
+    fr: "Comprendre Java en 20 minutes"
+  description:
+    zh: "Java 基础"
+    en: "Java basics."
+    ja: "Java の基礎。"
+    fr: "Bases de Java."
+
+2024-09-03-java-collections:
+  title:
+    zh: "20 分钟了解 Java 容器"
+    en: "Understanding Java Collections in 20 Minutes"
+    ja: "20 分でわかる Java コレクション"
+    fr: "Comprendre les collections Java en 20 minutes"
+  description:
+    zh: "Java 容器"
+    en: "Java collections."
+    ja: "Java コレクション。"
+    fr: "Collections Java."
+
+2024-09-04-java-concurrency:
+  title:
+    zh: "20 分钟了解 Java 并发编程"
+    en: "Understanding Java Concurrency in 20 Minutes"
+    ja: "20 分でわかる Java 並行処理"
+    fr: "Comprendre la concurrence Java en 20 minutes"
+  description:
+    zh: "Java 并发"
+    en: "Java concurrency."
+    ja: "Java 並行処理。"
+    fr: "Concurrence Java."
+
+2024-09-06-chirpy-favicon:
+  title:
+    zh: "解决 Chirpy 自定义网站图标无法显示问题"
+    en: "Fixing Chirpy Custom Favicon Display Issues"
+    ja: "Chirpy のカスタム favicon が表示されない問題を解決"
+    fr: "Résoudre l'affichage du favicon personnalisé dans Chirpy"
+  description:
+    zh: "GitHub 问题处理 - Chirpy 自定义 Favicon"
+    en: "GitHub troubleshooting - Chirpy custom favicon."
+    ja: "GitHub トラブルシューティング - Chirpy カスタム favicon。"
+    fr: "Dépannage GitHub - favicon personnalisé Chirpy."
+
+2024-10-26-ai-trainer-L4:
+  title:
+    zh: "人工智能训练师四级易错题总结"
+    en: "Common Mistakes for the Level 4 AI Trainer Exam"
+    ja: "人工知能トレーナー 4 級の間違えやすい問題まとめ"
+    fr: "Erreurs fréquentes pour l'examen d'entraîneur IA niveau 4"
+  description:
+    zh: "中国人工智能训练师入门考试"
+    en: "Introductory exam notes for China's AI trainer certification."
+    ja: "中国の人工知能トレーナー入門試験メモ。"
+    fr: "Notes d'examen d'initiation à la certification chinoise d'entraîneur IA."
+
+2024-11-12-english-grammar:
+  title:
+    zh: "Pocket 英语笔记"
+    en: "Pocket English Notes"
+    ja: "Pocket 英語ノート"
+    fr: "Notes d'anglais Pocket"
+  description:
+    zh: "英语语法"
+    en: "English grammar."
+    ja: "英語文法。"
+    fr: "Grammaire anglaise."
+
+2024-11-12-md-grammar-common-use:
+  title:
+    zh: "MarkDown 常用语法"
+    en: "Common Markdown Syntax"
+    ja: "よく使う Markdown 構文"
+    fr: "Syntaxe Markdown courante"
+  description:
+    zh: "Markdown 常用语法"
+    en: "Common Markdown grammar and examples."
+    ja: "よく使う Markdown の構文と例。"
+    fr: "Syntaxe et exemples Markdown courants."
+
+2024-11-20-github-useful-project:
+  title:
+    zh: "GitHub 实用项目收藏"
+    en: "Useful GitHub Projects"
+    ja: "便利な GitHub プロジェクト集"
+    fr: "Projets GitHub utiles"
+  description:
+    zh: "常用开源项目链接整理。"
+    en: "A curated list of useful open-source project links."
+    ja: "便利なオープンソースプロジェクトのリンク集。"
+    fr: "Liste de liens vers des projets open source utiles."
+
+2024-12-30-mysql-install-mac:
+  title:
+    zh: "MySQL 安装流程 Mac"
+    en: "Installing MySQL on macOS"
+    ja: "macOS に MySQL をインストールする"
+    fr: "Installer MySQL sur macOS"
+  description:
+    zh: "MySQL 安装 Mac"
+    en: "MySQL installation on macOS."
+    ja: "macOS での MySQL インストール。"
+    fr: "Installation de MySQL sur macOS."
+
+2025-01-22-zookeeper:
+  title:
+    zh: "Zookeeper 原理解析与实战"
+    en: "ZooKeeper Principles and Practice"
+    ja: "ZooKeeper の仕組みと実践"
+    fr: "Principes et pratique de ZooKeeper"
+  description:
+    zh: "Zookeeper"
+    en: "ZooKeeper notes."
+    ja: "ZooKeeper メモ。"
+    fr: "Notes sur ZooKeeper."
+
+2025-02-02-kafka:
+  title:
+    zh: "Kafka 原理解析与实战"
+    en: "Kafka Principles and Practice"
+    ja: "Kafka の仕組みと実践"
+    fr: "Principes et pratique de Kafka"
+  description:
+    zh: "Kafka"
+    en: "Kafka notes."
+    ja: "Kafka メモ。"
+    fr: "Notes sur Kafka."
+
+2025-02-18-jvm:
+  title:
+    zh: "JVM 原理解析与实战"
+    en: "JVM Principles and Practice"
+    ja: "JVM の仕組みと実践"
+    fr: "Principes et pratique de la JVM"
+  description:
+    zh: "JVM"
+    en: "JVM notes."
+    ja: "JVM メモ。"
+    fr: "Notes sur la JVM."
+
+2025-02-19-jvm-bytecode:
+  title:
+    zh: "JVM 指令集"
+    en: "JVM Bytecode Instruction Set"
+    ja: "JVM バイトコード命令セット"
+    fr: "Jeu d'instructions bytecode JVM"
+  description:
+    zh: "JVM 指令集"
+    en: "JVM bytecode instructions."
+    ja: "JVM バイトコード命令。"
+    fr: "Instructions bytecode JVM."
+
+2025-03-22-chaos-engineering:
+  title:
+    zh: "混沌工程 - 容灾能力测试实战"
+    en: "Chaos Engineering - Disaster Recovery Testing in Practice"
+    ja: "カオスエンジニアリング - 障害復旧能力テスト実践"
+    fr: "Chaos engineering - tests de reprise après incident en pratique"
+  description:
+    zh: "发现问题能力训练实战"
+    en: "Hands-on practice for finding reliability issues."
+    ja: "信頼性問題を見つけるための実践訓練。"
+    fr: "Pratique pour détecter les problèmes de fiabilité."
+
+2025-04-19-english-phonics:
+  title:
+    zh: "英语自然拼读法基本规则汇总"
+    en: "Basic Rules of English Phonics"
+    ja: "英語フォニックスの基本ルールまとめ"
+    fr: "Règles de base de la phonétique anglaise"
+  description:
+    zh: "英语发音"
+    en: "English pronunciation."
+    ja: "英語発音。"
+    fr: "Prononciation anglaise."
+
+2025-05-19-common-skills-used-in-work:
+  title:
+    zh: "工作中常用的工程写法"
+    en: "Common Engineering Patterns Used at Work"
+    ja: "仕事でよく使うエンジニアリングの書き方"
+    fr: "Pratiques d'ingénierie courantes au travail"
+  description:
+    zh: "代码技巧"
+    en: "Coding techniques."
+    ja: "コーディングのコツ。"
+    fr: "Techniques de code."
+
+2026-07-27-knowledge-record-and-open-source-plan:
+  title:
+    zh: "博客重构路线：从会用 AI 到可靠系统"
+    en: "Blog Refactor Roadmap: From Using AI to Reliable Systems"
+    ja: "ブログ再構成ロードマップ：AI を使うことから信頼できるシステムへ"
+    fr: "Feuille de route du blog : de l'usage de l'IA aux systèmes fiables"
+  description:
+    zh: "说明这个博客后续如何围绕 AI 使用入门、AI 核心能力、AI 工程化和后端系统持续更新，避免只变成零散笔记。"
+    en: "How this blog will grow around AI onboarding, core capabilities, AI engineering, and backend systems without becoming scattered notes."
+    ja: "AI 入門、中核能力、AI エンジニアリング、バックエンドシステムを軸に、散発的なメモではなく継続更新する方針。"
+    fr: "Comment ce blog évoluera autour de l'initiation IA, des capacités clés, de l'ingénierie IA et du backend sans devenir une collection dispersée."
+
+2026-07-27-rag-document-parsing-quality:
+  title:
+    zh: "RAG 文档解析链路：解析质量如何决定检索质量"
+    en: "RAG Document Parsing Pipeline: How Parsing Quality Shapes Retrieval Quality"
+    ja: "RAG 文書解析パイプライン：解析品質が検索品質を決める理由"
+    fr: "Pipeline de parsing documentaire RAG : comment la qualité du parsing détermine la recherche"
+  description:
+    zh: "记录 RAG 入库前的文档解析、结构保留、切分验证和开源复现思路，解释为什么上游质量会直接影响检索与回答。"
+    en: "Notes on document parsing, structure preservation, chunk validation, and open-source reproduction before RAG ingestion."
+    ja: "RAG 取り込み前の文書解析、構造保持、分割検証、オープンソース再現についての記録。"
+    fr: "Notes sur le parsing, la conservation de structure, la validation des chunks et la reproduction open source avant ingestion RAG."
+
+2026-08-03-cc-switch-install-guide:
+  title:
+    zh: "CC Switch 入门：Windows、macOS 和 Linux 安装手册"
+    en: "Getting Started with CC Switch: Installation on Windows, macOS, and Linux"
+    ja: "CC Switch 入門：Windows、macOS、Linux インストールガイド"
+    fr: "Bien démarrer avec CC Switch : installation Windows, macOS et Linux"
+  description:
+    zh: "面向第一次使用 CC Switch 的开发者，记录 Windows、macOS 和 Linux 的下载安装方式、第一次启动检查和安全提醒。"
+    en: "A first-time developer guide covering download, installation, first launch checks, and safety notes."
+    ja: "初めて CC Switch を使う開発者向けに、ダウンロード、インストール、初回確認、安全メモを整理。"
+    fr: "Guide pour une première utilisation de CC Switch : téléchargement, installation, vérifications et sécurité."
+
+2026-08-03-codex-install-windows-macos-linux-wsl:
+  title:
+    zh: "Codex 入门：Windows、macOS、Linux 和 WSL2 安装手册"
+    en: "Getting Started with Codex: Installation on Windows, macOS, Linux, and WSL2"
+    ja: "Codex 入門：Windows、macOS、Linux、WSL2 インストールガイド"
+    fr: "Bien démarrer avec Codex : installation Windows, macOS, Linux et WSL2"
+  description:
+    zh: "面向第一次使用 Codex 的开发者，按系统记录安装入口、复制命令、验证方式和常见问题。"
+    en: "A system-by-system guide for first-time Codex users covering install entry points, commands, verification, and common issues."
+    ja: "初めて Codex を使う開発者向けに、OS 別の入口、コマンド、確認方法、よくある問題を整理。"
+    fr: "Guide par système pour les nouveaux utilisateurs Codex : installation, commandes, validation et problèmes courants."
+
+2026-08-03-skills-sh-install-guide:
+  title:
+    zh: "Skills.sh 入门：如何给 Codex 下载和安装 Skills"
+    en: "Getting Started with Skills.sh: Downloading and Installing Skills for Codex"
+    ja: "Skills.sh 入門：Codex に Skills をダウンロードしてインストールする方法"
+    fr: "Bien démarrer avec Skills.sh : télécharger et installer des Skills pour Codex"
+  description:
+    zh: "面向第一次使用 Skills.sh 的开发者，记录如何安装 Node.js、搜索技能、把技能下载到 Codex 项目里，并检查是否安装成功。"
+    en: "A first-time guide to installing Node.js, searching skills, downloading them into a Codex project, and validating installation."
+    ja: "Node.js の導入、Skill の検索、Codex プロジェクトへのダウンロード、インストール確認をまとめた入門ガイド。"
+    fr: "Guide pour installer Node.js, chercher des skills, les télécharger dans un projet Codex et vérifier l'installation."
+
+2026-08-26-agent-harness-engine:
+  title:
+    zh: "Agent Harness Engine：把大模型 Agent 从提示词玩具变成工程系统"
+    en: "Agent Harness Engine: Turning LLM Agents from Prompt Toys into Engineering Systems"
+    ja: "Agent Harness Engine：LLM Agent をプロンプト遊びから工学システムへ"
+    fr: "Agent Harness Engine : transformer les agents LLM en systèmes d'ingénierie"
+  description:
+    zh: "从工程视角理解 Agent Harness Engine：为什么 Agent 不只是模型和提示词，而是上下文、工具、权限、沙箱、反馈循环和失败恢复组成的运行系统。"
+    en: "An engineering view of Agent Harness Engine and why agents are runtime systems built from context, tools, permissions, sandboxes, feedback loops, and recovery."
+    ja: "Agent はモデルとプロンプトだけではなく、コンテキスト、ツール、権限、サンドボックス、フィードバック、復旧から成る実行システムであるという工学的整理。"
+    fr: "Une lecture d'ingénierie : un agent n'est pas seulement un modèle et un prompt, mais un système d'exécution avec contexte, outils, permissions, sandbox, boucles de feedback et reprise."
+
+2026-08-26-agent-prompt-injection-security:
+  title:
+    zh: "Agent 怎么防 Prompt 注入：从文本隔离到工具权限的安全工程"
+    en: "How Agents Defend Against Prompt Injection: Security Engineering from Text Isolation to Tool Permissions"
+    ja: "Agent の Prompt Injection 対策：テキスト分離からツール権限まで"
+    fr: "Protéger les agents contre le prompt injection : de l'isolation du texte aux permissions d'outils"
+  description:
+    zh: "解释 Agent 场景下 Prompt 注入为什么危险，以及如何用不可信内容隔离、最小权限、读写分离、人工确认、沙箱和审计日志建立工程防线。"
+    en: "Why prompt injection is dangerous for agents, and how to build defenses with untrusted content isolation, least privilege, read/write separation, human approval, sandboxing, and audit logs."
+    ja: "Agent における Prompt Injection の危険性と、不信頼コンテンツ分離、最小権限、読み書き分離、人間確認、サンドボックス、監査ログによる防御。"
+    fr: "Pourquoi le prompt injection est dangereux pour les agents et comment défendre avec isolation du contenu non fiable, moindre privilège, séparation lecture/écriture, validation humaine, sandbox et logs d'audit."
