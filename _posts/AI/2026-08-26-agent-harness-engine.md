@@ -1,6 +1,6 @@
 ---
 title: Agent Harness Engine：把大模型 Agent 从提示词玩具变成工程系统
-date: 2026-08-26 10:00:00 +0800
+date: 2026-08-26 04:00:00 +0800
 categories: [AI, Agent]
 tags: [ai-agent, agent-harness, llm-engineering, coding-agent, ai-security]
 description: 从工程视角理解 Agent Harness Engine：为什么 Agent 不只是模型和提示词，而是上下文、工具、权限、沙箱、反馈循环和失败恢复组成的运行系统。

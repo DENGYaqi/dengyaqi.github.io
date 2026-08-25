@@ -1,6 +1,6 @@
 ---
 title: Agent 怎么防 Prompt 注入：从文本隔离到工具权限的安全工程
-date: 2026-08-26 10:30:00 +0800
+date: 2026-08-26 04:10:00 +0800
 categories: [AI, Security]
 tags: [ai-security, prompt-injection, llm-security, ai-agent, owasp]
 description: 解释 Agent 场景下 Prompt 注入为什么危险，以及如何用不可信内容隔离、最小权限、读写分离、人工确认、沙箱和审计日志建立工程防线。
