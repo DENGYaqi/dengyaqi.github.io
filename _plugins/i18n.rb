@@ -41,6 +41,21 @@ module BlogI18n
     "/#{lang}#{url}"
   end
 
+  def legacy_post_slug(post)
+    post_key(post).sub(/\A\d{4}-\d{2}-\d{2}-/, '')
+  end
+
+  def legacy_post_url(post, lang = nil)
+    path = "/posts/#{legacy_post_slug(post)}/"
+    lang ? "/#{lang}#{path}" : path
+  end
+
+  def legacy_redirect_post(posts, slug)
+    return posts.find { |post| post_key(post) == '2025-02-18-jvm' } if slug == 'jvm'
+
+    posts.max_by { |post| post.date || Time.at(0) }
+  end
+
   def lang_urls(path)
     LANGS.to_h do |lang|
       target = path == '/' ? "/#{lang}/" : "/#{lang}#{path}"
@@ -89,15 +104,44 @@ class BlogI18nGenerator < Jekyll::Generator
   priority :low
 
   def generate(site)
+    add_legacy_post_redirects(site)
+
     BlogI18n::LANGS.each do |lang|
       add_home(site, lang)
       add_static_pages(site, lang)
+      add_redirect_page(site, "/#{lang}/ai/", "/#{lang}/projects/") if site.config['show_projects']
       add_posts(site, lang)
       add_archives(site, lang)
     end
   end
 
   private
+
+  def add_legacy_post_redirects(site)
+    site.posts.docs.group_by { |post| BlogI18n.legacy_post_slug(post) }.each do |slug, posts|
+      target_post = BlogI18n.legacy_redirect_post(posts, slug)
+      next unless target_post
+
+      add_redirect_page(site, BlogI18n.legacy_post_url(target_post), BlogI18n.localized_post_url(target_post, 'zh'))
+      BlogI18n::LANGS.each do |lang|
+        add_redirect_page(site, BlogI18n.legacy_post_url(target_post, lang), BlogI18n.localized_post_url(target_post, lang))
+      end
+    end
+  end
+
+  def add_redirect_page(site, path, target)
+    site.pages << LocalizedPage.new(
+      site,
+      File.dirname(path).sub(%r{\A/}, ''),
+      'index.html',
+      {
+        'layout' => 'redirect',
+        'permalink' => path,
+        'redirect_to' => target,
+        'sitemap' => false
+      }
+    )
+  end
 
   def add_home(site, lang)
     site.pages << LocalizedPage.new(
@@ -122,11 +166,12 @@ class BlogI18nGenerator < Jekyll::Generator
       'about' => ['about', about_doc&.content.to_s],
       'resume' => ['resume', ''],
       'blog' => ['blog', ''],
-      'ai' => ['ai', ''],
       'categories' => ['categories', ''],
       'tags' => ['tags', ''],
       'archives' => ['archives', '']
     }
+
+    pages['projects'] = ['projects', ''] if site.config['show_projects']
 
     pages.each do |slug, (layout, content)|
       title = site.data.dig('i18n', lang, 'meta', "#{slug}_title")

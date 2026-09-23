@@ -2,7 +2,7 @@
 title: MySQL安装流程(Mac)
 date: 2024-12-30 10:00:00 +0800
 categories: [MySQL]
-tags: [MySQL]
+tags: [mysql]
 description: MySQL安装Mac
 pin: true
 ---

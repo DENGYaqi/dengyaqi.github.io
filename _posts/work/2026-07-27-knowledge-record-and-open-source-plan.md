@@ -5,6 +5,7 @@ categories: [AI, Guide]
 tags: [ai-guide, ai-roadmap, ai, rag, knowledge-graph, engineering, portfolio]
 description: 说明这个博客后续如何围绕 AI 使用入门、AI 核心能力、AI 工程化和后端系统持续更新，避免只变成零散笔记。
 pin: true
+published: false
 ---
 
 ## 为什么要重新整理

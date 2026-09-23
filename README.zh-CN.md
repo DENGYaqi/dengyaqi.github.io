@@ -11,7 +11,9 @@
 - `/ja/` 日本語
 - `/fr/` Français
 
-全站 UI、核心页面、文章标题和摘要由 `_data/i18n.yml` 与 `_data/post_translations.yml` 管理。文章正文目前只维护中文一份，避免四份正文长期失控。旧地址如 `/`、`/about/`、`/blog/`、`/resume/`、`/ai/`、`/posts/.../` 会跳转到中文前缀。
+全站 UI、核心页面、文章标题和摘要由 `_data/i18n.yml` 与 `_data/post_translations.yml` 管理。文章正文目前只维护中文一份，避免四份正文长期失控。正式文章地址使用 `/posts/YYYY/MM/DD/slug/`，四语入口使用 `/:lang/posts/YYYY/MM/DD/slug/`。旧地址如 `/`、`/about/`、`/blog/`、`/resume/`、`/posts/slug/`、`/:lang/posts/slug/` 会跳转到中文前缀或对应语言的新地址。
+
+项目展示目前暂时隐藏，等待登录流程完成。恢复时将 `_config.yml` 中的 `show_projects` 设为 `true`，并移除 `_tabs/ai.md` 与 `_tabs/projects.md` 中的 `published: false`。
 
 ## 项目结构
 
@@ -46,6 +48,16 @@ bundle exec jekyll build
 
 构建输出目录是 `_site/`。
 
+发布前运行维护检查：
+
+```powershell
+ruby scripts/check-blog.rb
+```
+
+检查内容包括 front matter、翻译 key、重复 URL、图片引用、Liquid 示例泄漏和标签格式。标签统一使用小写短横线格式，例如 `github-actions`、`thread-pool`、`mysql`、`devops`。
+
+Windows 本地运行 `htmlproofer` 时，如果 Ruby 的 `ethon/typhoeus` 报找不到 `libcurl.dll`，这是本机依赖问题；GitHub Actions 的 Ubuntu 构建仍会继续执行 `htmlproofer`。
+
 ## 部署
 
 推送到 `main` 后由 GitHub Actions 的 `Build and Deploy` workflow 构建并部署到 GitHub Pages。
@@ -53,3 +65,5 @@ bundle exec jekyll build
 ## 维护翻译
 
 新增文章后，在 `_data/post_translations.yml` 增加对应文件名 key，例如 `2026-08-26-agent-harness-engine`。如果暂时没有翻译，可以先只填中文，模板会回退到中文标题和摘要。
+
+使用 `scripts/new-ai-note.ps1` 创建 AI 日记时，脚本会输出 `_data/post_translations.yml` 的待补条目。

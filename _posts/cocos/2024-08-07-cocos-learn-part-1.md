@@ -1,8 +1,8 @@
 ---
 title: CocosCreator学习第一部分 - TypeScript
 date: 2024-08-07 20:00:00 +0800
-categories: [CocosCreator]
-tags: [CocosCreator, TypeScript]
+categories: [Cocos Creator]
+tags: [cocos-creator, typescript]
 description: TypeScript语法
 pin: true
 ---

@@ -7,6 +7,7 @@ description: >-
   邓雅琪的 AI 技术博客：从 AI 使用入门，到 RAG、知识图谱、AI 工程化和后端系统，把真实工作中的判断整理成清晰、可验证的公开笔记。
 url: "https://dengyaqi.github.io"
 baseurl: ""
+show_projects: false
 
 github:
   username: DENGYaqi
@@ -34,7 +35,7 @@ plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
 
-permalink: /posts/:title/
+permalink: /posts/:year/:month/:day/:title/
 
 collections:
   tabs:
@@ -47,7 +48,7 @@ defaults:
       type: posts
     values:
       layout: post
-      permalink: /posts/:title/
+      permalink: /posts/:year/:month/:day/:title/
   - scope:
       path: ""
       type: tabs

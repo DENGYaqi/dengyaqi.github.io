@@ -1,7 +1,7 @@
 ---
 title: MarkDown常用语法
 date: 2024-11-12 10:00:00 +0800
-categories: [markdown]
+categories: [Markdown]
 tags: [markdown]
 description: markdown grammar in common use
 pin: true

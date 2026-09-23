@@ -5,6 +5,7 @@ categories: [AI, Guide]
 tags: [ai-guide, codex, cli, install, windows, macos, linux, wsl]
 description: 面向第一次使用 Codex 的开发者，按系统记录安装入口、复制命令、验证方式和常见问题。
 pin: true
+published: false
 ---
 
 ## 0. 这篇文章适合谁

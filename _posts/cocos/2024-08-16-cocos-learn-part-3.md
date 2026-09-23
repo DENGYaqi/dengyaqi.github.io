@@ -1,8 +1,8 @@
 ---
 title: CocosCreator学习第三部分 - Cocos Creator
 date: 2024-08-16 10:00:00 +0800
-categories: [CocosCreator]
-tags: [CocosCreator]
+categories: [Cocos Creator]
+tags: [cocos-creator]
 description: Cocos Creator进阶
 pin: true
 ---

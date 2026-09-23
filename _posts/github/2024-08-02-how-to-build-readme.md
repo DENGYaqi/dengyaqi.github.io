@@ -1,8 +1,8 @@
 ---
 title: 跟着大佬thmsgbrt构建Github主页 - Github Actions
 date: 2024-08-02 10:00:00 +0800
-categories: [Github]
-tags: [github, github actions, markdown]
+categories: [GitHub]
+tags: [github, github-actions, markdown]
 description: thmsgbrt教程
 pin: true
 ---
@@ -67,7 +67,7 @@ npm init
 npm i mustache
 ```
 
-2. 创建mustache模板，打开main.mustache文件，填入最简单的: My name is {{name}} and today is {{date}}.
+2. 创建mustache模板，打开main.mustache文件，填入最简单的: {% raw %}My name is {{name}} and today is {{date}}.{% endraw %}
 
 ```bash
 touch main.mustache
@@ -76,7 +76,9 @@ touch main.mustache
 3. 填入内容 : 
 
 ```java
+{% raw %}
 // My name is {{name}} and today is {{date}}
+{% endraw %}
 ```
 
 4. 通过index文件里的Mustache生成ReadMe.md文件。
@@ -145,6 +147,7 @@ cd ./workflows && touch main.yaml
     - 每次推送到主分支时。
     - 或指定的时间表，此处为6小时。
 
+{% raw %}
 ```yml
 name: README build
 
@@ -180,6 +183,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
+{% endraw %}
 
 ### 最后
 恭喜完成！接下来可以自定义一些内容，thmsgbrt的教程中带有一些例子，可做参考: [Tim Burgan的主页](https://github.com/timburgan)、[Simon Willison的主页](https://github.com/simonw)。

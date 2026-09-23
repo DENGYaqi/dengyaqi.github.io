@@ -31,10 +31,7 @@ layout: default
   <div class="hero-container">
     <div class="hero-content">
       <div class="hero-tag">{{ t.home.tag }}</div>
-      <h1>
-        <span>{{ t.home.title_line_1 | default: t.home.title_prefix }}</span>
-        <span class="highlight">{{ t.home.title_line_2 | default: t.home.title_highlight }}</span>
-      </h1>
+      <h1><span>{{ t.home.title_line_1 | default: t.home.title_prefix }}</span>{{ t.home.title_separator }}<span class="highlight">{{ t.home.title_line_2 | default: t.home.title_highlight }}</span></h1>
       <p>
         {{ t.home.intro }}
       </p>
@@ -103,6 +100,7 @@ layout: default
   </div>
 </section>
 
+{% if site.show_projects %}
 <section class="projects-section">
   <div class="container">
     <div class="section-header fade-up">
@@ -124,6 +122,7 @@ layout: default
     </div>
   </div>
 </section>
+{% endif %}
 
 <section class="skills-section">
   <div class="container">

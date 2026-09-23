@@ -10,3 +10,11 @@ Language-specific documentation:
 - [Français](README.fr.md)
 
 The site is built with Jekyll. Source posts are maintained once in Chinese, while the site generates Chinese, English, Japanese, and French URL prefixes for navigation, core pages, post titles, and post descriptions.
+
+Canonical post URLs use `/posts/YYYY/MM/DD/slug/`. Legacy `/posts/slug/` and `/:lang/posts/slug/` URLs are generated as redirects.
+
+Run the local maintenance check before publishing:
+
+```powershell
+ruby scripts/check-blog.rb
+```

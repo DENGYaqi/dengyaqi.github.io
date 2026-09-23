@@ -5,6 +5,7 @@ categories: [AI, Guide]
 tags: [ai-guide, codex, skills, skills-sh, cli, install, nodejs]
 description: 面向第一次使用 Skills.sh 的开发者，记录如何安装 Node.js、搜索技能、把技能下载到 Codex 项目里，并检查是否安装成功。
 pin: true
+published: false
 ---
 
 ## 0. 这篇文章解决什么

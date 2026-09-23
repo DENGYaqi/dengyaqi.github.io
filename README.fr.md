@@ -11,7 +11,9 @@ Le site génère quatre préfixes de langue :
 - `/ja/` japonais
 - `/fr/` français
 
-L'interface, les pages principales, les titres d'articles et les descriptions sont gérés dans `_data/i18n.yml` et `_data/post_translations.yml`. Les corps d'articles restent pour l'instant maintenus uniquement en chinois afin de garder le contenu long facile à maintenir. Les anciennes URL comme `/`, `/about/`, `/blog/`, `/resume/`, `/ai/` et `/posts/.../` redirigent vers la version chinoise.
+L'interface, les pages principales, les titres d'articles et les descriptions sont gérés dans `_data/i18n.yml` et `_data/post_translations.yml`. Les corps d'articles restent pour l'instant maintenus uniquement en chinois afin de garder le contenu long facile à maintenir. Les URL canoniques des articles utilisent `/posts/YYYY/MM/DD/slug/`, avec les versions localisées sous `/:lang/posts/YYYY/MM/DD/slug/`. Les anciennes URL comme `/`, `/about/`, `/blog/`, `/resume/`, `/posts/slug/` et `/:lang/posts/slug/` redirigent vers la version chinoise ou localisée correspondante.
+
+La page des projets est temporairement masquée pendant le développement de la connexion. Pour la rétablir, définir `show_projects: true` dans `_config.yml` et supprimer `published: false` de `_tabs/ai.md` et `_tabs/projects.md`.
 
 ## Structure du projet
 
@@ -46,6 +48,16 @@ bundle exec jekyll build
 
 Le site généré est écrit dans `_site/`.
 
+Avant publication, lancez le contrôle de maintenance :
+
+```powershell
+ruby scripts/check-blog.rb
+```
+
+Il vérifie le front matter, les clés de traduction, les URL en double, les chemins d'images, les exemples de type Liquid et le format des tags. Les tags utilisent le kebab-case en minuscules, par exemple `github-actions`, `thread-pool`, `mysql` et `devops`.
+
+Sous Windows, `htmlproofer` peut échouer localement si Ruby `ethon/typhoeus` ne trouve pas `libcurl.dll`. Le build Ubuntu de GitHub Actions continue d'exécuter `htmlproofer`.
+
 ## Déploiement
 
 Un push sur `main` déclenche le workflow GitHub Actions `Build and Deploy`, puis publie le site sur GitHub Pages.
@@ -53,3 +65,5 @@ Un push sur `main` déclenche le workflow GitHub Actions `Build and Deploy`, pui
 ## Maintenir les traductions
 
 Après l'ajout d'un article, ajoutez sa clé de fichier dans `_data/post_translations.yml`, par exemple `2026-08-26-agent-harness-engine`. Si les traductions ne sont pas encore prêtes, renseignez d'abord le chinois ; les modèles utiliseront cette version par défaut.
+
+Quand `scripts/new-ai-note.ps1` crée une note quotidienne IA, il affiche l'entrée `_data/post_translations.yml` à ajouter.

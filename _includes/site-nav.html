@@ -5,7 +5,7 @@
 {% assign about_url = lang_base | append: '/about/' %}
 {% assign resume_url = lang_base | append: '/resume/' %}
 {% assign blog_url = lang_base | append: '/blog/' %}
-{% assign ai_url = lang_base | append: '/ai/' %}
+{% assign projects_url = lang_base | append: '/projects/' %}
 {% assign contact_url = lang_base | append: '/#contact' %}
 <nav class="site-nav" aria-label="{{ t.nav.aria }}">
   <div class="nav-inner">
@@ -20,7 +20,9 @@
       <li><a href="{{ about_url | relative_url }}" class="{% if page.url contains about_url %}active{% endif %}">{{ t.nav.about }}</a></li>
       <li><a href="{{ resume_url | relative_url }}" class="{% if page.url contains resume_url %}active{% endif %}">{{ t.nav.resume }}</a></li>
       <li><a href="{{ blog_url | relative_url }}" class="{% if page.url contains blog_url or page.layout == 'post' %}active{% endif %}">{{ t.nav.blog }}</a></li>
-      <li><a href="{{ ai_url | relative_url }}" class="{% if page.url contains ai_url %}active{% endif %}">{{ t.nav.ai }}</a></li>
+      {% if site.show_projects %}
+        <li><a href="{{ projects_url | relative_url }}" class="{% if page.url contains projects_url %}active{% endif %}">{{ t.nav.projects }}</a></li>
+      {% endif %}
       <li><a href="{{ contact_url | relative_url }}">{{ t.nav.contact }}</a></li>
       <li class="language-menu-item">
         <details class="language-menu">

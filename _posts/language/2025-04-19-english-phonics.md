@@ -1,8 +1,8 @@
 ---
 title: 英语自然拼读法基本规则汇总
 date: 2025-04-19 10:00:00 +0800
-categories: [language]
-tags: [english,phonics]
+categories: [Language]
+tags: [english, phonics]
 description: 英语发音
 pin: true
 ---

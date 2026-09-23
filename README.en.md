@@ -11,7 +11,9 @@ The site generates four language prefixes:
 - `/ja/` Japanese
 - `/fr/` French
 
-The UI, core pages, post titles, and post descriptions are managed through `_data/i18n.yml` and `_data/post_translations.yml`. Post bodies are currently maintained once in Chinese to keep long-form content maintainable. Legacy paths such as `/`, `/about/`, `/blog/`, `/resume/`, `/ai/`, and `/posts/.../` redirect to the Chinese-prefixed version.
+The UI, core pages, post titles, and post descriptions are managed through `_data/i18n.yml` and `_data/post_translations.yml`. Post bodies are currently maintained once in Chinese to keep long-form content maintainable. Canonical post URLs use `/posts/YYYY/MM/DD/slug/`, with localized copies under `/:lang/posts/YYYY/MM/DD/slug/`. Legacy paths such as `/`, `/about/`, `/blog/`, `/resume/`, `/posts/slug/`, and `/:lang/posts/slug/` redirect to the Chinese-prefixed or matching localized version.
+
+The project showcase is temporarily hidden while its login flow is being developed. Set `show_projects: true` in `_config.yml` and remove `published: false` from `_tabs/ai.md` and `_tabs/projects.md` to restore it.
 
 ## Project Structure
 
@@ -46,6 +48,16 @@ bundle exec jekyll build
 
 The generated site is written to `_site/`.
 
+Run the maintenance check before publishing:
+
+```powershell
+ruby scripts/check-blog.rb
+```
+
+It checks front matter, translation keys, duplicate URLs, image paths, Liquid-like examples, and tag format. Tags use lowercase kebab-case, for example `github-actions`, `thread-pool`, `mysql`, and `devops`.
+
+On Windows, `htmlproofer` may fail locally if Ruby `ethon/typhoeus` cannot find `libcurl.dll`; the GitHub Actions Ubuntu build still runs `htmlproofer`.
+
 ## Deployment
 
 Pushing to `main` triggers the GitHub Actions `Build and Deploy` workflow and publishes the site to GitHub Pages.
@@ -53,3 +65,5 @@ Pushing to `main` triggers the GitHub Actions `Build and Deploy` workflow and pu
 ## Maintaining Translations
 
 After adding a new post, add its filename key to `_data/post_translations.yml`, for example `2026-08-26-agent-harness-engine`. If translations are not ready, keep the Chinese fields first; templates fall back to Chinese.
+
+When `scripts/new-ai-note.ps1` creates an AI daily note, it prints the `_data/post_translations.yml` entry to add.

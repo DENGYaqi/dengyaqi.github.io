@@ -12,9 +12,9 @@ zh:
     resume_title: 简历
     resume_description: 从 NLP、Android、Java 后端到 AI 研发管理的工作经历。
     blog_title: 博客
-    blog_description: 技术笔记、工程记录和 AI 学习路线。
-    ai_title: AI 路线
-    ai_description: 从会用 AI，到理解 AI 核心能力，再到把 AI 做成可靠系统。
+    blog_description: 技术笔记、工程记录和生活随想。
+    projects_title: 项目展示
+    projects_description: 展示企业 AI 平台、AI 编程和业务副驾驶等代表性工程项目。
     categories_title: 分类
     tags_title: 标签
     archives_title: 归档
@@ -25,7 +25,7 @@ zh:
     about: 关于我
     resume: 简历
     blog: 博客
-    ai: AI 路线
+    projects: 项目展示
     contact: 联系
   common:
     posts_count: 篇文章
@@ -35,16 +35,15 @@ zh:
     categories: 分类
     tags: 标签
     archives: 归档
-    ai_roadmap: AI 路线
     read_more: 阅读
   home:
-    tag: AI 工程 / RAG / 知识图谱
-    title_line_1: 让 AI 能力进入
-    title_line_2: 生产系统
-    title_prefix: 让AI能力进入
+    tag: AI 工程 / Harness / 本体论与知识图谱
+    title_line_1: 让AI进入
+    title_line_2: 生活
+    title_prefix: 让AI进入
     title_separator: ""
-    title_highlight: 生产系统
-    intro: 我是邓雅琪。这里记录我从 NLP、知识图谱、Java 后端到 AI 工程化的学习和实践，包括 RAG、文档解析、Agent、检索质量和可落地的系统设计。
+    title_highlight: 生活
+    intro: 我是邓雅琪，这里记录了我的工作、生活和想法。
     primary_button: 查看简历
     secondary_button: 阅读博客
     hero_alt: 邓雅琪在中国最高海拔市纪念石旁
@@ -54,7 +53,7 @@ zh:
     skills_tag: 技能
     skills_title: 技术栈
     projects_tag: 项目
-    projects_title: 代表项目
+    projects_title: 代表性工程实践
     latest_tag: 最新
     latest_title: 最新文章
     all_posts: 查看全部文章
@@ -78,26 +77,26 @@ zh:
       - title: 工具与协作
         tags: [VSCode, Cursor, Codex, Claude Code, Power BI, Postman, Figma]
     projects:
-      - title: 禾彩 AI Platform 企业级 AI 业务平台
-        desc: 基于 FastAPI、LangChain、LangGraph、OpenAI SDK、PostgreSQL、ClickHouse、Neo4j 和 Redis，建设多模型接入、RAG 知识库、MCP 工具调用和业务集成底座。
+      - title: 企业 AI 平台底座
+        desc: 面向业务系统建设多模型接入、RAG 知识库、MCP 工具调用、权限与审计能力，支撑 Agent 和业务应用快速落地。
         tags: [FastAPI, LangGraph, RAG]
-      - title: 业务 Agent 编排、审计与客户背调 Recon 系统
-        desc: 基于 LangGraph 和业务 Prompt，构建客户背调、搜索、报告生成、审核、分享和跟进任务流程，并接入 Agent/LLM/Tool 审计链路。
-        tags: [Agent, LangGraph, Audit]
-      - title: Activity Recorder 用户行为采集器
-        desc: 构建 Windows/macOS 活动采集器，采集本机操作行为并写入 SQLite/JSONL 和 PostgreSQL，用于业务活动看板、日报和工作过程分析。
-        tags: [Python, SQLite, PostgreSQL]
-      - title: 卡类 Card System 与多源 ELT 规则治理平台
-        desc: 面向跨境电商客户经营场景，建设客户卡、需求卡、产品卡和多源 ELT 规则治理体系，打通客户画像、需求识别和产品推荐链路。
+      - title: AI 编程团队
+        desc: 围绕 Codex、Claude Code、MCP、Skills 和自动验证，搭建多 Agent 协同研发流程，把 AI 编程从个人工具推进到团队能力。
+        tags: [Codex, MCP, Skills]
+      - title: 客户背调与业务副驾驶
+        desc: 合并客户背调 Recon、报告审核、分享跟进和 Chrome 侧边栏能力，把客户上下文、历史消息和回复草稿嵌入业务页面。
+        tags: [Agent, Vue 3, Audit]
+      - title: 跨境电商卡片系统
+        desc: 建设客户卡、需求卡、产品卡和多源 ELT 规则治理体系，打通客户画像、需求识别和产品推荐链路。
         tags: [ELT, Rules, CRM]
-      - title: AI 业务副驾驶前端与 Chrome 侧边栏
-        desc: 基于 Vue 3、Vite 和 Chrome Extension MV3，把 AI 平台能力嵌入 WhatsApp 等业务页面，支持客户上下文、历史消息、回复草稿和话术建议。
-        tags: [Vue 3, Chrome Extension, SSE]
-      - title: 飞利浦 PDF 处理和 AI 分析工具
+      - title: 飞利浦 AI 图分析工具
         desc: 面向 ICF 安装确认表，构建 PDF 转图片、AI 信息抽取、OSS 上传、Excel 对比和 API 查询链路，自动化人工核对流程。
         tags: [PDF, OCR, FastAPI]
+      - title: 用户行为采集器
+        desc: 构建 Windows/macOS 活动采集器，将本机操作行为写入 SQLite/JSONL 和 PostgreSQL，用于业务活动看板和过程分析。
+        tags: [Python, SQLite, PostgreSQL]
   about:
-    subtitle: AI 研发主管 / RAG 与 Agent 工程化 / 后端系统
+    subtitle: AI 研发主管 / Harness / 本体论与知识图谱 / 后端系统
     intro: 我是邓雅琪，目前负责 AI 研发方向规划、技术路线选型与项目交付推进。我的经历从 NLP、知识图谱和本体融合开始，随后进入 Android、Java 后端、风控中台和分布式系统，再回到企业级 AI 平台、RAG、Agent Workflow 和业务系统落地。
     journey_tag: 经历
     journey_title: 工作经历
@@ -146,7 +145,7 @@ zh:
     adventure_intro: 工作之外，我也喜欢走到更远的地方，看雪山、湖泊和城市边界，把生活里的探索感带回工程判断。
     adventure_image_alt: 雪山、湖泊和远行中的背影
   resume:
-    subtitle: AI 工程化 / RAG / 知识图谱 / Java 后端
+    subtitle: AI 工程化 / Harness / 本体论与知识图谱 / Java 后端
     summary_tag: 概览
     summary_title: 关于我
     summary: 法国索邦大学语言与计算机硕士，主修 NLP。工作经历从 NLP、知识图谱与本体融合开始，经过 Android 与 Java 后端工程、风控中台和分布式系统建设，现在负责 AI 研发规划、企业级 AI 平台、RAG、Agent Workflow、数据治理和业务系统落地。
@@ -178,38 +177,7 @@ zh:
     image_alt_suffix: 页
   blog:
     title: 博客
-    description: 技术笔记、工程记录和 AI 学习路线。
-  ai:
-    header_tag: AI 路线
-    title: AI 路线
-    path_tag: 路径
-    path_title: 从工具到系统
-    cards:
-      - id: ai-guide
-        no: "01"
-        title: AI 使用入门
-        desc: 模型、token、Codex、本机配置、CC-Switch、Skills 和常用工具。
-      - id: ai-core
-        no: "02"
-        title: AI 核心能力
-        desc: RAG、文档解析、OCR、知识图谱、检索、chunk 和质量验证。
-      - id: ai-engineering
-        no: "03"
-        title: AI 工程化
-        desc: Agent 工作流、模型服务、评测体系、可观测性、上下文工程和稳定性。
-    reading_tag: 阅读
-    reading_title: 阅读路径
-    guide_desc: 适合会写代码，但还没有系统理解 AI 工具链的人。
-    core_desc: 适合希望理解 RAG、文档解析、知识图谱和检索质量的人。
-    engineering_desc: 适合希望把 AI 能力做成稳定产品或内部系统的人。
-    engineering_items:
-      - AI 应用为什么需要评测
-      - Agent 工作流不是堆工具调用
-      - Langfuse 这类 trace 工具解决什么问题
-      - 上下文工程：为什么不是把资料都塞进去
-      - 模型服务的成本、延迟和稳定性取舍
-    published_tag: 已发布
-    published_title: 已发布 AI 文章
+    description: 技术笔记、工程记录和生活随想。
 
 en:
   html_lang: en
@@ -225,9 +193,9 @@ en:
     resume_title: Resume
     resume_description: A career path from NLP, Android, and Java backend systems to AI R&D leadership.
     blog_title: Blog
-    blog_description: Engineering notes, AI learning paths, and field records.
-    ai_title: AI Roadmap
-    ai_description: From using AI tools to understanding AI capabilities and building reliable systems.
+    blog_description: Engineering notes, field records, and reflections on life.
+    projects_title: Projects
+    projects_description: Selected engineering projects across AI platforms, AI coding, and business copilots.
     categories_title: Categories
     tags_title: Tags
     archives_title: Archives
@@ -238,7 +206,7 @@ en:
     about: About
     resume: Resume
     blog: Blog
-    ai: AI Roadmap
+    projects: Projects
     contact: Contact
   common:
     posts_count: posts
@@ -248,16 +216,15 @@ en:
     categories: Categories
     tags: Tags
     archives: Archives
-    ai_roadmap: AI Roadmap
     read_more: Read
   home:
-    tag: AI Engineering / RAG / Knowledge Graph
+    tag: AI Engineering / Harness / Ontology and Knowledge Graphs
     title_line_1: Bring AI into
-    title_line_2: production systems
-    title_prefix: Bring AI capabilities into
+    title_line_2: everyday life
+    title_prefix: Bring AI into
     title_separator: " "
-    title_highlight: production systems
-    intro: I am Deng Yaqi. This site records my learning and practice across NLP, knowledge graphs, Java backend engineering, and AI engineering, including RAG, document parsing, agents, retrieval quality, and practical system design.
+    title_highlight: everyday life
+    intro: I am Deng Yaqi. Here I share my work, life, and thoughts.
     primary_button: View Resume
     secondary_button: Read Blog
     hero_alt: Deng Yaqi beside the monument of China's highest-altitude city
@@ -267,7 +234,7 @@ en:
     skills_tag: Skills
     skills_title: What I Work With
     projects_tag: Projects
-    projects_title: Featured Work
+    projects_title: Selected Engineering Work
     latest_tag: Latest
     latest_title: Latest Posts
     all_posts: View All Posts
@@ -291,26 +258,26 @@ en:
       - title: Tools and Collaboration
         tags: [VSCode, Cursor, Codex, Claude Code, Power BI, Postman, Figma]
     projects:
-      - title: Hecai AI Platform
-        desc: Built an enterprise AI backend with FastAPI, LangChain, LangGraph, OpenAI SDK, PostgreSQL, ClickHouse, Neo4j, and Redis for multi-model access, RAG knowledge bases, MCP tools, and business integration.
+      - title: Enterprise AI Platform
+        desc: Built multi-model access, RAG knowledge bases, MCP tool calling, permissions, and audit capabilities as the foundation for agent and business AI applications.
         tags: [FastAPI, LangGraph, RAG]
-      - title: Business Agent Orchestration and Recon System
-        desc: Built customer research, search, report generation, review, sharing, and follow-up workflows with LangGraph and business prompts, plus Agent/LLM/Tool audit traces.
-        tags: [Agent, LangGraph, Audit]
-      - title: Activity Recorder
-        desc: Built a Windows/macOS activity collector that writes local behavior events to SQLite/JSONL and PostgreSQL for dashboards, daily reports, and work-process analysis.
-        tags: [Python, SQLite, PostgreSQL]
-      - title: Card System and Multi-source ELT Governance
-        desc: Built customer, demand, and product cards for cross-border ecommerce operations, connecting customer profiles, demand recognition, and product recommendations.
+      - title: AI Coding Team
+        desc: Designed a multi-agent development workflow around Codex, Claude Code, MCP, Skills, and automated checks, moving AI coding from individual tooling to team practice.
+        tags: [Codex, MCP, Skills]
+      - title: Customer Recon Copilot
+        desc: Combined customer research, report review, sharing, follow-up, and Chrome sidebar workflows so business pages can carry customer context, history, and draft replies.
+        tags: [Agent, Vue 3, Audit]
+      - title: Cross-border Card System
+        desc: Built customer, demand, and product cards with multi-source ELT rule governance, connecting customer profiles, demand recognition, and product recommendations.
         tags: [ELT, Rules, CRM]
-      - title: AI Business Copilot Frontend and Chrome Sidebar
-        desc: Built a Vue 3, Vite, and Chrome Extension MV3 sidebar that embeds AI platform capabilities into business pages such as WhatsApp, with customer context, message history, draft replies, and response suggestions.
-        tags: [Vue 3, Chrome Extension, SSE]
-      - title: Philips PDF Processing and AI Analysis Tool
-        desc: Built a workflow for ICF installation PDFs, including PDF-to-image conversion, AI information extraction, OSS upload, Excel comparison, and API queries.
+      - title: Philips AI Image Analysis
+        desc: Built a workflow for ICF installation forms, including PDF-to-image conversion, AI information extraction, OSS upload, Excel comparison, and API queries.
         tags: [PDF, OCR, FastAPI]
+      - title: Activity Recorder
+        desc: Built a Windows/macOS activity collector that writes local behavior events to SQLite/JSONL and PostgreSQL for dashboards and work-process analysis.
+        tags: [Python, SQLite, PostgreSQL]
   about:
-    subtitle: AI R&D Lead / RAG and Agent Engineering / Backend Systems
+    subtitle: AI R&D Lead / Harness / Ontology and Knowledge Graphs / Backend Systems
     intro: I am Deng Yaqi. I currently lead AI R&D planning, technical direction, and delivery. My path started with NLP, knowledge graphs, and ontology fusion, then moved through Android, Java backend systems, risk-control platforms, and distributed systems, before returning to enterprise AI platforms, RAG, Agent workflows, and production delivery.
     journey_tag: Journey
     journey_title: Work Experience
@@ -359,7 +326,7 @@ en:
     adventure_intro: Outside of work, I like going farther into mountains, lakes, and the edges of cities, then bringing that sense of exploration back into engineering judgment.
     adventure_image_alt: Snow mountains, a lake, and a traveler seen from behind
   resume:
-    subtitle: AI Engineering / RAG / Knowledge Graph / Java Backend
+    subtitle: AI Engineering / Harness / Ontology and Knowledge Graphs / Java Backend
     summary_tag: Summary
     summary_title: About Me
     summary: I hold a master's degree in Language and Computer Science from Sorbonne University with a focus on NLP. My career began with NLP, knowledge graphs, and ontology fusion, then moved through Android and Java backend engineering, risk-control platforms, and distributed systems. I now work on AI R&D planning, enterprise AI platforms, RAG, Agent workflows, data governance, and production delivery.
@@ -391,38 +358,7 @@ en:
     image_alt_suffix: ""
   blog:
     title: Blog
-    description: Engineering notes, AI learning paths, and field records.
-  ai:
-    header_tag: AI Roadmap
-    title: AI Roadmap
-    path_tag: Path
-    path_title: From Tools to Systems
-    cards:
-      - id: ai-guide
-        no: "01"
-        title: Getting Started with AI
-        desc: Models, tokens, Codex, local setup, CC-Switch, Skills, and daily tools.
-      - id: ai-core
-        no: "02"
-        title: Core AI Capabilities
-        desc: RAG, document parsing, OCR, knowledge graphs, retrieval, chunking, and quality checks.
-      - id: ai-engineering
-        no: "03"
-        title: AI Engineering
-        desc: Agent workflows, model serving, evaluation, observability, context engineering, and reliability.
-    reading_tag: Reading
-    reading_title: Reading Path
-    guide_desc: For developers who can code but have not yet mapped the AI toolchain as a system.
-    core_desc: For readers who want to understand RAG, document parsing, knowledge graphs, and retrieval quality.
-    engineering_desc: For builders who want to turn AI capabilities into stable products or internal systems.
-    engineering_items:
-      - Why AI applications need evaluation
-      - Agent workflows are not just tool calls
-      - What trace tools such as Langfuse actually solve
-      - Context engineering is not stuffing every document into the prompt
-      - Cost, latency, and reliability tradeoffs in model services
-    published_tag: Published
-    published_title: Published AI Posts
+    description: Engineering notes, field records, and reflections on life.
 
 ja:
   html_lang: ja
@@ -438,9 +374,9 @@ ja:
     resume_title: 職務経歴
     resume_description: NLP、Android、Java バックエンドから AI 研究開発マネジメントまでの歩み。
     blog_title: ブログ
-    blog_description: 技術メモ、AI 学習ロードマップ、実務の記録。
-    ai_title: AI ロードマップ
-    ai_description: AI ツールの利用から、AI の中核能力の理解、信頼できるシステム化まで。
+    blog_description: 技術メモ、実務の記録、暮らしの中で考えたこと。
+    projects_title: プロジェクト
+    projects_description: AI プラットフォーム、AI コーディング、業務 Copilot などの代表的な開発プロジェクト。
     categories_title: カテゴリ
     tags_title: タグ
     archives_title: アーカイブ
@@ -451,7 +387,7 @@ ja:
     about: 私について
     resume: 職務経歴
     blog: ブログ
-    ai: AI ロードマップ
+    projects: プロジェクト
     contact: 連絡先
   common:
     posts_count: 件の記事
@@ -461,16 +397,15 @@ ja:
     categories: カテゴリ
     tags: タグ
     archives: アーカイブ
-    ai_roadmap: AI ロードマップ
     read_more: 読む
   home:
-    tag: AI エンジニアリング / RAG / 知識グラフ
-    title_line_1: AI を
-    title_line_2: 本番システムへ
-    title_prefix: AI の力を
+    tag: AI エンジニアリング / Harness / オントロジーと知識グラフ
+    title_line_1: AIを
+    title_line_2: 日常へ
+    title_prefix: AIを
     title_separator: ""
-    title_highlight: 本番システムへ
-    intro: 鄧雅琪です。NLP、知識グラフ、Java バックエンド、AI エンジニアリングに関する学びと実践を記録しています。RAG、文書解析、Agent、検索品質、実運用に耐えるシステム設計を扱います。
+    title_highlight: 日常へ
+    intro: 鄧雅琪です。ここでは、私の仕事、暮らし、考えを記録しています。
     primary_button: 職務経歴を見る
     secondary_button: ブログを読む
     hero_alt: 中国最高標高都市の記念碑のそばにいる鄧雅琪
@@ -480,7 +415,7 @@ ja:
     skills_tag: スキル
     skills_title: 扱う技術領域
     projects_tag: プロジェクト
-    projects_title: 主な取り組み
+    projects_title: 代表的なエンジニアリング実践
     latest_tag: 最新
     latest_title: 最新記事
     all_posts: すべての記事を見る
@@ -504,26 +439,26 @@ ja:
       - title: ツールと協業
         tags: [VSCode, Cursor, Codex, Claude Code, Power BI, Postman, Figma]
     projects:
-      - title: 禾彩 AI Platform 企業向け AI 業務プラットフォーム
-        desc: FastAPI、LangChain、LangGraph、OpenAI SDK、PostgreSQL、ClickHouse、Neo4j、Redis を使い、複数モデル接続、RAG 知識ベース、MCP ツール、業務連携の基盤を構築。
+      - title: 企業 AI プラットフォーム基盤
+        desc: 複数モデル接続、RAG 知識ベース、MCP ツール呼び出し、権限、監査を整備し、Agent と業務 AI アプリの基盤を構築。
         tags: [FastAPI, LangGraph, RAG]
-      - title: 業務 Agent 編成、監査、顧客調査 Recon システム
-        desc: LangGraph と業務 Prompt で顧客調査、検索、レポート生成、レビュー、共有、フォローアップの流れを作り、Agent/LLM/Tool の監査も接続。
-        tags: [Agent, LangGraph, Audit]
-      - title: Activity Recorder ユーザー行動収集ツール
-        desc: Windows/macOS の操作行動を収集し、SQLite/JSONL と PostgreSQL に保存して、業務ダッシュボード、日報、作業分析に利用。
-        tags: [Python, SQLite, PostgreSQL]
-      - title: Card System と多ソース ELT ルール管理
-        desc: 越境 EC の顧客運用向けに、顧客カード、需要カード、商品カード、多ソース ELT ルール管理を構築。
+      - title: AI コーディングチーム
+        desc: Codex、Claude Code、MCP、Skills、自動検証を組み合わせ、複数 Agent 協調の開発フローをチーム運用へ展開。
+        tags: [Codex, MCP, Skills]
+      - title: 顧客調査 Copilot
+        desc: 顧客調査、レポートレビュー、共有、フォローアップ、Chrome サイドバーを統合し、業務ページに顧客文脈と返信草案を組み込む。
+        tags: [Agent, Vue 3, Audit]
+      - title: 越境 EC カードシステム
+        desc: 顧客カード、需要カード、商品カード、多ソース ELT ルール管理を構築し、顧客像、需要識別、商品推薦を接続。
         tags: [ELT, Rules, CRM]
-      - title: AI 業務 Copilot フロントエンドと Chrome サイドバー
-        desc: Vue 3、Vite、Chrome Extension MV3 で、WhatsApp などの業務ページに AI プラットフォーム機能を埋め込み、顧客文脈、履歴メッセージ、返信草案、話法提案を支援。
-        tags: [Vue 3, Chrome Extension, SSE]
-      - title: Philips PDF 処理と AI 分析ツール
+      - title: Philips AI 画像分析ツール
         desc: ICF 設置確認表向けに、PDF 画像化、AI 情報抽出、OSS アップロード、Excel 比較、API 照会の処理フローを構築。
         tags: [PDF, OCR, FastAPI]
+      - title: ユーザー行動収集ツール
+        desc: Windows/macOS の操作行動を収集し、SQLite/JSONL と PostgreSQL に保存して、業務ダッシュボードと作業分析に利用。
+        tags: [Python, SQLite, PostgreSQL]
   about:
-    subtitle: AI 研究開発リード / RAG・Agent エンジニアリング / バックエンドシステム
+    subtitle: AI 研究開発リード / Harness / オントロジーと知識グラフ / バックエンドシステム
     intro: 鄧雅琪です。現在は AI 研究開発の方向設計、技術選定、プロジェクト推進を担当しています。NLP、知識グラフ、本体融合から始まり、Android、Java バックエンド、リスク管理基盤、分散システムを経て、現在は企業向け AI プラットフォーム、RAG、Agent Workflow、業務システムへの実装に取り組んでいます。
     journey_tag: 歩み
     journey_title: 職務経験
@@ -572,7 +507,7 @@ ja:
     adventure_intro: 仕事以外では、より遠い場所へ歩き、雪山や湖、都市の境界を見ることが好きです。その探索感をエンジニアリングの判断にも持ち帰っています。
     adventure_image_alt: 雪山、湖、旅する人の後ろ姿
   resume:
-    subtitle: AI エンジニアリング / RAG / 知識グラフ / Java バックエンド
+    subtitle: AI エンジニアリング / Harness / オントロジーと知識グラフ / Java バックエンド
     summary_tag: 概要
     summary_title: 自己紹介
     summary: ソルボンヌ大学で言語・コンピュータ科学の修士号を取得し、NLP を専攻しました。キャリアは NLP、知識グラフ、本体融合から始まり、Android と Java バックエンド、リスク管理基盤、分散システムを経て、現在は AI 研究開発計画、企業向け AI プラットフォーム、RAG、Agent Workflow、データガバナンス、業務システムへの実装を担当しています。
@@ -604,38 +539,7 @@ ja:
     image_alt_suffix: " ページ目"
   blog:
     title: ブログ
-    description: 技術メモ、AI 学習ロードマップ、実務の記録。
-  ai:
-    header_tag: AI ロードマップ
-    title: AI ロードマップ
-    path_tag: 道筋
-    path_title: ツールからシステムへ
-    cards:
-      - id: ai-guide
-        no: "01"
-        title: AI 入門
-        desc: モデル、token、Codex、ローカル設定、CC-Switch、Skills、日常ツール。
-      - id: ai-core
-        no: "02"
-        title: AI の中核能力
-        desc: RAG、文書解析、OCR、知識グラフ、検索、chunk、品質検証。
-      - id: ai-engineering
-        no: "03"
-        title: AI エンジニアリング
-        desc: Agent ワークフロー、モデルサービス、評価体系、可観測性、コンテキストエンジニアリング、安定性。
-    reading_tag: 読む
-    reading_title: 読む順序
-    guide_desc: コードは書けるが、AI ツールチェーンをまだ体系的に理解していない人向け。
-    core_desc: RAG、文書解析、知識グラフ、検索品質を理解したい人向け。
-    engineering_desc: AI 能力を安定したプロダクトや社内システムにしたい人向け。
-    engineering_items:
-      - AI アプリに評価が必要な理由
-      - Agent ワークフローは単なるツール呼び出しではない
-      - Langfuse のような trace ツールが解く問題
-      - コンテキストエンジニアリングは資料を全部詰め込むことではない
-      - モデルサービスのコスト、遅延、安定性のトレードオフ
-    published_tag: 公開済み
-    published_title: 公開済み AI 記事
+    description: 技術メモ、実務の記録、暮らしの中で考えたこと。
 
 fr:
   html_lang: fr
@@ -651,9 +555,9 @@ fr:
     resume_title: CV
     resume_description: Un parcours allant du NLP, Android et backend Java jusqu'à la direction R&D IA.
     blog_title: Blog
-    blog_description: Notes d'ingénierie, parcours d'apprentissage IA et retours de terrain.
-    ai_title: Parcours IA
-    ai_description: De l'usage des outils IA à la compréhension des capacités clés puis aux systèmes fiables.
+    blog_description: Notes d'ingénierie, retours de terrain et réflexions sur la vie.
+    projects_title: Projets
+    projects_description: Projets d'ingénierie autour des plateformes IA, du codage assisté et des copilotes métier.
     categories_title: Catégories
     tags_title: Tags
     archives_title: Archives
@@ -664,7 +568,7 @@ fr:
     about: À propos
     resume: CV
     blog: Blog
-    ai: Parcours IA
+    projects: Projets
     contact: Contact
   common:
     posts_count: articles
@@ -674,16 +578,15 @@ fr:
     categories: Catégories
     tags: Tags
     archives: Archives
-    ai_roadmap: Parcours IA
     read_more: Lire
   home:
-    tag: Ingénierie IA / RAG / graphe de connaissances
+    tag: Ingénierie IA / Harness / ontologie et graphes de connaissances
     title_line_1: Faire entrer l'IA
-    title_line_2: en production
-    title_prefix: Faire entrer l'IA dans les
+    title_line_2: dans la vie quotidienne
+    title_prefix: Faire entrer l'IA
     title_separator: " "
-    title_highlight: systèmes de production
-    intro: Je suis Deng Yaqi. Ce site rassemble mes apprentissages et pratiques autour du NLP, des graphes de connaissances, du backend Java et de l'ingénierie IA, notamment RAG, parsing documentaire, agents, qualité de recherche et conception de systèmes concrets.
+    title_highlight: dans la vie quotidienne
+    intro: Je suis Deng Yaqi. Je partage ici mon travail, ma vie et mes réflexions.
     primary_button: Voir le CV
     secondary_button: Lire le blog
     hero_alt: Deng Yaqi près du monument de la ville la plus haute de Chine
@@ -693,7 +596,7 @@ fr:
     skills_tag: Compétences
     skills_title: Domaines techniques
     projects_tag: Projets
-    projects_title: Projets clés
+    projects_title: Réalisations d'ingénierie
     latest_tag: Récent
     latest_title: Derniers articles
     all_posts: Voir tous les articles
@@ -717,26 +620,26 @@ fr:
       - title: Outils et collaboration
         tags: [VSCode, Cursor, Codex, Claude Code, Power BI, Postman, Figma]
     projects:
-      - title: Hecai AI Platform
-        desc: Plateforme backend IA d'entreprise avec FastAPI, LangChain, LangGraph, OpenAI SDK, PostgreSQL, ClickHouse, Neo4j et Redis, pour modèles multiples, RAG, outils MCP et intégrations métier.
+      - title: Plateforme IA d'entreprise
+        desc: Construction d'un socle IA avec accès multi-modèles, bases RAG, appels d'outils MCP, permissions et audit pour des agents et applications métier.
         tags: [FastAPI, LangGraph, RAG]
-      - title: Orchestration Agent, audit et système Recon client
-        desc: Workflows de recherche client, génération de rapport, revue, partage et suivi avec LangGraph et prompts métier, reliés aux traces Agent/LLM/Tool.
-        tags: [Agent, LangGraph, Audit]
-      - title: Activity Recorder
-        desc: Collecteur d'activité Windows/macOS écrivant les événements locaux dans SQLite/JSONL et PostgreSQL pour tableaux de bord, rapports quotidiens et analyse du travail.
-        tags: [Python, SQLite, PostgreSQL]
-      - title: Card System et gouvernance ELT multi-source
-        desc: Cartes client, besoin et produit pour l'exploitation e-commerce transfrontalière, reliant profil client, détection de demande et recommandation produit.
+      - title: Équipe de codage IA
+        desc: Mise en place d'un flux de développement multi-agent avec Codex, Claude Code, MCP, Skills et validations automatiques, du poste individuel à la pratique d'équipe.
+        tags: [Codex, MCP, Skills]
+      - title: Copilote de recherche client
+        desc: Fusion de la recherche client, revue de rapports, partage, suivi et barre latérale Chrome pour intégrer contexte client, historique et brouillons aux pages métier.
+        tags: [Agent, Vue 3, Audit]
+      - title: Système de cartes e-commerce
+        desc: Cartes client, besoin et produit avec gouvernance ELT multi-source, reliant profil client, détection de demande et recommandation produit.
         tags: [ELT, Rules, CRM]
-      - title: Frontend copilote métier IA et barre latérale Chrome
-        desc: Avec Vue 3, Vite et Chrome Extension MV3, intègre les capacités de la plateforme IA dans des pages métier comme WhatsApp avec contexte client, historique, brouillons de réponse et suggestions.
-        tags: [Vue 3, Chrome Extension, SSE]
-      - title: Outil Philips de traitement PDF et d'analyse IA
+      - title: Analyse d'images IA Philips
         desc: Pour les formulaires ICF, construit une chaîne PDF vers image, extraction IA, upload OSS, comparaison Excel et requêtes API afin d'automatiser les vérifications manuelles.
         tags: [PDF, OCR, FastAPI]
+      - title: Activity Recorder
+        desc: Collecteur d'activité Windows/macOS écrivant les événements locaux dans SQLite/JSONL et PostgreSQL pour tableaux de bord et analyse du travail.
+        tags: [Python, SQLite, PostgreSQL]
   about:
-    subtitle: Responsable R&D IA / RAG et Agent Engineering / Systèmes backend
+    subtitle: Responsable R&D IA / Harness / ontologie et graphes de connaissances / systèmes backend
     intro: Je suis Deng Yaqi. Je pilote aujourd'hui la planification R&D IA, les choix techniques et la livraison de projets. Mon parcours a commencé par le NLP, les graphes de connaissances et la fusion d'ontologies, puis Android, le backend Java, les plateformes de risque et les systèmes distribués, avant de revenir aux plateformes IA d'entreprise, à RAG, aux workflows Agent et à la mise en production.
     journey_tag: Parcours
     journey_title: Expérience professionnelle
@@ -785,7 +688,7 @@ fr:
       - title: Exploration produit
         desc: Je m'intéresse aux outils IA vraiment utilisables, aux détails de workflow et aux interfaces qui réduisent le coût d'adoption.
   resume:
-    subtitle: Ingénierie IA / RAG / Graphe de connaissances / Backend Java
+    subtitle: Ingénierie IA / Harness / ontologie et graphes de connaissances / backend Java
     summary_tag: Synthèse
     summary_title: À propos
     summary: Diplômée d'un master Langue et Informatique de Sorbonne Université, avec une spécialisation en NLP. Mon parcours commence par le NLP, les graphes de connaissances et la fusion d'ontologies, puis passe par Android, le backend Java, les plateformes de risque et les systèmes distribués. Je travaille aujourd'hui sur la planification R&D IA, les plateformes IA d'entreprise, RAG, les workflows Agent, la gouvernance des données et la mise en production.
@@ -817,35 +720,4 @@ fr:
         desc: Diplôme à temps plein.
   blog:
     title: Blog
-    description: Notes d'ingénierie, parcours d'apprentissage IA et retours de terrain.
-  ai:
-    header_tag: Parcours IA
-    title: Parcours IA
-    path_tag: Parcours
-    path_title: Des outils aux systèmes
-    cards:
-      - id: ai-guide
-        no: "01"
-        title: Premiers pas avec l'IA
-        desc: Modèles, tokens, Codex, configuration locale, CC-Switch, Skills et outils quotidiens.
-      - id: ai-core
-        no: "02"
-        title: Capacités clés de l'IA
-        desc: RAG, parsing documentaire, OCR, graphes de connaissances, recherche, chunking et validation qualité.
-      - id: ai-engineering
-        no: "03"
-        title: Ingénierie IA
-        desc: Workflows Agent, services de modèles, évaluation, observabilité, ingénierie du contexte et fiabilité.
-    reading_tag: Lecture
-    reading_title: Parcours de lecture
-    guide_desc: Pour les développeurs qui savent coder mais n'ont pas encore structuré la chaîne d'outils IA.
-    core_desc: Pour comprendre RAG, le parsing documentaire, les graphes de connaissances et la qualité de recherche.
-    engineering_desc: Pour transformer les capacités IA en produits stables ou systèmes internes.
-    engineering_items:
-      - Pourquoi les applications IA ont besoin d'évaluation
-      - Les workflows Agent ne sont pas seulement des appels d'outils
-      - Ce que résolvent les outils de trace comme Langfuse
-      - L'ingénierie du contexte ne consiste pas à tout mettre dans le prompt
-      - Arbitrages coût, latence et stabilité dans les services de modèles
-    published_tag: Publié
-    published_title: Articles IA publiés
+    description: Notes d'ingénierie, retours de terrain et réflexions sur la vie.

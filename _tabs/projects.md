@@ -3,7 +3,6 @@ layout: redirect
 published: false
 redirect_to: /zh/projects/
 order: 5
-title: ai
+title: projects
 nav_title: 项目展示
-sitemap: false
 ---

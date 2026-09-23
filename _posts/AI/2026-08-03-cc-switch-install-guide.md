@@ -5,6 +5,7 @@ categories: [AI, Guide]
 tags: [ai-guide, cc-switch, codex, cli, install, windows, macos, linux]
 description: 面向第一次使用 CC Switch 的开发者，记录 Windows、macOS 和 Linux 的下载安装方式、第一次启动检查和安全提醒。
 pin: true
+published: false
 ---
 
 ## 0. 这篇文章解决什么

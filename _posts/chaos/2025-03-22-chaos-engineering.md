@@ -1,10 +1,11 @@
 ---
 title: 混沌工程-容灾能力测试实战
 date: 2025-03-22 10:00:00 +0800
-categories: [Chaos Enginneering]
-tags: [chaos enginneering]
+categories: [Chaos Engineering]
+tags: [chaos-engineering]
 description: 发现问题能力训练实战
 pin: true
+published: false
 ---
 
 # 项目介绍

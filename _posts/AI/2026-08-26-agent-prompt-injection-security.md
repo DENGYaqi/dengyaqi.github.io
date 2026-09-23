@@ -5,6 +5,7 @@ categories: [AI, Security]
 tags: [ai-security, prompt-injection, llm-security, ai-agent, owasp]
 description: 解释 Agent 场景下 Prompt 注入为什么危险，以及如何用不可信内容隔离、最小权限、读写分离、人工确认、沙箱和审计日志建立工程防线。
 pin: false
+published: false
 ---
 
 ## 问题从哪里开始

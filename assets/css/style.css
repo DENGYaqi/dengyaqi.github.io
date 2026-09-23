@@ -252,8 +252,6 @@ img {
 }
 
 .hero-content h1 {
-  display: grid;
-  gap: 0.02em;
   max-width: min(100%, 720px);
   margin-bottom: 1.1rem;
   color: var(--dark);
@@ -267,7 +265,6 @@ img {
 }
 
 .hero-content .highlight {
-  display: block;
   color: var(--orange);
 }
 
@@ -516,6 +513,12 @@ section {
   border-color: rgba(255, 255, 255, 0.1);
 }
 
+.project-card {
+  display: flex;
+  flex-direction: column;
+  min-height: 16.5rem;
+}
+
 .exp-card-inner,
 .skill-card,
 .project-card,
@@ -647,6 +650,11 @@ section {
   color: var(--white);
 }
 
+.project-card h3 {
+  min-height: 3rem;
+  line-height: 1.32;
+}
+
 .exp-company,
 .timeline-company,
 .post-card p,
@@ -659,6 +667,11 @@ section {
 .exp-desc,
 .project-card p {
   color: rgba(255, 255, 255, 0.72);
+}
+
+.project-card p {
+  flex: 1;
+  line-height: 1.72;
 }
 
 .experience-section .timeline-company {
@@ -732,6 +745,11 @@ section {
   flex-wrap: wrap;
   gap: 0.55rem;
   margin-top: 1rem;
+}
+
+.project-tags {
+  margin-top: auto;
+  padding-top: 1.2rem;
 }
 
 .exp-tag,

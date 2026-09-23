@@ -5,6 +5,7 @@ categories: [AI, Core]
 tags: [ai-core, rag, document-parsing, ocr, docling, retrieval, open-source]
 description: 记录 RAG 入库前的文档解析、结构保留、切分验证和开源复现思路，解释为什么上游质量会直接影响检索与回答。
 pin: true
+published: false
 ---
 
 ## 问题从哪里开始

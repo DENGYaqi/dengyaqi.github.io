@@ -8,7 +8,7 @@ pin: true
 ---
 
 ## 介绍
-在了解[Git基础](https://dengyaqi.github.io/posts/primary-git/)后，本文为Git的进阶扩展，并且在[面试鸭](https://www.mianshiya.com/bank/1815649098609254402)中Git相关的主题从中等到困难中选出一些代表性的问题，以便于更好的理解Git。主要介绍一些概念，具体的命令或者连续操作可以到[DevOps Guidebook](https://tsejx.github.io/devops-guidebook/code/git)或者[git官网](https://git-scm.com/book/zh/v2)查看。
+在了解[Git基础](https://dengyaqi.github.io/posts/2024/08/20/git-learn-part-1/)后，本文为Git的进阶扩展，并且在[面试鸭](https://www.mianshiya.com/bank/1815649098609254402)中Git相关的主题从中等到困难中选出一些代表性的问题，以便于更好的理解Git。主要介绍一些概念，具体的命令或者连续操作可以到[DevOps Guidebook](https://tsejx.github.io/devops-guidebook/code/git)或者[git官网](https://git-scm.com/book/zh/v2)查看。
 
 ## 1. 扩展概念
 

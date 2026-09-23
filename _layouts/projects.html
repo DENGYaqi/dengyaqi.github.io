@@ -1,0 +1,32 @@
+---
+layout: default
+body_class: dark-page
+---
+
+{% assign lang = page.lang | default: 'zh' %}
+{% assign t = site.data.i18n[lang] %}
+
+<header class="page-header">
+  <h1>{{ t.meta.projects_title }}</h1>
+  <p>{{ t.meta.projects_description }}</p>
+</header>
+
+<main>
+  <section class="projects-section">
+    <div class="container">
+      <div class="projects-grid">
+        {% for project in t.home.projects %}
+          <article class="project-card fade-up">
+            <h3>{{ project.title }}</h3>
+            <p>{{ project.desc }}</p>
+            <div class="project-tags">
+              {% for tag in project.tags %}
+                <span class="project-tag">{{ tag }}</span>
+              {% endfor %}
+            </div>
+          </article>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+</main>
