@@ -3,7 +3,7 @@ title: MySQL安装流程(Mac)
 date: 2024-12-30 10:00:00 +0800
 categories: [MySQL]
 tags: [mysql]
-description: MySQL安装Mac
+description: 记录 macOS 上 MySQL 的下载、安装和终端连接步骤，并附数据库、表与事务的常用命令。
 pin: true
 ---
 

@@ -3,7 +3,7 @@ title: MarkDown常用语法
 date: 2024-11-12 10:00:00 +0800
 categories: [Markdown]
 tags: [markdown]
-description: markdown grammar in common use
+description: 用元数据、表格、图片、链接和强调文字示例，快速查阅博客写作常用的 Markdown 语法。
 pin: true
 ---
 

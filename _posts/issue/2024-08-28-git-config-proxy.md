@@ -3,7 +3,7 @@ title: 解决 http.proxy has multiple values问题
 date: 2024-08-28 10:00:00 +0800
 categories: [Issue]
 tags: [git]
-description: Git issue resolve
+description: 记录排查 Git 多条 http.proxy 配置的过程：定位配置来源、清理重复项，恢复 VS Code 同步。
 pin: true
 ---
 

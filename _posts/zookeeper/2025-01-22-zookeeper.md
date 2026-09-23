@@ -3,7 +3,7 @@ title: Zookeeper原理解析与实战
 date: 2025-01-26 10:00:00 +0800
 categories: [Zookeeper]
 tags: [zookeeper]
-description: Zookeeper
+description: 从 Znode 和 Watch 机制延伸到 Curator、分布式锁、集群选举与 ZAB，配合命令演示。
 pin: true
 ---
 

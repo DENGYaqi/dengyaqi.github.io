@@ -23,7 +23,7 @@ body_class: dark-page
         <a class="post-card fade-up" href="{{ post | i18n_post_url: lang | relative_url }}">
           <time class="post-date">{{ post.date | date: "%Y.%m.%d" }}</time>
           <h3>{{ post | i18n_post_title: lang, site.data.post_translations }}</h3>
-          <p>{{ post | i18n_post_description: lang, site.data.post_translations | strip_html | strip_newlines | truncate: 130 }}</p>
+          <p>{{ post | i18n_post_description: lang, site.data.post_translations | strip_html | strip_newlines }}</p>
         </a>
       {% endfor %}
     </div>

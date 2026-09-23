@@ -3,7 +3,7 @@ title: 与面试官聊20分钟Git
 date: 2024-08-26 10:00:00 +0800
 categories: [Git]
 tags: [git]
-description: Git进阶
+description: 比较常见 Git 协作流程，解释分支、历史重置与代码评审，并整理典型面试问题。
 pin: true
 ---
 

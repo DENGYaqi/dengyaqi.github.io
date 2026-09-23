@@ -3,7 +3,7 @@ title: CocosCreator学习第二部分 - Cocos Creator
 date: 2024-08-11 10:00:00 +0800
 categories: [Cocos Creator]
 tags: [cocos-creator]
-description: Cocos Creator基础
+description: 从编辑器、节点与组件入手，记录资源加载、场景切换、事件和碰撞检测的基本操作。
 pin: true
 ---
 

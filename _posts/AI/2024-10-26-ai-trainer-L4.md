@@ -3,7 +3,7 @@ title: 人工智能训练师四级易错题总结
 date: 2024-10-26 10:00:00 +0800
 categories: [AI, Guide]
 tags: [ai-guide, ai, exam]
-description: 中国人工智能训练师入门考试
+description: 按人工智能训练师四级考试模块整理易错点，重点覆盖数据质量、标注质检与智能系统运维。
 pin: true
 ---
 

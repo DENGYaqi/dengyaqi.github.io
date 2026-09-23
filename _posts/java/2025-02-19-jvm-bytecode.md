@@ -3,7 +3,7 @@ title: JVM指令集
 date: 2025-02-19 10:00:00 +0800
 categories: [Java]
 tags: [java, jvm]
-description: JVM指令集
+description: 按压栈、局部变量、运算、分支和方法调用分类列出 JVM 字节码指令，便于反汇编时查阅。
 pin: true
 ---
 

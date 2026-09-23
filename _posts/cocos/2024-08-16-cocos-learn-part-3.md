@@ -3,7 +3,7 @@ title: CocosCreator学习第三部分 - Cocos Creator
 date: 2024-08-16 10:00:00 +0800
 categories: [Cocos Creator]
 tags: [cocos-creator]
-description: Cocos Creator进阶
+description: 围绕 Cocos Creator 的音频、2D 物理、缓动与动画，记录碰撞、射线和 Flappy Bird 练习。
 pin: true
 ---
 

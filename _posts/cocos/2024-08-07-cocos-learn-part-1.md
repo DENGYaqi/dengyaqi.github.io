@@ -3,7 +3,7 @@ title: CocosCreator学习第一部分 - TypeScript
 date: 2024-08-07 20:00:00 +0800
 categories: [Cocos Creator]
 tags: [cocos-creator, typescript]
-description: TypeScript语法
+description: 结合 Cocos 学习路线，梳理 TypeScript 类型、面向对象、集合与常见设计模式的基础用法。
 pin: true
 ---
 

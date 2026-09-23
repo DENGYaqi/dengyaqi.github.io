@@ -3,7 +3,7 @@ title: 英语自然拼读法基本规则汇总
 date: 2025-04-19 10:00:00 +0800
 categories: [Language]
 tags: [english, phonics]
-description: 英语发音
+description: 按辅音组合、长短元音、双元音与特殊发音归纳自然拼读规则，配合单词示例查阅。
 pin: true
 ---
 

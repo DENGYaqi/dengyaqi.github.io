@@ -3,7 +3,7 @@ title: 20分钟了解Git
 date: 2024-08-20 10:00:00 +0800
 categories: [Git]
 tags: [git]
-description: Git基础
+description: 从工作区、暂存区和提交历史讲起，串联分支合并、冲突处理与日常 Git 命令。
 pin: true
 ---
 

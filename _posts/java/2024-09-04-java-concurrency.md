@@ -3,7 +3,7 @@ title: 20分钟了解Java并发编程
 date: 2024-09-04 10:00:00 +0800
 categories: [Java]
 tags: [java]
-description: Java并发
+description: 从可见性、原子性和有序性出发，解释 Java 内存模型及 volatile、synchronized、final 的作用。
 mermaid: true # 图表生成工具 : https://github.com/mermaid-js/mermaid
 pin: true
 ---

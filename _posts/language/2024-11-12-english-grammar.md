@@ -3,7 +3,7 @@ title: Pocket英语笔记
 date: 2024-11-12 10:00:00 +0800
 categories: [Language]
 tags: [english]
-description: 英语语法
+description: 按课程顺序整理基本句式、词类、时态、语态和从句，作为英语基础语法的查阅笔记。
 pin: true
 ---
 

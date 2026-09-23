@@ -1058,9 +1058,22 @@ section {
   padding-bottom: 5rem;
 }
 
+.post-grid {
+  align-items: start;
+}
+
 .post-card {
   display: block;
   color: var(--dark);
+}
+
+.post-card p {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  font-size: 0.94rem;
+  line-height: 1.55;
 }
 
 .dark-page .post-card,

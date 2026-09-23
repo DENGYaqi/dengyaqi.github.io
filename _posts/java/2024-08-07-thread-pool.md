@@ -3,7 +3,7 @@ title: 与面试官聊20分钟Java线程池
 date: 2024-08-07 10:00:00 +0800
 categories: [Java]
 tags: [java, thread-pool]
-description: Java线程池进阶
+description: 解释线程池如何复用线程，并分析线程数过大带来的内存、切换和竞争成本及任务类型对容量的影响。
 pin: true
 ---
 

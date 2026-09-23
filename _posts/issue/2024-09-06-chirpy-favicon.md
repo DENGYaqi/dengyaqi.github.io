@@ -3,7 +3,7 @@ title: 解决Chirpy自定义网站图标无法显示问题
 date: 2024-09-06 10:00:00 +0800
 categories: [Issue]
 tags: [github]
-description: Github issue resolve - Chirpy Customize the Favicon
+description: 记录 Chirpy 自定义 favicon 在 Firefox 中未显示的排查线索，并附相关文档与解决方案链接。
 pin: true
 ---
 

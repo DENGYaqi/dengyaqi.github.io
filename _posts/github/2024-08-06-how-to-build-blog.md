@@ -3,7 +3,7 @@ title: 如何快速构建Github个人博客 - Github Pages
 date: 2024-08-06 10:00:00 +0800
 categories: [GitHub]
 tags: [github, github-pages, markdown, chirpy, chirpy-starter, jekyll]
-description: 入门级快速搭建个人博客
+description: 从 Chirpy Starter 建仓到配置 GitHub Pages、Codespaces 和评论，记录个人博客的上线流程。
 pin: true
 ---
 

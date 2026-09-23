@@ -3,7 +3,7 @@ title: 20分钟了解Java容器
 date: 2024-09-03 10:00:00 +0800
 categories: [Java]
 tags: [java]
-description: Java容器
+description: 按 List、Set、Queue 和 Map 梳理常见 Java 容器的底层结构、性能特点与适用场景。
 pin: true
 ---
 

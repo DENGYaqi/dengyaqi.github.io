@@ -3,7 +3,7 @@ title: GitHub 实用项目收藏
 date: 2024-11-20 10:00:00 +0800
 categories: [GitHub]
 tags: [github, open-source]
-description: 常用开源项目链接整理。
+description: 汇集 Excel 处理、中文 NLP、后端架构、视频工具与屏幕控制等常用开源项目入口。
 pin: false
 ---
 

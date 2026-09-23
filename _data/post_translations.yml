@@ -5,10 +5,10 @@
     ja: "thmsgbrt を参考に GitHub ホームページを作る - GitHub Actions"
     fr: "Construire une page GitHub avec thmsgbrt - GitHub Actions"
   description:
-    zh: "thmsgbrt 教程"
-    en: "A tutorial based on thmsgbrt's setup."
-    ja: "thmsgbrt の構成を参考にしたチュートリアル。"
-    fr: "Tutoriel basé sur la configuration de thmsgbrt."
+    zh: "以 Mustache 模板生成 GitHub 个人主页 README，并用 GitHub Actions 定时更新展示内容。"
+    en: "Build a GitHub profile README with a Mustache template and automate updates with GitHub Actions."
+    ja: "Mustache テンプレートで GitHub プロフィールの README を生成し、GitHub Actions で定期更新する手順を紹介。"
+    fr: "Créer un README de profil GitHub avec Mustache et automatiser sa mise à jour avec GitHub Actions."
 
 2024-08-06-how-to-build-blog:
   title:
@@ -17,10 +17,10 @@
     ja: "GitHub Pages で個人ブログをすばやく作る方法"
     fr: "Créer rapidement un blog personnel avec GitHub Pages"
   description:
-    zh: "入门级快速搭建个人博客"
-    en: "A beginner-friendly guide to building a personal blog."
-    ja: "個人ブログをすばやく構築するための入門ガイド。"
-    fr: "Guide d'initiation pour créer rapidement un blog personnel."
+    zh: "从 Chirpy Starter 建仓到配置 GitHub Pages、Codespaces 和评论，记录个人博客的上线流程。"
+    en: "Launch a blog with Chirpy Starter, GitHub Pages, Codespaces, and comments."
+    ja: "Chirpy Starter でのリポジトリ作成から GitHub Pages、Codespaces、コメント機能の設定までを紹介。"
+    fr: "Créer un blog avec Chirpy Starter, GitHub Pages et Codespaces, puis configurer les commentaires."
 
 2024-08-07-cocos-learn-part-1:
   title:
@@ -29,10 +29,10 @@
     ja: "Cocos Creator 学習 Part 1 - TypeScript"
     fr: "Apprendre Cocos Creator Partie 1 - TypeScript"
   description:
-    zh: "TypeScript 语法"
-    en: "TypeScript syntax."
-    ja: "TypeScript の構文。"
-    fr: "Syntaxe TypeScript."
+    zh: "结合 Cocos 学习路线，梳理 TypeScript 类型、面向对象、集合与常见设计模式的基础用法。"
+    en: "TypeScript types, OOP, collections, and design patterns for Cocos Creator."
+    ja: "Cocos Creator 学習の準備として、TypeScript の型、オブジェクト指向、コレクション、設計パターンを整理。"
+    fr: "Revoir les types TypeScript, l'orienté objet, les collections et les patrons de conception avant Cocos Creator."
 
 2024-08-07-jvm:
   title:
@@ -41,10 +41,10 @@
     ja: "面接官と 20 分で話す JVM"
     fr: "Parler de la JVM en entretien pendant 20 minutes"
   description:
-    zh: "JVM 基础"
-    en: "JVM basics."
-    ja: "JVM の基礎。"
-    fr: "Bases de la JVM."
+    zh: "梳理 JVM 内存区域、对象布局和垃圾回收，并结合 GC 日志与线程转储说明故障排查思路。"
+    en: "JVM memory, object layout, GC, and diagnosis with logs and thread dumps."
+    ja: "JVM のメモリ領域、オブジェクト構造、GC を整理し、GC ログとスレッドダンプによる調査方法を紹介。"
+    fr: "Parcourir la mémoire JVM, la structure des objets et le GC, puis examiner les journaux GC et les thread dumps."
 
 2024-08-07-thread-pool:
   title:
@@ -53,10 +53,10 @@
     ja: "面接官と 20 分で話す Java スレッドプール"
     fr: "Parler des pools de threads Java en entretien pendant 20 minutes"
   description:
-    zh: "Java 线程池进阶"
-    en: "Advanced Java thread pools."
-    ja: "Java スレッドプールの応用。"
-    fr: "Notions avancées sur les pools de threads Java."
+    zh: "解释线程池如何复用线程，并分析线程数过大带来的内存、切换和竞争成本及任务类型对容量的影响。"
+    en: "Explain thread reuse, the cost of oversized pools, and how CPU-bound or I/O-bound tasks inform pool size."
+    ja: "スレッド再利用の仕組み、過大なプールのメモリ・切り替えコスト、タスク種別に応じた規模を解説。"
+    fr: "Expliquer la réutilisation des threads, le coût d'un pool trop grand et son dimensionnement selon les tâches."
 
 2024-08-11-cocos-learn-part-2:
   title:
@@ -65,10 +65,10 @@
     ja: "Cocos Creator 学習 Part 2 - Cocos Creator"
     fr: "Apprendre Cocos Creator Partie 2 - Cocos Creator"
   description:
-    zh: "Cocos Creator 基础"
-    en: "Cocos Creator basics."
-    ja: "Cocos Creator の基礎。"
-    fr: "Bases de Cocos Creator."
+    zh: "从编辑器、节点与组件入手，记录资源加载、场景切换、事件和碰撞检测的基本操作。"
+    en: "Cocos editor, nodes, components, assets, scenes, events, and collisions."
+    ja: "エディター、ノード、コンポーネントを起点に、リソース読込、シーン切替、イベント、衝突判定を学ぶ。"
+    fr: "Éditeur Cocos, nœuds, composants, ressources, scènes, événements et collisions."
 
 2024-08-16-cocos-learn-part-3:
   title:
@@ -77,10 +77,10 @@
     ja: "Cocos Creator 学習 Part 3 - Cocos Creator"
     fr: "Apprendre Cocos Creator Partie 3 - Cocos Creator"
   description:
-    zh: "Cocos Creator 进阶"
-    en: "Advanced Cocos Creator."
-    ja: "Cocos Creator の応用。"
-    fr: "Cocos Creator avancé."
+    zh: "围绕 Cocos Creator 的音频、2D 物理、缓动与动画，记录碰撞、射线和 Flappy Bird 练习。"
+    en: "Explore audio, 2D physics, tweens, and animation through collision, raycast, and Flappy Bird exercises."
+    ja: "音声、2D 物理、トゥイーン、アニメーションを、衝突・レイキャスト・Flappy Bird の演習で学ぶ。"
+    fr: "Explorer l'audio, la physique 2D, les tweens et l'animation à travers des exercices de collision et de raycast."
 
 2024-08-19-cocos-learn-part-4:
   title:
@@ -89,10 +89,10 @@
     ja: "Cocos Creator 学習 Part 4 - Cocos Creator"
     fr: "Apprendre Cocos Creator Partie 4 - Cocos Creator"
   description:
-    zh: "Cocos Creator 的 UI 系统"
-    en: "The Cocos Creator UI system."
-    ja: "Cocos Creator の UI システム。"
-    fr: "Le système UI de Cocos Creator."
+    zh: "梳理 Canvas、富文本、遮罩和屏幕适配，以及按钮、布局、滚动视图等常用 UI 组件。"
+    en: "Canvas, rich text, masks, responsive layouts, and common Cocos UI controls."
+    ja: "Canvas、リッチテキスト、マスク、画面適応から、ボタン、レイアウト、スクロール表示までを整理。"
+    fr: "Présenter Canvas, texte enrichi, masques, adaptation d'écran, boutons, mises en page et vues défilantes."
 
 2024-08-20-git-learn-part-1:
   title:
@@ -101,10 +101,10 @@
     ja: "20 分でわかる Git"
     fr: "Comprendre Git en 20 minutes"
   description:
-    zh: "Git 基础"
-    en: "Git basics."
-    ja: "Git の基礎。"
-    fr: "Bases de Git."
+    zh: "从工作区、暂存区和提交历史讲起，串联分支合并、冲突处理与日常 Git 命令。"
+    en: "Connect Git's working tree, staging area, and history with branching, merges, conflicts, and everyday commands."
+    ja: "作業ツリー、ステージング、履歴を起点に、ブランチの統合、競合解決、日常の Git コマンドを整理。"
+    fr: "Relier espace de travail, index et historique Git aux branches, fusions, conflits et commandes courantes."
 
 2024-08-26-devOps:
   title:
@@ -113,10 +113,10 @@
     ja: "20 分でわかる DevOps"
     fr: "Comprendre DevOps en 20 minutes"
   description:
-    zh: "DevOps 基础"
-    en: "DevOps basics."
-    ja: "DevOps の基礎。"
-    fr: "Bases de DevOps."
+    zh: "介绍 DevOps 的协作与自动化目标，串联 CI/CD、容器、监控和日志的基本职责。"
+    en: "Outline DevOps collaboration and automation through CI/CD, containers, monitoring, and log collection."
+    ja: "DevOps の協働と自動化を、CI/CD、コンテナ、監視、ログ収集の役割から整理。"
+    fr: "Présenter la collaboration et l'automatisation DevOps à travers CI/CD, conteneurs, supervision et journaux."
 
 2024-08-26-git-learn-part-2:
   title:
@@ -125,10 +125,10 @@
     ja: "面接官と 20 分で話す Git"
     fr: "Parler de Git en entretien pendant 20 minutes"
   description:
-    zh: "Git 进阶"
-    en: "Advanced Git."
-    ja: "Git の応用。"
-    fr: "Git avancé."
+    zh: "比较常见 Git 协作流程，解释分支、历史重置与代码评审，并整理典型面试问题。"
+    en: "Compare Git collaboration workflows, explain branches and reset modes, and review common interview questions."
+    ja: "Git の共同開発フロー、ブランチ、履歴のリセット、コードレビューを比較し、面接での論点も整理。"
+    fr: "Comparer les flux de collaboration Git, les branches et les modes de reset, avec des questions d'entretien."
 
 2024-08-28-git-config-proxy:
   title:
@@ -137,10 +137,10 @@
     ja: "'http.proxy has multiple values' 問題の解決"
     fr: "Résoudre l'erreur 'http.proxy has multiple values'"
   description:
-    zh: "Git 问题处理"
-    en: "A Git troubleshooting note."
-    ja: "Git トラブルシューティングメモ。"
-    fr: "Note de dépannage Git."
+    zh: "记录排查 Git 多条 http.proxy 配置的过程：定位配置来源、清理重复项，恢复 VS Code 同步。"
+    en: "Trace duplicate Git http.proxy entries to their config file, remove them, and restore VS Code synchronization."
+    ja: "Git の http.proxy 重複設定を設定ファイルまで追跡・削除し、VS Code の同期を復旧する手順。"
+    fr: "Repérer les entrées http.proxy en double dans la configuration Git, les supprimer et rétablir la synchronisation VS Code."
 
 2024-08-28-java:
   title:
@@ -149,10 +149,10 @@
     ja: "20 分でわかる Java"
     fr: "Comprendre Java en 20 minutes"
   description:
-    zh: "Java 基础"
-    en: "Java basics."
-    ja: "Java の基礎。"
-    fr: "Bases de Java."
+    zh: "以面向对象为起点，梳理 Java 的反射、异常、泛型、注解与 SPI 扩展机制。"
+    en: "Object-oriented Java, reflection, exceptions, generics, annotations, and SPI."
+    ja: "オブジェクト指向を起点に、Java のリフレクション、例外、ジェネリクス、アノテーション、SPI を整理。"
+    fr: "Parcourir l'orienté objet en Java, la réflexion, les exceptions, les génériques, les annotations et SPI."
 
 2024-09-03-java-collections:
   title:
@@ -161,10 +161,10 @@
     ja: "20 分でわかる Java コレクション"
     fr: "Comprendre les collections Java en 20 minutes"
   description:
-    zh: "Java 容器"
-    en: "Java collections."
-    ja: "Java コレクション。"
-    fr: "Collections Java."
+    zh: "按 List、Set、Queue 和 Map 梳理常见 Java 容器的底层结构、性能特点与适用场景。"
+    en: "Compare the internals, performance, and use cases of Java's List, Set, Queue, and Map collections."
+    ja: "List、Set、Queue、Map を軸に、Java コレクションの内部構造、性能、使い分けを整理します。"
+    fr: "Comparer la structure interne, les performances et les usages des collections Java List, Set, Queue et Map."
 
 2024-09-04-java-concurrency:
   title:
@@ -173,10 +173,10 @@
     ja: "20 分でわかる Java 並行処理"
     fr: "Comprendre la concurrence Java en 20 minutes"
   description:
-    zh: "Java 并发"
-    en: "Java concurrency."
-    ja: "Java 並行処理。"
-    fr: "Concurrence Java."
+    zh: "从可见性、原子性和有序性出发，解释 Java 内存模型及 volatile、synchronized、final 的作用。"
+    en: "Explore visibility, atomicity, and ordering in the Java Memory Model, with the roles of volatile, synchronized, and final."
+    ja: "Java メモリモデルの可視性・原子性・順序性と、volatile・synchronized・final の役割。"
+    fr: "Visibilité, atomicité et ordre en Java : rôle de volatile, synchronized et final."
 
 2024-09-06-chirpy-favicon:
   title:
@@ -185,10 +185,10 @@
     ja: "Chirpy のカスタム favicon が表示されない問題を解決"
     fr: "Résoudre l'affichage du favicon personnalisé dans Chirpy"
   description:
-    zh: "GitHub 问题处理 - Chirpy 自定义 Favicon"
-    en: "GitHub troubleshooting - Chirpy custom favicon."
-    ja: "GitHub トラブルシューティング - Chirpy カスタム favicon。"
-    fr: "Dépannage GitHub - favicon personnalisé Chirpy."
+    zh: "记录 Chirpy 自定义 favicon 在 Firefox 中未显示的排查线索，并附相关文档与解决方案链接。"
+    en: "Chirpy favicon missing in Firefox: investigation notes and relevant fix links."
+    ja: "Chirpy のカスタム favicon が Firefox に表示されない問題について、調査の手がかりと関連資料を記録します。"
+    fr: "Favicon Chirpy absent dans Firefox : pistes d'enquête et liens utiles."
 
 2024-10-26-ai-trainer-L4:
   title:
@@ -197,10 +197,10 @@
     ja: "人工知能トレーナー 4 級の間違えやすい問題まとめ"
     fr: "Erreurs fréquentes pour l'examen d'entraîneur IA niveau 4"
   description:
-    zh: "中国人工智能训练师入门考试"
-    en: "Introductory exam notes for China's AI trainer certification."
-    ja: "中国の人工知能トレーナー入門試験メモ。"
-    fr: "Notes d'examen d'initiation à la certification chinoise d'entraîneur IA."
+    zh: "按人工智能训练师四级考试模块整理易错点，重点覆盖数据质量、标注质检与智能系统运维。"
+    en: "Level 4 AI Trainer pitfalls: data quality, annotation checks, and system operations."
+    ja: "人工知能訓練師 4 級試験の間違えやすい点を、データ品質、アノテーション検査、システム運用を中心に整理します。"
+    fr: "Pièges de l'examen IA niveau 4 : données, contrôle des annotations et exploitation."
 
 2024-11-12-english-grammar:
   title:
@@ -209,10 +209,10 @@
     ja: "Pocket 英語ノート"
     fr: "Notes d'anglais Pocket"
   description:
-    zh: "英语语法"
-    en: "English grammar."
-    ja: "英語文法。"
-    fr: "Grammaire anglaise."
+    zh: "按课程顺序整理基本句式、词类、时态、语态和从句，作为英语基础语法的查阅笔记。"
+    en: "Course notes on sentence patterns, word classes, tenses, voice, and clauses."
+    ja: "授業の順に基本文型、品詞、時制、態、節をまとめた、英語の基礎文法を振り返るためのノートです。"
+    fr: "Notes de cours sur phrases, classes de mots, temps, voix et propositions."
 
 2024-11-12-md-grammar-common-use:
   title:
@@ -221,10 +221,10 @@
     ja: "よく使う Markdown 構文"
     fr: "Syntaxe Markdown courante"
   description:
-    zh: "Markdown 常用语法"
-    en: "Common Markdown grammar and examples."
-    ja: "よく使う Markdown の構文と例。"
-    fr: "Syntaxe et exemples Markdown courants."
+    zh: "用元数据、表格、图片、链接和强调文字示例，快速查阅博客写作常用的 Markdown 语法。"
+    en: "A quick Markdown reference for blog writing, with examples of front matter, tables, images, links, and text emphasis."
+    ja: "ブログ執筆で使う Markdown の書き方を、フロントマター、表、画像、リンク、強調の例から確認できます。"
+    fr: "Exemples Markdown : métadonnées, tableaux, images, liens et emphase."
 
 2024-11-20-github-useful-project:
   title:
@@ -233,10 +233,10 @@
     ja: "便利な GitHub プロジェクト集"
     fr: "Projets GitHub utiles"
   description:
-    zh: "常用开源项目链接整理。"
-    en: "A curated list of useful open-source project links."
-    ja: "便利なオープンソースプロジェクトのリンク集。"
-    fr: "Liste de liens vers des projets open source utiles."
+    zh: "汇集 Excel 处理、中文 NLP、后端架构、视频工具与屏幕控制等常用开源项目入口。"
+    en: "Open-source tools for Excel, Chinese NLP, backend design, video, and screen control."
+    ja: "Excel 処理、中国語 NLP、バックエンド設計、動画ツール、画面操作に役立つオープンソースプロジェクトを集めます。"
+    fr: "Sélection de projets open source pour Excel, le TAL chinois, l'architecture backend, la vidéo et le contrôle d'écran."
 
 2024-12-30-mysql-install-mac:
   title:
@@ -245,10 +245,10 @@
     ja: "macOS に MySQL をインストールする"
     fr: "Installer MySQL sur macOS"
   description:
-    zh: "MySQL 安装 Mac"
-    en: "MySQL installation on macOS."
-    ja: "macOS での MySQL インストール。"
-    fr: "Installation de MySQL sur macOS."
+    zh: "记录 macOS 上 MySQL 的下载、安装和终端连接步骤，并附数据库、表与事务的常用命令。"
+    en: "MySQL setup on macOS, terminal access, and database, table, and transaction commands."
+    ja: "macOS での MySQL の導入と端末接続、データベース・表・トランザクションの基本コマンド。"
+    fr: "MySQL sur macOS : installation, connexion et commandes pour bases, tables et transactions."
 
 2025-01-22-zookeeper:
   title:
@@ -257,10 +257,10 @@
     ja: "ZooKeeper の仕組みと実践"
     fr: "Principes et pratique de ZooKeeper"
   description:
-    zh: "Zookeeper"
-    en: "ZooKeeper notes."
-    ja: "ZooKeeper メモ。"
-    fr: "Notes sur ZooKeeper."
+    zh: "从 Znode 和 Watch 机制延伸到 Curator、分布式锁、集群选举与 ZAB，配合命令演示。"
+    en: "Znodes, watches, Curator, distributed locks, leader election, and ZAB commands."
+    ja: "Znode と Watch から Curator、分散ロック、リーダー選出、ZAB まで、コマンド例を交えて整理します。"
+    fr: "Étudier les Znodes et les watches, puis Curator, les verrous distribués, l'élection du leader et ZAB, avec des commandes."
 
 2025-02-02-kafka:
   title:
@@ -269,10 +269,10 @@
     ja: "Kafka の仕組みと実践"
     fr: "Principes et pratique de Kafka"
   description:
-    zh: "Kafka"
-    en: "Kafka notes."
-    ja: "Kafka メモ。"
-    fr: "Notes sur Kafka."
+    zh: "从消息队列通信模型出发，梳理 Kafka 分区副本、生产消费、位移提交及常见可靠性问题。"
+    en: "Kafka partitions, replicas, producers, consumers, offsets, and reliability."
+    ja: "メッセージングモデルを起点に、Kafka のパーティション、レプリカ、送受信、オフセット管理と信頼性を整理します。"
+    fr: "Kafka : partitions, réplicas, production, consommation, offsets et fiabilité."
 
 2025-02-18-jvm:
   title:
@@ -281,10 +281,10 @@
     ja: "JVM の仕組みと実践"
     fr: "Principes et pratique de la JVM"
   description:
-    zh: "JVM"
-    en: "JVM notes."
-    ja: "JVM メモ。"
-    fr: "Notes sur la JVM."
+    zh: "沿类加载、运行时数据区与对象创建流程，解析垃圾回收机制，并用堆参数示例展示调优思路。"
+    en: "Class loading, runtime memory, object creation, GC, and heap tuning examples."
+    ja: "クラスロード、実行時データ領域、オブジェクト生成を追い、GC の仕組みとヒープ設定による調整例を解説します。"
+    fr: "Classes, mémoire, création d'objets, GC et exemples de réglage du tas JVM."
 
 2025-02-19-jvm-bytecode:
   title:
@@ -293,10 +293,10 @@
     ja: "JVM バイトコード命令セット"
     fr: "Jeu d'instructions bytecode JVM"
   description:
-    zh: "JVM 指令集"
-    en: "JVM bytecode instructions."
-    ja: "JVM バイトコード命令。"
-    fr: "Instructions bytecode JVM."
+    zh: "按压栈、局部变量、运算、分支和方法调用分类列出 JVM 字节码指令，便于反汇编时查阅。"
+    en: "A JVM bytecode reference grouped by stack, local variable, arithmetic, branch, and method invocation instructions."
+    ja: "スタック、ローカル変数、演算、分岐、メソッド呼び出し別に JVM 命令を分類し、逆アセンブル時の参照に役立てます。"
+    fr: "Référence des opcodes JVM : pile, variables, calculs, sauts et appels."
 
 2025-03-22-chaos-engineering:
   title:
@@ -317,10 +317,10 @@
     ja: "英語フォニックスの基本ルールまとめ"
     fr: "Règles de base de la phonétique anglaise"
   description:
-    zh: "英语发音"
-    en: "English pronunciation."
-    ja: "英語発音。"
-    fr: "Prononciation anglaise."
+    zh: "按辅音组合、长短元音、双元音与特殊发音归纳自然拼读规则，配合单词示例查阅。"
+    en: "Phonics rules for consonant blends, vowels, diphthongs, and special sounds."
+    ja: "子音の組み合わせ、長母音と短母音、二重母音、特殊な発音を、単語例とともにまとめます。"
+    fr: "Règles de phonétique : consonnes, voyelles, diphtongues et sons particuliers."
 
 2025-05-19-common-skills-used-in-work:
   title:

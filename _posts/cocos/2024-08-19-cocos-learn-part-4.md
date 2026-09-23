@@ -3,7 +3,7 @@ title: CocosCreator学习第四部分 - Cocos Creator
 date: 2024-08-19 10:00:00 +0800
 categories: [Cocos Creator]
 tags: [cocos-creator]
-description: Cocos Creator的UI系统
+description: 梳理 Canvas、富文本、遮罩和屏幕适配，以及按钮、布局、滚动视图等常用 UI 组件。
 pin: true
 ---
 

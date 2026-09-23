@@ -3,7 +3,7 @@ title: 跟着大佬thmsgbrt构建Github主页 - Github Actions
 date: 2024-08-02 10:00:00 +0800
 categories: [GitHub]
 tags: [github, github-actions, markdown]
-description: thmsgbrt教程
+description: 以 Mustache 模板生成 GitHub 个人主页 README，并用 GitHub Actions 定时更新展示内容。
 pin: true
 ---
 ![thmsgbrt主页](/assets/img/github/thmsgbrt_homepage.webp){: .normal }
