@@ -38,11 +38,11 @@ zh:
     read_more: 阅读
   home:
     tag: AI 工程 / Harness / 本体论与知识图谱
-    title_line_1: 让AI进入
-    title_line_2: 生活
-    title_prefix: 让AI进入
+    title_line_1: 用AI让生活
+    title_line_2: 有趣
+    title_prefix: 用AI让生活
     title_separator: ""
-    title_highlight: 生活
+    title_highlight: 有趣
     intro: 我是邓雅琪，这里记录了我的工作、生活和想法。
     primary_button: 下载简历
     secondary_button: 阅读博客
@@ -233,11 +233,11 @@ en:
     read_more: Read
   home:
     tag: AI Engineering / Harness / Ontology and Knowledge Graphs
-    title_line_1: Bring AI into
-    title_line_2: everyday life
-    title_prefix: Bring AI into
+    title_line_1: AI makes life
+    title_line_2: more fun
+    title_prefix: AI makes life
     title_separator: " "
-    title_highlight: everyday life
+    title_highlight: more fun
     intro: I am Deng Yaqi. Here I share my work, life, and thoughts.
     primary_button: Download Resume
     secondary_button: Read Blog
@@ -426,11 +426,11 @@ ja:
     read_more: 読む
   home:
     tag: AI エンジニアリング / Harness / オントロジーと知識グラフ
-    title_line_1: AIを
-    title_line_2: 日常へ
-    title_prefix: AIを
+    title_line_1: AIで暮らしをもっと
+    title_line_2: 楽しく
+    title_prefix: AIで暮らしをもっと
     title_separator: ""
-    title_highlight: 日常へ
+    title_highlight: 楽しく
     intro: 鄧雅琪です。ここでは、私の仕事、暮らし、考えを記録しています。
     primary_button: 職務経歴書をダウンロード
     secondary_button: ブログを読む
@@ -619,11 +619,11 @@ fr:
     read_more: Lire
   home:
     tag: Ingénierie IA / Harness / ontologie et graphes de connaissances
-    title_line_1: Faire entrer l'IA
-    title_line_2: dans la vie quotidienne
-    title_prefix: Faire entrer l'IA
+    title_line_1: L'IA rend la vie
+    title_line_2: plus amusante
+    title_prefix: L'IA rend la vie
     title_separator: " "
-    title_highlight: dans la vie quotidienne
+    title_highlight: plus amusante
     intro: Je suis Deng Yaqi. Je partage ici mon travail, ma vie et mes réflexions.
     primary_button: Télécharger le CV
     secondary_button: Lire le blog
