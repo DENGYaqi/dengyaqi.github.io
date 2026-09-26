@@ -591,14 +591,29 @@ section {
 }
 
 .experience-section .timeline-card {
+  display: block;
   position: relative;
   overflow: hidden;
+  color: inherit;
+  text-decoration: none;
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 16px;
   background: rgba(255, 255, 255, 0.055);
   box-shadow: none;
   backdrop-filter: blur(12px);
   transition: transform 0.35s, border-color 0.35s, background 0.35s, box-shadow 0.35s;
+}
+
+.experience-section .timeline-card[href]:focus-visible {
+  outline: 3px solid var(--orange-light);
+  outline-offset: 4px;
+}
+
+.experience-more {
+  display: inline-block;
+  margin-top: 1rem;
+  color: var(--orange-light);
+  font-weight: 700;
 }
 
 .experience-section .timeline-card::before {

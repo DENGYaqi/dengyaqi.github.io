@@ -8,6 +8,8 @@ description: >-
 url: "https://dengyaqi.github.io"
 baseurl: ""
 show_projects: false
+# Set to the login app origin (without a trailing slash) after its protected experience pages are live.
+experience_app_url: ""
 
 github:
   username: DENGYaqi

@@ -37,7 +37,11 @@ nav_title: 关于我
     <div class="timeline">
       {% for item in site.data.experience %}
         <article class="timeline-item fade-up">
-          <div class="timeline-card">
+          {% if site.experience_app_url != '' %}
+            <a class="timeline-card" href="{{ site.experience_app_url }}/{{ lang }}/experiences/{{ item.key }}/" aria-label="{{ t.home.experience_more }} — {{ item.title[lang] | default: item.title.zh }}">
+          {% else %}
+            <div class="timeline-card">
+          {% endif %}
             <div class="timeline-header">
               <div>
                 <h3 class="timeline-title">{{ item.title[lang] | default: item.title.zh }}</h3>
@@ -46,7 +50,8 @@ nav_title: 关于我
               <span class="timeline-date">{{ item.date[lang] | default: item.date }}</span>
             </div>
             <p class="timeline-summary">{{ item.summary[lang] | default: item.summary.zh }}</p>
-          </div>
+            {% if site.experience_app_url != '' %}<span class="experience-more">{{ t.home.experience_more }} →</span>{% endif %}
+          {% if site.experience_app_url != '' %}</a>{% else %}</div>{% endif %}
         </article>
       {% endfor %}
     </div>

@@ -49,6 +49,7 @@ zh:
     hero_alt: 邓雅琪在中国最高海拔市纪念石旁
     experience_tag: Experience
     experience_title: 工作经历
+    experience_more: 查看项目介绍
     full_resume: 下载简历
     skills_tag: Skills
     skills_title: 技术栈
@@ -244,6 +245,7 @@ en:
     hero_alt: Deng Yaqi beside the monument of China's highest-altitude city
     experience_tag: Experience
     experience_title: Work Experience
+    experience_more: View projects
     full_resume: Download Resume
     skills_tag: Skills
     skills_title: What I Work With
@@ -437,6 +439,7 @@ ja:
     hero_alt: 中国最高標高都市の記念碑のそばにいる鄧雅琪
     experience_tag: Experience
     experience_title: 職務経験
+    experience_more: プロジェクトを見る
     full_resume: 職務経歴書をダウンロード
     skills_tag: Skills
     skills_title: 扱う技術領域
@@ -630,6 +633,7 @@ fr:
     hero_alt: Deng Yaqi près du monument de la ville la plus haute de Chine
     experience_tag: Experience
     experience_title: Expérience professionnelle
+    experience_more: Voir les projets
     full_resume: Télécharger le CV
     skills_tag: Skills
     skills_title: Domaines techniques
