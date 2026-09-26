@@ -22,17 +22,19 @@ body_class: dark-page life-page
         {% for photo in entry.photos %}
           <figure class="life-gallery-slide" id="photo-{{ forloop.index }}">
             <img src="{{ photo.src | relative_url }}" alt="{{ photo.alt[lang] }}" {% unless forloop.first %}loading="lazy"{% endunless %}>
-            <figcaption><span>{{ forloop.index }} / {{ entry.photos.size }}</span>{{ photo.caption[lang] }}</figcaption>
+            <figcaption>{% if entry.photos.size > 1 %}<span>{{ forloop.index }} / {{ entry.photos.size }}</span>{% endif %}{{ photo.caption[lang] }}</figcaption>
           </figure>
         {% endfor %}
       </div>
-      <div class="life-thumbnails" aria-label="{{ t.about.life_gallery }}">
-        {% for photo in entry.photos %}
-          <a href="#photo-{{ forloop.index }}" aria-label="{{ forloop.index }}. {{ photo.caption[lang] }}">
-            <img src="{{ photo.src | relative_url }}" alt="" loading="lazy">
-          </a>
-        {% endfor %}
-      </div>
+      {% if entry.photos.size > 1 %}
+        <div class="life-thumbnails" aria-label="{{ t.about.life_gallery }}">
+          {% for photo in entry.photos %}
+            <a href="#photo-{{ forloop.index }}" aria-label="{{ forloop.index }}. {{ photo.caption[lang] }}">
+              <img src="{{ photo.src | relative_url }}" alt="" loading="lazy">
+            </a>
+          {% endfor %}
+        </div>
+      {% endif %}
     </section>
   </div>
 </main>

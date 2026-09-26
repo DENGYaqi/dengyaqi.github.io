@@ -1,3 +1,33 @@
+- slug: adventure-diary
+  cover: /assets/img/about/adventure-mountain.jpg
+  title:
+    zh: 冒险日记
+    en: Adventure Diary
+    ja: 冒険日記
+    fr: Journal d'aventure
+  summary:
+    zh: 走向雪山、湖泊和城市边界，记录工作之外的探索。
+    en: Exploring mountains, lakes, and the edges of cities beyond work.
+    ja: 雪山や湖、街の境界へ。仕事を離れた探索の記録。
+    fr: Des montagnes aux lacs et aux limites des villes, des découvertes hors du travail.
+  note:
+    zh: 工作之外，我也喜欢走到更远的地方，看雪山、湖泊和城市边界，把生活里的探索感带回工程判断。
+    en: Outside of work, I like going farther into mountains, lakes, and the edges of cities, then bringing that sense of exploration back into engineering judgment.
+    ja: 仕事以外では、より遠い場所へ歩き、雪山や湖、都市の境界を見ることが好きです。その探索感をエンジニアリングの判断にも持ち帰っています。
+    fr: En dehors du travail, j'aime aller plus loin vers les montagnes, les lacs et les frontières des villes, puis ramener ce sens de l'exploration dans mes décisions d'ingénierie.
+  photos:
+    - src: /assets/img/about/adventure-mountain.jpg
+      alt:
+        zh: 雪山、湖泊和远行中的背影
+        en: Snow mountains, a lake, and a traveler seen from behind
+        ja: 雪山、湖、旅する人の後ろ姿
+        fr: Montagnes enneigées, lac et silhouette de voyage
+      caption:
+        zh: 雪山、湖泊与远行的背影。
+        en: Snow mountains, a lake, and a traveler.
+        ja: 雪山と湖、旅する人の後ろ姿。
+        fr: Montagnes enneigées, lac et silhouette de voyage.
+
 - slug: diving-diary
   cover: /assets/img/life/diving/01-diver-school.jpg
   title:
