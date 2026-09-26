@@ -980,7 +980,7 @@ section {
   z-index: -1;
   background:
     linear-gradient(rgba(0, 0, 0, 0.34), rgba(0, 0, 0, 0.54)),
-    url('/assets/img/about/adventure-mountain.jpg') center center / cover no-repeat;
+    url('/assets/img/about/adventure-yading.jpg') center center / cover no-repeat;
 }
 
 .about-hero {
@@ -1103,6 +1103,27 @@ section {
   min-height: 25rem;
 }
 
+.life-tile--placeholder {
+  background: radial-gradient(circle at 68% 30%, #5c695d, #273a35 55%, #132521);
+}
+
+.life-tile--placeholder::before {
+  content: "📖";
+  position: absolute;
+  top: 12%;
+  right: 14%;
+  font-size: clamp(5rem, 12vw, 9rem);
+  opacity: 0.8;
+}
+
+.life-pending {
+  max-width: 42rem;
+  padding: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 12px;
+  color: rgba(255, 255, 255, 0.82);
+}
+
 .life-tile img {
   position: absolute;
   inset: 0;
@@ -1187,7 +1208,9 @@ section {
 
 .life-gallery-track {
   display: flex;
+  align-items: flex-start;
   overflow-x: auto;
+  overflow-y: hidden;
   overscroll-behavior-inline: contain;
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
@@ -1195,8 +1218,7 @@ section {
   background: #111;
 }
 
-.life-gallery-track::-webkit-scrollbar,
-.life-thumbnails::-webkit-scrollbar {
+.life-gallery-track::-webkit-scrollbar {
   display: none;
 }
 
@@ -1217,7 +1239,6 @@ section {
   width: 100%;
   height: auto;
   max-height: 70vh;
-  aspect-ratio: 16 / 9;
   object-fit: contain;
 }
 
@@ -1236,12 +1257,30 @@ section {
   font-weight: 700;
 }
 
+.life-photo-copy {
+  min-width: 0;
+}
+
+.life-photo-copy p {
+  margin: 0;
+}
+
+.life-photo-copy p + p {
+  margin-top: 0.25rem;
+}
+
+.life-photo-location {
+  color: var(--orange-light);
+  font-weight: 700;
+}
+
 .life-thumbnails {
   display: flex;
   gap: 0.7rem;
   overflow-x: auto;
   padding: 1rem 0 0.5rem;
-  scrollbar-width: none;
+  scrollbar-color: var(--orange-light) #333;
+  scrollbar-width: thin;
 }
 
 .life-thumbnails a {

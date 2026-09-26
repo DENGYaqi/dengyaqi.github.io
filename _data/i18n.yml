@@ -110,7 +110,7 @@ zh:
         tags: [Python, SQLite, PostgreSQL]
   about:
     subtitle: AI 研发主管 / Harness / 本体论与知识图谱 / 后端系统
-    intro: 我是邓雅琪，目前负责 AI 研发方向规划、技术路线选型与项目交付推进。我的经历从 NLP、知识图谱和本体融合开始，随后进入 Android、Java 后端、风控中台和分布式系统，再回到企业级 AI 平台、RAG、Agent Workflow 和业务系统落地。
+    intro: 我是邓雅琪，目前负责 AI 研发方向规划、技术路线选型，并推动项目交付。我是一个长期主义者，热爱生活，也爱钻研技术；尤其是有趣的新技术。欢迎联系我，一起交流。
     journey_tag: Journey
     journey_title: 工作经历
     ask_tag: Focus
@@ -158,6 +158,9 @@ zh:
     adventure_intro: 用照片记下工作之外的探索和相遇，从山野到水下，慢慢收集生活里的片刻。
     life_back: 返回关于我
     life_gallery: 照片
+    life_pending: 正在核对这些照片的拍摄地点，确认后会补进日记。
+    life_location: 地点：
+    life_location_end: 。
   resume:
     subtitle: AI 工程化 / Harness / 本体论与知识图谱 / Java 后端
     summary_tag: Summary
@@ -307,7 +310,7 @@ en:
         tags: [Python, SQLite, PostgreSQL]
   about:
     subtitle: AI R&D Lead / Harness / Ontology and Knowledge Graphs / Backend Systems
-    intro: I am Deng Yaqi. I currently lead AI R&D planning, technical direction, and delivery. My path started with NLP, knowledge graphs, and ontology fusion, then moved through Android, Java backend systems, risk-control platforms, and distributed systems, before returning to enterprise AI platforms, RAG, Agent workflows, and production delivery.
+    intro: I am Deng Yaqi. I currently lead AI R&D planning, technology choices, and project delivery. I take a long-term view, enjoy life, and love digging into technology, especially intriguing new technologies. Feel free to get in touch and exchange ideas.
     journey_tag: Journey
     journey_title: Work Experience
     ask_tag: Focus
@@ -355,6 +358,9 @@ en:
     adventure_intro: Photographs of the places I explore and the moments I encounter beyond work, from mountain paths to the world underwater.
     life_back: Back to About
     life_gallery: Photographs
+    life_pending: I’m checking where these photos were taken before adding them to the diary.
+    life_location: 'Location: '
+    life_location_end: '.'
   resume:
     subtitle: AI Engineering / Harness / Ontology and Knowledge Graphs / Java Backend
     summary_tag: Summary
@@ -502,7 +508,7 @@ ja:
         tags: [Python, SQLite, PostgreSQL]
   about:
     subtitle: AI 研究開発リード / Harness / オントロジーと知識グラフ / バックエンドシステム
-    intro: 鄧雅琪です。現在は AI 研究開発の方向設計、技術選定、プロジェクト推進を担当しています。NLP、知識グラフ、本体融合から始まり、Android、Java バックエンド、リスク管理基盤、分散システムを経て、現在は企業向け AI プラットフォーム、RAG、Agent Workflow、業務システムへの実装に取り組んでいます。
+    intro: 鄧雅琪です。現在は AI 研究開発の方向性の策定、技術選定、プロジェクトの推進を担当しています。長期的な視点を大切にし、日々の暮らしを楽しみながら、技術を深く学ぶことが好きです。特に、面白い新しい技術に惹かれます。ぜひお気軽にご連絡ください。
     journey_tag: Journey
     journey_title: 職務経験
     ask_tag: Focus
@@ -550,6 +556,9 @@ ja:
     adventure_intro: 山道から水中まで、仕事を離れて出会った風景や瞬間を写真に残しています。
     life_back: 私についてに戻る
     life_gallery: 写真
+    life_pending: 写真の撮影場所を確認してから、この日記に追加します。
+    life_location: 場所：
+    life_location_end: 。
   resume:
     subtitle: AI エンジニアリング / Harness / オントロジーと知識グラフ / Java バックエンド
     summary_tag: Summary
@@ -697,7 +706,7 @@ fr:
         tags: [Python, SQLite, PostgreSQL]
   about:
     subtitle: Responsable R&D IA / Harness / ontologie et graphes de connaissances / systèmes backend
-    intro: Je suis Deng Yaqi. Je pilote aujourd'hui la planification R&D IA, les choix techniques et la livraison de projets. Mon parcours a commencé par le NLP, les graphes de connaissances et la fusion d'ontologies, puis Android, le backend Java, les plateformes de risque et les systèmes distribués, avant de revenir aux plateformes IA d'entreprise, à RAG, aux workflows Agent et à la mise en production.
+    intro: Je suis Deng Yaqi. Je pilote actuellement la planification de la R&D en IA, les choix techniques et la livraison des projets. Je privilégie une vision à long terme, j'aime profiter de la vie et approfondir les sujets techniques, surtout les nouvelles technologies qui éveillent ma curiosité. N'hésitez pas à me contacter pour échanger.
     journey_tag: Journey
     journey_title: Expérience professionnelle
     ask_tag: Focus
@@ -713,6 +722,9 @@ fr:
     adventure_intro: Des photos de mes découvertes et de mes rencontres hors du travail, des sentiers de montagne au monde sous-marin.
     life_back: Retour à la page À propos
     life_gallery: Photographies
+    life_pending: Je vérifie le lieu de prise de vue avant d’ajouter ces photos au carnet.
+    life_location: 'Lieu : '
+    life_location_end: '.'
     credentials_tag: Credentials
     credentials_title: Certifications et langues
     credentials:

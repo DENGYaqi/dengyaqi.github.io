@@ -17,24 +17,34 @@ body_class: dark-page life-page
       <p>{{ entry.note[lang] }}</p>
     </header>
 
+    {% if entry.photos.size > 0 %}
     <section class="life-gallery" aria-label="{{ t.about.life_gallery }}">
       <div class="life-gallery-track" tabindex="0" aria-label="{{ t.about.life_gallery }}">
         {% for photo in entry.photos %}
-          <figure class="life-gallery-slide" id="photo-{{ forloop.index }}">
+          <figure class="life-gallery-slide" id="{% if photo.legacy_anchor %}{{ photo.legacy_anchor }}{% else %}photo-{{ forloop.index }}{% endif %}">
             <img src="{{ photo.src | relative_url }}" alt="{{ photo.alt[lang] }}" {% unless forloop.first %}loading="lazy"{% endunless %}>
-            <figcaption>{% if entry.photos.size > 1 %}<span>{{ forloop.index }} / {{ entry.photos.size }}</span>{% endif %}{{ photo.caption[lang] }}</figcaption>
+            <figcaption>
+              {% if entry.photos.size > 1 %}<span class="life-photo-count">{{ forloop.index }} / {{ entry.photos.size }}</span>{% endif %}
+              <div class="life-photo-copy">
+                {% if photo.location %}<p class="life-photo-location">{{ t.about.life_location }}{{ photo.location[lang] }}{{ t.about.life_location_end }}</p>{% endif %}
+                <p>{{ photo.caption[lang] }}</p>
+              </div>
+            </figcaption>
           </figure>
         {% endfor %}
       </div>
       {% if entry.photos.size > 1 %}
         <div class="life-thumbnails" aria-label="{{ t.about.life_gallery }}">
           {% for photo in entry.photos %}
-            <a href="#photo-{{ forloop.index }}" aria-label="{{ forloop.index }}. {{ photo.caption[lang] }}">
-              <img src="{{ photo.src | relative_url }}" alt="" loading="lazy">
+            <a href="#{% if photo.legacy_anchor %}{{ photo.legacy_anchor }}{% else %}photo-{{ forloop.index }}{% endif %}" aria-label="{{ forloop.index }}. {{ photo.caption[lang] }}">
+              <img src="{{ photo.thumb | default: photo.src | relative_url }}" alt="" loading="lazy">
             </a>
           {% endfor %}
         </div>
       {% endif %}
     </section>
+    {% else %}
+      <p class="life-pending">{{ t.about.life_pending }}</p>
+    {% endif %}
   </div>
 </main>

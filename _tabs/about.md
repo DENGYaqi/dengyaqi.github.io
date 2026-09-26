@@ -25,14 +25,14 @@ nav_title: 关于我
       <p>{{ t.about.adventure_intro }}</p>
       <div class="life-grid">
         {% for entry in site.data.life %}
-          {% assign entry_url = '/' | append: lang | append: '/life/' | append: entry.slug | append: '/' %}
-          <a class="life-tile" href="{{ entry_url | relative_url }}" aria-label="{{ entry.title[lang] }}">
-            <img src="{{ entry.cover | relative_url }}" alt="{{ entry.photos[0].alt[lang] }}" loading="lazy">
-            <span class="life-tile-content">
-              <strong>{{ entry.title[lang] }}</strong>
-              <span>{{ entry.summary[lang] }}</span>
-            </span>
-          </a>
+            {% assign entry_url = '/' | append: lang | append: '/life/' | append: entry.slug | append: '/' %}
+            <a class="life-tile{% if entry.cover == '' %} life-tile--placeholder{% endif %}" href="{{ entry_url | relative_url }}" aria-label="{{ entry.title[lang] }}">
+              {% unless entry.cover == '' %}<img src="{{ entry.cover | relative_url }}" alt="" loading="lazy">{% endunless %}
+              <span class="life-tile-content">
+                <strong>{{ entry.title[lang] }}</strong>
+                <span>{{ entry.summary[lang] }}</span>
+              </span>
+            </a>
         {% endfor %}
       </div>
     </div>
@@ -103,39 +103,6 @@ nav_title: 关于我
           <h3>{{ item.title }}</h3>
           <p>{{ item.issuer }}</p>
         </article>
-      {% endfor %}
-    </div>
-  </div>
-</section>
-
-<section class="skills-section about-interests-section">
-  <div class="container">
-    <div class="section-header fade-up">
-      <div class="section-tag">{{ t.about.interests_tag }}</div>
-      <h2 class="section-title">{{ t.about.interests_title }}</h2>
-    </div>
-    <div class="cert-grid">
-      {% for item in t.about.interests %}
-        <article class="cert-card fade-up">
-          <h3>{{ item.title }}</h3>
-          <p>{{ item.desc }}</p>
-        </article>
-      {% endfor %}
-    </div>
-  </div>
-</section>
-
-<section class="summary-section">
-  <div class="container">
-    <div class="section-header fade-up">
-      <div class="section-tag">{{ t.about.current_tag }}</div>
-      <h2 class="section-title">{{ t.about.current_title }}</h2>
-    </div>
-    <div class="summary-card fade-up">
-      {% for item in t.about.current_items %}
-        {% for pair in item %}
-          <p><strong>{{ pair[0] }}:</strong> {{ pair[1] }}</p>
-        {% endfor %}
       {% endfor %}
     </div>
   </div>

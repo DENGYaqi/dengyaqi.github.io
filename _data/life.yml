@@ -1,5 +1,5 @@
 - slug: adventure-diary
-  cover: /assets/img/about/adventure-mountain.jpg
+  cover: /assets/img/about/adventure-yading.jpg
   title:
     zh: 冒险日记
     en: Adventure Diary
@@ -12,103 +12,1633 @@
     fr: Des montagnes aux lacs et aux limites des villes, des découvertes hors du travail.
   note:
     zh: 工作之外，我也喜欢走到更远的地方，看雪山、湖泊和城市边界，把生活里的探索感带回工程判断。
-    en: Outside of work, I like going farther into mountains, lakes, and the edges of cities, then bringing that sense of exploration back into engineering judgment.
+    en: Outside of work, I like going farther into mountains, lakes, and the edges of cities, then bringing that sense of exploration
+      back into engineering judgment.
     ja: 仕事以外では、より遠い場所へ歩き、雪山や湖、都市の境界を見ることが好きです。その探索感をエンジニアリングの判断にも持ち帰っています。
-    fr: En dehors du travail, j'aime aller plus loin vers les montagnes, les lacs et les frontières des villes, puis ramener ce sens de l'exploration dans mes décisions d'ingénierie.
+    fr: En dehors du travail, j'aime aller plus loin vers les montagnes, les lacs et les frontières des villes, puis ramener ce sens
+      de l'exploration dans mes décisions d'ingénierie.
   photos:
-    - src: /assets/img/about/adventure-mountain.jpg
-      alt:
-        zh: 稻城亚丁的雪山、湖泊和远行中的背影
-        en: Snow peaks, a lake, and a traveler seen from behind in Daocheng Yading
-        ja: Daocheng Yadingの雪山と湖、旅する人の後ろ姿
-        fr: Montagnes enneigées, lac et voyageur vu de dos à Daocheng Yading
-      caption:
-        zh: 稻城亚丁的雪山与湖泊，和远行的背影。
-        en: Snow peaks, a lake, and a traveler in Daocheng Yading.
-        ja: Daocheng Yadingの雪山と湖、旅する人の後ろ姿。
-        fr: Montagnes enneigées, lac et voyageur à Daocheng Yading.
-
-- slug: diving-diary
-  cover: /assets/img/life/diving/03-diver-ray.jpg
+  - src: /assets/img/about/adventure-yading.jpg
+    alt:
+      zh: 稻城亚丁的雪山、湖泊和远行中的背影
+      en: Snow peaks, a lake, and a traveler seen from behind in Daocheng Yading
+      ja: Daocheng Yadingの雪山と湖、旅する人の後ろ姿
+      fr: Montagnes enneigées, lac et voyageur vu de dos à Daocheng Yading
+    caption:
+      zh: 雪山和湖泊与远行的背影同框。这样的风景总让我想继续向前。
+      en: Snow peaks, a lake, and a traveler share the frame. This view makes me want to keep going.
+      ja: 雪山と湖、旅人の後ろ姿が一枚に収まる。この景色を見ると、また先へ進みたくなる。
+      fr: Sommets enneigés, lac et voyageur se retrouvent dans le même cadre. Ce paysage me donne envie de continuer la route.
+    location:
+      zh: 中国四川，稻城亚丁
+      en: Daocheng Yading, Sichuan, China
+      ja: 中国・四川省稲城亜丁
+      fr: Daocheng Yading, Sichuan, Chine
+    thumb: /assets/img/life/adventure/adventure-mountain-thumb.jpg
+  - src: /assets/img/life/adventure/31-alpine-lake.jpg
+    thumb: /assets/img/life/adventure/31-alpine-lake-thumb.jpg
+    alt:
+      zh: 雪线下的蓝色湖泊静卧山谷
+      en: A blue lake lies beneath the snow line in a valley
+      ja: 雪線の下、青い湖が谷に静かにたたずむ
+      fr: Un lac bleu repose dans la vallée sous la neige
+    location:
+      zh: 中国四川，稻城亚丁
+      en: Daocheng Yading, Sichuan, China
+      ja: 中国・四川省稲城亜丁
+      fr: Daocheng Yading, Sichuan, Chine
+    caption:
+      zh: 雪线下的蓝色湖泊静卧山谷。
+      en: A blue lake lies beneath the snow line in a valley.
+      ja: 雪線の下、青い湖が谷に静かにたたずむ。
+      fr: Un lac bleu repose dans la vallée sous la neige.
+  - src: /assets/img/life/adventure/32-prayer-flags.jpg
+    thumb: /assets/img/life/adventure/32-prayer-flags-thumb.jpg
+    alt:
+      zh: 经幡在高原的风里铺开
+      en: Prayer flags spread out in the highland wind
+      ja: 高原の風に祈祷旗が広がる
+      fr: Des drapeaux de prière se déploient dans le vent des hauts plateaux
+    location:
+      zh: 中国四川，稻城亚丁
+      en: Daocheng Yading, Sichuan, China
+      ja: 中国・四川省稲城亜丁
+      fr: Daocheng Yading, Sichuan, Chine
+    caption:
+      zh: 经幡在高原的风里铺开。
+      en: Prayer flags spread out in the highland wind.
+      ja: 高原の風に祈祷旗が広がる。
+      fr: Des drapeaux de prière se déploient dans le vent des hauts plateaux.
+  - src: /assets/img/life/adventure/33-snow-peak-portrait.jpg
+    thumb: /assets/img/life/adventure/33-snow-peak-portrait-thumb.jpg
+    alt:
+      zh: 旅人站在尖峭的雪峰前
+      en: A traveler stands before a sharp snow peak
+      ja: 旅人が鋭い雪峰の前に立つ
+      fr: Une voyageuse se tient devant un sommet enneigé et pointu
+    location:
+      zh: 中国四川，稻城亚丁
+      en: Daocheng Yading, Sichuan, China
+      ja: 中国・四川省稲城亜丁
+      fr: Daocheng Yading, Sichuan, Chine
+    caption:
+      zh: 旅人站在尖峭的雪峰前。
+      en: A traveler stands before a sharp snow peak.
+      ja: 旅人が鋭い雪峰の前に立つ。
+      fr: Une voyageuse se tient devant un sommet enneigé et pointu.
+  - src: /assets/img/life/adventure/07-tumen-bookstreet.jpg
+    thumb: /assets/img/life/adventure/07-tumen-bookstreet-thumb.jpg
+    alt:
+      zh: 街边的图们地名标识
+      en: A Tumen sign beside the street
+      ja: 街角にある図們の地名表示
+      fr: Une enseigne de Tumen au bord de la rue
+    location:
+      zh: 中国吉林，图们
+      en: Tumen, Jilin, China
+      ja: 中国・吉林省図們
+      fr: Tumen, Jilin, Chine
+    caption:
+      zh: 街边的图们地名标识。
+      en: A Tumen sign beside the street.
+      ja: 街角にある図們の地名表示。
+      fr: Une enseigne de Tumen au bord de la rue.
+  - src: /assets/img/life/adventure/08-yanbian-night-street.jpg
+    thumb: /assets/img/life/adventure/08-yanbian-night-street-thumb.jpg
+    alt:
+      zh: 夜色里，中韩双语招牌把整条街照得明亮
+      en: Chinese and Korean signs light up the street at night
+      ja: 夜の街に中国語と韓国語の看板が明るく並ぶ
+      fr: Des enseignes en chinois et en coréen illuminent la rue de nuit
+    location:
+      zh: 中国吉林，延边
+      en: Yanbian, Jilin, China
+      ja: 中国・吉林省延辺
+      fr: Yanbian, Jilin, Chine
+    caption:
+      zh: 夜色里，中韩双语招牌把整条街照得明亮。
+      en: Chinese and Korean signs light up the street at night.
+      ja: 夜の街に中国語と韓国語の看板が明るく並ぶ。
+      fr: Des enseignes en chinois et en coréen illuminent la rue de nuit.
+  - src: /assets/img/life/adventure/11-mountain-lake.jpg
+    thumb: /assets/img/life/adventure/11-mountain-lake-thumb.jpg
+    alt:
+      zh: 天池湖水映着云影
+      en: Clouds reflect in the crater lake
+      ja: 天池の湖面に雲が映る
+      fr: Les nuages se reflètent dans le lac Tianchi
+    location:
+      zh: 中国吉林，长白山
+      en: Changbai Mountain, Jilin, China
+      ja: 中国・吉林省長白山
+      fr: Mont Changbai, Jilin, Chine
+    caption:
+      zh: 天池湖水映着云影。
+      en: Clouds reflect in the crater lake.
+      ja: 天池の湖面に雲が映る。
+      fr: Les nuages se reflètent dans le lac Tianchi.
+  - src: /assets/img/life/adventure/18-old-village-gate.jpg
+    thumb: /assets/img/life/adventure/18-old-village-gate-thumb.jpg
+    alt:
+      zh: 在财神殿前举起手中的小挂件
+      en: A small pendant is held up before the Temple of the God of Wealth
+      ja: 財神殿の前で小さなお守りを掲げる
+      fr: Un petit pendentif est levé devant le pavillon du Dieu de la richesse
+    location:
+      zh: 中国河南，洛阳白马寺
+      en: White Horse Temple, Luoyang, China
+      ja: 中国・洛陽の白馬寺
+      fr: Temple du Cheval blanc, Luoyang, Chine
+    caption:
+      zh: 在财神殿前举起手中的小挂件。
+      en: A small pendant is held up before the Temple of the God of Wealth.
+      ja: 財神殿の前で小さなお守りを掲げる。
+      fr: Un petit pendentif est levé devant le pavillon du Dieu de la richesse.
+  - src: /assets/img/life/adventure/19-bronze-chariot.jpg
+    thumb: /assets/img/life/adventure/19-bronze-chariot-thumb.jpg
+    alt:
+      zh: 博物馆里陈列着青铜车马
+      en: Bronze chariots and horses stand in a museum display
+      ja: 博物館に青銅の馬車と馬が展示されている
+      fr: Des chars et chevaux de bronze sont exposés au musée
+    location:
+      zh: 中国陕西，西安
+      en: Xi'an, Shaanxi, China
+      ja: 中国・陝西省西安
+      fr: Xi'an, Shaanxi, Chine
+    caption:
+      zh: 博物馆里陈列着青铜车马。
+      en: Bronze chariots and horses stand in a museum display.
+      ja: 博物館に青銅の馬車と馬が展示されている。
+      fr: Des chars et chevaux de bronze sont exposés au musée.
+  - src: /assets/img/life/adventure/20-terracotta-army.jpg
+    thumb: /assets/img/life/adventure/20-terracotta-army-thumb.jpg
+    alt:
+      zh: 一排排兵马俑延伸到展厅深处
+      en: Rows of terracotta warriors extend into the hall
+      ja: 兵馬俑の列が展示室の奥まで続く
+      fr: Des rangées de guerriers en terre cuite s'étendent au fond de la salle
+    location:
+      zh: 中国陕西，西安
+      en: Xi'an, Shaanxi, China
+      ja: 中国・陝西省西安
+      fr: Xi'an, Shaanxi, Chine
+    caption:
+      zh: 一排排兵马俑延伸到展厅深处。
+      en: Rows of terracotta warriors extend into the hall.
+      ja: 兵馬俑の列が展示室の奥まで続く。
+      fr: Des rangées de guerriers en terre cuite s'étendent au fond de la salle.
+  - src: /assets/img/life/adventure/21-terracotta-figure.jpg
+    thumb: /assets/img/life/adventure/21-terracotta-figure-thumb.jpg
+    alt:
+      zh: 一尊兵马俑近在眼前
+      en: A terracotta warrior stands close enough to study
+      ja: 一体の兵馬俑を間近で見る
+      fr: Un guerrier en terre cuite se laisse observer de près
+    location:
+      zh: 中国陕西，西安
+      en: Xi'an, Shaanxi, China
+      ja: 中国・陝西省西安
+      fr: Xi'an, Shaanxi, Chine
+    caption:
+      zh: 一尊兵马俑近在眼前。
+      en: A terracotta warrior stands close enough to study.
+      ja: 一体の兵馬俑を間近で見る。
+      fr: Un guerrier en terre cuite se laisse observer de près.
+  - src: /assets/img/life/adventure/22-flaming-mountains-statue.jpg
+    thumb: /assets/img/life/adventure/22-flaming-mountains-statue-thumb.jpg
+    alt:
+      zh: 火焰山前的雕塑立在戈壁上
+      en: A sculpture rises from the desert before the Flaming Mountains
+      ja: 火焔山の前、荒野に彫像が立つ
+      fr: Une sculpture se dresse dans le désert devant les montagnes Flamboyantes
+    location:
+      zh: 中国新疆，吐鲁番
+      en: Turpan, Xinjiang, China
+      ja: 中国・新疆のトルファン
+      fr: Tourfan, Xinjiang, Chine
+    caption:
+      zh: 火焰山前的雕塑立在戈壁上。
+      en: A sculpture rises from the desert before the Flaming Mountains.
+      ja: 火焔山の前、荒野に彫像が立つ。
+      fr: Une sculpture se dresse dans le désert devant les montagnes Flamboyantes.
+  - src: /assets/img/life/adventure/23-desert-monument.jpg
+    thumb: /assets/img/life/adventure/23-desert-monument-thumb.jpg
+    alt:
+      zh: 高大的纪念柱立在干燥的山地前
+      en: A tall monument stands before dry hills
+      ja: 乾いた山々を背に高い記念柱が立つ
+      fr: Un haut monument se dresse devant des collines arides
+    location:
+      zh: 中国新疆，吐鲁番
+      en: Turpan, Xinjiang, China
+      ja: 中国・新疆のトルファン
+      fr: Tourfan, Xinjiang, Chine
+    caption:
+      zh: 高大的纪念柱立在干燥的山地前。
+      en: A tall monument stands before dry hills.
+      ja: 乾いた山々を背に高い記念柱が立つ。
+      fr: Un haut monument se dresse devant des collines arides.
+  - src: /assets/img/life/adventure/24-mogao-plaque.jpg
+    thumb: /assets/img/life/adventure/24-mogao-plaque-thumb.jpg
+    alt:
+      zh: 石碑上写着莫高窟
+      en: The stone plaque names the Mogao Caves
+      ja: 石碑に莫高窟の名が刻まれている
+      fr: Une plaque de pierre porte le nom des grottes de Mogao
+    location:
+      zh: 中国甘肃，敦煌莫高窟
+      en: Mogao Caves, Dunhuang, China
+      ja: 中国・敦煌の莫高窟
+      fr: Grottes de Mogao, Dunhuang, Chine
+    caption:
+      zh: 石碑上写着莫高窟。
+      en: The stone plaque names the Mogao Caves.
+      ja: 石碑に莫高窟の名が刻まれている。
+      fr: Une plaque de pierre porte le nom des grottes de Mogao.
+  - src: /assets/img/life/adventure/25-mogao-facade.jpg
+    thumb: /assets/img/life/adventure/25-mogao-facade-thumb.jpg
+    alt:
+      zh: 莫高窟的楼阁嵌在崖壁之间
+      en: The Mogao facade sits within the cliff face
+      ja: 莫高窟の楼閣が崖に寄り添う
+      fr: La façade des grottes de Mogao s'inscrit dans la falaise
+    location:
+      zh: 中国甘肃，敦煌莫高窟
+      en: Mogao Caves, Dunhuang, China
+      ja: 中国・敦煌の莫高窟
+      fr: Grottes de Mogao, Dunhuang, Chine
+    caption:
+      zh: 莫高窟的楼阁嵌在崖壁之间。
+      en: The Mogao facade sits within the cliff face.
+      ja: 莫高窟の楼閣が崖に寄り添う。
+      fr: La façade des grottes de Mogao s'inscrit dans la falaise.
+  - src: /assets/img/life/adventure/26-wall-closeup.jpg
+    thumb: /assets/img/life/adventure/26-wall-closeup-thumb.jpg
+    alt:
+      zh: 听说白墙与牛奶和蜂蜜有关，便好奇地凑近尝了尝
+      en: Having heard a story about milk and honey in the white wall, I leaned in for a taste
+      ja: 白い壁に牛乳と蜂蜜が使われていると聞き、気になって近づき味見してみた
+      fr: Ayant entendu parler de lait et de miel dans le mur blanc, j'y ai goûté par curiosité
+    location:
+      zh: 中国西藏，拉萨布达拉宫
+      en: Potala Palace, Lhasa, Tibet, China
+      ja: 中国・ラサのポタラ宮
+      fr: Palais du Potala, Lhassa, Tibet, Chine
+    caption:
+      zh: 听说白墙与牛奶和蜂蜜有关，便好奇地凑近尝了尝。现在想来，自己的好奇心还有点好笑。
+      en: Having heard a story about milk and honey in the white wall, I leaned in for a taste. Looking back, my curiosity makes me
+        laugh a little.
+      ja: 白い壁に牛乳と蜂蜜が使われていると聞き、気になって近づき味見してみた。振り返ると、自分の好奇心が少しおかしい。
+      fr: Ayant entendu parler de lait et de miel dans le mur blanc, j'y ai goûté par curiosité. Avec le recul, ma curiosité me fait
+        un peu rire.
+  - src: /assets/img/life/adventure/27-route-318-sign.jpg
+    thumb: /assets/img/life/adventure/27-route-318-sign-thumb.jpg
+    alt:
+      zh: 路牌标出国道318线的七十二拐
+      en: A roadside sign marks the 72 bends of Route 318
+      ja: 国道318号線の七十二拐を示す標識
+      fr: Un panneau indique les 72 virages de la route 318
+    location:
+      zh: 中国西藏
+      en: Tibet, China
+      ja: 中国・チベット
+      fr: Tibet, Chine
+    caption:
+      zh: 路牌标出国道318线的七十二拐。
+      en: A roadside sign marks the 72 bends of Route 318.
+      ja: 国道318号線の七十二拐を示す標識。
+      fr: Un panneau indique les 72 virages de la route 318.
+  - src: /assets/img/life/adventure/28-mountain-road.jpg
+    thumb: /assets/img/life/adventure/28-mountain-road-thumb.jpg
+    alt:
+      zh: 雪山在公路和车窗之外展开
+      en: Snowy mountains unfold beyond the road and car window
+      ja: 車窓と道路の向こうに雪山が広がる
+      fr: Des montagnes enneigées s'étendent au-delà de la route
+    location:
+      zh: 中国西藏
+      en: Tibet, China
+      ja: 中国・チベット
+      fr: Tibet, Chine
+    caption:
+      zh: 雪山在公路和车窗之外展开。
+      en: Snowy mountains unfold beyond the road and car window.
+      ja: 車窓と道路の向こうに雪山が広がる。
+      fr: Des montagnes enneigées s'étendent au-delà de la route.
+  - src: /assets/img/life/adventure/29-route-318-marker.jpg
+    thumb: /assets/img/life/adventure/29-route-318-marker-thumb.jpg
+    alt:
+      zh: 国道318线的标志与国旗立在山路旁
+      en: A Route 318 marker and a flag stand beside the mountain road
+      ja: 国道318号線の標識と旗が山道の脇に立つ
+      fr: Un panneau de la route 318 et un drapeau bordent la route de montagne
+    location:
+      zh: 中国西藏
+      en: Tibet, China
+      ja: 中国・チベット
+      fr: Tibet, Chine
+    caption:
+      zh: 国道318线的标志与国旗立在山路旁。
+      en: A Route 318 marker and a flag stand beside the mountain road.
+      ja: 国道318号線の標識と旗が山道の脇に立つ。
+      fr: Un panneau de la route 318 et un drapeau bordent la route de montagne.
+  - src: /assets/img/life/adventure/30-roadside-snow-peaks.jpg
+    thumb: /assets/img/life/adventure/30-roadside-snow-peaks-thumb.jpg
+    alt:
+      zh: 旅人在雪山前张开双臂
+      en: A traveler opens their arms toward snow peaks
+      ja: 旅人が雪山に向かって両腕を広げる
+      fr: Une voyageuse ouvre les bras face aux sommets enneigés
+    location:
+      zh: 中国西藏
+      en: Tibet, China
+      ja: 中国・チベット
+      fr: Tibet, Chine
+    caption:
+      zh: 旅人在雪山前张开双臂。
+      en: A traveler opens their arms toward snow peaks.
+      ja: 旅人が雪山に向かって両腕を広げる。
+      fr: Une voyageuse ouvre les bras face aux sommets enneigés.
+  - src: /assets/img/life/adventure/44-route-318-plateau.jpg
+    thumb: /assets/img/life/adventure/44-route-318-plateau-thumb.jpg
+    alt:
+      zh: 国道318线的路牌立在开阔的高原上
+      en: A Route 318 sign stands on an open plateau
+      ja: 国道318号線の標識が開けた高原に立つ
+      fr: Un panneau de la route 318 se dresse sur un haut plateau
+    location:
+      zh: 中国西藏
+      en: Tibet, China
+      ja: 中国・チベット
+      fr: Tibet, Chine
+    caption:
+      zh: 国道318线的路牌立在开阔的高原上。
+      en: A Route 318 sign stands on an open plateau.
+      ja: 国道318号線の標識が開けた高原に立つ。
+      fr: Un panneau de la route 318 se dresse sur un haut plateau.
+  - src: /assets/img/life/adventure/34-stone-pillars-portrait.jpg
+    thumb: /assets/img/life/adventure/34-stone-pillars-portrait-thumb.jpg
+    alt:
+      zh: 石柱群在云雾中层层展开
+      en: Stone pillars recede into the mist
+      ja: 石柱が霧の中に幾重にも続く
+      fr: Des piliers de pierre se succèdent dans la brume
+    location:
+      zh: 中国湖南，张家界
+      en: Zhangjiajie, Hunan, China
+      ja: 中国・湖南省張家界
+      fr: Zhangjiajie, Hunan, Chine
+    caption:
+      zh: 石柱群在云雾中层层展开。
+      en: Stone pillars recede into the mist.
+      ja: 石柱が霧の中に幾重にも続く。
+      fr: Des piliers de pierre se succèdent dans la brume.
+  - src: /assets/img/life/adventure/35-misty-pillars.jpg
+    thumb: /assets/img/life/adventure/35-misty-pillars-thumb.jpg
+    alt:
+      zh: 远处的石峰在薄雾里若隐若现
+      en: Distant stone peaks fade in and out of the mist
+      ja: 遠くの石峰が薄霧にかすむ
+      fr: Des pics rocheux lointains se fondent dans la brume
+    location:
+      zh: 中国湖南，张家界
+      en: Zhangjiajie, Hunan, China
+      ja: 中国・湖南省張家界
+      fr: Zhangjiajie, Hunan, Chine
+    caption:
+      zh: 远处的石峰在薄雾里若隐若现。
+      en: Distant stone peaks fade in and out of the mist.
+      ja: 遠くの石峰が薄霧にかすむ。
+      fr: Des pics rocheux lointains se fondent dans la brume.
+  - src: /assets/img/life/adventure/36-illuminated-cave.jpg
+    thumb: /assets/img/life/adventure/36-illuminated-cave-thumb.jpg
+    alt:
+      zh: 洞穴里的岩壁被彩色灯光照亮
+      en: Colored lights illuminate the rock inside a cave
+      ja: 洞窟の岩壁が色とりどりの光に照らされる
+      fr: Des lumières colorées éclairent la roche dans une grotte
+    location:
+      zh: 中国江西，乐平
+      en: Leping, Jiangxi, China
+      ja: 中国・江西省楽平
+      fr: Leping, Jiangxi, Chine
+    caption:
+      zh: 洞穴里的岩壁被彩色灯光照亮。
+      en: Colored lights illuminate the rock inside a cave.
+      ja: 洞窟の岩壁が色とりどりの光に照らされる。
+      fr: Des lumières colorées éclairent la roche dans une grotte.
+  - src: /assets/img/life/adventure/56-cave-walkway.jpg
+    thumb: /assets/img/life/adventure/56-cave-walkway-thumb.jpg
+    alt:
+      zh: 栈道穿过灯光斑斓的洞穴
+      en: A walkway passes through a brightly lit cave
+      ja: 遊歩道が色鮮やかに照らされた洞窟を通る
+      fr: Une passerelle traverse une grotte vivement éclairée
+    location:
+      zh: 中国江西，乐平
+      en: Leping, Jiangxi, China
+      ja: 中国・江西省楽平
+      fr: Leping, Jiangxi, Chine
+    caption:
+      zh: 栈道穿过灯光斑斓的洞穴。
+      en: A walkway passes through a brightly lit cave.
+      ja: 遊歩道が色鮮やかに照らされた洞窟を通る。
+      fr: Une passerelle traverse une grotte vivement éclairée.
+  - src: /assets/img/life/adventure/37-peach-blossom-island-sign.jpg
+    thumb: /assets/img/life/adventure/37-peach-blossom-island-sign-thumb.jpg
+    alt:
+      zh: 桃花岛石碑被花树环绕
+      en: The Taohua Island marker is framed by flowering trees
+      ja: 桃花島の石碑を花木が囲む
+      fr: La stèle de l'île Taohua est entourée d'arbres fleuris
+    location:
+      zh: 中国浙江，舟山桃花岛
+      en: Taohua Island, Zhoushan, Zhejiang, China
+      ja: 中国・浙江省舟山の桃花島
+      fr: Île Taohua, Zhoushan, Zhejiang, Chine
+    caption:
+      zh: 桃花岛石碑被花树环绕。
+      en: The Taohua Island marker is framed by flowering trees.
+      ja: 桃花島の石碑を花木が囲む。
+      fr: La stèle de l'île Taohua est entourée d'arbres fleuris.
+  - src: /assets/img/life/adventure/38-coastal-cliffs.jpg
+    thumb: /assets/img/life/adventure/38-coastal-cliffs-thumb.jpg
+    alt:
+      zh: 海边的石崖从观景台前拔地而起
+      en: Sea cliffs rise beyond the lookout
+      ja: 海辺の岩壁が展望台の先にそびえる
+      fr: Des falaises marines s'élèvent au-delà du belvédère
+    location:
+      zh: 中国浙江，舟山桃花岛
+      en: Taohua Island, Zhoushan, Zhejiang, China
+      ja: 中国・浙江省舟山の桃花島
+      fr: Île Taohua, Zhoushan, Zhejiang, Chine
+    caption:
+      zh: 海边的石崖从观景台前拔地而起。
+      en: Sea cliffs rise beyond the lookout.
+      ja: 海辺の岩壁が展望台の先にそびえる。
+      fr: Des falaises marines s'élèvent au-delà du belvédère.
+  - src: /assets/img/life/adventure/39-matryoshka-buildings.jpg
+    thumb: /assets/img/life/adventure/39-matryoshka-buildings-thumb.jpg
+    alt:
+      zh: 巨大的套娃建筑映着蓝天
+      en: Giant matryoshka-shaped buildings stand against the blue sky
+      ja: 巨大なマトリョーシカ形の建物が青空に映える
+      fr: D'immenses bâtiments en forme de matriochkas se détachent sur le ciel bleu
+    location:
+      zh: 中国内蒙古，满洲里
+      en: Manzhouli, Inner Mongolia, China
+      ja: 中国・内モンゴル満洲里
+      fr: Manzhouli, Mongolie-Intérieure, Chine
+    caption:
+      zh: 巨大的套娃建筑映着蓝天。
+      en: Giant matryoshka-shaped buildings stand against the blue sky.
+      ja: 巨大なマトリョーシカ形の建物が青空に映える。
+      fr: D'immenses bâtiments en forme de matriochkas se détachent sur le ciel bleu.
+  - src: /assets/img/life/adventure/40-river-at-sunset.jpg
+    thumb: /assets/img/life/adventure/40-river-at-sunset-thumb.jpg
+    alt:
+      zh: 人在木栏前张开双臂，远处的河流在草原上蜿蜒
+      en: A person stretches out both arms by a wooden railing as the river winds through the grassland
+      ja: 木の柵の前で両腕を広げる人の向こうに、草原を曲がりくねる川が見える
+      fr: Une personne écarte les bras près d'une rambarde en bois, face à une rivière qui serpente dans la prairie
+    location:
+      zh: 中国内蒙古，莫尔格勒河
+      en: Mo'ergle River, Inner Mongolia, China
+      ja: 中国・内モンゴルの莫爾格勒河
+      fr: Rivière Mo'ergle, Mongolie-Intérieure, Chine
+    caption:
+      zh: 人在木栏前张开双臂，远处的河流在草原上蜿蜒。夕光落在河道上，我想多站一会儿。
+      en: A person stretches out both arms by a wooden railing as the river winds through the grassland. As the evening light touches
+        the river, I want to stay a little longer.
+      ja: 木の柵の前で両腕を広げる人の向こうに、草原を曲がりくねる川が見える。夕日が川面を照らす中、もう少しここにいたくなる。
+      fr: Une personne écarte les bras près d'une rambarde en bois, face à une rivière qui serpente dans la prairie. Quand la lumière
+        du soir touche la rivière, j’ai envie de rester encore un peu.
+  - src: /assets/img/life/adventure/41-roadside-car-view.jpg
+    thumb: /assets/img/life/adventure/41-roadside-car-view-thumb.jpg
+    alt:
+      zh: 车内放着打开的电脑，窗外是道路与起伏的林地
+      en: An open laptop sits inside the car while a road and rolling wooded hills pass outside
+      ja: 車内には開いたノートパソコンがあり、窓の外には道と起伏する森が広がる
+      fr: Un ordinateur portable est ouvert dans la voiture, avec la route et des collines boisées à l'extérieur
+    location:
+      zh: 中国，大兴安岭
+      en: Greater Khingan Range, China
+      ja: 中国・大興安嶺
+      fr: Grand Khingan, Chine
+    caption:
+      zh: 车内放着打开的电脑，窗外是道路与起伏的林地。窗外的风景让这段车程也变得有趣。
+      en: An open laptop sits inside the car while a road and rolling wooded hills pass outside. The view outside makes the drive enjoyable.
+      ja: 車内には開いたノートパソコンがあり、窓の外には道と起伏する森が広がる。窓の外の景色のおかげで、移動の時間も楽しい。
+      fr: Un ordinateur portable est ouvert dans la voiture, avec la route et des collines boisées à l'extérieur. Le paysage derrière
+        la vitre rend le trajet agréable.
+  - src: /assets/img/life/adventure/45-new-year-game-card.jpg
+    thumb: /assets/img/life/adventure/45-new-year-game-card-thumb.jpg
+    alt:
+      zh: 一张新年贺图把林中的背影放进橙色游戏机画框
+      en: A New Year card frames a figure in the forest inside an orange game-console design
+      ja: 新年のカードでは、森に立つ人の後ろ姿がオレンジ色のゲーム機風の枠に収まっている
+      fr: Une carte de Nouvel An place une silhouette dans la forêt à l'intérieur d'un cadre orange en forme de console de jeu
+    location:
+      zh: 中国四川，牛背山
+      en: Mount Niubei, Sichuan, China
+      ja: 中国・四川省牛背山
+      fr: Mont Niubei, Sichuan, Chine
+    caption:
+      zh: 一张新年贺图把林中的背影放进橙色游戏机画框。把森林照片做成游戏画面，回看时仍觉得有趣。
+      en: A New Year card frames a figure in the forest inside an orange game-console design. Framing a forest photo like a game still
+        amuses me.
+      ja: 新年のカードでは、森に立つ人の後ろ姿がオレンジ色のゲーム機風の枠に収まっている。森の写真をゲーム画面に見立てると、見返しても楽しい。
+      fr: Une carte de Nouvel An place une silhouette dans la forêt à l'intérieur d'un cadre orange en forme de console de jeu. Revoir
+        cette photo de forêt présentée comme un jeu m’amuse encore.
+  - src: /assets/img/life/adventure/46-pink-blossoms-portrait.jpg
+    thumb: /assets/img/life/adventure/46-pink-blossoms-portrait-thumb.jpg
+    alt:
+      zh: 有人在粉色花树前侧身入镜，身后是绿草地
+      en: A person poses in profile before pink blossoms, with green grass behind
+      ja: ピンクの花木の前で横顔を見せる人の後ろに、緑の芝生が広がる
+      fr: Une personne se tient de profil devant des fleurs roses, avec une pelouse verte derrière elle
+    location:
+      zh: 法国巴黎
+      en: Paris, France
+      ja: フランス・パリ
+      fr: Paris, France
+    caption:
+      zh: 有人在粉色花树前侧身入镜，身后是绿草地。这一片粉色让春天显得格外明亮。
+      en: A person poses in profile before pink blossoms, with green grass behind. All that pink makes spring feel especially bright.
+      ja: ピンクの花木の前で横顔を見せる人の後ろに、緑の芝生が広がる。一面のピンク色で、春がいっそう明るく感じられる。
+      fr: Une personne se tient de profil devant des fleurs roses, avec une pelouse verte derrière elle. Tout ce rose rend le printemps
+        particulièrement lumineux.
+  - src: /assets/img/life/adventure/69-louvre-pyramid-night.jpg
+    thumb: /assets/img/life/adventure/69-louvre-pyramid-night-thumb.jpg
+    alt:
+      zh: 夜色中的玻璃金字塔亮起暖光
+      en: The glass pyramid glows warmly at night
+      ja: 夜のガラスのピラミッドが暖かな光を放つ
+      fr: La pyramide de verre diffuse une lumière chaude la nuit
+    location:
+      zh: 法国巴黎，卢浮宫
+      en: Louvre Museum, Paris, France
+      ja: フランス・パリのルーヴル美術館
+      fr: Musée du Louvre, Paris, France
+    caption:
+      zh: 夜色中的玻璃金字塔亮起暖光。
+      en: The glass pyramid glows warmly at night.
+      ja: 夜のガラスのピラミッドが暖かな光を放つ。
+      fr: La pyramide de verre diffuse une lumière chaude la nuit.
+  - src: /assets/img/life/adventure/73-horse-in-stable.jpg
+    thumb: /assets/img/life/adventure/73-horse-in-stable-thumb.jpg
+    alt:
+      zh: 有人站在木栏旁，低头摸一匹正在吃草料的棕马
+      en: A person stands by a wooden fence and pets a brown horse eating hay
+      ja: 木の柵のそばに立つ人が、干し草を食べる茶色の馬に触れる
+      fr: Une personne près d'une clôture en bois caresse un cheval brun qui mange du foin
+    location:
+      zh: 法国巴黎
+      en: Paris, France
+      ja: フランス・パリ
+      fr: Paris, France
+    caption:
+      zh: 有人站在木栏旁，低头摸一匹正在吃草料的棕马。这样近距离看马，觉得很亲切。
+      en: A person stands by a wooden fence and pets a brown horse eating hay. Seeing the horse up close feels special.
+      ja: 木の柵のそばに立つ人が、干し草を食べる茶色の馬に触れる。こんなに近くで馬を見ると、親しみが湧く。
+      fr: Une personne près d'une clôture en bois caresse un cheval brun qui mange du foin. Voir ce cheval de si près me touche.
+  - src: /assets/img/life/adventure/48-discoveries-monument.jpg
+    thumb: /assets/img/life/adventure/48-discoveries-monument-thumb.jpg
+    alt:
+      zh: 航海纪念碑面向河岸和天空
+      en: The Monument to the Discoveries faces the river and sky
+      ja: 発見のモニュメントが川と空に向かって立つ
+      fr: Le Monument des Découvertes fait face au fleuve et au ciel
+    location:
+      zh: 葡萄牙里斯本
+      en: Lisbon, Portugal
+      ja: ポルトガル・リスボン
+      fr: Lisbonne, Portugal
+    caption:
+      zh: 航海纪念碑面向河岸和天空。
+      en: The Monument to the Discoveries faces the river and sky.
+      ja: 発見のモニュメントが川と空に向かって立つ。
+      fr: Le Monument des Découvertes fait face au fleuve et au ciel.
+  - src: /assets/img/life/adventure/85-monument-from-below.jpg
+    thumb: /assets/img/life/adventure/85-monument-from-below-thumb.jpg
+    alt:
+      zh: 纪念碑从低角度直指天空
+      en: A monument points skyward from a low angle
+      ja: 見上げた記念碑が空に向かって伸びる
+      fr: Vu d'en bas, un monument s'élance vers le ciel
+    location:
+      zh: 葡萄牙里斯本
+      en: Lisbon, Portugal
+      ja: ポルトガル・リスボン
+      fr: Lisbonne, Portugal
+    caption:
+      zh: 纪念碑从低角度直指天空。
+      en: A monument points skyward from a low angle.
+      ja: 見上げた記念碑が空に向かって伸びる。
+      fr: Vu d'en bas, un monument s'élance vers le ciel.
+  - src: /assets/img/life/adventure/86-riverside-monument.jpg
+    thumb: /assets/img/life/adventure/86-riverside-monument-thumb.jpg
+    alt:
+      zh: 河岸边的人影与纪念碑同框
+      en: A figure by the river stands near the monument
+      ja: 川辺の人影と記念碑が同じ画面に入る
+      fr: Une silhouette au bord du fleuve apparaît près du monument
+    location:
+      zh: 葡萄牙里斯本
+      en: Lisbon, Portugal
+      ja: ポルトガル・リスボン
+      fr: Lisbonne, Portugal
+    caption:
+      zh: 河岸边的人影与纪念碑同框。
+      en: A figure by the river stands near the monument.
+      ja: 川辺の人影と記念碑が同じ画面に入る。
+      fr: Une silhouette au bord du fleuve apparaît près du monument.
+  - src: /assets/img/life/adventure/49-snowy-village.jpg
+    thumb: /assets/img/life/adventure/49-snowy-village-thumb.jpg
+    alt:
+      zh: 屋顶和山坡都覆着厚雪
+      en: Roofs and hillsides are covered in deep snow
+      ja: 屋根と斜面が厚い雪に覆われる
+      fr: Les toits et les pentes sont couverts d'une épaisse neige
+    location:
+      zh: 奥地利哈尔施塔特
+      en: Hallstatt, Austria
+      ja: オーストリア・ハルシュタット
+      fr: Hallstatt, Autriche
+    caption:
+      zh: 屋顶和山坡都覆着厚雪。
+      en: Roofs and hillsides are covered in deep snow.
+      ja: 屋根と斜面が厚い雪に覆われる。
+      fr: Les toits et les pentes sont couverts d'une épaisse neige.
+  - src: /assets/img/life/adventure/50-church-in-snow.jpg
+    thumb: /assets/img/life/adventure/50-church-in-snow-thumb.jpg
+    alt:
+      zh: 教堂尖塔立在雪中的山村
+      en: A church spire rises above a snowy mountain village
+      ja: 雪の山村に教会の尖塔が立つ
+      fr: Un clocher s'élève au-dessus d'un village enneigé
+    location:
+      zh: 奥地利哈尔施塔特
+      en: Hallstatt, Austria
+      ja: オーストリア・ハルシュタット
+      fr: Hallstatt, Autriche
+    caption:
+      zh: 教堂尖塔立在雪中的山村。
+      en: A church spire rises above a snowy mountain village.
+      ja: 雪の山村に教会の尖塔が立つ。
+      fr: Un clocher s'élève au-dessus d'un village enneigé.
+  - src: /assets/img/life/adventure/51-hundertwasser-village.jpg
+    thumb: /assets/img/life/adventure/51-hundertwasser-village-thumb.jpg
+    alt:
+      zh: 百水村招牌前是色彩斑斓的建筑影像
+      en: The Hundertwasser Village sign fronts a colorful display
+      ja: フンデルトヴァッサー・ヴィレッジの看板の下に色鮮やかな展示がある
+      fr: L'enseigne du village Hundertwasser surmonte une présentation colorée
+    location:
+      zh: 奥地利维也纳
+      en: Vienna, Austria
+      ja: オーストリア・ウィーン
+      fr: Vienne, Autriche
+    caption:
+      zh: 百水村招牌前是色彩斑斓的建筑影像。
+      en: The Hundertwasser Village sign fronts a colorful display.
+      ja: フンデルトヴァッサー・ヴィレッジの看板の下に色鮮やかな展示がある。
+      fr: L'enseigne du village Hundertwasser surmonte une présentation colorée.
+  - src: /assets/img/life/adventure/52-friends-at-hundertwasser-village.jpg
+    thumb: /assets/img/life/adventure/52-friends-at-hundertwasser-village-thumb.jpg
+    alt:
+      zh: 三个人在彩色店招前合影
+      en: Three friends pose together in front of a colorful storefront sign
+      ja: 三人が色鮮やかな店の看板の前で写真を撮る
+      fr: Trois amis posent devant une enseigne colorée
+    location:
+      zh: 奥地利维也纳
+      en: Vienna, Austria
+      ja: オーストリア・ウィーン
+      fr: Vienne, Autriche
+    caption:
+      zh: 三个人在彩色店招前合影。和朋友留下这张合照，心情很好。
+      en: Three friends pose together in front of a colorful storefront sign. I am glad to have this photo with friends.
+      ja: 三人が色鮮やかな店の看板の前で写真を撮る。友人たちとのこの一枚がうれしい。
+      fr: Trois amis posent devant une enseigne colorée. Je suis contente de garder cette photo avec mes amis.
+  - src: /assets/img/life/adventure/53-longji-stone.jpg
+    thumb: /assets/img/life/adventure/53-longji-stone-thumb.jpg
+    alt:
+      zh: 刻着龙脊梯田的石碑立在林间
+      en: A stone marker for the Longji Rice Terraces stands among trees
+      ja: 龍脊棚田の石碑が林の中に立つ
+      fr: Une stèle des rizières en terrasses de Longji se dresse parmi les arbres
+    location:
+      zh: 中国广西，龙脊梯田
+      en: Longji Rice Terraces, Guangxi, China
+      ja: 中国・広西の龍脊棚田
+      fr: Rizières en terrasses de Longji, Guangxi, Chine
+    caption:
+      zh: 刻着龙脊梯田的石碑立在林间。
+      en: A stone marker for the Longji Rice Terraces stands among trees.
+      ja: 龍脊棚田の石碑が林の中に立つ。
+      fr: Une stèle des rizières en terrasses de Longji se dresse parmi les arbres.
+  - src: /assets/img/life/adventure/54-golden-terraces.jpg
+    thumb: /assets/img/life/adventure/54-golden-terraces-thumb.jpg
+    alt:
+      zh: 金色稻田沿山势层层盘旋
+      en: Golden rice terraces curve around the hills
+      ja: 黄金色の棚田が山の形に沿って幾重にも曲がる
+      fr: Des rizières dorées épousent les courbes des collines
+    location:
+      zh: 中国广西，龙脊梯田
+      en: Longji Rice Terraces, Guangxi, China
+      ja: 中国・広西の龍脊棚田
+      fr: Rizières en terrasses de Longji, Guangxi, Chine
+    caption:
+      zh: 金色稻田沿山势层层盘旋。
+      en: Golden rice terraces curve around the hills.
+      ja: 黄金色の棚田が山の形に沿って幾重にも曲がる。
+      fr: Des rizières dorées épousent les courbes des collines.
+  - src: /assets/img/life/adventure/55-terraces-walk.jpg
+    thumb: /assets/img/life/adventure/55-terraces-walk-thumb.jpg
+    alt:
+      zh: 旅人面对铺满山坡的梯田
+      en: A traveler faces terraces covering the hillsides
+      ja: 旅人が斜面いっぱいの棚田を見渡す
+      fr: Une voyageuse contemple les terrasses couvrant les versants
+    location:
+      zh: 中国广西，龙脊梯田
+      en: Longji Rice Terraces, Guangxi, China
+      ja: 中国・広西の龍脊棚田
+      fr: Rizières en terrasses de Longji, Guangxi, Chine
+    caption:
+      zh: 旅人面对铺满山坡的梯田。
+      en: A traveler faces terraces covering the hillsides.
+      ja: 旅人が斜面いっぱいの棚田を見渡す。
+      fr: Une voyageuse contemple les terrasses couvrant les versants.
+  - src: /assets/img/life/adventure/64-flooded-terraces-portrait.jpg
+    thumb: /assets/img/life/adventure/64-flooded-terraces-portrait-thumb.jpg
+    alt:
+      zh: 山间灌水的梯田在阳光下闪光
+      en: Flooded mountain terraces shine in the sunlight
+      ja: 水を張った山の棚田が日差しに輝く
+      fr: Les terrasses inondées brillent au soleil
+    location:
+      zh: 中国广西，龙脊梯田
+      en: Longji Rice Terraces, Guangxi, China
+      ja: 中国・広西の龍脊棚田
+      fr: Rizières en terrasses de Longji, Guangxi, Chine
+    caption:
+      zh: 山间灌水的梯田在阳光下闪光。
+      en: Flooded mountain terraces shine in the sunlight.
+      ja: 水を張った山の棚田が日差しに輝く。
+      fr: Les terrasses inondées brillent au soleil.
+  - src: /assets/img/life/adventure/65-swing-above-terraces.jpg
+    thumb: /assets/img/life/adventure/65-swing-above-terraces-thumb.jpg
+    alt:
+      zh: 秋千悬在层层梯田前
+      en: A swing hangs above the layered rice terraces
+      ja: 棚田の段々を前にブランコが揺れる
+      fr: Une balançoire est suspendue devant les rizières en terrasses
+    location:
+      zh: 中国广西，龙脊梯田
+      en: Longji Rice Terraces, Guangxi, China
+      ja: 中国・広西の龍脊棚田
+      fr: Rizières en terrasses de Longji, Guangxi, Chine
+    caption:
+      zh: 秋千悬在层层梯田前。在这里看梯田，心情也轻快起来。
+      en: A swing hangs above the layered rice terraces. Looking out over the terraces lifts my mood.
+      ja: 棚田の段々を前にブランコが揺れる。ここから棚田を眺めると、気持ちも軽くなる。
+      fr: Une balançoire est suspendue devant les rizières en terrasses. Regarder les terrasses d’ici me met de bonne humeur.
+  - src: /assets/img/life/adventure/57-sunflower-field.jpg
+    thumb: /assets/img/life/adventure/57-sunflower-field-thumb.jpg
+    alt:
+      zh: 向日葵田背后是起伏的草原山丘
+      en: Rolling grassland hills rise behind a sunflower field
+      ja: ヒマワリ畑の向こうに草原の丘が続く
+      fr: Des collines de prairie ondulent derrière un champ de tournesols
+    location:
+      zh: 中国内蒙古
+      en: Inner Mongolia, China
+      ja: 中国・内モンゴル
+      fr: Mongolie-Intérieure, Chine
+    caption:
+      zh: 向日葵田背后是起伏的草原山丘。
+      en: Rolling grassland hills rise behind a sunflower field.
+      ja: ヒマワリ畑の向こうに草原の丘が続く。
+      fr: Des collines de prairie ondulent derrière un champ de tournesols.
+  - src: /assets/img/life/adventure/58-grassland-road-sign.jpg
+    thumb: /assets/img/life/adventure/58-grassland-road-sign-thumb.jpg
+    alt:
+      zh: 公路上的大字与远处的草原相接
+      en: Large road markings lead toward the distant grassland
+      ja: 路面の大きな文字が遠くの草原へ続く
+      fr: De grandes inscriptions sur la route mènent vers la prairie lointaine
+    location:
+      zh: 中国内蒙古
+      en: Inner Mongolia, China
+      ja: 中国・内モンゴル
+      fr: Mongolie-Intérieure, Chine
+    caption:
+      zh: 公路上的大字与远处的草原相接。
+      en: Large road markings lead toward the distant grassland.
+      ja: 路面の大きな文字が遠くの草原へ続く。
+      fr: De grandes inscriptions sur la route mènent vers la prairie lointaine.
+  - src: /assets/img/life/adventure/59-rolling-grassland.jpg
+    thumb: /assets/img/life/adventure/59-rolling-grassland-thumb.jpg
+    alt:
+      zh: 草原的丘陵一直延伸到云下
+      en: Grassland hills stretch beneath the clouds
+      ja: 草原の丘が雲の下まで続く
+      fr: Les collines herbeuses s'étendent sous les nuages
+    location:
+      zh: 中国内蒙古
+      en: Inner Mongolia, China
+      ja: 中国・内モンゴル
+      fr: Mongolie-Intérieure, Chine
+    caption:
+      zh: 草原的丘陵一直延伸到云下。
+      en: Grassland hills stretch beneath the clouds.
+      ja: 草原の丘が雲の下まで続く。
+      fr: Les collines herbeuses s'étendent sous les nuages.
+  - src: /assets/img/life/adventure/60-car-on-grassland-road.jpg
+    thumb: /assets/img/life/adventure/60-car-on-grassland-road-thumb.jpg
+    alt:
+      zh: 一辆车行驶在笔直的草原路上
+      en: A car follows a straight road through the grassland
+      ja: 車が草原のまっすぐな道を走る
+      fr: Une voiture suit une route droite à travers la prairie
+    location:
+      zh: 中国内蒙古
+      en: Inner Mongolia, China
+      ja: 中国・内モンゴル
+      fr: Mongolie-Intérieure, Chine
+    caption:
+      zh: 一辆车行驶在笔直的草原路上。
+      en: A car follows a straight road through the grassland.
+      ja: 車が草原のまっすぐな道を走る。
+      fr: Une voiture suit une route droite à travers la prairie.
+  - src: /assets/img/life/adventure/61-grassland-from-car.jpg
+    thumb: /assets/img/life/adventure/61-grassland-from-car-thumb.jpg
+    alt:
+      zh: 从车窗望见道路和路边的树林
+      en: The road and roadside trees appear through the car window
+      ja: 車窓から道と沿道の木々が見える
+      fr: La route et les arbres se dévoilent par la fenêtre de la voiture
+    location:
+      zh: 中国内蒙古
+      en: Inner Mongolia, China
+      ja: 中国・内モンゴル
+      fr: Mongolie-Intérieure, Chine
+    caption:
+      zh: 从车窗望见道路和路边的树林。
+      en: The road and roadside trees appear through the car window.
+      ja: 車窓から道と沿道の木々が見える。
+      fr: La route et les arbres se dévoilent par la fenêtre de la voiture.
+  - src: /assets/img/life/adventure/62-longmen-buddha-hand.jpg
+    thumb: /assets/img/life/adventure/62-longmen-buddha-hand-thumb.jpg
+    alt:
+      zh: 手势与龙门石窟的大佛同框
+      en: A hand gesture frames the Buddha at the Longmen Grottoes
+      ja: 手のしぐさと龍門石窟の大仏が一緒に写る
+      fr: Un geste de la main accompagne le grand Bouddha des grottes de Longmen
+    location:
+      zh: 中国河南，洛阳龙门石窟
+      en: Longmen Grottoes, Luoyang, China
+      ja: 中国・洛陽の龍門石窟
+      fr: Grottes de Longmen, Luoyang, Chine
+    caption:
+      zh: 手势与龙门石窟的大佛同框。
+      en: A hand gesture frames the Buddha at the Longmen Grottoes.
+      ja: 手のしぐさと龍門石窟の大仏が一緒に写る。
+      fr: Un geste de la main accompagne le grand Bouddha des grottes de Longmen.
+  - src: /assets/img/life/adventure/63-longmen-buddha-portrait.jpg
+    thumb: /assets/img/life/adventure/63-longmen-buddha-portrait-thumb.jpg
+    alt:
+      zh: 旅人抬头看着龙门石窟的大佛
+      en: A traveler looks up at the Buddha in the Longmen Grottoes
+      ja: 旅人が龍門石窟の大仏を見上げる
+      fr: Une voyageuse lève les yeux vers le Bouddha des grottes de Longmen
+    location:
+      zh: 中国河南，洛阳龙门石窟
+      en: Longmen Grottoes, Luoyang, China
+      ja: 中国・洛陽の龍門石窟
+      fr: Grottes de Longmen, Luoyang, Chine
+    caption:
+      zh: 旅人抬头看着龙门石窟的大佛。
+      en: A traveler looks up at the Buddha in the Longmen Grottoes.
+      ja: 旅人が龍門石窟の大仏を見上げる。
+      fr: Une voyageuse lève les yeux vers le Bouddha des grottes de Longmen.
+  - src: /assets/img/life/adventure/72-mountain-trains.jpg
+    thumb: /assets/img/life/adventure/72-mountain-trains-thumb.jpg
+    alt:
+      zh: 红蓝两列山地列车停在雪山前
+      en: Red and blue mountain trains stand before snowy peaks
+      ja: 赤と青の登山列車が雪山を背景に並ぶ
+      fr: Deux trains de montagne, rouge et bleu, se tiennent devant les sommets enneigés
+    location:
+      zh: 瑞士瑞吉山
+      en: Mount Rigi, Switzerland
+      ja: スイス・リギ山
+      fr: Mont Rigi, Suisse
+    caption:
+      zh: 红蓝两列山地列车停在雪山前。红蓝两列车并排的画面很有趣。
+      en: Red and blue mountain trains stand before snowy peaks. I like seeing the red and blue trains side by side.
+      ja: 赤と青の登山列車が雪山を背景に並ぶ。赤と青の列車が並ぶ姿が楽しい。
+      fr: Deux trains de montagne, rouge et bleu, se tiennent devant les sommets enneigés. J’aime voir les trains rouge et bleu côte
+        à côte.
+  - src: /assets/img/life/adventure/75-alpine-terrace.jpg
+    thumb: /assets/img/life/adventure/75-alpine-terrace-thumb.jpg
+    alt:
+      zh: 山间露台望出去是连绵的雪峰
+      en: Snow peaks stretch beyond a mountain terrace
+      ja: 山のテラスの向こうに雪峰が連なる
+      fr: Des sommets enneigés s'étendent au-delà d'une terrasse de montagne
+    location:
+      zh: 瑞士瑞吉山
+      en: Mount Rigi, Switzerland
+      ja: スイス・リギ山
+      fr: Mont Rigi, Suisse
+    caption:
+      zh: 山间露台望出去是连绵的雪峰。
+      en: Snow peaks stretch beyond a mountain terrace.
+      ja: 山のテラスの向こうに雪峰が連なる。
+      fr: Des sommets enneigés s'étendent au-delà d'une terrasse de montagne.
+  - src: /assets/img/life/adventure/74-colosseum-portrait.jpg
+    thumb: /assets/img/life/adventure/74-colosseum-portrait-thumb.jpg
+    alt:
+      zh: 旅人坐在古罗马斗兽场前
+      en: A traveler sits before the Colosseum
+      ja: 旅人がコロッセオの前に座る
+      fr: Une voyageuse est assise devant le Colisée
+    location:
+      zh: 意大利罗马
+      en: Rome, Italy
+      ja: イタリア・ローマ
+      fr: Rome, Italie
+    caption:
+      zh: 旅人坐在古罗马斗兽场前。
+      en: A traveler sits before the Colosseum.
+      ja: 旅人がコロッセオの前に座る。
+      fr: Une voyageuse est assise devant le Colisée.
+  - src: /assets/img/life/adventure/76-pyramids-and-sphinx.jpg
+    thumb: /assets/img/life/adventure/76-pyramids-and-sphinx-thumb.jpg
+    alt:
+      zh: 金字塔与狮身人面像站在沙地上
+      en: Pyramids and the Sphinx rise from the sand
+      ja: ピラミッドとスフィンクスが砂地にそびえる
+      fr: Les pyramides et le Sphinx s'élèvent au-dessus du sable
+    location:
+      zh: 埃及吉萨
+      en: Giza, Egypt
+      ja: エジプト・ギザ
+      fr: Gizeh, Égypte
+    caption:
+      zh: 金字塔与狮身人面像站在沙地上。
+      en: Pyramids and the Sphinx rise from the sand.
+      ja: ピラミッドとスフィンクスが砂地にそびえる。
+      fr: Les pyramides et le Sphinx s'élèvent au-dessus du sable.
+  - src: /assets/img/life/adventure/77-camels-in-desert.jpg
+    thumb: /assets/img/life/adventure/77-camels-in-desert-thumb.jpg
+    alt:
+      zh: 骆驼队沿着红海岸边的沙地走过
+      en: A line of camels walks along the sandy shore of the Red Sea
+      ja: ラクダの列が紅海沿いの砂地を歩く
+      fr: Une caravane de chameaux longe la plage de la mer Rouge
+    location:
+      zh: 埃及红海，达哈卜
+      en: Dahab, Red Sea, Egypt
+      ja: エジプト・紅海のダハブ
+      fr: Dahab, mer Rouge, Égypte
+    caption:
+      zh: 骆驼队沿着红海岸边的沙地走过。
+      en: A line of camels walks along the sandy shore of the Red Sea.
+      ja: ラクダの列が紅海沿いの砂地を歩く。
+      fr: Une caravane de chameaux longe la plage de la mer Rouge.
+  - src: /assets/img/life/adventure/81-canal-houses.jpg
+    thumb: /assets/img/life/adventure/81-canal-houses-thumb.jpg
+    alt:
+      zh: 小运河边排着木框架老屋
+      en: Half-timbered houses line a small canal
+      ja: 小さな運河沿いに木組みの家が並ぶ
+      fr: Des maisons à colombages bordent un petit canal
+    location:
+      zh: 法国科尔马
+      en: Colmar, France
+      ja: フランス・コルマール
+      fr: Colmar, France
+    caption:
+      zh: 小运河边排着木框架老屋。
+      en: Half-timbered houses line a small canal.
+      ja: 小さな運河沿いに木組みの家が並ぶ。
+      fr: Des maisons à colombages bordent un petit canal.
+  - src: /assets/img/life/adventure/90-canal-walk.jpg
+    thumb: /assets/img/life/adventure/90-canal-walk-thumb.jpg
+    alt:
+      zh: 旅人站在木屋旁的小运河边
+      en: A traveler stands beside a canal near half-timbered houses
+      ja: 旅人が木組みの家のそばの運河に立つ
+      fr: Une voyageuse se tient au bord d'un canal près des maisons à colombages
+    location:
+      zh: 法国科尔马
+      en: Colmar, France
+      ja: フランス・コルマール
+      fr: Colmar, France
+    caption:
+      zh: 旅人站在木屋旁的小运河边。
+      en: A traveler stands beside a canal near half-timbered houses.
+      ja: 旅人が木組みの家のそばの運河に立つ。
+      fr: Une voyageuse se tient au bord d'un canal près des maisons à colombages.
+  - src: /assets/img/life/adventure/82-lavender-path.jpg
+    thumb: /assets/img/life/adventure/82-lavender-path-thumb.jpg
+    alt:
+      zh: 旅人走进成行的紫色薰衣草田
+      en: A traveler walks between rows of purple lavender
+      ja: 旅人が紫色のラベンダー畑の列の間を歩く
+      fr: Une voyageuse marche entre les rangs de lavande violette
+    location:
+      zh: 法国普罗旺斯
+      en: Provence, France
+      ja: フランス・プロヴァンス
+      fr: Provence, France
+    caption:
+      zh: 旅人走进成行的紫色薰衣草田。
+      en: A traveler walks between rows of purple lavender.
+      ja: 旅人が紫色のラベンダー畑の列の間を歩く。
+      fr: Une voyageuse marche entre les rangs de lavande violette.
+  - src: /assets/img/life/adventure/83-memorial-path.jpg
+    thumb: /assets/img/life/adventure/83-memorial-path-thumb.jpg
+    alt:
+      zh: 人在整齐的灰色石碑间行走
+      en: A visitor walks between rows of gray stone slabs
+      ja: 灰色の石碑が並ぶ間を人が歩く
+      fr: Une personne marche entre des rangées de stèles grises
+    location:
+      zh: 德国柏林
+      en: Berlin, Germany
+      ja: ドイツ・ベルリン
+      fr: Berlin, Allemagne
+    caption:
+      zh: 人在整齐的灰色石碑间行走。在这里，我愿意停下来认真思考。
+      en: A visitor walks between rows of gray stone slabs. I want to pause and reflect here.
+      ja: 灰色の石碑が並ぶ間を人が歩く。ここでは立ち止まって考えたい。
+      fr: Une personne marche entre des rangées de stèles grises. Ici, j'ai envie de m'arrêter pour réfléchir.
+  - src: /assets/img/life/adventure/84-liebe-brick-building.jpg
+    thumb: /assets/img/life/adventure/84-liebe-brick-building-thumb.jpg
+    alt:
+      zh: 红砖建筑前立着写有 LIEBE 的大字母
+      en: Large letters spelling LIEBE stand before a red-brick building
+      ja: 赤レンガの建物の前に LIEBE の大きな文字が立つ
+      fr: De grandes lettres formant LIEBE se dressent devant un bâtiment en briques rouges
+    location:
+      zh: 德国柏林
+      en: Berlin, Germany
+      ja: ドイツ・ベルリン
+      fr: Berlin, Allemagne
+    caption:
+      zh: 红砖建筑前立着写有 LIEBE 的大字母。大大的字母立在砖墙前，十分醒目。
+      en: Large letters spelling LIEBE stand before a red-brick building. The large letters stand out against the brickwork.
+      ja: 赤レンガの建物の前に LIEBE の大きな文字が立つ。大きな文字がレンガの壁によく映える。
+      fr: De grandes lettres formant LIEBE se dressent devant un bâtiment en briques rouges. Les grandes lettres ressortent devant les
+        murs de brique.
+  - src: /assets/img/life/adventure/87-sagrada-stained-glass.jpg
+    thumb: /assets/img/life/adventure/87-sagrada-stained-glass-thumb.jpg
+    alt:
+      zh: 圣家堂的彩窗把光染成暖色
+      en: The Sagrada Família's stained glass colors the light
+      ja: サグラダ・ファミリアのステンドグラスが光を暖かく染める
+      fr: Les vitraux de la Sagrada Família colorent la lumière
+    location:
+      zh: 西班牙巴塞罗那，圣家堂
+      en: Sagrada Família, Barcelona, Spain
+      ja: スペイン・バルセロナのサグラダ・ファミリア
+      fr: Sagrada Família, Barcelone, Espagne
+    caption:
+      zh: 圣家堂的彩窗把光染成暖色。
+      en: The Sagrada Família's stained glass colors the light.
+      ja: サグラダ・ファミリアのステンドグラスが光を暖かく染める。
+      fr: Les vitraux de la Sagrada Família colorent la lumière.
+  - src: /assets/img/life/adventure/88-sagrada-ceiling.jpg
+    thumb: /assets/img/life/adventure/88-sagrada-ceiling-thumb.jpg
+    alt:
+      zh: 圣家堂的高柱向穹顶分枝
+      en: Tall columns branch toward the Sagrada Família ceiling
+      ja: サグラダ・ファミリアの高い柱が天井へ枝分かれする
+      fr: De hautes colonnes se ramifient vers la voûte de la Sagrada Família
+    location:
+      zh: 西班牙巴塞罗那，圣家堂
+      en: Sagrada Família, Barcelona, Spain
+      ja: スペイン・バルセロナのサグラダ・ファミリア
+      fr: Sagrada Família, Barcelone, Espagne
+    caption:
+      zh: 圣家堂的高柱向穹顶分枝。
+      en: Tall columns branch toward the Sagrada Família ceiling.
+      ja: サグラダ・ファミリアの高い柱が天井へ枝分かれする。
+      fr: De hautes colonnes se ramifient vers la voûte de la Sagrada Família.
+  - src: /assets/img/life/adventure/89-sagrada-interior.jpg
+    thumb: /assets/img/life/adventure/89-sagrada-interior-thumb.jpg
+    alt:
+      zh: 圣家堂的柱列和窗光在大厅交汇
+      en: Columns and window light meet inside the Sagrada Família
+      ja: サグラダ・ファミリアの柱列と窓の光が交わる
+      fr: Les colonnes et la lumière des fenêtres se croisent dans la Sagrada Família
+    location:
+      zh: 西班牙巴塞罗那，圣家堂
+      en: Sagrada Família, Barcelona, Spain
+      ja: スペイン・バルセロナのサグラダ・ファミリア
+      fr: Sagrada Família, Barcelone, Espagne
+    caption:
+      zh: 圣家堂的柱列和窗光在大厅交汇。
+      en: Columns and window light meet inside the Sagrada Família.
+      ja: サグラダ・ファミリアの柱列と窓の光が交わる。
+      fr: Les colonnes et la lumière des fenêtres se croisent dans la Sagrada Família.
+  - src: /assets/img/life/adventure/91-windmills-by-water.jpg
+    thumb: /assets/img/life/adventure/91-windmills-by-water-thumb.jpg
+    alt:
+      zh: 风车沿着水道排开
+      en: Windmills line a waterway
+      ja: 風車が水路沿いに並ぶ
+      fr: Des moulins à vent longent un canal
+    location:
+      zh: 荷兰小孩堤防
+      en: Kinderdijk, Netherlands
+      ja: オランダ・キンデルダイク
+      fr: Kinderdijk, Pays-Bas
+    caption:
+      zh: 风车沿着水道排开。
+      en: Windmills line a waterway.
+      ja: 風車が水路沿いに並ぶ。
+      fr: Des moulins à vent longent un canal.
+- slug: sports-diary
+  cover: /assets/img/life/sports/71-divers-at-dock.jpg
   title:
-    zh: 潜水日记
-    en: Diving Diary
-    ja: ダイビング日記
-    fr: Journal de plongée
+    zh: 运动日记
+    en: Sports Diary
+    ja: スポーツ日記
+    fr: Carnet de sport
   summary:
-    zh: 六张照片，记录潜水员、鱼群与礁石间的水下片刻。
-    en: Six photographs of divers, schools of fish, and moments among the reefs.
-    ja: ダイバーや魚の群れ、岩礁の間で出会った水中の一瞬を写した6枚。
-    fr: Six photos de plongeurs, de bancs de poissons et de scènes parmi les récifs.
+    zh: 从山坡到水下，记录身体投入其中的时刻。
+    en: From mountain slopes to the water, moments spent moving.
+    ja: 斜面から水中まで、体を動かした時間の記録。
+    fr: Des pentes de montagne à l'eau, des moments en mouvement.
   note:
-    zh: 鱼群在水中穿行，鳐鱼贴近海底，礁石旁还出现了色彩鲜明的小鱼。把这些水下相遇留在照片里。
-    en: Fish move through the water, a ray stays close to the seabed, and vivid fish appear beside the reef. These photographs preserve those underwater encounters.
-    ja: 水中を進む魚の群れ、海底近くのエイ、岩礁のそばで目を引く色鮮やかな魚たち。写真に残した水中での出会いです。
-    fr: Des poissons traversent l’eau, une raie longe le fond et des poissons colorés apparaissent près du récif. Ces photos gardent la trace de ces rencontres sous-marines.
+    zh: 从阿尔卑斯山的雪道到水下探索，运动让我用不同的方式感受周围的世界。
+    en: From slopes in the Alps to exploring underwater, movement lets me experience the world in different ways.
+    ja: アルプスの雪道から水中の探索まで、体を動かすたびに世界の感じ方が変わる。
+    fr: Des pistes des Alpes aux explorations sous-marines, le mouvement me fait découvrir le monde autrement.
   photos:
-    - src: /assets/img/life/diving/01-diver-school.jpg
-      alt:
-        zh: 潜水员在一大群黄色鱼旁游动
-        en: A diver swimming beside a large school of yellow fish
-        ja: 黄色い魚の大群のそばを泳ぐダイバー
-        fr: Une plongeuse nage près d’un grand banc de poissons jaunes
-      caption:
-        zh: 潜水员与黄色鱼群同框。
-        en: A diver alongside a school of yellow fish.
-        ja: ダイバーと黄色い魚の群れ。
-        fr: Une plongeuse aux côtés d’un banc de poissons jaunes.
-    - src: /assets/img/life/diving/02-reef-school.jpg
-      alt:
-        zh: 阳光照入水中，鱼群从礁石上方游过
-        en: Sunlight enters the water above a school of fish swimming over a reef
-        ja: 光が差す水中で、魚の群れが岩礁の上を泳ぐ
-        fr: La lumière traverse l’eau au-dessus d’un banc de poissons nageant sur le récif
-      caption:
-        zh: 阳光下，鱼群掠过礁石。
-        en: A school of fish passes over the reef in the sunlight.
-        ja: 光の中、岩礁の上を通り過ぎる魚の群れ。
-        fr: Un banc de poissons passe au-dessus du récif dans la lumière.
-    - src: /assets/img/life/diving/03-diver-ray.jpg
-      alt:
-        zh: 潜水员在海底上方游动，旁边有一只鳐鱼
-        en: A diver swims above the seabed near a ray
-        ja: 海底の上を泳ぐダイバーと近くにいるエイ
-        fr: Une plongeuse nage au-dessus du fond près d’une raie
-      caption:
-        zh: 潜水员与海底的鳐鱼。
-        en: A diver and a ray on the seabed.
-        ja: ダイバーと海底のエイ。
-        fr: Une plongeuse et une raie sur le fond.
-    - src: /assets/img/life/diving/04-ray.jpg
-      alt:
-        zh: 一只鳐鱼伏在沙地与礁石之间
-        en: A ray rests on the sandy seabed among rocks
-        ja: 岩の間の砂地にいるエイ
-        fr: Une raie repose sur le fond sableux parmi les rochers
-      caption:
-        zh: 沙地上的鳐鱼。
-        en: A ray on the sandy seabed.
-        ja: 砂地にいるエイ。
-        fr: Une raie sur le fond sableux.
-    - src: /assets/img/life/diving/05-lionfish.jpg
-      alt:
-        zh: 潜水员在一条展开鳍刺的蓑鲉后方游动
-        en: A diver swims behind a lionfish with its fins spread
-        ja: ひれを広げたミノカサゴの後ろを泳ぐダイバー
-        fr: Une plongeuse nage derrière une rascasse volante aux nageoires déployées
-      caption:
-        zh: 展开鳍刺的蓑鲉与远处的潜水员。
-        en: A lionfish with spread fins and a diver farther back.
-        ja: ひれを広げたミノカサゴと奥に見えるダイバー。
-        fr: Une rascasse volante aux nageoires déployées, avec une plongeuse en arrière-plan.
-    - src: /assets/img/life/diving/06-clownfish.jpg
-      alt:
-        zh: 两条橙色小鱼在海葵与礁石旁游动
-        en: Two orange fish swim beside a sea anemone and reef
-        ja: イソギンチャクと岩礁のそばを泳ぐ2匹のオレンジ色の魚
-        fr: Deux poissons orange nagent près d’une anémone de mer et du récif
-      caption:
-        zh: 海葵旁的两条小鱼。
-        en: Two small fish beside a sea anemone.
-        ja: イソギンチャクのそばの2匹の魚。
-        fr: Deux petits poissons près d’une anémone de mer.
+  - src: /assets/img/life/sports/71-divers-at-dock.jpg
+    thumb: /assets/img/life/sports/71-divers-at-dock-thumb.jpg
+    alt:
+      zh: 一群潜水者穿着潜水服、背着气瓶，在码头边合影
+      en: A group of divers in wetsuits and tanks pose together by the dock
+      ja: ダイバーたちがウェットスーツとタンクを着け、桟橋のそばで写真を撮る
+      fr: Un groupe de plongeurs en combinaison et avec leurs bouteilles pose près du quai
+    location:
+      zh: 西班牙，兰萨罗特岛
+      en: Lanzarote, Spain
+      ja: スペイン・ランサローテ島
+      fr: Lanzarote, Espagne
+    caption:
+      zh: 一群潜水者穿着潜水服、背着气瓶，在码头边合影。和大家穿着潜水装备合影，很开心。
+      en: A group of divers in wetsuits and tanks pose together by the dock. Taking a photo together in our diving gear makes me happy.
+      ja: ダイバーたちがウェットスーツとタンクを着け、桟橋のそばで写真を撮る。みんなでダイビング器材を着けて撮った一枚がうれしい。
+      fr: Un groupe de plongeurs en combinaison et avec leurs bouteilles pose près du quai. Je suis contente de cette photo de groupe
+        en équipement de plongée.
+  - src: /assets/img/life/sports/17-snowboard-slope.jpg
+    thumb: /assets/img/life/sports/17-snowboard-slope-thumb.jpg
+    alt:
+      zh: 穿着滑雪服踩着单板，在雪道上举起拇指
+      en: A snowboarder gives a thumbs-up while standing on a snowy slope
+      ja: スノーボードを履いて雪の斜面で親指を立てる
+      fr: Une personne sur sa planche lève le pouce sur une piste enneigée
+    location:
+      zh: 阿尔卑斯山
+      en: The Alps
+      ja: アルプス山脈
+      fr: Les Alpes
+    caption:
+      zh: 穿着滑雪服踩着单板，在雪道上举起拇指。站在雪道上，整个人都精神起来。
+      en: A snowboarder gives a thumbs-up while standing on a snowy slope. Being on the slope feels energizing.
+      ja: スノーボードを履いて雪の斜面で親指を立てる。雪の斜面に立つと、気持ちがしゃんとする。
+      fr: Une personne sur sa planche lève le pouce sur une piste enneigée. Être sur la piste me donne de l’énergie.
+  - src: /assets/img/life/sports/67-snowy-forest-rest.jpg
+    thumb: /assets/img/life/sports/67-snowy-forest-rest-thumb.jpg
+    alt:
+      zh: 穿着雪服坐在厚厚的积雪上，身后树枝覆满白雪
+      en: A person in snow gear sits in deep snow beneath frosted trees
+      ja: 雪の装備を着て、白く覆われた木々の下の深い雪に座る
+      fr: Une personne en tenue de neige est assise dans la neige épaisse sous des arbres givrés
+    location:
+      zh: 阿尔卑斯山
+      en: The Alps
+      ja: アルプス山脈
+      fr: Les Alpes
+    caption:
+      zh: 穿着雪服坐在厚厚的积雪上，身后树枝覆满白雪。雪林的安静让我想多坐一会儿。
+      en: A person in snow gear sits in deep snow beneath frosted trees. The quiet forest makes me want to stay a little longer.
+      ja: 雪の装備を着て、白く覆われた木々の下の深い雪に座る。雪の森が静かで、もう少し座っていたくなる。
+      fr: Une personne en tenue de neige est assise dans la neige épaisse sous des arbres givrés. Le calme de la forêt enneigée me donne
+        envie de rester un peu.
+  - src: /assets/img/life/sports/68-snowy-lakeside.jpg
+    thumb: /assets/img/life/sports/68-snowy-lakeside-thumb.jpg
+    alt:
+      zh: 戴着牛角帽站在雪中的湖边，望向对岸的山林
+      en: A person in a horned hat looks across a lake toward snowy hills
+      ja: 角付きの帽子をかぶり、雪の湖畔から対岸の山を眺める
+      fr: Une personne coiffée d'un bonnet à cornes regarde les collines enneigées de l'autre côté du lac
+    location:
+      zh: 阿尔卑斯山
+      en: The Alps
+      ja: アルプス山脈
+      fr: Les Alpes
+    caption:
+      zh: 戴着牛角帽站在雪中的湖边，望向对岸的山林。雪中的湖边格外宁静。
+      en: A person in a horned hat looks across a lake toward snowy hills. The lakeside feels especially still in the snow.
+      ja: 角付きの帽子をかぶり、雪の湖畔から対岸の山を眺める。雪の湖畔はひときわ静かだ。
+      fr: Une personne coiffée d'un bonnet à cornes regarde les collines enneigées de l'autre côté du lac. Le bord du lac semble particulièrement
+        paisible sous la neige.
+  - src: /assets/img/life/sports/78-snowboard-selfie.jpg
+    thumb: /assets/img/life/sports/78-snowboard-selfie-thumb.jpg
+    alt:
+      zh: 两位滑雪者戴着头盔，在雪道上对镜头合影
+      en: Two helmeted snowboarders take a photo together on a snowy slope
+      ja: ヘルメット姿の二人が雪の斜面で一緒に写真を撮る
+      fr: Deux personnes casquées prennent une photo ensemble sur une piste enneigée
+    location:
+      zh: 阿尔卑斯山
+      en: The Alps
+      ja: アルプス山脈
+      fr: Les Alpes
+    caption:
+      zh: 两位滑雪者戴着头盔，在雪道上对镜头合影。和同伴一起留下这张雪地合照，很开心。
+      en: Two helmeted snowboarders take a photo together on a snowy slope. I am glad to have this photo together in the snow.
+      ja: ヘルメット姿の二人が雪の斜面で一緒に写真を撮る。雪の上で一緒に撮ったこの一枚がうれしい。
+      fr: Deux personnes casquées prennent une photo ensemble sur une piste enneigée. Je suis contente de garder cette photo prise ensemble
+        dans la neige.
+  - src: /assets/img/life/sports/79-snowboards-at-night.jpg
+    thumb: /assets/img/life/sports/79-snowboards-at-night-thumb.jpg
+    alt:
+      zh: 夜色里，几块单板在雪道上排成一列，远处亮着灯
+      en: Several snowboards line up on the slope at night, with a light shining in the distance
+      ja: 夜のゲレンデにスノーボードが一列に並び、奥に明かりが見える
+      fr: Plusieurs snowboards sont alignés sur la piste de nuit, avec une lumière au loin
+    location:
+      zh: 阿尔卑斯山
+      en: The Alps
+      ja: アルプス山脈
+      fr: Les Alpes
+    caption:
+      zh: 夜色里，几块单板在雪道上排成一列，远处亮着灯。夜色中的雪板和灯光让这一幕很特别。
+      en: Several snowboards line up on the slope at night, with a light shining in the distance. The boards and distant light make
+        this night scene memorable.
+      ja: 夜のゲレンデにスノーボードが一列に並び、奥に明かりが見える。夜のボードと遠くの明かりが、この景色を特別にする。
+      fr: Plusieurs snowboards sont alignés sur la piste de nuit, avec une lumière au loin. Les planches et la lumière au loin rendent
+        cette scène nocturne mémorable.
+  - src: /assets/img/life/sports/80-snowboard-in-snow.jpg
+    thumb: /assets/img/life/sports/80-snowboard-in-snow-thumb.jpg
+    alt:
+      zh: 背着滑雪板的人站在积雪中的山坡上
+      en: A snowboarder carrying a board stands on a snowy hillside
+      ja: ボードを背負った人が雪の積もる斜面に立つ
+      fr: Une personne portant un snowboard se tient sur une pente enneigée
+    location:
+      zh: 阿尔卑斯山
+      en: The Alps
+      ja: アルプス山脈
+      fr: Les Alpes
+    caption:
+      zh: 背着滑雪板的人站在积雪中的山坡上。林间的雪景让我停下来多看了一眼。
+      en: A snowboarder carrying a board stands on a snowy hillside. I pause to take in the snowy trees.
+      ja: ボードを背負った人が雪の積もる斜面に立つ。木々の雪景色に、思わず足を止めて見入る。
+      fr: Une personne portant un snowboard se tient sur une pente enneigée. Je m’arrête pour regarder les arbres sous la neige.
+  - src: /assets/img/life/sports/66-kayak-through-trees.jpg
+    thumb: /assets/img/life/sports/66-kayak-through-trees-thumb.jpg
+    alt:
+      zh: 橙红色皮划艇停在绿萍覆盖的林间水道，船上的人向后躺着
+      en: An orange-red kayak rests in a tree-lined channel covered with duckweed, with its paddler reclining
+      ja: オレンジ色のカヤックが緑の浮草に覆われた林間の水路にあり、乗る人が後ろにもたれる
+      fr: Un kayak orange et rouge se trouve dans un chenal boisé couvert de lentilles d'eau, avec sa passagère allongée
+    location:
+      zh: 中国浙江，杭州青山湖
+      en: Qingshan Lake, Hangzhou, Zhejiang, China
+      ja: 中国・浙江省杭州の青山湖
+      fr: Lac Qingshan, Hangzhou, Zhejiang, Chine
+    caption:
+      zh: 橙红色皮划艇停在绿萍覆盖的林间水道，船上的人向后躺着。躺在船上看树影，心情一下放松了。
+      en: An orange-red kayak rests in a tree-lined channel covered with duckweed, with its paddler reclining. Reclining in the kayak
+        among the trees feels relaxing.
+      ja: オレンジ色のカヤックが緑の浮草に覆われた林間の水路にあり、乗る人が後ろにもたれる。木々に囲まれたカヤックで寝そべると、ほっとする。
+      fr: Un kayak orange et rouge se trouve dans un chenal boisé couvert de lentilles d'eau, avec sa passagère allongée. Allongée dans
+        le kayak parmi les arbres, je me sens détendue.
+  - src: /assets/img/life/diving/01-diver-school.jpg
+    alt:
+      zh: 潜水员在一大群黄色鱼旁游动
+      en: A diver swimming beside a large school of yellow fish
+      ja: 黄色い魚の大群のそばを泳ぐダイバー
+      fr: Une plongeuse nage près d’un grand banc de poissons jaunes
+    caption:
+      zh: 潜水员与黄色鱼群同框。和鱼群同游的画面让我想多看一会儿。
+      en: A diver alongside a school of yellow fish. I want to linger over this moment among the fish.
+      ja: ダイバーと黄色い魚の群れ。魚の群れと泳ぐ姿を、もう少し眺めていたい。
+      fr: Une plongeuse aux côtés d’un banc de poissons jaunes. J'ai envie de m'attarder sur cet instant parmi les poissons.
+    thumb: /assets/img/life/diving/01-diver-school-thumb.jpg
+    location:
+      zh: 泰国
+      en: Thailand
+      ja: タイ
+      fr: Thaïlande
+    legacy_anchor: diving
+  - src: /assets/img/life/diving/02-reef-school.jpg
+    alt:
+      zh: 阳光照入水中，鱼群从礁石上方游过
+      en: Sunlight enters the water above a school of fish swimming over a reef
+      ja: 光が差す水中で、魚の群れが岩礁の上を泳ぐ
+      fr: La lumière traverse l’eau au-dessus d’un banc de poissons nageant sur le récif
+    caption:
+      zh: 阳光下，鱼群掠过礁石。水下的光线让这一幕格外安静。
+      en: A school of fish passes over the reef in the sunlight. The underwater light makes this moment feel especially calm.
+      ja: 光の中、岩礁の上を通り過ぎる魚の群れ。水中の光が、この場面をいっそう静かに見せる。
+      fr: Un banc de poissons passe au-dessus du récif dans la lumière. La lumière sous l’eau rend cet instant particulièrement paisible.
+    thumb: /assets/img/life/diving/02-reef-school-thumb.jpg
+    location:
+      zh: 泰国
+      en: Thailand
+      ja: タイ
+      fr: Thaïlande
+  - src: /assets/img/life/diving/04-ray.jpg
+    alt:
+      zh: 一只鳐鱼伏在沙地与礁石之间
+      en: A ray rests on the sandy seabed among rocks
+      ja: 岩の間の砂地にいるエイ
+      fr: Une raie repose sur le fond sableux parmi les rochers
+    caption:
+      zh: 沙地上的鳐鱼。它安静的样子让我不由得放慢目光。
+      en: A ray on the sandy seabed. Its stillness makes me pause and look closer.
+      ja: 砂地にいるエイ。その静かな姿に、思わず見入ってしまう。
+      fr: Une raie sur le fond sableux. Son calme me donne envie de m’arrêter pour mieux regarder.
+    thumb: /assets/img/life/diving/04-ray-thumb.jpg
+    location:
+      zh: 泰国
+      en: Thailand
+      ja: タイ
+      fr: Thaïlande
+  - src: /assets/img/life/diving/05-lionfish.jpg
+    alt:
+      zh: 潜水员在一条展开鳍刺的蓑鲉后方游动
+      en: A diver swims behind a lionfish with its fins spread
+      ja: ひれを広げたミノカサゴの後ろを泳ぐダイバー
+      fr: Une plongeuse nage derrière une rascasse volante aux nageoires déployées
+    caption:
+      zh: 展开鳍刺的蓑鲉与远处的潜水员。鳍刺的形状让我看得出神。
+      en: A lionfish with spread fins and a diver farther back. The shape of its fins holds my gaze.
+      ja: ひれを広げたミノカサゴと奥に見えるダイバー。ひれの形に思わず見入ってしまう。
+      fr: Une rascasse volante aux nageoires déployées, avec une plongeuse en arrière-plan. La forme de ses nageoires retient mon regard.
+    thumb: /assets/img/life/diving/05-lionfish-thumb.jpg
+    location:
+      zh: 泰国
+      en: Thailand
+      ja: タイ
+      fr: Thaïlande
+  - src: /assets/img/life/diving/06-clownfish.jpg
+    alt:
+      zh: 两条橙色小鱼在海葵与礁石旁游动
+      en: Two orange fish swim beside a sea anemone and reef
+      ja: イソギンチャクと岩礁のそばを泳ぐ2匹のオレンジ色の魚
+      fr: Deux poissons orange nagent près d’une anémone de mer et du récif
+    caption:
+      zh: 海葵旁的两条小鱼。这一抹橙色总能让我会心一笑。
+      en: Two small fish beside a sea anemone. That flash of orange still makes me smile.
+      ja: イソギンチャクのそばの2匹の魚。このオレンジ色を見ると、つい笑顔になる。
+      fr: Deux petits poissons près d’une anémone de mer. Cette touche d’orange me fait toujours sourire.
+    thumb: /assets/img/life/diving/06-clownfish-thumb.jpg
+    location:
+      zh: 泰国
+      en: Thailand
+      ja: タイ
+      fr: Thaïlande
+  - src: /assets/img/life/diving/03-diver-ray.jpg
+    alt:
+      zh: 潜水员在海底上方游动，旁边有一只鳐鱼
+      en: A diver swims above the seabed near a ray
+      ja: 海底の上を泳ぐダイバーと近くにいるエイ
+      fr: Une plongeuse nage au-dessus du fond près d’une raie
+    caption:
+      zh: 潜水员与海底的鳐鱼。这样的相遇总让我感到新奇。
+      en: A diver and a ray on the seabed. An encounter like this still fills me with wonder.
+      ja: ダイバーと海底のエイ。こんな出会いには、今も心が弾む。
+      fr: Une plongeuse et une raie sur le fond. Une telle rencontre m’émerveille encore.
+    thumb: /assets/img/life/diving/03-diver-ray-thumb.jpg
+    location:
+      zh: 埃及红海，达哈卜
+      en: Dahab, Red Sea, Egypt
+      ja: エジプト・紅海のダハブ
+      fr: Dahab, mer Rouge, Égypte
+- slug: entertainment-diary
+  cover: /assets/img/life/entertainment/14-crosstalk-stage.jpg
+  title:
+    zh: 娱乐日记
+    en: Entertainment Diary
+    ja: エンタメ日記
+    fr: Carnet de loisirs
+  summary:
+    zh: 舞台、街角和日常里的轻松片刻。
+    en: Stages, street corners, and lighter everyday moments.
+    ja: 舞台や街角、日常の楽しいひととき。
+    fr: Scènes, rues et petits moments de détente.
+  note:
+    zh: 有些照片留下的是演出，有些留下的是让人会心一笑的小事。
+    en: Some photos hold a performance; others keep a small moment that made me smile.
+    ja: 舞台の写真もあれば、ふと思い出して笑顔になる日常の写真もある。
+    fr: Certaines photos gardent un spectacle, d'autres un petit moment qui me fait sourire.
+  photos:
+  - src: /assets/img/life/entertainment/09-paper-bag-message.jpg
+    thumb: /assets/img/life/entertainment/09-paper-bag-message-thumb.jpg
+    alt:
+      zh: 桌上的纸袋写着一句俏皮话
+      en: A paper bag on the table carries a playful line
+      ja: テーブルの紙袋にユーモラスな一言が書かれている
+      fr: Un sac en papier posé sur la table porte une phrase amusante
+    location:
+      zh: 中国吉林，长白山
+      en: Changbai Mountain, Jilin, China
+      ja: 中国・吉林省長白山
+      fr: Mont Changbai, Jilin, Chine
+    caption:
+      zh: 桌上的纸袋写着一句俏皮话。这句玩笑让我忍不住笑了。
+      en: A paper bag on the table carries a playful line. That little joke made me laugh.
+      ja: テーブルの紙袋にユーモラスな一言が書かれている。その冗談に思わず笑った。
+      fr: Un sac en papier posé sur la table porte une phrase amusante. Cette petite plaisanterie m'a fait rire.
+  - src: /assets/img/life/entertainment/10-snacks-on-table.jpg
+    thumb: /assets/img/life/entertainment/10-snacks-on-table-thumb.jpg
+    alt:
+      zh: 饮料和零食摆满了桌面
+      en: Drinks and snacks fill the table
+      ja: 飲み物とお菓子がテーブルに並ぶ
+      fr: Des boissons et des friandises couvrent la table
+    location:
+      zh: 中国吉林，长白山
+      en: Changbai Mountain, Jilin, China
+      ja: 中国・吉林省長白山
+      fr: Mont Changbai, Jilin, Chine
+    caption:
+      zh: 饮料和零食摆满了桌面。看着这一桌零食，心情也放松下来。
+      en: Drinks and snacks fill the table. This table of snacks feels inviting and relaxed.
+      ja: 飲み物とお菓子がテーブルに並ぶ。お菓子が並ぶテーブルを見ると、気持ちもほぐれる。
+      fr: Des boissons et des friandises couvrent la table. Cette table de friandises me met à l’aise.
+  - src: /assets/img/life/entertainment/12-stefanie-sun-concert.jpg
+    thumb: /assets/img/life/entertainment/12-stefanie-sun-concert-thumb.jpg
+    alt:
+      zh: 孙燕姿穿着银白色演出服，拿着话筒在舞台上演唱
+      en: Stefanie Sun sings onstage in a silver-and-white outfit, holding a microphone
+      ja: 孫燕姿が銀白色の衣装でマイクを持ち、舞台で歌う
+      fr: Stefanie Sun chante sur scène dans une tenue blanche et argentée, micro à la main
+    location:
+      zh: 中国天津
+      en: Tianjin, China
+      ja: 中国・天津
+      fr: Tianjin, Chine
+    caption:
+      zh: 孙燕姿穿着银白色演出服，拿着话筒在舞台上演唱。这一刻的歌声让我想再听一首。
+      en: Stefanie Sun sings onstage in a silver-and-white outfit, holding a microphone. This moment makes me want to hear one more
+        song.
+      ja: 孫燕姿が銀白色の衣装でマイクを持ち、舞台で歌う。この瞬間の歌声に、もう一曲聴きたくなる。
+      fr: Stefanie Sun chante sur scène dans une tenue blanche et argentée, micro à la main. À cet instant, sa voix me donne envie d’entendre
+        une chanson de plus.
+  - src: /assets/img/life/entertainment/13-pikachu-street.jpg
+    thumb: /assets/img/life/entertainment/13-pikachu-street-thumb.jpg
+    alt:
+      zh: 街边立着戴帽子的皮卡丘气模
+      en: A giant Pikachu in a hat stands beside the street
+      ja: 帽子をかぶった大きなピカチュウが通りに立つ
+      fr: Un Pikachu géant coiffé d'une casquette se dresse près de la rue
+    location:
+      zh: 中国天津
+      en: Tianjin, China
+      ja: 中国・天津
+      fr: Tianjin, Chine
+    caption:
+      zh: 街边立着戴帽子的皮卡丘气模。街头突然多了一点童趣。
+      en: A giant Pikachu in a hat stands beside the street. It brings a playful touch to the street.
+      ja: 帽子をかぶった大きなピカチュウが通りに立つ。通りが少し楽しく見える。
+      fr: Un Pikachu géant coiffé d'une casquette se dresse près de la rue. Cela apporte une touche de fantaisie à la rue.
+  - src: /assets/img/life/entertainment/14-crosstalk-stage.jpg
+    thumb: /assets/img/life/entertainment/14-crosstalk-stage-thumb.jpg
+    alt:
+      zh: 相声演员站在鲜红的舞台上
+      en: Crosstalk performers stand on a vivid red stage
+      ja: 相声の演者が鮮やかな赤い舞台に立つ
+      fr: Des artistes de xiangsheng se tiennent sur une scène rouge vif
+    location:
+      zh: 中国天津
+      en: Tianjin, China
+      ja: 中国・天津
+      fr: Tianjin, Chine
+    caption:
+      zh: 相声演员站在鲜红的舞台上。鲜亮的舞台让我期待接下来的表演。
+      en: Crosstalk performers stand on a vivid red stage. The bright stage makes me eager to watch the performance.
+      ja: 相声の演者が鮮やかな赤い舞台に立つ。鮮やかな舞台を見て、これからの出番が楽しみになる。
+      fr: Des artistes de xiangsheng se tiennent sur une scène rouge vif. La scène éclatante me donne envie de voir le spectacle.
+  - src: /assets/img/life/entertainment/15-stefanie-sun-waves.jpg
+    thumb: /assets/img/life/entertainment/15-stefanie-sun-waves-thumb.jpg
+    alt:
+      zh: 孙燕姿拿着话筒，站在发光的舞台框中向观众挥手
+      en: Stefanie Sun holds a microphone and waves from a glowing frame onstage
+      ja: 孫燕姿がマイクを持ち、光る舞台のフレームの中から手を振る
+      fr: Stefanie Sun tient un micro et salue le public dans un cadre lumineux sur scène
+    location:
+      zh: 中国天津
+      en: Tianjin, China
+      ja: 中国・天津
+      fr: Tianjin, Chine
+    caption:
+      zh: 孙燕姿拿着话筒，站在发光的舞台框中向观众挥手。她向观众挥手的样子让我也跟着笑了。
+      en: Stefanie Sun holds a microphone and waves from a glowing frame onstage. Seeing her wave to the crowd makes me smile.
+      ja: 孫燕姿がマイクを持ち、光る舞台のフレームの中から手を振る。観客に手を振る姿に、こちらも笑顔になる。
+      fr: Stefanie Sun tient un micro et salue le public dans un cadre lumineux sur scène. La voir saluer le public me fait sourire.
+  - src: /assets/img/life/entertainment/16-black-cat-at-home.jpg
+    thumb: /assets/img/life/entertainment/16-black-cat-at-home-thumb.jpg
+    alt:
+      zh: 黑猫趴在床上，身旁的手拿着一个小玩具
+      en: A black cat lies on the bed beside a hand holding a small toy
+      ja: 黒猫がベッドに寝そべり、そばの手がおもちゃを持っている
+      fr: Un chat noir est allongé sur le lit près d'une main tenant un petit jouet
+    location:
+      zh: 中国浙江，杭州家中
+      en: At home in Hangzhou, Zhejiang, China
+      ja: 中国・浙江省杭州の自宅
+      fr: À la maison à Hangzhou, Zhejiang, Chine
+    caption:
+      zh: 黑猫趴在床上，身旁的手拿着一个小玩具。它认真盯着玩具的样子真可爱。
+      en: A black cat lies on the bed beside a hand holding a small toy. I love how intently it watches the toy.
+      ja: 黒猫がベッドに寝そべり、そばの手がおもちゃを持っている。おもちゃをじっと見る姿がかわいい。
+      fr: Un chat noir est allongé sur le lit près d'une main tenant un petit jouet. J’aime son regard concentré sur le jouet.
+  - src: /assets/img/life/entertainment/47-mahjong-table.jpg
+    thumb: /assets/img/life/entertainment/47-mahjong-table-thumb.jpg
+    alt:
+      zh: 几双手围着彩色桌布摆放绿色麻将牌
+      en: Several hands arrange green mahjong tiles around a colorful tablecloth
+      ja: 色鮮やかなテーブルクロスの上で、何人もの手が緑色の麻雀牌を並べる
+      fr: Plusieurs mains disposent des tuiles de mah-jong vertes sur une nappe colorée
+    location:
+      zh: 法国巴黎
+      en: Paris, France
+      ja: フランス・パリ
+      fr: Paris, France
+    caption:
+      zh: 几双手围着彩色桌布摆放绿色麻将牌。大家围在一起玩牌，画面很热闹。
+      en: Several hands arrange green mahjong tiles around a colorful tablecloth. The table feels lively with everyone playing together.
+      ja: 色鮮やかなテーブルクロスの上で、何人もの手が緑色の麻雀牌を並べる。みんなで卓を囲んでいて、にぎやかな一枚だ。
+      fr: Plusieurs mains disposent des tuiles de mah-jong vertes sur une nappe colorée. La table est animée avec tout le monde réuni
+        pour jouer.
+- slug: study-diary
+  cover: /assets/img/life/study/70-writing-on-blackboard.jpg
+  title:
+    zh: 学习日记
+    en: Learning Diary
+    ja: 学びの日記
+    fr: Carnet d'apprentissage
+  summary:
+    zh: 在书架与黑板之间，留下不断学习的痕迹。
+    en: Notes from bookshelves, blackboards, and continuing to learn.
+    ja: 本棚と黒板の間に、学び続けた足跡を残す。
+    fr: Des livres, des tableaux et des traces de ce que j’apprends.
+  note:
+    zh: 从书架前的驻足到黑板上的一笔，学习也有值得记下的画面。
+    en: From a pause before the bookshelves to a line on the board, learning leaves images worth keeping.
+    ja: 本棚の前で立ち止まる時間も、黒板に書く一筆も、学びの風景として残したい。
+    fr: D'une pause devant les livres à une ligne au tableau, l'apprentissage offre aussi des images à garder.
+  photos:
+  - src: /assets/img/life/study/43-bookshelf-reading.jpg
+    thumb: /assets/img/life/study/43-bookshelf-reading-thumb.jpg
+    alt:
+      zh: 坐在层层书架间，面前放着一张长桌
+      en: A reader sits among tall bookshelves with a long table in front
+      ja: 高い本棚に囲まれ、長いテーブルの向こうに座る
+      fr: Une personne est assise parmi de hautes étagères, devant une longue table
+    location:
+      zh: 中国浙江，杭州
+      en: Hangzhou, Zhejiang, China
+      ja: 中国・浙江省杭州
+      fr: Hangzhou, Zhejiang, Chine
+    caption:
+      zh: 坐在层层书架间，面前放着一张长桌。被书包围的安静感很好。
+      en: A reader sits among tall bookshelves with a long table in front. I like the quiet feeling of being surrounded by books.
+      ja: 高い本棚に囲まれ、長いテーブルの向こうに座る。本に囲まれた静けさが心地よい。
+      fr: Une personne est assise parmi de hautes étagères, devant une longue table. J’aime le calme au milieu de tous ces livres.
+  - src: /assets/img/life/study/70-writing-on-blackboard.jpg
+    thumb: /assets/img/life/study/70-writing-on-blackboard-thumb.jpg
+    alt:
+      zh: 站在黑板前写字，桌上摊着讲义
+      en: A person writes on the blackboard while papers lie across the desks
+      ja: 机に資料を広げ、黒板の前で文字を書く
+      fr: Une personne écrit au tableau tandis que des documents sont étalés sur les tables
+    location:
+      zh: 法国巴黎，巴黎第七大学
+      en: Paris Diderot University (Paris 7), Paris, France
+      ja: フランス・パリ第七大学
+      fr: Université Paris-Diderot (Paris 7), Paris, France
+    caption:
+      zh: 站在黑板前写字，桌上摊着讲义。写下这一笔时，注意力都在黑板上。
+      en: A person writes on the blackboard while papers lie across the desks. For a moment, all my attention is on the board.
+      ja: 机に資料を広げ、黒板の前で文字を書く。書いている間は、黒板に気持ちが集中する。
+      fr: Une personne écrit au tableau tandis que des documents sont étalés sur les tables. Pendant un instant, toute mon attention
+        est sur le tableau.
