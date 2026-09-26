@@ -18,18 +18,18 @@
   photos:
     - src: /assets/img/about/adventure-mountain.jpg
       alt:
-        zh: 雪山、湖泊和远行中的背影
-        en: Snow mountains, a lake, and a traveler seen from behind
-        ja: 雪山、湖、旅する人の後ろ姿
-        fr: Montagnes enneigées, lac et silhouette de voyage
+        zh: 稻城亚丁的雪山、湖泊和远行中的背影
+        en: Snow peaks, a lake, and a traveler seen from behind in Daocheng Yading
+        ja: Daocheng Yadingの雪山と湖、旅する人の後ろ姿
+        fr: Montagnes enneigées, lac et voyageur vu de dos à Daocheng Yading
       caption:
-        zh: 雪山、湖泊与远行的背影。
-        en: Snow mountains, a lake, and a traveler.
-        ja: 雪山と湖、旅する人の後ろ姿。
-        fr: Montagnes enneigées, lac et silhouette de voyage.
+        zh: 稻城亚丁的雪山与湖泊，和远行的背影。
+        en: Snow peaks, a lake, and a traveler in Daocheng Yading.
+        ja: Daocheng Yadingの雪山と湖、旅する人の後ろ姿。
+        fr: Montagnes enneigées, lac et voyageur à Daocheng Yading.
 
 - slug: diving-diary
-  cover: /assets/img/life/diving/01-diver-school.jpg
+  cover: /assets/img/life/diving/03-diver-ray.jpg
   title:
     zh: 潜水日记
     en: Diving Diary
