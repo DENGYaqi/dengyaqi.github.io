@@ -5,6 +5,7 @@ layout: default
 {% assign lang = page.lang | default: 'zh' %}
 {% assign t = site.data.i18n[lang] %}
 {% assign lang_base = '/' | append: lang %}
+{% assign resume_pdf = '/assets/files/resume/deng-yaqi-ai-rd-resume.pdf' | relative_url %}
 
 <section class="hero">
   <div class="shape shape-1"></div>
@@ -36,7 +37,7 @@ layout: default
         {{ t.home.intro }}
       </p>
       <div class="btn-group">
-        <a href="{{ lang_base | append: '/resume/' | relative_url }}" class="btn btn-primary">{{ t.home.primary_button }}</a>
+        <a href="{{ resume_pdf }}" class="btn btn-primary" download="Deng-Yaqi-Resume.pdf">{{ t.home.primary_button }}</a>
         <a href="{{ lang_base | append: '/blog/' | relative_url }}" class="btn btn-outline">{{ t.home.secondary_button }}</a>
       </div>
     </div>
@@ -74,7 +75,7 @@ layout: default
       {% endfor %}
     </div>
     <div class="contact-cta fade-up">
-      <a href="{{ lang_base | append: '/resume/' | relative_url }}" class="btn btn-primary">{{ t.home.full_resume }}</a>
+      <a href="{{ resume_pdf }}" class="btn btn-primary" download="Deng-Yaqi-Resume.pdf">{{ t.home.full_resume }}</a>
     </div>
   </div>
 </section>
@@ -96,6 +97,26 @@ layout: default
           </div>
         </article>
       {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="interests-section">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="section-tag">{{ t.home.interests_tag }}</div>
+      <h2 class="section-title">{{ t.home.interests_title }}</h2>
+    </div>
+    <div class="interests-grid">
+      {% for interest in t.home.interests %}
+        <article class="interest-item fade-up">
+          <span class="interest-icon" aria-hidden="true">{{ interest.icon }}</span>
+          <p>{{ interest.title }}</p>
+        </article>
+      {% endfor %}
+    </div>
+    <div class="contact-cta fade-up">
+      <a href="{{ lang_base | append: '/about/' | relative_url }}" class="btn btn-primary">{{ t.home.interests_more }}</a>
     </div>
   </div>
 </section>
@@ -155,9 +176,6 @@ layout: default
       <a href="mailto:{{ site.social.email }}" class="contact-card fade-up"><h4>Email</h4><p>{{ site.social.email }}</p></a>
       <a href="https://github.com/{{ site.github.username }}" target="_blank" rel="noopener" class="contact-card fade-up"><h4>GitHub</h4><p>{{ site.github.username }}</p></a>
       <a href="https://x.com/{{ site.twitter.username }}" target="_blank" rel="noopener" class="contact-card fade-up"><h4>X</h4><p>@{{ site.twitter.username }}</p></a>
-    </div>
-    <div class="contact-cta fade-up">
-      <a href="mailto:{{ site.social.email }}" class="contact-email">{{ site.social.email }}</a>
     </div>
   </div>
 </section>

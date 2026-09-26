@@ -44,38 +44,50 @@ zh:
     title_separator: ""
     title_highlight: 生活
     intro: 我是邓雅琪，这里记录了我的工作、生活和想法。
-    primary_button: 查看简历
+    primary_button: 下载简历
     secondary_button: 阅读博客
     hero_alt: 邓雅琪在中国最高海拔市纪念石旁
-    experience_tag: 经历
+    experience_tag: Experience
     experience_title: 工作经历
-    full_resume: 查看完整简历
-    skills_tag: 技能
+    full_resume: 下载简历
+    skills_tag: Skills
     skills_title: 技术栈
-    projects_tag: 项目
+    interests_tag: Beyond Code
+    interests_title: 我的兴趣
+    interests_more: 更多关于我
+    projects_tag: Projects
     projects_title: 代表性工程实践
-    latest_tag: 最新
+    latest_tag: Latest
     latest_title: 最新文章
     all_posts: 查看全部文章
-    contact_tag: 联系
+    contact_tag: Contact
     contact_title: 联系我
     skills:
-      - title: AI / RAG / Agent 工程
-        tags: [LangChain, LangGraph, Agent Workflow, MCP, RAG, Embedding, Prompt Engineering, LLM 多模型接入]
-      - title: 后端与分布式系统
-        tags: [Java, Python, FastAPI, Django REST Framework, SpringBoot, SpringCloud, SofaBoot, RESTful API]
-      - title: 数据、检索与知识图谱
-        tags: [PostgreSQL, PgVector, ClickHouse, Neo4j, Redis, Elasticsearch, MySQL, HBase]
-      - title: 知识图谱与本体
-        tags: [Knowledge Graph, Ontology, 本体融合, 信息抽取, NER, 数据标注]
-      - title: 前端与浏览器插件
-        tags: [Vue 3, TypeScript, Vite, Element Plus, Pinia, Chrome Extension MV3, SSE]
-      - title: 移动端与客户端
-        tags: [Android, Kotlin, Jetpack, MVVM, Bluetooth, IoT, Electron]
-      - title: DevOps 与基础设施
-        tags: [Docker, Kubernetes, Nginx, Jenkins, GitLab CI, GitHub Actions, PyInstaller]
-      - title: 工具与协作
-        tags: [VSCode, Cursor, Codex, Claude Code, Power BI, Postman, Figma]
+      - title: Agent 编排与模型接入
+        tags: [LangChain, LangGraph, MCP, Agent Skills, Tool Calling, 多模型接入]
+      - title: RAG 与文档问答
+        tags: [RAG, LlamaIndex, Embedding, 混合检索, 文档解析, RAGAS]
+      - title: NLP 与知识工程
+        tags: [知识图谱, 本体建模, 本体融合, 信息抽取, NER, 多语言 NLP]
+      - title: 后端服务开发
+        tags: [Java, Python, FastAPI, Django REST Framework, Spring Boot, SOFABoot]
+      - title: 数据存储与检索
+        tags: [PostgreSQL, pgvector, MySQL, Redis, Elasticsearch, HBase]
+      - title: Web 与浏览器扩展
+        tags: [Vue 3, TypeScript, Pinia, SSE, Chrome MV3, Service Worker]
+      - title: Android 与设备交互
+        tags: [Android, Kotlin, Jetpack, MVVM, Bluetooth, Retrofit / OkHttp]
+      - title: 分布式系统与部署
+        tags: [Kafka, RocketMQ, Raft, Kubernetes, Nginx]
+    interests:
+      - { icon: '📚', title: 看书 }
+      - { icon: '🥾', title: 徒步 }
+      - { icon: '🍜', title: 美食 }
+      - { icon: '✈️', title: 旅游 }
+      - { icon: '🚗', title: 开车 }
+      - { icon: '🎮', title: 游戏 }
+      - { icon: '🥋', title: 柔道 }
+      - { icon: '🤿', title: 水肺潜水 }
     projects:
       - title: 企业 AI 平台底座
         desc: 面向业务系统建设多模型接入、RAG 知识库、MCP 工具调用、权限与审计能力，支撑 Agent 和业务应用快速落地。
@@ -98,17 +110,17 @@ zh:
   about:
     subtitle: AI 研发主管 / Harness / 本体论与知识图谱 / 后端系统
     intro: 我是邓雅琪，目前负责 AI 研发方向规划、技术路线选型与项目交付推进。我的经历从 NLP、知识图谱和本体融合开始，随后进入 Android、Java 后端、风控中台和分布式系统，再回到企业级 AI 平台、RAG、Agent Workflow 和业务系统落地。
-    journey_tag: 经历
+    journey_tag: Journey
     journey_title: 工作经历
-    ask_tag: 方向
+    ask_tag: Focus
     ask_title: 可以聊的主题
-    current_tag: 当前
+    current_tag: Now
     current_title: 当前方向
     current_items:
       - 建设: 企业级 RAG、文档解析质量、PgVector 向量知识库、多模型 LLM 接入、Agent 工作流和 AI 自动编码系统。
       - 学习: 上下文工程、评测体系、trace、成本控制和生产环境里模型能力的稳定性边界。
       - 写作: 把真实工作中的判断整理成清晰、可验证、能复用的公开笔记。
-    credentials_tag: 证书
+    credentials_tag: Credentials
     credentials_title: 证书与语言
     credentials:
       - title: 人工智能训练师三级
@@ -129,7 +141,7 @@ zh:
       - title: 外语
         issuer: 法语 / 英语 / 日语
         status: 商务 / 流畅
-    interests_tag: 生活
+    interests_tag: Life
     interests_title: 生活与兴趣
     interests:
       - title: 旅行与山野
@@ -140,35 +152,37 @@ zh:
         desc: 把项目复盘、技术判断和 AI 工具实践整理成可以复用的公开笔记。
       - title: 产品化探索
         desc: 关注 AI 能力如何嵌入业务现场，从工具验证走到真实可交付系统。
-    adventure_tag: 旅途
+    adventure_tag: Life
     adventure_title: 冒险笔记
     adventure_intro: 工作之外，我也喜欢走到更远的地方，看雪山、湖泊和城市边界，把生活里的探索感带回工程判断。
     adventure_image_alt: 雪山、湖泊和远行中的背影
   resume:
     subtitle: AI 工程化 / Harness / 本体论与知识图谱 / Java 后端
-    summary_tag: 概览
+    summary_tag: Summary
     summary_title: 关于我
     summary: 法国索邦大学语言与计算机硕士，主修 NLP。工作经历从 NLP、知识图谱与本体融合开始，经过 Android 与 Java 后端工程、风控中台和分布式系统建设，现在负责 AI 研发规划、企业级 AI 平台、RAG、Agent Workflow、数据治理和业务系统落地。
-    experience_tag: 经历
+    experience_tag: Experience
     experience_title: 工作经历
-    resume_tag: 简历
+    resume_tag: Resume
     resume_title: 完整简历
     download_pdf: 下载 PDF
-    education_tag: 教育
+    education_tag: Education
     education_title: 教育背景
     education:
       - degree: 语言与计算机硕士
-        school: 法国索邦大学 Sorbonne Université
+        school: Sorbonne Université
+        school_zh: 法国索邦大学
         date: 2017.09 - 2019.10
         desc: 全日制硕士，主修 NLP。
       - degree: 计算机语言科学本科
-        school: 法国巴黎第七大学 Université de Paris 7 Denis Diderot
+        school: Université de Paris 7 Denis Diderot
+        school_zh: 法国巴黎第七大学
         date: 2014.09 - 2017.09
         desc: 全日制本科，主修 NLP。
-      - degree: 金融语言预科
+      - degree: 金融与语言预科
         school: ESGCI, École de Commerce International et Marketing à Paris
         date: 2013.09 - 2014.09
-        desc: 语言预备科。
+        desc: 在巴黎修读一年预科课程。
       - degree: 应用法语专科
         school: 深圳职业技术大学
         date: 2010.09 - 2013.06
@@ -225,14 +239,17 @@ en:
     title_separator: " "
     title_highlight: everyday life
     intro: I am Deng Yaqi. Here I share my work, life, and thoughts.
-    primary_button: View Resume
+    primary_button: Download Resume
     secondary_button: Read Blog
     hero_alt: Deng Yaqi beside the monument of China's highest-altitude city
     experience_tag: Experience
     experience_title: Work Experience
-    full_resume: View Full Resume
+    full_resume: Download Resume
     skills_tag: Skills
     skills_title: What I Work With
+    interests_tag: Beyond Code
+    interests_title: What I Love
+    interests_more: More About Me
     projects_tag: Projects
     projects_title: Selected Engineering Work
     latest_tag: Latest
@@ -241,22 +258,31 @@ en:
     contact_tag: Contact
     contact_title: Contact me
     skills:
-      - title: AI / RAG / Agent Engineering
-        tags: [LangChain, LangGraph, Agent Workflow, MCP, RAG, Embedding, Prompt Engineering, Multi-model LLM]
-      - title: Backend and Distributed Systems
-        tags: [Java, Python, FastAPI, Django REST Framework, SpringBoot, SpringCloud, SofaBoot, RESTful API]
-      - title: Data, Search, and Knowledge Graphs
-        tags: [PostgreSQL, PgVector, ClickHouse, Neo4j, Redis, Elasticsearch, MySQL, HBase]
-      - title: Knowledge Graphs and Ontology
-        tags: [Knowledge Graph, Ontology, Ontology Fusion, Information Extraction, NER, Data Annotation]
-      - title: Frontend and Browser Extensions
-        tags: [Vue 3, TypeScript, Vite, Element Plus, Pinia, Chrome Extension MV3, SSE]
-      - title: Mobile and Client Apps
-        tags: [Android, Kotlin, Jetpack, MVVM, Bluetooth, IoT, Electron]
-      - title: DevOps and Infrastructure
-        tags: [Docker, Kubernetes, Nginx, Jenkins, GitLab CI, GitHub Actions, PyInstaller]
-      - title: Tools and Collaboration
-        tags: [VSCode, Cursor, Codex, Claude Code, Power BI, Postman, Figma]
+      - title: Agent Orchestration and Model Integration
+        tags: [LangChain, LangGraph, MCP, Agent Skills, Tool Calling, Multi-model Integration]
+      - title: RAG and Document Q&A
+        tags: [RAG, LlamaIndex, Embedding, Hybrid Search, Document Parsing, RAGAS]
+      - title: NLP and Knowledge Engineering
+        tags: [Knowledge Graphs, Ontology Modeling, Ontology Fusion, Information Extraction, NER, Multilingual NLP]
+      - title: Backend Services
+        tags: [Java, Python, FastAPI, Django REST Framework, Spring Boot, SOFABoot]
+      - title: Data Storage and Search
+        tags: [PostgreSQL, pgvector, MySQL, Redis, Elasticsearch, HBase]
+      - title: Web and Browser Extensions
+        tags: [Vue 3, TypeScript, Pinia, SSE, Chrome MV3, Service Worker]
+      - title: Android and Device Integration
+        tags: [Android, Kotlin, Jetpack, MVVM, Bluetooth, Retrofit / OkHttp]
+      - title: Distributed Systems and Deployment
+        tags: [Kafka, RocketMQ, Raft, Kubernetes, Nginx]
+    interests:
+      - { icon: '📚', title: Reading }
+      - { icon: '🥾', title: Hiking }
+      - { icon: '🍜', title: Food }
+      - { icon: '✈️', title: Travel }
+      - { icon: '🚗', title: Driving }
+      - { icon: '🎮', title: Gaming }
+      - { icon: '🥋', title: Judo }
+      - { icon: '🤿', title: Scuba Diving }
     projects:
       - title: Enterprise AI Platform
         desc: Built multi-model access, RAG knowledge bases, MCP tool calling, permissions, and audit capabilities as the foundation for agent and business AI applications.
@@ -349,7 +375,7 @@ en:
       - degree: Finance and Language Preparatory Program
         school: ESGCI, École de Commerce International et Marketing à Paris
         date: 2013.09 - 2014.09
-        desc: Language preparatory program.
+        desc: One year of preparatory studies in Paris.
       - degree: Associate Degree in Applied French
         school: Shenzhen Polytechnic University
         date: 2010.09 - 2013.06
@@ -406,38 +432,50 @@ ja:
     title_separator: ""
     title_highlight: 日常へ
     intro: 鄧雅琪です。ここでは、私の仕事、暮らし、考えを記録しています。
-    primary_button: 職務経歴を見る
+    primary_button: 職務経歴書をダウンロード
     secondary_button: ブログを読む
     hero_alt: 中国最高標高都市の記念碑のそばにいる鄧雅琪
-    experience_tag: 経験
+    experience_tag: Experience
     experience_title: 職務経験
-    full_resume: 職務経歴を詳しく見る
-    skills_tag: スキル
+    full_resume: 職務経歴書をダウンロード
+    skills_tag: Skills
     skills_title: 扱う技術領域
-    projects_tag: プロジェクト
+    interests_tag: Beyond Code
+    interests_title: 好きなこと
+    interests_more: 私についてもっと見る
+    projects_tag: Projects
     projects_title: 代表的なエンジニアリング実践
-    latest_tag: 最新
+    latest_tag: Latest
     latest_title: 最新記事
     all_posts: すべての記事を見る
-    contact_tag: 連絡先
+    contact_tag: Contact
     contact_title: お問い合わせ
     skills:
-      - title: AI / RAG / Agent エンジニアリング
-        tags: [LangChain, LangGraph, Agent Workflow, MCP, RAG, Embedding, Prompt Engineering, 複数 LLM 接続]
-      - title: バックエンドと分散システム
-        tags: [Java, Python, FastAPI, Django REST Framework, SpringBoot, SpringCloud, SofaBoot, RESTful API]
-      - title: データ、検索、知識グラフ
-        tags: [PostgreSQL, PgVector, ClickHouse, Neo4j, Redis, Elasticsearch, MySQL, HBase]
-      - title: 知識グラフとオントロジー
-        tags: [Knowledge Graph, Ontology, オントロジー融合, 情報抽出, NER, データ注釈]
-      - title: フロントエンドとブラウザ拡張
-        tags: [Vue 3, TypeScript, Vite, Element Plus, Pinia, Chrome Extension MV3, SSE]
-      - title: モバイルとクライアント
-        tags: [Android, Kotlin, Jetpack, MVVM, Bluetooth, IoT, Electron]
-      - title: DevOps とインフラ
-        tags: [Docker, Kubernetes, Nginx, Jenkins, GitLab CI, GitHub Actions, PyInstaller]
-      - title: ツールと協業
-        tags: [VSCode, Cursor, Codex, Claude Code, Power BI, Postman, Figma]
+      - title: エージェント編成とモデル接続
+        tags: [LangChain, LangGraph, MCP, Agent Skills, Tool Calling, 複数モデル接続]
+      - title: RAG と文書 QA
+        tags: [RAG, LlamaIndex, Embedding, ハイブリッド検索, 文書解析, RAGAS]
+      - title: NLP と知識工学
+        tags: [知識グラフ, オントロジーモデリング, オントロジー融合, 情報抽出, NER, 多言語 NLP]
+      - title: バックエンドサービス開発
+        tags: [Java, Python, FastAPI, Django REST Framework, Spring Boot, SOFABoot]
+      - title: データ保存と検索
+        tags: [PostgreSQL, pgvector, MySQL, Redis, Elasticsearch, HBase]
+      - title: Web とブラウザ拡張
+        tags: [Vue 3, TypeScript, Pinia, SSE, Chrome MV3, Service Worker]
+      - title: Android とデバイス連携
+        tags: [Android, Kotlin, Jetpack, MVVM, Bluetooth, Retrofit / OkHttp]
+      - title: 分散システムとデプロイ
+        tags: [Kafka, RocketMQ, Raft, Kubernetes, Nginx]
+    interests:
+      - { icon: '📚', title: 読書 }
+      - { icon: '🥾', title: ハイキング }
+      - { icon: '🍜', title: グルメ }
+      - { icon: '✈️', title: 旅行 }
+      - { icon: '🚗', title: ドライブ }
+      - { icon: '🎮', title: ゲーム }
+      - { icon: '🥋', title: 柔道 }
+      - { icon: '🤿', title: スキューバダイビング }
     projects:
       - title: 企業 AI プラットフォーム基盤
         desc: 複数モデル接続、RAG 知識ベース、MCP ツール呼び出し、権限、監査を整備し、Agent と業務 AI アプリの基盤を構築。
@@ -460,17 +498,17 @@ ja:
   about:
     subtitle: AI 研究開発リード / Harness / オントロジーと知識グラフ / バックエンドシステム
     intro: 鄧雅琪です。現在は AI 研究開発の方向設計、技術選定、プロジェクト推進を担当しています。NLP、知識グラフ、本体融合から始まり、Android、Java バックエンド、リスク管理基盤、分散システムを経て、現在は企業向け AI プラットフォーム、RAG、Agent Workflow、業務システムへの実装に取り組んでいます。
-    journey_tag: 歩み
+    journey_tag: Journey
     journey_title: 職務経験
-    ask_tag: 関心領域
+    ask_tag: Focus
     ask_title: 話せるテーマ
-    current_tag: 現在
+    current_tag: Now
     current_title: 現在の方向性
     current_items:
       - 構築: 企業向け RAG、文書解析品質、PgVector 知識ベース、複数 LLM 接続、Agent ワークフロー、AI 自動コーディングシステム。
       - 学習: コンテキストエンジニアリング、評価体系、trace、コスト制御、本番環境におけるモデル能力の安定境界。
       - 執筆: 実務上の判断を、明確で検証可能かつ再利用できる公開ノートに整理すること。
-    credentials_tag: 資格
+    credentials_tag: Credentials
     credentials_title: 資格と言語
     credentials:
       - title: AI トレーナー 3 級
@@ -491,7 +529,7 @@ ja:
       - title: 外国語
         issuer: フランス語 / 英語 / 日本語
         status: ビジネス / 流暢
-    interests_tag: 生活
+    interests_tag: Life
     interests_title: 生活と関心
     interests:
       - title: 旅と山
@@ -502,21 +540,21 @@ ja:
         desc: プロジェクトの振り返り、技術判断、AI ツール実践を再利用できる公開ノートにしています。
       - title: プロダクト探索
         desc: AI 能力を検証から実際に使える業務システムへ移すことに関心があります。
-    adventure_tag: 旅
+    adventure_tag: Life
     adventure_title: 冒険の記録
     adventure_intro: 仕事以外では、より遠い場所へ歩き、雪山や湖、都市の境界を見ることが好きです。その探索感をエンジニアリングの判断にも持ち帰っています。
     adventure_image_alt: 雪山、湖、旅する人の後ろ姿
   resume:
     subtitle: AI エンジニアリング / Harness / オントロジーと知識グラフ / Java バックエンド
-    summary_tag: 概要
+    summary_tag: Summary
     summary_title: 自己紹介
     summary: ソルボンヌ大学で言語・コンピュータ科学の修士号を取得し、NLP を専攻しました。キャリアは NLP、知識グラフ、本体融合から始まり、Android と Java バックエンド、リスク管理基盤、分散システムを経て、現在は AI 研究開発計画、企業向け AI プラットフォーム、RAG、Agent Workflow、データガバナンス、業務システムへの実装を担当しています。
-    experience_tag: 経験
+    experience_tag: Experience
     experience_title: 職務経験
-    resume_tag: 職務経歴
+    resume_tag: Resume
     resume_title: 職務経歴書
     download_pdf: PDF をダウンロード
-    education_tag: 教育
+    education_tag: Education
     education_title: 学歴
     education:
       - degree: 言語・コンピュータ科学 修士
@@ -527,10 +565,10 @@ ja:
         school: パリ第七大学 Université de Paris 7 Denis Diderot
         date: 2014.09 - 2017.09
         desc: 全日制学士、NLP 専攻。
-      - degree: 金融言語予科
+      - degree: 金融・語学予備課程
         school: ESGCI, École de Commerce International et Marketing à Paris
         date: 2013.09 - 2014.09
-        desc: 言語予備課程。
+        desc: パリで1年間の予備課程を履修。
       - degree: 応用フランス語 専科
         school: 深圳職業技術大学
         date: 2010.09 - 2013.06
@@ -587,38 +625,50 @@ fr:
     title_separator: " "
     title_highlight: dans la vie quotidienne
     intro: Je suis Deng Yaqi. Je partage ici mon travail, ma vie et mes réflexions.
-    primary_button: Voir le CV
+    primary_button: Télécharger le CV
     secondary_button: Lire le blog
     hero_alt: Deng Yaqi près du monument de la ville la plus haute de Chine
-    experience_tag: Expérience
+    experience_tag: Experience
     experience_title: Expérience professionnelle
-    full_resume: Voir le CV complet
-    skills_tag: Compétences
+    full_resume: Télécharger le CV
+    skills_tag: Skills
     skills_title: Domaines techniques
-    projects_tag: Projets
+    interests_tag: Beyond Code
+    interests_title: Ce que j'aime
+    interests_more: En savoir plus sur moi
+    projects_tag: Projects
     projects_title: Réalisations d'ingénierie
-    latest_tag: Récent
+    latest_tag: Latest
     latest_title: Derniers articles
     all_posts: Voir tous les articles
     contact_tag: Contact
     contact_title: Me contacter
     skills:
-      - title: Ingénierie IA / RAG / Agent
-        tags: [LangChain, LangGraph, Agent Workflow, MCP, RAG, Embedding, Prompt Engineering, LLM multi-modèles]
-      - title: Backend et systèmes distribués
-        tags: [Java, Python, FastAPI, Django REST Framework, SpringBoot, SpringCloud, SofaBoot, RESTful API]
-      - title: Données, recherche et graphes de connaissances
-        tags: [PostgreSQL, PgVector, ClickHouse, Neo4j, Redis, Elasticsearch, MySQL, HBase]
-      - title: Graphe de connaissances et ontologie
-        tags: [Knowledge Graph, Ontology, Fusion d'ontologies, Extraction d'information, NER, Annotation]
-      - title: Frontend et extensions navigateur
-        tags: [Vue 3, TypeScript, Vite, Element Plus, Pinia, Chrome Extension MV3, SSE]
-      - title: Mobile et clients
-        tags: [Android, Kotlin, Jetpack, MVVM, Bluetooth, IoT, Electron]
-      - title: DevOps et infrastructure
-        tags: [Docker, Kubernetes, Nginx, Jenkins, GitLab CI, GitHub Actions, PyInstaller]
-      - title: Outils et collaboration
-        tags: [VSCode, Cursor, Codex, Claude Code, Power BI, Postman, Figma]
+      - title: Orchestration d'agents et intégration de modèles
+        tags: [LangChain, LangGraph, MCP, Agent Skills, Tool Calling, Intégration de plusieurs modèles]
+      - title: RAG et questions-réponses documentaires
+        tags: [RAG, LlamaIndex, Embedding, Recherche hybride, Analyse de documents, RAGAS]
+      - title: TAL et ingénierie des connaissances
+        tags: [Graphes de connaissances, Modélisation d'ontologies, Fusion d'ontologies, Extraction d'information, NER, TAL multilingue]
+      - title: Développement de services backend
+        tags: [Java, Python, FastAPI, Django REST Framework, Spring Boot, SOFABoot]
+      - title: Stockage des données et recherche
+        tags: [PostgreSQL, pgvector, MySQL, Redis, Elasticsearch, HBase]
+      - title: Web et extensions de navigateur
+        tags: [Vue 3, TypeScript, Pinia, SSE, Chrome MV3, Service Worker]
+      - title: Android et interaction avec les appareils
+        tags: [Android, Kotlin, Jetpack, MVVM, Bluetooth, Retrofit / OkHttp]
+      - title: Systèmes distribués et déploiement
+        tags: [Kafka, RocketMQ, Raft, Kubernetes, Nginx]
+    interests:
+      - { icon: '📚', title: Lecture }
+      - { icon: '🥾', title: Randonnée }
+      - { icon: '🍜', title: Gastronomie }
+      - { icon: '✈️', title: Voyages }
+      - { icon: '🚗', title: Conduite }
+      - { icon: '🎮', title: Jeux vidéo }
+      - { icon: '🥋', title: Judo }
+      - { icon: '🤿', title: Plongée sous-marine }
     projects:
       - title: Plateforme IA d'entreprise
         desc: Construction d'un socle IA avec accès multi-modèles, bases RAG, appels d'outils MCP, permissions et audit pour des agents et applications métier.
@@ -641,21 +691,21 @@ fr:
   about:
     subtitle: Responsable R&D IA / Harness / ontologie et graphes de connaissances / systèmes backend
     intro: Je suis Deng Yaqi. Je pilote aujourd'hui la planification R&D IA, les choix techniques et la livraison de projets. Mon parcours a commencé par le NLP, les graphes de connaissances et la fusion d'ontologies, puis Android, le backend Java, les plateformes de risque et les systèmes distribués, avant de revenir aux plateformes IA d'entreprise, à RAG, aux workflows Agent et à la mise en production.
-    journey_tag: Parcours
+    journey_tag: Journey
     journey_title: Expérience professionnelle
-    ask_tag: Axes
+    ask_tag: Focus
     ask_title: Sujets à explorer
-    current_tag: Actuel
+    current_tag: Now
     current_title: Direction actuelle
     current_items:
       - Construction: RAG d'entreprise, qualité du parsing documentaire, bases de connaissances PgVector, intégration multi-LLM, workflows Agent et systèmes de codage IA.
       - Apprentissage: Ingénierie du contexte, systèmes d'évaluation, traces, contrôle des coûts et limites de stabilité des modèles en production.
       - Écriture: Transformer les décisions d'ingénierie réelles en notes publiques claires, vérifiables et réutilisables.
-    adventure_tag: Voyage
+    adventure_tag: Life
     adventure_title: Notes d'aventure
     adventure_intro: En dehors du travail, j'aime aller plus loin vers les montagnes, les lacs et les frontières des villes, puis ramener ce sens de l'exploration dans mes décisions d'ingénierie.
     adventure_image_alt: Montagnes enneigées, lac et silhouette de voyage
-    credentials_tag: Certifications
+    credentials_tag: Credentials
     credentials_title: Certifications et langues
     credentials:
       - title: Formateur IA niveau 3
@@ -676,7 +726,7 @@ fr:
       - title: Langues étrangères
         issuer: Français / anglais / japonais
         status: Professionnel / courant
-    interests_tag: Vie
+    interests_tag: Life
     interests_title: Vie et centres d'intérêt
     interests:
       - title: Voyage et montagne
@@ -689,17 +739,17 @@ fr:
         desc: Je m'intéresse aux outils IA vraiment utilisables, aux détails de workflow et aux interfaces qui réduisent le coût d'adoption.
   resume:
     subtitle: Ingénierie IA / Harness / ontologie et graphes de connaissances / backend Java
-    summary_tag: Synthèse
+    summary_tag: Summary
     summary_title: À propos
     summary: Diplômée d'un master Langue et Informatique de Sorbonne Université, avec une spécialisation en NLP. Mon parcours commence par le NLP, les graphes de connaissances et la fusion d'ontologies, puis passe par Android, le backend Java, les plateformes de risque et les systèmes distribués. Je travaille aujourd'hui sur la planification R&D IA, les plateformes IA d'entreprise, RAG, les workflows Agent, la gouvernance des données et la mise en production.
-    experience_tag: Expérience
+    experience_tag: Experience
     experience_title: Expérience professionnelle
-    resume_tag: CV
+    resume_tag: Resume
     resume_title: CV complet
     download_pdf: Télécharger le PDF
     image_alt_prefix: "CV de Deng Yaqi page "
     image_alt_suffix: ""
-    education_tag: Formation
+    education_tag: Education
     education_title: Formation
     education:
       - degree: Master Langue et Informatique
@@ -713,7 +763,7 @@ fr:
       - degree: Préparation langue et finance
         school: ESGCI, École de Commerce International et Marketing à Paris
         date: 2013.09 - 2014.09
-        desc: Année préparatoire linguistique.
+        desc: Une année de préparation suivie à Paris.
       - degree: Diplôme en français appliqué
         school: Shenzhen Polytechnic University
         date: 2010.09 - 2013.06

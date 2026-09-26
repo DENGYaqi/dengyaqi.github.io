@@ -76,6 +76,8 @@ jekyll-archives:
 exclude:
   - _templates
   - scripts
+  - assets/img/about/resume-*.png
+  - assets/img/about/my_cv-*.png
   - README.md
   - LICENSE
   - "*.gem"

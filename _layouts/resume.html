@@ -70,7 +70,7 @@ layout: default
           <article class="cert-card fade-up">
             <span class="exp-tag">{{ item.date }}</span>
             <h3>{{ item.degree }}</h3>
-            <p><strong>{{ item.school }}</strong></p>
+            <p><strong{% if item.school_zh %} lang="fr"{% endif %}>{{ item.school }}</strong>{% if item.school_zh %}<br><strong lang="zh-CN">{{ item.school_zh }}</strong>{% endif %}</p>
             <p>{{ item.desc }}</p>
           </article>
         {% endfor %}

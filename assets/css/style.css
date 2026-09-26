@@ -775,6 +775,75 @@ section {
   background: var(--cream);
 }
 
+.skill-card {
+  border-radius: 18px;
+  background: linear-gradient(135deg, var(--cream), var(--white));
+}
+
+.skill-card h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-bottom: 1rem;
+  color: var(--orange);
+}
+
+.skill-card h3::before {
+  content: '';
+  flex: 0 0 0.6rem;
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 50%;
+  background: var(--orange);
+}
+
+.skill-card .tag {
+  border-color: rgba(26, 26, 26, 0.1);
+  background: var(--white);
+  color: var(--dark);
+}
+
+.interests-section {
+  background: radial-gradient(circle at 15% 60%, rgba(232, 93, 4, 0.13), transparent 48%), var(--dark);
+  color: var(--white);
+}
+
+.interests-section .section-title {
+  color: var(--white);
+}
+
+.interests-section .section-tag {
+  border-color: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--orange-light);
+}
+
+.interests-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.interest-item {
+  padding: 1.7rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.05);
+  text-align: center;
+}
+
+.interest-icon {
+  display: block;
+  margin-bottom: 0.8rem;
+  font-size: 2rem;
+  line-height: 1.2;
+}
+
+.interest-item p {
+  color: rgba(255, 255, 255, 0.88);
+  font-weight: 700;
+}
+
 .path-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -850,15 +919,6 @@ section {
 .contact-cta {
   margin-top: 3rem;
   text-align: center;
-}
-
-.contact-email {
-  display: inline-block;
-  margin-top: 0.4rem;
-  color: var(--orange);
-  font-size: clamp(1.4rem, 3vw, 2.4rem);
-  font-weight: 800;
-  overflow-wrap: anywhere;
 }
 
 .page-header,
@@ -1340,13 +1400,17 @@ footer {
 
   .hero-container,
   .exp-grid,
-  .skills-grid,
   .path-grid,
   .projects-grid,
   .contact-grid,
   .post-grid,
   .cert-grid {
     grid-template-columns: 1fr;
+  }
+
+  .skills-grid,
+  .interests-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .hero-container {
@@ -1392,6 +1456,10 @@ footer {
 }
 
 @media (max-width: 560px) {
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+
   .nav-inner,
   .container,
   .hero-container,
