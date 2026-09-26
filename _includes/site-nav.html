@@ -16,7 +16,7 @@
     </button>
     <ul class="nav-links">
       <li><a href="{{ home_url | relative_url }}" class="{% if page.url == home_url %}active{% endif %}">{{ t.nav.home }}</a></li>
-      <li><a href="{{ about_url | relative_url }}" class="{% if page.url contains about_url %}active{% endif %}">{{ t.nav.about }}</a></li>
+      <li><a href="{{ about_url | relative_url }}" class="{% if page.url contains about_url or page.layout == 'life' %}active{% endif %}">{{ t.nav.about }}</a></li>
       <li><a href="{{ blog_url | relative_url }}" class="{% if page.url contains blog_url or page.layout == 'post' %}active{% endif %}">{{ t.nav.blog }}</a></li>
       {% if site.show_projects %}
         <li><a href="{{ projects_url | relative_url }}" class="{% if page.url contains projects_url %}active{% endif %}">{{ t.nav.projects }}</a></li>

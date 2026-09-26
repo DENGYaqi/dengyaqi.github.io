@@ -1,0 +1,38 @@
+---
+layout: default
+body_class: dark-page life-page
+---
+
+{% assign lang = page.lang | default: 'zh' %}
+{% assign t = site.data.i18n[lang] %}
+{% assign entry = page.life_entry %}
+{% assign back_url = '/' | append: lang | append: '/about/#life' %}
+
+<main class="life-detail">
+  <div class="container">
+    <a class="life-back" href="{{ back_url | relative_url }}">← {{ t.about.life_back }}</a>
+    <header class="life-detail-header">
+      <div class="section-tag">{{ t.about.adventure_tag }}</div>
+      <h1>{{ entry.title[lang] }}</h1>
+      <p>{{ entry.note[lang] }}</p>
+    </header>
+
+    <section class="life-gallery" aria-label="{{ t.about.life_gallery }}">
+      <div class="life-gallery-track" tabindex="0" aria-label="{{ t.about.life_gallery }}">
+        {% for photo in entry.photos %}
+          <figure class="life-gallery-slide" id="photo-{{ forloop.index }}">
+            <img src="{{ photo.src | relative_url }}" alt="{{ photo.alt[lang] }}" {% unless forloop.first %}loading="lazy"{% endunless %}>
+            <figcaption><span>{{ forloop.index }} / {{ entry.photos.size }}</span>{{ photo.caption[lang] }}</figcaption>
+          </figure>
+        {% endfor %}
+      </div>
+      <div class="life-thumbnails" aria-label="{{ t.about.life_gallery }}">
+        {% for photo in entry.photos %}
+          <a href="#photo-{{ forloop.index }}" aria-label="{{ forloop.index }}. {{ photo.caption[lang] }}">
+            <img src="{{ photo.src | relative_url }}" alt="" loading="lazy">
+          </a>
+        {% endfor %}
+      </div>
+    </section>
+  </div>
+</main>

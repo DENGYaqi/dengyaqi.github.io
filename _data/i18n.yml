@@ -154,9 +154,10 @@ zh:
       - title: 产品化探索
         desc: 关注 AI 能力如何嵌入业务现场，从工具验证走到真实可交付系统。
     adventure_tag: Life
-    adventure_title: 冒险笔记
-    adventure_intro: 工作之外，我也喜欢走到更远的地方，看雪山、湖泊和城市边界，把生活里的探索感带回工程判断。
-    adventure_image_alt: 雪山、湖泊和远行中的背影
+    adventure_title: 生活记录
+    adventure_intro: 用照片记下工作之外的探索和相遇，从山野到水下，慢慢收集生活里的片刻。
+    life_back: 返回关于我
+    life_gallery: 照片
   resume:
     subtitle: AI 工程化 / Harness / 本体论与知识图谱 / Java 后端
     summary_tag: Summary
@@ -350,9 +351,10 @@ en:
       - title: Product Exploration
         desc: I care about how AI capabilities move from experiments into systems people can actually use.
     adventure_tag: Life
-    adventure_title: Adventure Notes
-    adventure_intro: Outside of work, I like going farther into mountains, lakes, and the edges of cities, then bringing that sense of exploration back into engineering judgment.
-    adventure_image_alt: Snow mountains, a lake, and a traveler seen from behind
+    adventure_title: Life Notes
+    adventure_intro: Photographs of the places I explore and the moments I encounter beyond work, from mountain paths to the world underwater.
+    life_back: Back to About
+    life_gallery: Photographs
   resume:
     subtitle: AI Engineering / Harness / Ontology and Knowledge Graphs / Java Backend
     summary_tag: Summary
@@ -544,9 +546,10 @@ ja:
       - title: プロダクト探索
         desc: AI 能力を検証から実際に使える業務システムへ移すことに関心があります。
     adventure_tag: Life
-    adventure_title: 冒険の記録
-    adventure_intro: 仕事以外では、より遠い場所へ歩き、雪山や湖、都市の境界を見ることが好きです。その探索感をエンジニアリングの判断にも持ち帰っています。
-    adventure_image_alt: 雪山、湖、旅する人の後ろ姿
+    adventure_title: 暮らしの記録
+    adventure_intro: 山道から水中まで、仕事を離れて出会った風景や瞬間を写真に残しています。
+    life_back: 私についてに戻る
+    life_gallery: 写真
   resume:
     subtitle: AI エンジニアリング / Harness / オントロジーと知識グラフ / Java バックエンド
     summary_tag: Summary
@@ -706,9 +709,10 @@ fr:
       - Apprentissage: Ingénierie du contexte, systèmes d'évaluation, traces, contrôle des coûts et limites de stabilité des modèles en production.
       - Écriture: Transformer les décisions d'ingénierie réelles en notes publiques claires, vérifiables et réutilisables.
     adventure_tag: Life
-    adventure_title: Notes d'aventure
-    adventure_intro: En dehors du travail, j'aime aller plus loin vers les montagnes, les lacs et les frontières des villes, puis ramener ce sens de l'exploration dans mes décisions d'ingénierie.
-    adventure_image_alt: Montagnes enneigées, lac et silhouette de voyage
+    adventure_title: Carnet de vie
+    adventure_intro: Des photos de mes découvertes et de mes rencontres hors du travail, des sentiers de montagne au monde sous-marin.
+    life_back: Retour à la page À propos
+    life_gallery: Photographies
     credentials_tag: Credentials
     credentials_title: Certifications et langues
     credentials:

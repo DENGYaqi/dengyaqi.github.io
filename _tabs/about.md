@@ -17,14 +17,25 @@ nav_title: 关于我
   </div>
 </section>
 
-<section class="adventure-section">
+<section class="life-section" id="life">
   <div class="container">
-    <article class="adventure-card fade-up">
+    <div class="life-panel fade-up">
       <div class="section-tag">{{ t.about.adventure_tag }}</div>
       <h2>{{ t.about.adventure_title }}</h2>
       <p>{{ t.about.adventure_intro }}</p>
-      <img src="{{ '/assets/img/about/adventure-mountain.jpg' | relative_url }}" alt="{{ t.about.adventure_image_alt }}">
-    </article>
+      <div class="life-grid">
+        {% for entry in site.data.life %}
+          {% assign entry_url = '/' | append: lang | append: '/life/' | append: entry.slug | append: '/' %}
+          <a class="life-tile" href="{{ entry_url | relative_url }}" aria-label="{{ entry.title[lang] }}">
+            <img src="{{ entry.cover | relative_url }}" alt="{{ entry.photos[0].alt[lang] }}" loading="lazy">
+            <span class="life-tile-content">
+              <strong>{{ entry.title[lang] }}</strong>
+              <span>{{ entry.summary[lang] }}</span>
+            </span>
+          </a>
+        {% endfor %}
+      </div>
+    </div>
   </div>
 </section>
 

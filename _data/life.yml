@@ -1,0 +1,84 @@
+- slug: diving-diary
+  cover: /assets/img/life/diving/01-diver-school.jpg
+  title:
+    zh: 潜水日记
+    en: Diving Diary
+    ja: ダイビング日記
+    fr: Journal de plongée
+  summary:
+    zh: 六张照片，记录潜水员、鱼群与礁石间的水下片刻。
+    en: Six photographs of divers, schools of fish, and moments among the reefs.
+    ja: ダイバーや魚の群れ、岩礁の間で出会った水中の一瞬を写した6枚。
+    fr: Six photos de plongeurs, de bancs de poissons et de scènes parmi les récifs.
+  note:
+    zh: 鱼群在水中穿行，鳐鱼贴近海底，礁石旁还出现了色彩鲜明的小鱼。把这些水下相遇留在照片里。
+    en: Fish move through the water, a ray stays close to the seabed, and vivid fish appear beside the reef. These photographs preserve those underwater encounters.
+    ja: 水中を進む魚の群れ、海底近くのエイ、岩礁のそばで目を引く色鮮やかな魚たち。写真に残した水中での出会いです。
+    fr: Des poissons traversent l’eau, une raie longe le fond et des poissons colorés apparaissent près du récif. Ces photos gardent la trace de ces rencontres sous-marines.
+  photos:
+    - src: /assets/img/life/diving/01-diver-school.jpg
+      alt:
+        zh: 潜水员在一大群黄色鱼旁游动
+        en: A diver swimming beside a large school of yellow fish
+        ja: 黄色い魚の大群のそばを泳ぐダイバー
+        fr: Une plongeuse nage près d’un grand banc de poissons jaunes
+      caption:
+        zh: 潜水员与黄色鱼群同框。
+        en: A diver alongside a school of yellow fish.
+        ja: ダイバーと黄色い魚の群れ。
+        fr: Une plongeuse aux côtés d’un banc de poissons jaunes.
+    - src: /assets/img/life/diving/02-reef-school.jpg
+      alt:
+        zh: 阳光照入水中，鱼群从礁石上方游过
+        en: Sunlight enters the water above a school of fish swimming over a reef
+        ja: 光が差す水中で、魚の群れが岩礁の上を泳ぐ
+        fr: La lumière traverse l’eau au-dessus d’un banc de poissons nageant sur le récif
+      caption:
+        zh: 阳光下，鱼群掠过礁石。
+        en: A school of fish passes over the reef in the sunlight.
+        ja: 光の中、岩礁の上を通り過ぎる魚の群れ。
+        fr: Un banc de poissons passe au-dessus du récif dans la lumière.
+    - src: /assets/img/life/diving/03-diver-ray.jpg
+      alt:
+        zh: 潜水员在海底上方游动，旁边有一只鳐鱼
+        en: A diver swims above the seabed near a ray
+        ja: 海底の上を泳ぐダイバーと近くにいるエイ
+        fr: Une plongeuse nage au-dessus du fond près d’une raie
+      caption:
+        zh: 潜水员与海底的鳐鱼。
+        en: A diver and a ray on the seabed.
+        ja: ダイバーと海底のエイ。
+        fr: Une plongeuse et une raie sur le fond.
+    - src: /assets/img/life/diving/04-ray.jpg
+      alt:
+        zh: 一只鳐鱼伏在沙地与礁石之间
+        en: A ray rests on the sandy seabed among rocks
+        ja: 岩の間の砂地にいるエイ
+        fr: Une raie repose sur le fond sableux parmi les rochers
+      caption:
+        zh: 沙地上的鳐鱼。
+        en: A ray on the sandy seabed.
+        ja: 砂地にいるエイ。
+        fr: Une raie sur le fond sableux.
+    - src: /assets/img/life/diving/05-lionfish.jpg
+      alt:
+        zh: 潜水员在一条展开鳍刺的蓑鲉后方游动
+        en: A diver swims behind a lionfish with its fins spread
+        ja: ひれを広げたミノカサゴの後ろを泳ぐダイバー
+        fr: Une plongeuse nage derrière une rascasse volante aux nageoires déployées
+      caption:
+        zh: 展开鳍刺的蓑鲉与远处的潜水员。
+        en: A lionfish with spread fins and a diver farther back.
+        ja: ひれを広げたミノカサゴと奥に見えるダイバー。
+        fr: Une rascasse volante aux nageoires déployées, avec une plongeuse en arrière-plan.
+    - src: /assets/img/life/diving/06-clownfish.jpg
+      alt:
+        zh: 两条橙色小鱼在海葵与礁石旁游动
+        en: Two orange fish swim beside a sea anemone and reef
+        ja: イソギンチャクと岩礁のそばを泳ぐ2匹のオレンジ色の魚
+        fr: Deux poissons orange nagent près d’une anémone de mer et du récif
+      caption:
+        zh: 海葵旁的两条小鱼。
+        en: Two small fish beside a sea anemone.
+        ja: イソギンチャクのそばの2匹の魚。
+        fr: Deux petits poissons près d’une anémone de mer.

@@ -109,6 +109,7 @@ class BlogI18nGenerator < Jekyll::Generator
     BlogI18n::LANGS.each do |lang|
       add_home(site, lang)
       add_static_pages(site, lang)
+      add_life_entries(site, lang)
       add_redirect_page(site, "/#{lang}/resume/", '/assets/files/resume/deng-yaqi-ai-rd-resume.pdf')
       add_redirect_page(site, "/#{lang}/ai/", "/#{lang}/projects/") if site.config['show_projects']
       add_posts(site, lang)
@@ -210,6 +211,19 @@ class BlogI18nGenerator < Jekyll::Generator
         data,
         post.content
       )
+    end
+  end
+
+  def add_life_entries(site, lang)
+    (site.data['life'] || []).each do |entry|
+      path = "/life/#{entry['slug']}/"
+      data = page_data(
+        site, lang, path, 'life',
+        BlogI18n.translated(entry['title'], lang),
+        BlogI18n.translated(entry['summary'], lang)
+      ).merge('life_entry' => entry, 'image' => entry['cover'])
+
+      site.pages << LocalizedPage.new(site, "#{lang}/life/#{entry['slug']}", 'index.html', data)
     end
   end
 
