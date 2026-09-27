@@ -13,7 +13,11 @@ _site
 
 # NPM dependencies
 node_modules
+experience-app/.dev.vars
+experience-app/.env
+experience-app/.wrangler
 package-lock.json
+!experience-app/package-lock.json
 
 # IDE configurations
 .idea

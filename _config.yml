@@ -76,6 +76,7 @@ jekyll-archives:
     tag: /tags/:name/
 
 exclude:
+  - experience-app
   - _templates
   - scripts
   - assets/img/about/resume-*.png

@@ -1,0 +1,139 @@
+[
+  {
+    "key": "ai_rd_lead",
+    "title": {
+      "zh": "AI 研发主管",
+      "en": "AI R&D Lead",
+      "ja": "AI 研究開発リード",
+      "fr": "Responsable R&D IA"
+    },
+    "company": {
+      "zh": "杭州格耐马网络科技有限公司 / 杭州，中国",
+      "en": "Hangzhou Genaima Network Technology Co., Ltd. / Hangzhou, China",
+      "ja": "杭州格耐马ネットワークテクノロジー / 中国・杭州",
+      "fr": "Hangzhou Genaima Network Technology Co., Ltd. / Hangzhou, Chine"
+    },
+    "date": {
+      "zh": "2026.04 - 至今",
+      "en": "2026.04 - Present",
+      "ja": "2026.04 - 現在",
+      "fr": "2026.04 - présent"
+    },
+    "summary": {
+      "zh": "负责 AI 研发方向规划、技术路线选型与项目交付推进，推动企业级 AI 业务平台、Agent/RAG/Workflow、数据治理和业务副驾驶从 0 到 1 落地。",
+      "en": "Leads AI R&D planning, technical direction, and project delivery, bringing enterprise AI platforms, Agent/RAG workflows, data governance, and business copilots from zero to one.",
+      "ja": "AI 研究開発の方向設計、技術選定、プロジェクト推進を担当し、企業向け AI プラットフォーム、Agent/RAG/Workflow、データガバナンス、業務 Copilot を 0 から 1 へ立ち上げ。",
+      "fr": "Pilote la planification R&D IA, les choix techniques et la livraison, avec des plateformes IA d'entreprise, workflows Agent/RAG, gouvernance des données et copilotes métier de zéro à un."
+    }
+  },
+  {
+    "key": "senior_software_engineer_isoftstone",
+    "title": {
+      "zh": "资深软件开发工程师",
+      "en": "Senior Software Development Engineer",
+      "ja": "シニアソフトウェア開発エンジニア",
+      "fr": "Ingénieure logicielle senior"
+    },
+    "company": {
+      "zh": "软通动力技术服务上海有限公司 / 上海，中国",
+      "en": "iSoftStone Technology Service Shanghai Co., Ltd. / Shanghai, China",
+      "ja": "iSoftStone Technology Service Shanghai / 中国・上海",
+      "fr": "iSoftStone Technology Service Shanghai Co., Ltd. / Shanghai, Chine"
+    },
+    "date": "2025.05 - 2026.04",
+    "summary": {
+      "zh": "负责 RAG 系统、向量知识库、智能问答引擎与 AI 自动编码平台研发，推动 AI 工具从技术验证走向可交付应用。",
+      "en": "Developed RAG systems, vector knowledge bases, intelligent Q&A engines, and AI coding platforms, moving AI tools from proofs of concept toward deliverable applications.",
+      "ja": "RAG システム、ベクトル知識ベース、智能問答エンジン、AI 自動コーディング基盤を開発し、AI ツールを検証段階から納品可能なアプリケーションへ推進。",
+      "fr": "Développement de systèmes RAG, bases vectorielles, moteurs QA intelligents et plateformes de codage IA, pour faire passer les outils IA du POC à l'application livrable."
+    }
+  },
+  {
+    "key": "senior_java_engineer_risk",
+    "title": {
+      "zh": "高级 Java 开发工程师",
+      "en": "Senior Java Developer",
+      "ja": "シニア Java 開発エンジニア",
+      "fr": "Développeuse Java senior"
+    },
+    "company": {
+      "zh": "北京汉克时代科技有限公司 / 杭州，中国",
+      "en": "Beijing Hanke Times Technology Co., Ltd. / Hangzhou, China",
+      "ja": "北京漢克時代科技 / 中国・杭州",
+      "fr": "Beijing Hanke Times Technology Co., Ltd. / Hangzhou, Chine"
+    },
+    "date": "2023.06 - 2024.10",
+    "summary": {
+      "zh": "驻场蚂蚁集团网商风控项目组，负责一站式策略研发、行业风险管理及风险策略等风控中台后端开发。",
+      "en": "Worked onsite with Ant Group's MYbank risk-control team, developing backend capabilities for strategy R&D, industry risk management, and risk strategy platforms.",
+      "ja": "Ant Group MYbank リスク管理チームに常駐し、戦略開発、業界リスク管理、リスク戦略基盤のバックエンド開発を担当。",
+      "fr": "Mission sur site dans l'équipe risque MYbank d'Ant Group, avec développement backend pour la R&D stratégie, la gestion des risques sectoriels et les plateformes de stratégie risque."
+    }
+  },
+  {
+    "key": "android_engineer",
+    "title": {
+      "zh": "安卓软件开发工程师",
+      "en": "Android Software Engineer",
+      "ja": "Android ソフトウェアエンジニア",
+      "fr": "Ingénieure Android"
+    },
+    "company": {
+      "zh": "浙江清华柔性电子技术研究院 / 杭州，中国",
+      "en": "Zhejiang Tsinghua Flexible Electronics Technology Institute / Hangzhou, China",
+      "ja": "浙江清華柔性電子技術研究院 / 中国・杭州",
+      "fr": "Institut Zhejiang Tsinghua de technologie électronique flexible / Hangzhou, Chine"
+    },
+    "date": "2021.11 - 2022.12",
+    "summary": {
+      "zh": "负责医疗方向安卓软件的全栈开发，覆盖软件设计、编码调试、设备交互、云端通信和发布后支持。",
+      "en": "Built medical Android software end to end, covering design, coding, debugging, device interaction, cloud communication, and post-release support.",
+      "ja": "医療向け Android ソフトウェアを設計、実装、デバッグ、デバイス連携、クラウド通信、リリース後サポートまで一貫して担当。",
+      "fr": "Développement complet de logiciels Android médicaux, de la conception au code, debug, interaction avec appareils, communication cloud et support post-release."
+    }
+  },
+  {
+    "key": "freelancer_paris",
+    "title": {
+      "zh": "自由职业者",
+      "en": "Freelancer",
+      "ja": "フリーランス",
+      "fr": "Freelance"
+    },
+    "company": {
+      "zh": "巴黎，法国",
+      "en": "Paris, France",
+      "ja": "フランス・パリ",
+      "fr": "Paris, France"
+    },
+    "date": "2019.10 - 2021.08",
+    "summary": {
+      "zh": "负责 NLP 算法开发、Java Web 应用设计及安卓软件开发，通过项目制方式交付不同业务场景的技术解决方案。",
+      "en": "Delivered project-based technical solutions across NLP algorithms, Java web applications, and Android software.",
+      "ja": "NLP アルゴリズム、Java Web アプリ、Android ソフトウェアなど、プロジェクト単位で技術ソリューションを提供。",
+      "fr": "Livraison de solutions techniques en mode projet autour d'algorithmes NLP, d'applications Java Web et de logiciels Android."
+    }
+  },
+  {
+    "key": "nlp_engineer_yseop",
+    "title": {
+      "zh": "自然语言处理工程师",
+      "en": "Natural Language Processing Engineer",
+      "ja": "自然言語処理エンジニア",
+      "fr": "Ingénieure en traitement automatique du langage"
+    },
+    "company": {
+      "zh": "Yseop / 巴黎，法国",
+      "en": "Yseop / Paris, France",
+      "ja": "Yseop / フランス・パリ",
+      "fr": "Yseop / Paris, France"
+    },
+    "date": "2019.04 - 2019.09",
+    "summary": {
+      "zh": "负责知识图谱项目研究，包括知识本体融合算法研发与验证，并完成 Lexicon 网站的全栈开发。",
+      "en": "Researched knowledge graph projects, including ontology-fusion algorithm development and validation, and completed full-stack development for the Lexicon website.",
+      "ja": "知識グラフプロジェクトを研究し、本体融合アルゴリズムの開発・検証と Lexicon サイトのフルスタック開発を担当。",
+      "fr": "Recherche sur des projets de graphes de connaissances, développement et validation d'algorithmes de fusion d'ontologies, et développement full-stack du site Lexicon."
+    }
+  }
+]

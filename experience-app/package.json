@@ -1,0 +1,13 @@
+{
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "sync:experiences": "ruby scripts/sync-experiences.rb",
+    "dev": "npm run sync:experiences && wrangler dev",
+    "check": "npm run sync:experiences && node --test && wrangler deploy --dry-run",
+    "deploy": "npm run sync:experiences && node scripts/check-deploy.mjs && wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "4.141.0"
+  }
+}
