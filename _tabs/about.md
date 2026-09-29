@@ -49,7 +49,7 @@ nav_title: 关于我
       {% for item in site.data.experience %}
         <article class="timeline-item fade-up">
           {% if site.experience_app_url != '' %}
-            <a class="timeline-card" href="{{ site.experience_app_url }}/{{ lang }}/experiences/{{ item.key }}/" aria-label="{{ t.home.experience_more }} — {{ item.title[lang] | default: item.title.zh }}">
+            <a class="timeline-card" href="{{ site.experience_app_url }}/{{ lang }}/projects/work/{{ item.key }}/" aria-label="{{ t.home.experience_more }} — {{ item.title[lang] | default: item.title.zh }}">
           {% else %}
             <div class="timeline-card">
           {% endif %}
@@ -61,11 +61,16 @@ nav_title: 关于我
               <span class="timeline-date">{{ item.date[lang] | default: item.date }}</span>
             </div>
             <p class="timeline-summary">{{ item.summary[lang] | default: item.summary.zh }}</p>
-            {% if site.experience_app_url != '' %}<span class="experience-more">{{ t.home.experience_more }} →</span>{% endif %}
           {% if site.experience_app_url != '' %}</a>{% else %}</div>{% endif %}
         </article>
       {% endfor %}
     </div>
+    {% if site.experience_app_url != '' %}
+      <div class="contact-cta btn-group fade-up" style="justify-content:center">
+        <a class="btn btn-primary" href="{{ site.experience_app_url }}/{{ lang }}/projects/">{{ t.about.all_projects }}</a>
+        <a class="btn btn-outline" href="{{ site.experience_app_url }}/{{ lang }}/projects/education/">{{ t.about.education_projects }}</a>
+      </div>
+    {% endif %}
   </div>
 </section>
 

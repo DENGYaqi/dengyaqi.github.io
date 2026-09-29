@@ -11,7 +11,7 @@ The site generates four language prefixes:
 - `/ja/` Japanese
 - `/fr/` French
 
-The UI, core pages, post titles, and post descriptions are managed through `_data/i18n.yml` and `_data/post_translations.yml`. Post bodies are currently maintained once in Chinese to keep long-form content maintainable. Canonical post URLs use `/posts/YYYY/MM/DD/slug/`, with localized copies under `/:lang/posts/YYYY/MM/DD/slug/`. Legacy paths such as `/`, `/about/`, `/blog/`, `/resume/`, `/posts/slug/`, and `/:lang/posts/slug/` redirect to the Chinese-prefixed or matching localized version.
+The UI, core pages, post titles, and post descriptions are managed through `_data/i18n.yml` and `_data/post_translations.yml`. Post bodies are currently maintained once in Chinese to keep long-form content maintainable. Canonical post URLs use `/posts/YYYY/MM/DD/slug/`, with localized copies under `/:lang/posts/YYYY/MM/DD/slug/`. Legacy paths such as `/`, `/about/`, `/blog/`, `/posts/slug/`, and `/:lang/posts/slug/` redirect to the Chinese-prefixed or matching localized version.
 
 The project showcase is temporarily hidden while its login flow is being developed. Set `show_projects: true` in `_config.yml` and remove `published: false` from `_tabs/ai.md` and `_tabs/projects.md` to restore it.
 

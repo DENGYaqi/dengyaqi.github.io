@@ -11,7 +11,7 @@
 - `/ja/` 日本語
 - `/fr/` フランス語
 
-UI、主要ページ、記事タイトル、記事概要は `_data/i18n.yml` と `_data/post_translations.yml` で管理します。記事本文は現在、中国語 1 版のみを維持します。正式な記事 URL は `/posts/YYYY/MM/DD/slug/`、各言語版は `/:lang/posts/YYYY/MM/DD/slug/` です。`/`、`/about/`、`/blog/`、`/resume/`、`/posts/slug/`、`/:lang/posts/slug/` などの旧 URL は中国語または対応言語の新 URL へリダイレクトします。
+UI、主要ページ、記事タイトル、記事概要は `_data/i18n.yml` と `_data/post_translations.yml` で管理します。記事本文は現在、中国語 1 版のみを維持します。正式な記事 URL は `/posts/YYYY/MM/DD/slug/`、各言語版は `/:lang/posts/YYYY/MM/DD/slug/` です。`/`、`/about/`、`/blog/`、`/posts/slug/`、`/:lang/posts/slug/` などの旧 URL は中国語または対応言語の新 URL へリダイレクトします。
 
 ログイン機能の開発中、プロジェクトページは一時的に非公開です。再公開するには `_config.yml` の `show_projects` を `true` にし、`_tabs/ai.md` と `_tabs/projects.md` の `published: false` を削除します。
 

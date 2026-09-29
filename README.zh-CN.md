@@ -11,7 +11,7 @@
 - `/ja/` 日本語
 - `/fr/` Français
 
-全站 UI、核心页面、文章标题和摘要由 `_data/i18n.yml` 与 `_data/post_translations.yml` 管理。文章正文目前只维护中文一份，避免四份正文长期失控。正式文章地址使用 `/posts/YYYY/MM/DD/slug/`，四语入口使用 `/:lang/posts/YYYY/MM/DD/slug/`。旧地址如 `/`、`/about/`、`/blog/`、`/resume/`、`/posts/slug/`、`/:lang/posts/slug/` 会跳转到中文前缀或对应语言的新地址。
+全站 UI、核心页面、文章标题和摘要由 `_data/i18n.yml` 与 `_data/post_translations.yml` 管理。文章正文目前只维护中文一份，避免四份正文长期失控。正式文章地址使用 `/posts/YYYY/MM/DD/slug/`，四语入口使用 `/:lang/posts/YYYY/MM/DD/slug/`。旧地址如 `/`、`/about/`、`/blog/`、`/posts/slug/`、`/:lang/posts/slug/` 会跳转到中文前缀或对应语言的新地址。
 
 项目展示目前暂时隐藏，等待登录流程完成。恢复时将 `_config.yml` 中的 `show_projects` 设为 `true`，并移除 `_tabs/ai.md` 与 `_tabs/projects.md` 中的 `published: false`。
 

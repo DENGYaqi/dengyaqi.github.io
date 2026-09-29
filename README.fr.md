@@ -11,7 +11,7 @@ Le site génère quatre préfixes de langue :
 - `/ja/` japonais
 - `/fr/` français
 
-L'interface, les pages principales, les titres d'articles et les descriptions sont gérés dans `_data/i18n.yml` et `_data/post_translations.yml`. Les corps d'articles restent pour l'instant maintenus uniquement en chinois afin de garder le contenu long facile à maintenir. Les URL canoniques des articles utilisent `/posts/YYYY/MM/DD/slug/`, avec les versions localisées sous `/:lang/posts/YYYY/MM/DD/slug/`. Les anciennes URL comme `/`, `/about/`, `/blog/`, `/resume/`, `/posts/slug/` et `/:lang/posts/slug/` redirigent vers la version chinoise ou localisée correspondante.
+L'interface, les pages principales, les titres d'articles et les descriptions sont gérés dans `_data/i18n.yml` et `_data/post_translations.yml`. Les corps d'articles restent pour l'instant maintenus uniquement en chinois afin de garder le contenu long facile à maintenir. Les URL canoniques des articles utilisent `/posts/YYYY/MM/DD/slug/`, avec les versions localisées sous `/:lang/posts/YYYY/MM/DD/slug/`. Les anciennes URL comme `/`, `/about/`, `/blog/`, `/posts/slug/` et `/:lang/posts/slug/` redirigent vers la version chinoise ou localisée correspondante.
 
 La page des projets est temporairement masquée pendant le développement de la connexion. Pour la rétablir, définir `show_projects: true` dans `_config.yml` et supprimer `published: false` de `_tabs/ai.md` et `_tabs/projects.md`.
 

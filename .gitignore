@@ -16,6 +16,7 @@ node_modules
 experience-app/.dev.vars
 experience-app/.env
 experience-app/.wrangler
+experience-app/private-content*.json
 package-lock.json
 !experience-app/package-lock.json
 

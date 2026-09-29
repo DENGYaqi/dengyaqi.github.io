@@ -1,36 +1,44 @@
 # 受保护的项目展示
 
-公开网站仍由 GitHub Pages 托管；本目录是单独的 Cloudflare Worker。项目正文保存在 D1，图片保存在私有 R2 桶。只有 Cloudflare Access 放行的邮箱能访问页面。管理员邮箱与 CSRF 密钥仅保存在 Worker Secrets，访客名单仅保存在 Access 策略中。
+公开网站由 GitHub Pages 托管；本目录是独立的 Cloudflare Worker。项目正文和访客账号保存在 D1，图片保存在私有 R2 桶。访客使用分配给自己的邮箱和密码登录项目站，不需要 Cloudflare 账号。工作经历卡片只包含项目站链接，受保护内容不进入公开仓库。
 
-## 本地检查
+## 本地预览
 
-需要 Node.js 20+ 与 Ruby（现有 Jekyll 项目已经使用 Ruby）：
+需要 Node.js 24+ 和 Ruby。Windows 用户名含非 ASCII 字符时，Ruby 可能无法读取路径；可先将仓库映射为只含英文的盘符，再从映射盘符运行以下命令。
 
 ```sh
 npm ci
+npx wrangler d1 migrations apply yaqi-projects --local
+node scripts/bootstrap-admin.mjs admin@example.com --local
 npm run check
+npm run dev
 ```
 
-`npm run check` 从 `../_data/experience.yml` 更新公开的工作经历标题、公司和简介，运行安全与发布规则测试，再检查 Worker 构建。项目数据不会从公开网站导入。
+首次管理员密码只在创建成功后显示一次。`npm run dev` 默认在 `http://127.0.0.1:8787/zh/login/` 提供本地登录页。本地 D1 和正式 D1 相互独立。
 
-## 首次部署
+## 正式切换顺序
 
-1. 在 Cloudflare 开通 Workers、D1、R2 及 Zero Trust。Zero Trust 免费计划仍要求填写支付信息；R2 也需要完成订阅开通。先在控制台确认费用与限额。
-2. 在本目录运行 `npx wrangler login`，再运行 `npx wrangler d1 create yaqi-projects` 和 `npx wrangler r2 bucket create yaqi-projects-media`。把 D1 返回的实际 `database_id` 写入 `wrangler.jsonc`；若资源改名，同步修改配置中的名称。R2 桶必须保持私有，不能启用 `r2.dev` 公共地址或公共自定义域名。
-3. 运行 `npx wrangler d1 migrations apply yaqi-projects --remote`，创建项目与图片表。运行 `npm run deploy` 创建 Worker。此时 Worker 尚未有 Access 身份，请求会返回 403。
-4. 在 Cloudflare 控制台给该 **Worker 整体**开启 Access，选择正式与预览流量均受保护；启用 Email one-time PIN，只允许管理员及指定访客的**完整邮箱地址**，并将应用会话时长设为 1 小时。不要使用 Everyone、任意邮箱验证码或宽泛邮箱域名规则。管理员邮箱也要列入允许名单。
-5. 在 Workers 的 Variables and Secrets 中分别添加 `ADMIN_EMAIL`（管理员邮箱）和随机生成的 `CSRF_SECRET`（至少 32 字节）。二者均使用 Secret 类型，不能写入仓库或 Wrangler `vars`。部署后，只有与 `ADMIN_EMAIL` 相同的已登录邮箱能进入后台。
-6. 验证正式 `workers.dev` 地址和预览地址均先经过 Access；未受邀邮箱被拒绝；受邀访客无法进入 `/zh/admin/`；直接打开 `/media/{id}` 也受登录和草稿状态限制。在后台创建并发布至少一个四语项目。
-7. 上述验证通过后，把公开网站 `_config.yml` 的 `experience_app_url` 设置为 Worker 的 HTTPS 来源地址（末尾不带 `/`），再部署 GitHub Pages。工作经历卡片会自动指向对应的 `/{lang}/experiences/{key}/` 页面。
+1. 在 Cloudflare 控制台确认现有 D1 `yaqi-projects` 和私有 R2 `yaqi-projects-media` 的绑定仍与 `wrangler.jsonc` 一致。R2 不启用公共 `r2.dev` 地址或公共自定义域名。
+2. 登录 Wrangler，运行 `npx wrangler d1 migrations apply yaqi-projects --remote`。已有项目数据会保留，新迁移增加账号、会话、登录限速和申请记录表。
+3. 运行 `node scripts/bootstrap-admin.mjs <管理员邮箱> --remote` 建立首个管理员。保存屏幕上只显示一次的密码，不要提交到仓库。
+4. 运行 `npm run deploy`。此时先**保留 Worker 的 Cloudflare Access 整站保护**。登录 Access 后，检查 `/{lang}/login/`、申请页、未登录会话的项目与图片跳转、管理员申请列表与账号管理、访客账号登录、退出后返回公开网站，以及四种语言。登录页和本站会话工作正常后才关闭该 Worker 的 Access 整站保护。
+5. 关闭 Access 后，用无痕窗口直接检查正式地址：项目、教育、图片和后台都必须先经过本站登录页；未获分配账号者不能访问；访客不能进入后台。若任一检查失败，重新开启 Access，修复后再测试。
 
-邀请与撤销访客在 Cloudflare Access 控制台处理。撤销时需要**先从允许邮箱中删除，再撤销该用户现有会话**；仅删除邮箱不会立刻终止已经签发的会话。修改项目及关联关系在本应用的 `/{lang}/admin/` 处理。六段公开工作经历来自现有 YAML，项目本身只存在于 D1/R2。
+Cloudflare Workers 免费套餐的 CPU 上限可能不够 600,000 次 PBKDF2 密码计算。必须在当前 Worker 套餐上测量正式或预览环境的登录耗时与 CPU 用量；若超限，应升级套餐，不能降低密码校验强度。
 
-## 路径与规则
+## 访客账号与内容
 
-- `/{lang}/projects/`：全部已发布项目；`/{lang}/projects/{id}/`：详情。
+访客可在 `/{lang}/request-access/` 填写邮箱及申请理由。申请只进入 D1 待审核列表，不会自动开通账号或发信。管理员登录后在 `/{lang}/admin/requests/` 批准或拒绝申请；批准新访客会创建账号，批准已有访客会重置密码并撤销旧会话。系统生成的密码只在提交后的页面显示一次，由管理员自行发给对应邮箱。管理员也可在 `/{lang}/admin/accounts/` 创建、重置或停用账号。每位访客使用独立账号；停用或重置密码会撤销该账号已有会话。访客无注册或后台入口。本站会话最长 24 小时，退出时立即撤销。
+
+项目草稿、发布、四语内容、排序、关联和图片在 `/{lang}/admin/` 管理。教育资料如需导入，请把私有 JSON 文件保存在公开仓库之外，再运行 `node scripts/import-private-content.mjs <私有文件路径> --local|--remote`。学校条目的 `key` 用于长期有效的定位链接。项目内容和图片不得提交到公开 Git 仓库。
+
+## 路径
+
+- `/{lang}/login/`：独立登录页；登录成功后仅返回本站内已验证的目标路径。
+- `/{lang}/request-access/`：申请查看，保存邮箱、理由和原目标位置；申请本身不授权访问。
+- `/{lang}/projects/`：工作及教育项目总览；`/{lang}/projects/work/{key}/` 和 `/{lang}/projects/education/{key}/`：总览中的对应位置。
 - `/{lang}/experiences/`：工作经历；`/{lang}/experiences/{key}/`：该经历关联的已发布项目。
-- `/{lang}/admin/`：草稿、发布、四语内容、排序、关联与图片管理。`lang` 为 `zh`、`en`、`ja`、`fr`。
-- 草稿只对管理员可见，且四种语言的标题、摘要、详情及至少一段经历齐备后才能发布。
-- 图片仅接受 8 MB 以内的 JPEG、PNG、WebP。图片由 Worker 验证身份和项目状态后从私有 R2 桶读取。
+- `/{lang}/admin/`：内容管理；`/{lang}/admin/accounts/`：账号管理；`/{lang}/admin/requests/`：申请审核。
+- `/{lang}/logout/`：撤销当前会话并返回公开网站同语言的“关于我”。
 
-Worker 没有配置公开静态资源绑定，因此所有路由都能读取 Access 身份；包含 CSS 与图片的请求也先经过身份检查。所有响应均禁用缓存与搜索索引。新的项目正文和图片不要提交到公开 Git 仓库。
+`lang` 为 `zh`、`en`、`ja` 或 `fr`。所有 HTML 和图片响应均禁用缓存和搜索索引。四语内容及至少一段工作或教育经历齐备后，项目才能发布。

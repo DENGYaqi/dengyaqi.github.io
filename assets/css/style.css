@@ -1053,7 +1053,7 @@ section {
 .life-section {
   position: relative;
   z-index: 1;
-  padding: 0 2rem 4rem;
+  padding: clamp(2rem, 4vw, 3.5rem) 2rem 4rem;
 }
 
 .life-panel {
@@ -1309,7 +1309,13 @@ section {
   padding-left: 1.4rem;
 }
 
+.about-intro-section {
+  background: transparent;
+}
+
 .about-intro-section .summary-card {
+  width: min(1050px, calc(100% - 4rem));
+  margin-inline: auto;
   text-align: left;
 }
 
@@ -1690,6 +1696,10 @@ footer {
 }
 
 @media (max-width: 560px) {
+  .about-intro-section .summary-card {
+    width: 100%;
+  }
+
   .life-section {
     padding-right: 0;
     padding-left: 0;

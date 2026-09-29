@@ -5,7 +5,6 @@ layout: default
 {% assign lang = page.lang | default: 'zh' %}
 {% assign t = site.data.i18n[lang] %}
 {% assign lang_base = '/' | append: lang %}
-{% assign resume_pdf = '/assets/files/resume/deng-yaqi-ai-rd-resume.pdf' | relative_url %}
 
 <section class="hero">
   <div class="shape shape-1"></div>
@@ -37,7 +36,7 @@ layout: default
         {{ t.home.intro }}
       </p>
       <div class="btn-group">
-        <a href="{{ resume_pdf }}" class="btn btn-primary" download="Deng-Yaqi-Resume.pdf">{{ t.home.primary_button }}</a>
+        <a href="{{ lang_base | append: '/about/' | relative_url }}" class="btn btn-primary">{{ t.nav.about }}</a>
         <a href="{{ lang_base | append: '/blog/' | relative_url }}" class="btn btn-outline">{{ t.home.secondary_button }}</a>
       </div>
     </div>
@@ -57,7 +56,7 @@ layout: default
       {% for item in site.data.experience limit: 4 %}
         <article class="timeline-item fade-up">
           {% if site.experience_app_url != '' %}
-            <a class="timeline-card" href="{{ site.experience_app_url }}/{{ lang }}/experiences/{{ item.key }}/" aria-label="{{ t.home.experience_more }} — {{ item.title[lang] | default: item.title.zh }}">
+            <a class="timeline-card" href="{{ site.experience_app_url }}/{{ lang }}/projects/work/{{ item.key }}/" aria-label="{{ t.home.experience_more }} — {{ item.title[lang] | default: item.title.zh }}">
           {% else %}
             <div class="timeline-card">
           {% endif %}
@@ -74,13 +73,16 @@ layout: default
                 <span class="exp-tag">{{ tag }}</span>
               {% endfor %}
             </div>
-            {% if site.experience_app_url != '' %}<span class="experience-more">{{ t.home.experience_more }} →</span>{% endif %}
           {% if site.experience_app_url != '' %}</a>{% else %}</div>{% endif %}
         </article>
       {% endfor %}
     </div>
     <div class="contact-cta fade-up">
-      <a href="{{ resume_pdf }}" class="btn btn-primary" download="Deng-Yaqi-Resume.pdf">{{ t.home.full_resume }}</a>
+      {% if site.experience_app_url != '' %}
+        <a href="{{ site.experience_app_url }}/{{ lang }}/projects/" class="btn btn-primary">{{ t.about.all_projects }}</a>
+      {% else %}
+        <a href="{{ lang_base | append: '/about/' | relative_url }}" class="btn btn-primary">{{ t.nav.about }}</a>
+      {% endif %}
     </div>
   </div>
 </section>
