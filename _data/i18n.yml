@@ -109,8 +109,6 @@ zh:
     intro: 我是邓雅琪，目前负责 AI 研发方向规划、技术路线选型，并推动项目交付。我是一个长期主义者，热爱生活，也爱钻研技术；尤其是有趣的新技术。欢迎联系我，一起交流。
     journey_tag: Journey
     journey_title: 工作经历
-    all_projects: 查看全部项目
-    education_projects: 教育经历与相关项目（登录查看）
     ask_tag: Focus
     ask_title: 可以聊的主题
     current_tag: Now
@@ -278,8 +276,6 @@ en:
     intro: I am Deng Yaqi. I currently lead AI R&D planning, technology choices, and project delivery. I take a long-term view, enjoy life, and love digging into technology, especially intriguing new technologies. Feel free to get in touch and exchange ideas.
     journey_tag: Journey
     journey_title: Work Experience
-    all_projects: View all projects
-    education_projects: Education and related projects (sign in)
     ask_tag: Focus
     ask_title: Ask Me About
     current_tag: Now
@@ -447,8 +443,6 @@ ja:
     intro: 鄧雅琪です。現在は AI 研究開発の方向性の策定、技術選定、プロジェクトの推進を担当しています。長期的な視点を大切にし、日々の暮らしを楽しみながら、技術を深く学ぶことが好きです。特に、面白い新しい技術に惹かれます。ぜひお気軽にご連絡ください。
     journey_tag: Journey
     journey_title: 職務経験
-    all_projects: すべてのプロジェクトを見る
-    education_projects: 学歴と関連プロジェクト（ログイン）
     ask_tag: Focus
     ask_title: 話せるテーマ
     current_tag: Now
@@ -616,8 +610,6 @@ fr:
     intro: Je suis Deng Yaqi. Je pilote actuellement la planification de la R&D en IA, les choix techniques et la livraison des projets. Je privilégie une vision à long terme, j'aime profiter de la vie et approfondir les sujets techniques, surtout les nouvelles technologies qui éveillent ma curiosité. N'hésitez pas à me contacter pour échanger.
     journey_tag: Journey
     journey_title: Expérience professionnelle
-    all_projects: Voir tous les projets
-    education_projects: Formation et projets associés (connexion)
     ask_tag: Focus
     ask_title: Sujets à explorer
     current_tag: Now

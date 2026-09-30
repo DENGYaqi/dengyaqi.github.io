@@ -77,13 +77,6 @@ layout: default
         </article>
       {% endfor %}
     </div>
-    <div class="contact-cta fade-up">
-      {% if site.experience_app_url != '' %}
-        <a href="{{ site.experience_app_url }}/{{ lang }}/projects/" class="btn btn-primary">{{ t.about.all_projects }}</a>
-      {% else %}
-        <a href="{{ lang_base | append: '/about/' | relative_url }}" class="btn btn-primary">{{ t.nav.about }}</a>
-      {% endif %}
-    </div>
   </div>
 </section>
 

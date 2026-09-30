@@ -65,11 +65,6 @@ nav_title: 关于我
         </article>
       {% endfor %}
     </div>
-    {% if site.experience_app_url != '' %}
-      <div class="contact-cta btn-group fade-up" style="justify-content:center">
-        <a class="btn btn-primary" href="{{ site.experience_app_url }}/{{ lang }}/projects/">{{ t.about.all_projects }}</a>
-      </div>
-    {% endif %}
   </div>
 </section>
 
