@@ -64,6 +64,19 @@ test('login page and every private content path require a site session', async (
   assert.equal((await worker.fetch(request('/style.css'), env, {})).status, 200);
 });
 
+test('language menu matches the public site and keeps the selected work location', async () => {
+  const { env, DB } = fixture();
+  const target = '/zh/projects/work/ai_rd_lead/';
+  const login = await (await worker.fetch(request(`/zh/login/?next=${encodeURIComponent(target)}`), env, {})).text();
+  assert.match(login, /<details class="language-menu"><summary[^>]*>中文<\/summary>/);
+  assert.match(login, /href="\/en\/login\/\?next=%2Fen%2Fprojects%2Fwork%2Fai_rd_lead%2F"[^>]*>English<\/a>/);
+  const apply = await (await worker.fetch(request(`/zh/request-access/?next=${encodeURIComponent(target)}`), env, {})).text();
+  assert.match(apply, /href="\/ja\/request-access\/\?next=%2Fja%2Fprojects%2Fwork%2Fai_rd_lead%2F"[^>]*>日本語<\/a>/);
+  const cookie = await loginCookie(DB, 'owner');
+  const projects = await (await worker.fetch(request(target, cookie), env, {})).text();
+  assert.match(projects, /href="\/fr\/projects\/work\/ai_rd_lead\/"[^>]*>Français<\/a>/);
+});
+
 test('password login preserves target, limits role, and logout returns to the public site', async () => {
   const { env, sqlite, DB } = fixture();
   const { cookie: formCookie, csrf } = await anonymousFormState(env);

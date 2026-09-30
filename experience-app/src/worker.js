@@ -32,9 +32,16 @@ function redirect(path, cookie) {
 function message(lang, text, status = 400) {
   return response(page(lang, text, `<div class="notice error">${escapeHtml(text)}</div><p><a href="/${lang}/projects/">${copy[lang].allProjects}</a></p>`), status);
 }
+const languageLabels = {
+  zh: ['中文', '中文'], en: ['EN', 'English'], ja: ['日本語', '日本語'], fr: ['FR', 'Français'],
+};
+function languageMenu(lang, hrefFor) {
+  const options = languages.map(code => `<a href="${url(hrefFor(code))}" lang="${code}"${code === lang ? ' class="active" aria-current="page"' : ''}>${languageLabels[code][1]}</a>`).join('');
+  return `<details class="language-menu"><summary aria-label="${copy[lang].switchLanguage}">${languageLabels[lang][0]}</summary><div class="language-options">${options}</div></details>`;
+}
 function page(lang, title, body, admin = false, path = `/${lang}/projects/`, token = '') {
   const c = copy[lang];
-  const langs = languages.map(code => `<a href="${url(path.replace(/^\/(zh|en|ja|fr)\//, `/${code}/`))}" lang="${code}"${code === lang ? ' class="active" aria-current="page"' : ''}>${code.toUpperCase()}</a>`).join('');
+  const langs = languageMenu(lang, code => path.replace(/^\/(zh|en|ja|fr)\//, `/${code}/`));
   return `<!doctype html><html lang="${lang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>${escapeHtml(title)} · ${c.site}</title><link rel="stylesheet" href="/style.css"></head><body><header><strong>${c.site}<span class="dot">.</span></strong><nav aria-label="${c.projects}"><a href="/${lang}/projects/">${c.projects}</a><a href="/${lang}/experiences/">${c.experiences}</a><a href="/${lang}/projects/education/">${c.education}</a>${admin ? `<a href="/${lang}/admin/">${c.admin}</a><a href="/${lang}/admin/accounts/">${c.auth.accounts}</a><a href="/${lang}/admin/requests/">${requestsCopy[lang].adminTitle}</a>` : ''}<a href="${publicOrigin}/${lang}/about/">${c.back}</a><form method="post" action="/${lang}/logout/">${token ? hiddenCsrf(token) : ''}<button class="nav-logout" type="submit">${c.logout}</button></form></nav><div class="language" aria-label="${c.switchLanguage}">${langs}</div></header><main>${body}</main><footer>${c.site} · ${c.projects}</footer></body></html>`;
 }
 
@@ -47,13 +54,13 @@ const requestsCopy = {
 
 function loginPage(lang, next, csrf, error = '') {
   const c = copy[lang], a = c.auth;
-  const languagesNav = languages.map(code => `<a href="/${code}/login/?next=${encodeURIComponent(next.replace(/^\/(zh|en|ja|fr)\//, `/${code}/`))}"${code === lang ? ' class="active"' : ''}>${code.toUpperCase()}</a>`).join('');
+  const languagesNav = languageMenu(lang, code => `/${code}/login/?next=${encodeURIComponent(next.replace(/^\/(zh|en|ja|fr)\//, `/${code}/`))}`);
   return `<!doctype html><html lang="${lang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>${a.title} · ${c.site}</title><link rel="stylesheet" href="/style.css"></head><body class="login-page"><header><strong>${c.site}<span class="dot">.</span></strong><div class="language">${languagesNav}</div></header><main><div class="login-panel"><p class="eyebrow">${c.projects}</p><h1>${a.title}</h1><p class="muted">${a.intro}</p>${error ? `<div class="notice error" role="alert">${escapeHtml(error)}</div>` : ''}<form method="post" action="/${lang}/login/"><input type="hidden" name="next" value="${url(next)}">${hiddenCsrf(csrf)}<div class="field"><label for="email">${a.email}</label><input id="email" name="email" type="email" autocomplete="username" maxlength="254" required></div><div class="field"><label for="password">${a.password}</label><input id="password" name="password" type="password" autocomplete="current-password" required></div><button type="submit">${a.submit}</button></form><p><a href="/${lang}/request-access/?next=${encodeURIComponent(next)}">${requestsCopy[lang].link}</a></p><p><a href="${publicOrigin}/${lang}/about/">← ${c.back}</a></p></div></main></body></html>`;
 }
 
 function requestPage(lang, next, csrf, error = '', done = false) {
   const c = copy[lang], a = requestsCopy[lang];
-  const languagesNav = languages.map(code => `<a href="/${code}/request-access/?next=${encodeURIComponent(next.replace(/^\/(zh|en|ja|fr)\//, `/${code}/`))}"${code === lang ? ' class="active"' : ''}>${code.toUpperCase()}</a>`).join('');
+  const languagesNav = languageMenu(lang, code => `/${code}/request-access/?next=${encodeURIComponent(next.replace(/^\/(zh|en|ja|fr)\//, `/${code}/`))}`);
   return `<!doctype html><html lang="${lang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>${a.title} · ${c.site}</title><link rel="stylesheet" href="/style.css"></head><body class="login-page"><header><strong>${c.site}<span class="dot">.</span></strong><div class="language">${languagesNav}</div></header><main><div class="login-panel"><p class="eyebrow">${c.projects}</p><h1>${a.title}</h1><p class="muted">${a.intro}</p>${error ? `<div class="notice error" role="alert">${escapeHtml(error)}</div>` : ''}${done ? `<div class="notice" role="status">${a.received}</div>` : `<form method="post" action="/${lang}/request-access/"><input type="hidden" name="next" value="${url(next)}">${hiddenCsrf(csrf)}<div class="field"><label for="email">${c.auth.email}</label><input id="email" name="email" type="email" autocomplete="email" maxlength="254" required></div><div class="field"><label for="reason">${a.reason}</label><textarea id="reason" name="reason" maxlength="1000" required></textarea></div><button type="submit">${a.send}</button></form>`}<p><a href="/${lang}/login/?next=${encodeURIComponent(next)}">← ${a.backLogin}</a></p><p><a href="${publicOrigin}/${lang}/about/">← ${c.back}</a></p></div></main></body></html>`;
 }
 function projectFromRow(row) {
