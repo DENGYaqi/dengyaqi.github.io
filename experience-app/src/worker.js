@@ -84,6 +84,10 @@ async function images(db, projectId) {
   const rows = await db.prepare('SELECT * FROM media WHERE project_id = ? ORDER BY sort_order, created_at').bind(projectId).all();
   return rows.results;
 }
+async function projectFiles(db, projectId) {
+  const rows = await db.prepare('SELECT id, download_name FROM project_files WHERE project_id = ? ORDER BY created_at, id').bind(projectId).all();
+  return rows.results;
+}
 function experience(key) { return experiences.find(item => item.key === key); }
 function experienceName(item, lang) { return item.title[lang] || item.title.zh; }
 function educationName(item, lang) { return item.translations[lang]?.school || item.translations.zh?.school || item.key; }
@@ -351,11 +355,12 @@ async function handleGet(env, lang, path, admin, token, requestUrl) {
   if (detail) {
     const item = await project(env.DB, detail[1]);
     if (!item || (item.status !== 'published' && !admin)) return message(lang, c.notFound, 404);
-    const photos = await images(env.DB, item.id), t = tr(item, lang);
+    const photos = await images(env.DB, item.id), files = await projectFiles(env.DB, item.id), t = tr(item, lang);
     const schools = await educations(env.DB);
     const linked = item.experience_keys.map(key => experience(key)).filter(Boolean).map(exp => `<a class="tag" href="/${lang}/projects/work/${url(exp.key)}/">${escapeHtml(experienceName(exp, lang))}</a>`).join('') + item.education_keys.map(key => schools.find(school => school.key === key)).filter(Boolean).map(school => `<a class="tag" href="/${lang}/projects/education/${url(school.key)}/">${escapeHtml(educationName(school, lang))}</a>`).join('');
     const gallery = photos.length ? `<h2>${c.photos}</h2><div class="gallery">${photos.map(photo => `<a href="/media/${url(photo.id)}"><img src="/media/${url(photo.id)}" alt="${escapeHtml(t.title)}" loading="lazy"></a>`).join('')}</div>` : '';
-    return response(page(lang, t.title || c.noTitle, `<p class="eyebrow">${c.projects}${item.status === 'draft' ? ` · ${c.draft}` : ''}</p><h1>${escapeHtml(t.title || c.noTitle)}</h1><p class="lead">${escapeHtml(t.summary)}</p><div>${linked}</div><section class="prose">${prettyBody(t.body)}</section>${gallery}${admin ? `<p><a class="button secondary" href="/${lang}/admin/projects/${item.id}/edit/">${c.edit}</a></p>` : ''}`, admin, path, token));
+    const downloads = files.length ? `<section><h2>${c.downloads}</h2><ul>${files.map(file => `<li><a href="/files/${url(file.id)}">${escapeHtml(file.download_name)}</a></li>`).join('')}</ul></section>` : '';
+    return response(page(lang, t.title || c.noTitle, `<p class="eyebrow">${c.projects}${item.status === 'draft' ? ` · ${c.draft}` : ''}</p><h1>${escapeHtml(t.title || c.noTitle)}</h1><p class="lead">${escapeHtml(t.summary)}</p><div>${linked}</div><section class="prose">${prettyBody(t.body)}</section>${gallery}${downloads}${admin ? `<p><a class="button secondary" href="/${lang}/admin/projects/${item.id}/edit/">${c.edit}</a></p>` : ''}`, admin, path, token));
   }
   if (path.startsWith(`/${lang}/admin/`)) {
     if (!admin) return message(lang, c.adminOnly, 403);
@@ -457,6 +462,16 @@ export default {
         if (!image || (image.status !== 'published' && !admin)) return response('Not found', 404, 'text/plain; charset=utf-8');
         const object = await env.MEDIA.get(image.object_key);
         return object ? response(object.body, 200, image.content_type) : response('Not found', 404, 'text/plain; charset=utf-8');
+      }
+      if (request.method === 'GET' && path.startsWith('/files/')) {
+        const id = path.slice('/files/'.length);
+        if (!isUuid(id)) return response('Not found', 404, 'text/plain; charset=utf-8');
+        const file = await env.DB.prepare('SELECT f.*, p.status FROM project_files f JOIN projects p ON p.id = f.project_id WHERE f.id = ?').bind(id).first();
+        if (!file || (file.status !== 'published' && !admin)) return response('Not found', 404, 'text/plain; charset=utf-8');
+        const object = await env.MEDIA.get(file.object_key);
+        if (!object) return response('Not found', 404, 'text/plain; charset=utf-8');
+        const name = file.download_name.replace(/[^A-Za-z0-9._-]/g, '_');
+        return new Response(object.body, { status: 200, headers: { ...headers, 'Content-Type': 'application/pdf', 'Content-Disposition': `attachment; filename="${name}"`, 'Content-Length': String(file.byte_size) } });
       }
       if (!match) return response('Not found', 404, 'text/plain; charset=utf-8');
       if (request.method === 'GET') return handleGet(env, lang, path, admin, session.csrf_token, requestUrl);

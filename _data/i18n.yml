@@ -159,6 +159,10 @@ zh:
     life_pending: 正在核对这些照片的拍摄地点，确认后会补进日记。
     life_location: 地点：
     life_location_end: 。
+  education:
+    tag: Education
+    title: 教育经历
+    open: 查看教育经历
   blog:
     title: 博客
     description: 技术笔记、工程记录和生活随想。
@@ -324,6 +328,10 @@ en:
     life_pending: I’m checking where these photos were taken before adding them to the diary.
     life_location: 'Location: '
     life_location_end: '.'
+  education:
+    tag: Education
+    title: Education
+    open: View education
   blog:
     title: Blog
     description: Engineering notes, field records, and reflections on life.
@@ -489,6 +497,10 @@ ja:
     life_pending: 写真の撮影場所を確認してから、この日記に追加します。
     life_location: 場所：
     life_location_end: 。
+  education:
+    tag: Education
+    title: 学歴
+    open: 学歴を見る
   blog:
     title: ブログ
     description: 技術メモ、実務の記録、暮らしの中で考えたこと。
@@ -654,6 +666,10 @@ fr:
         desc: Je transforme les problèmes rencontrés au travail en notes publiques structurées et réutilisables.
       - title: Exploration produit
         desc: Je m'intéresse aux outils IA vraiment utilisables, aux détails de workflow et aux interfaces qui réduisent le coût d'adoption.
+  education:
+    tag: Formation
+    title: Formation
+    open: Voir la formation
   blog:
     title: Blog
     description: Notes d'ingénierie, retours de terrain et réflexions sur la vie.

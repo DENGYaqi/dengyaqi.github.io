@@ -25,10 +25,10 @@ for (const school of schools) {
   sql.push(`INSERT INTO educations (key, sort_order, translations) VALUES (${quote(school.key)}, ${orderOf(school.sort_order)}, ${quote(JSON.stringify(school.translations))}) ON CONFLICT(key) DO UPDATE SET sort_order = excluded.sort_order, translations = excluded.translations;`);
 }
 for (const project of projects) {
-  if (!idPattern.test(project.id) || !['draft', 'published'].includes(project.status) || !Array.isArray(project.education_keys) || project.education_keys.some(key => !keyPattern.test(key))) throw new Error('Project requires a UUID, status, and education_keys');
+  if (!idPattern.test(project.id) || !['draft', 'published'].includes(project.status) || !Array.isArray(project.education_keys) || project.education_keys.some(key => !keyPattern.test(key)) || !Array.isArray(project.experience_keys ?? []) || (project.experience_keys ?? []).some(key => !keyPattern.test(key))) throw new Error('Project requires a UUID, status, and valid related keys');
   if (project.status === 'published' && (!project.education_keys.length || !['zh', 'en', 'ja', 'fr'].every(lang => project.translations?.[lang]?.title && project.translations?.[lang]?.summary && project.translations?.[lang]?.body))) throw new Error('Published education projects need four complete translations');
   const now = new Date().toISOString();
-  sql.push(`INSERT INTO projects (id, status, sort_order, translations, experience_keys, education_keys, created_at, updated_at) VALUES (${quote(project.id)}, ${quote(project.status)}, ${orderOf(project.sort_order)}, ${quote(JSON.stringify(project.translations ?? {}))}, '[]', ${quote(JSON.stringify(project.education_keys))}, ${quote(now)}, ${quote(now)}) ON CONFLICT(id) DO UPDATE SET status = excluded.status, sort_order = excluded.sort_order, translations = excluded.translations, education_keys = excluded.education_keys, updated_at = excluded.updated_at;`);
+  sql.push(`INSERT INTO projects (id, status, sort_order, translations, experience_keys, education_keys, created_at, updated_at) VALUES (${quote(project.id)}, ${quote(project.status)}, ${orderOf(project.sort_order)}, ${quote(JSON.stringify(project.translations ?? {}))}, ${quote(JSON.stringify(project.experience_keys ?? []))}, ${quote(JSON.stringify(project.education_keys))}, ${quote(now)}, ${quote(now)}) ON CONFLICT(id) DO UPDATE SET status = excluded.status, sort_order = excluded.sort_order, translations = excluded.translations, experience_keys = excluded.experience_keys, education_keys = excluded.education_keys, updated_at = excluded.updated_at;`);
 }
 if (!mode) {
   process.stdout.write(`Validated ${schools.length} education entries and ${projects.length} projects. Add --local or --remote to import.\n`);
@@ -37,7 +37,7 @@ if (!mode) {
 const temp = mkdtempSync(join(tmpdir(), 'yaqi-private-import-'));
 const file = join(temp, 'import.sql');
 try {
-  writeFileSync(file, `BEGIN TRANSACTION;\n${sql.join('\n')}\nCOMMIT;\n`, { mode: 0o600 });
+  writeFileSync(file, mode === '--local' ? `BEGIN TRANSACTION;\n${sql.join('\n')}\nCOMMIT;\n` : `${sql.join('\n')}\n`, { mode: 0o600 });
   const cli = fileURLToPath(new URL('../node_modules/wrangler/bin/wrangler.js', import.meta.url));
   const result = spawnSync(process.execPath, [cli, 'd1', 'execute', 'yaqi-projects', mode, '--file', file], { stdio: 'inherit' });
   if (result.error) throw result.error;

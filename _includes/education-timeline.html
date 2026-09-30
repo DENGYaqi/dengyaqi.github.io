@@ -1,0 +1,27 @@
+<section id="education" class="experience-section education-section">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="section-tag">{{ t.education.tag }}</div>
+      <h2 class="section-title">{{ t.education.title }}</h2>
+    </div>
+    <div class="timeline">
+      {% for item in site.data.education %}
+      <article class="timeline-item fade-up">
+        <a class="timeline-card" href="{{ site.experience_app_url }}/{{ lang }}/projects/education/{{ item.key }}/" aria-label="{{ t.education.open }} — {{ item.school[lang] }}">
+          <div class="timeline-header">
+            <div>
+              <h3 class="timeline-title">{{ item.school[lang] }}</h3>
+              <p class="timeline-company">{{ item.degree[lang] }} · {{ item.major[lang] }}</p>
+            </div>
+            <span class="timeline-date">{{ item.date }}</span>
+          </div>
+          <p class="timeline-summary">{{ item.summary[lang] }}</p>
+        </a>
+      </article>
+      {% endfor %}
+    </div>
+    <div class="contact-cta fade-up">
+      <a class="btn btn-outline" href="{{ site.experience_app_url }}/{{ lang }}/projects/education/">{{ t.about.education_projects }}</a>
+    </div>
+  </div>
+</section>

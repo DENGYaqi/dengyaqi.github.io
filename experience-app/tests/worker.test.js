@@ -7,15 +7,17 @@ import { createSession, hashPassword, safeNext, sessionFromRequest, verifyPasswo
 
 const id = '11111111-1111-4111-8111-111111111111';
 const imageId = '22222222-2222-4222-8222-222222222222';
+const fileId = '33333333-3333-4333-8333-333333333333';
 const translations = Object.fromEntries(['zh', 'en', 'ja', 'fr'].map(lang => [lang, { title: `Title ${lang}`, summary: `Summary ${lang}`, body: `Body ${lang}` }]));
 const storedPassword = await hashPassword('correct horse battery staple', 'AAAAAAAAAAAAAAAAAAAAAA');
 
 function fixture() {
   const sqlite = new DatabaseSync(':memory:');
-  for (const name of ['0001_initial.sql', '0002_education.sql', '0003_accounts.sql', '0004_access_requests.sql']) sqlite.exec(readFileSync(new URL(`../migrations/${name}`, import.meta.url), 'utf8'));
+  for (const name of ['0001_initial.sql', '0002_education.sql', '0003_accounts.sql', '0004_access_requests.sql', '0005_project_files.sql']) sqlite.exec(readFileSync(new URL(`../migrations/${name}`, import.meta.url), 'utf8'));
   sqlite.prepare('INSERT INTO projects (id, status, sort_order, translations, experience_keys, education_keys, created_at, updated_at) VALUES (?, ?, 0, ?, ?, ?, ?, ?)').run(id, 'draft', JSON.stringify(translations), '["ai_rd_lead"]', '[]', '', '');
   sqlite.prepare('INSERT INTO educations (key, sort_order, translations) VALUES (?, 0, ?)').run('sample_school', JSON.stringify(Object.fromEntries(['zh', 'en', 'ja', 'fr'].map(lang => [lang, { school: `Example school ${lang}`, degree: `Degree ${lang}`, date: '2017–2019', summary: `Summary ${lang}` }]))));
   sqlite.prepare('INSERT INTO media (id, project_id, object_key, content_type, sort_order, created_at) VALUES (?, ?, ?, ?, 0, ?)').run(imageId, id, `${id}/${imageId}`, 'image/png', '');
+  sqlite.prepare('INSERT INTO project_files (id, project_id, object_key, download_name, byte_size, created_at) VALUES (?, ?, ?, ?, ?, ?)').run(fileId, id, `reports/${fileId}.pdf`, 'academic-report.pdf', 5, '');
   for (const [accountId, email, role] of [['owner', 'owner@example.test', 'admin'], ['guest', 'guest@example.test', 'viewer']]) {
     sqlite.prepare('INSERT INTO accounts (id, email, role, password_salt, password_hash, enabled, created_at) VALUES (?, ?, ?, ?, ?, 1, 0)').run(accountId, email, role, storedPassword.salt, storedPassword.hash);
   }
@@ -51,7 +53,7 @@ async function anonymousFormState(env, path = '/zh/login/') {
 
 test('login page and every private content path require a site session', async () => {
   const { env, state } = fixture();
-  for (const path of ['/zh/projects/', '/zh/projects/education/', '/zh/admin/', `/media/${imageId}`]) {
+  for (const path of ['/zh/projects/', '/zh/projects/education/', '/zh/admin/', `/media/${imageId}`, `/files/${fileId}`]) {
     const result = await worker.fetch(request(path), env, {});
     assert.equal(result.status, 303);
     assert.match(result.headers.get('Location'), /^\/zh\/login\/\?next=/);
@@ -62,6 +64,18 @@ test('login page and every private content path require a site session', async (
   assert.match(page, /返回公开网站/);
   assert.doesNotMatch(page, /Cloudflare Access/);
   assert.equal((await worker.fetch(request('/style.css'), env, {})).status, 200);
+});
+
+test('academic PDF requires a session and a published project', async () => {
+  const { env, sqlite } = fixture();
+  const cookie = await loginCookie(env.DB, 'guest');
+  assert.equal((await worker.fetch(request(`/files/${fileId}`, cookie), env, {})).status, 404);
+  sqlite.prepare("UPDATE projects SET status = 'published' WHERE id = ?").run(id);
+  const result = await worker.fetch(request(`/files/${fileId}`, cookie), env, {});
+  assert.equal(result.status, 200);
+  assert.equal(result.headers.get('Content-Type'), 'application/pdf');
+  assert.match(result.headers.get('Content-Disposition'), /attachment/);
+  assert.equal(safeNext(`/files/${fileId}`, 'zh'), `/files/${fileId}`);
 });
 
 test('language menu matches the public site and keeps the selected work location', async () => {

@@ -77,7 +77,7 @@ export const validCsrf = (session, value) => Boolean(session && typeof value ===
 
 export function safeNext(value, lang) {
   if (typeof value !== 'string' || value.length > 300 || value.includes('\\') || value.includes('//')) return `/${lang}/projects/`;
-  if (/^\/(zh|en|ja|fr)\/(projects|experiences|admin)\/[A-Za-z0-9_/-]*$/.test(value) || /^\/media\/[0-9a-f-]{36}$/.test(value)) return value;
+  if (/^\/(zh|en|ja|fr)\/(projects|experiences|admin)\/[A-Za-z0-9_/-]*$/.test(value) || /^\/(media|files)\/[0-9a-f-]{36}$/.test(value)) return value;
   return `/${lang}/projects/`;
 }
 

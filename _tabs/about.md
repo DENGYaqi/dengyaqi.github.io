@@ -68,11 +68,12 @@ nav_title: 关于我
     {% if site.experience_app_url != '' %}
       <div class="contact-cta btn-group fade-up" style="justify-content:center">
         <a class="btn btn-primary" href="{{ site.experience_app_url }}/{{ lang }}/projects/">{{ t.about.all_projects }}</a>
-        <a class="btn btn-outline" href="{{ site.experience_app_url }}/{{ lang }}/projects/education/">{{ t.about.education_projects }}</a>
       </div>
     {% endif %}
   </div>
 </section>
+
+{% include education-timeline.html %}
 
 <section class="skills-section about-skills-section">
   <div class="container">
