@@ -1,5 +1,7 @@
 export const SESSION_SECONDS = 24 * 60 * 60;
 export const PASSWORD_ITERATIONS = 600_000;
+const PASSWORD_ROUNDS = 6;
+const ROUND_ITERATIONS = PASSWORD_ITERATIONS / PASSWORD_ROUNDS;
 const encoder = new TextEncoder();
 const COOKIE = 'yaqi_session';
 const FORM_COOKIE = 'yaqi_form';
@@ -17,14 +19,19 @@ export function normalizeEmail(value) {
 export function newPassword() { return random(24); }
 
 export async function hashPassword(password, salt = random(16)) {
-  const key = await crypto.subtle.importKey('raw', encoder.encode(password), 'PBKDF2', false, ['deriveBits']);
-  const bits = await crypto.subtle.deriveBits({ name: 'PBKDF2', hash: 'SHA-256', salt: unbase64(salt), iterations: PASSWORD_ITERATIONS }, key, 256);
-  return { salt, hash: base64(new Uint8Array(bits)) };
+  const saltBytes = unbase64(salt);
+  let value = encoder.encode(password);
+  for (let round = 0; round < PASSWORD_ROUNDS; round++) {
+    const key = await crypto.subtle.importKey('raw', value, 'PBKDF2', false, ['deriveBits']);
+    const roundSalt = new Uint8Array([...saltBytes, round]);
+    value = new Uint8Array(await crypto.subtle.deriveBits({ name: 'PBKDF2', hash: 'SHA-256', salt: roundSalt, iterations: ROUND_ITERATIONS }, key, 256));
+  }
+  return { salt, hash: `v2$${base64(value)}` };
 }
 
 export async function verifyPassword(password, account) {
   const result = await hashPassword(password, account?.password_salt || 'AAAAAAAAAAAAAAAAAAAAAA');
-  return Boolean(account && equal(unbase64(result.hash), unbase64(account.password_hash)));
+  return Boolean(account?.password_hash?.startsWith('v2$') && equal(unbase64(result.hash.slice(3)), unbase64(account.password_hash.slice(3))));
 }
 
 async function digest(value) {
