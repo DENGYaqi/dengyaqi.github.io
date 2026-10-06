@@ -24,7 +24,13 @@
       "en": "Leads AI R&D planning, technical direction, and project delivery, bringing enterprise AI platforms, Agent/RAG workflows, data governance, and business copilots from zero to one.",
       "ja": "AI 研究開発の方向設計、技術選定、プロジェクト推進を担当し、企業向け AI プラットフォーム、Agent/RAG/Workflow、データガバナンス、業務 Copilot を 0 から 1 へ立ち上げ。",
       "fr": "Pilote la planification R&D IA, les choix techniques et la livraison, avec des plateformes IA d'entreprise, workflows Agent/RAG, gouvernance des données et copilotes métier de zéro à un."
-    }
+    },
+    "tags": [
+      "AI Platform",
+      "Agent",
+      "RAG",
+      "Workflow"
+    ]
   },
   {
     "key": "senior_software_engineer_isoftstone",
@@ -46,7 +52,13 @@
       "en": "Developed RAG systems, vector knowledge bases, intelligent Q&A engines, and AI coding platforms, moving AI tools from proofs of concept toward deliverable applications.",
       "ja": "RAG システム、ベクトル知識ベース、智能問答エンジン、AI 自動コーディング基盤を開発し、AI ツールを検証段階から納品可能なアプリケーションへ推進。",
       "fr": "Développement de systèmes RAG, bases vectorielles, moteurs QA intelligents et plateformes de codage IA, pour faire passer les outils IA du POC à l'application livrable."
-    }
+    },
+    "tags": [
+      "LangGraph",
+      "PgVector",
+      "LLM",
+      "FastAPI"
+    ]
   },
   {
     "key": "senior_java_engineer_risk",
@@ -68,7 +80,13 @@
       "en": "Worked onsite with Ant Group's MYbank risk-control team, developing backend capabilities for strategy R&D, industry risk management, and risk strategy platforms.",
       "ja": "Ant Group MYbank リスク管理チームに常駐し、戦略開発、業界リスク管理、リスク戦略基盤のバックエンド開発を担当。",
       "fr": "Mission sur site dans l'équipe risque MYbank d'Ant Group, avec développement backend pour la R&D stratégie, la gestion des risques sectoriels et les plateformes de stratégie risque."
-    }
+    },
+    "tags": [
+      "Java",
+      "SofaBoot",
+      "Elasticsearch",
+      "Risk"
+    ]
   },
   {
     "key": "android_engineer",
@@ -90,7 +108,13 @@
       "en": "Built medical Android software end to end, covering design, coding, debugging, device interaction, cloud communication, and post-release support.",
       "ja": "医療向け Android ソフトウェアを設計、実装、デバッグ、デバイス連携、クラウド通信、リリース後サポートまで一貫して担当。",
       "fr": "Développement complet de logiciels Android médicaux, de la conception au code, debug, interaction avec appareils, communication cloud et support post-release."
-    }
+    },
+    "tags": [
+      "Android",
+      "Kotlin",
+      "Bluetooth",
+      "IoT"
+    ]
   },
   {
     "key": "freelancer_paris",
@@ -112,7 +136,12 @@
       "en": "Delivered project-based technical solutions across NLP algorithms, Java web applications, and Android software.",
       "ja": "NLP アルゴリズム、Java Web アプリ、Android ソフトウェアなど、プロジェクト単位で技術ソリューションを提供。",
       "fr": "Livraison de solutions techniques en mode projet autour d'algorithmes NLP, d'applications Java Web et de logiciels Android."
-    }
+    },
+    "tags": [
+      "NLP",
+      "Java Web",
+      "Android"
+    ]
   },
   {
     "key": "nlp_engineer_yseop",
@@ -134,6 +163,11 @@
       "en": "Researched knowledge graph projects, including ontology-fusion algorithm development and validation, and completed full-stack development for the Lexicon website.",
       "ja": "知識グラフプロジェクトを研究し、本体融合アルゴリズムの開発・検証と Lexicon サイトのフルスタック開発を担当。",
       "fr": "Recherche sur des projets de graphes de connaissances, développement et validation d'algorithmes de fusion d'ontologies, et développement full-stack du site Lexicon."
-    }
+    },
+    "tags": [
+      "NLP",
+      "Knowledge Graph",
+      "Ontology"
+    ]
   }
 ]

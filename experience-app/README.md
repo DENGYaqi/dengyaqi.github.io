@@ -30,16 +30,16 @@ npm run dev
 
 访客可在 `/{lang}/request-access/` 填写邮箱及申请理由。申请只进入 D1 待审核列表，不会自动开通账号或发信。管理员登录后在 `/{lang}/admin/requests/` 批准或拒绝申请；批准新访客会创建账号，批准已有访客会重置密码并撤销旧会话。系统生成的密码只在提交后的页面显示一次，由管理员自行发给对应邮箱。管理员也可在 `/{lang}/admin/accounts/` 创建、重置或停用账号。每位访客使用独立账号；停用或重置密码会撤销该账号已有会话。访客无注册或后台入口。本站会话最长 24 小时，退出时立即撤销。
 
-项目草稿、发布、四语内容、排序、关联和图片在 `/{lang}/admin/` 管理。教育资料如需导入，请把私有 JSON 文件保存在公开仓库之外，再运行 `node scripts/import-private-content.mjs <私有文件路径> --local|--remote`。学校条目的 `key` 用于长期有效的定位链接；项目可同时设置 `education_keys` 和 `experience_keys`。项目正文、学术 PDF 和原始资料不得提交到公开 Git 仓库。PDF 存放于不开放公共域名的私有 R2 桶，`project_files` 表记录文件与项目的关系；导入文件前要检查其中的第三方联系方式。
+项目与教育经历不提供网页编辑后台。将包含学校、项目草稿或已发布项目的私有 JSON 保存在公开仓库之外，运行 `node scripts/import-private-content.mjs <私有文件路径> --local|--remote` 导入。已发布项目须有四语标题、摘要和正文；同时未关联工作与学校的已发布项目显示在“其他项目”，无需新增数据库字段。学校 `key` 用于长期有效的定位链接。工作经历页面的私有内容也通过同一命令导入：`work_experiences` 数组按公开经历的 `key` 对应，每项含四语 `description` 和按显示顺序排列的 `projects`；每个项目有四语 `title`，已有详情时可填 `project_id`。教育时间线由 `education_experiences` 数组导入，每项按学校 `key` 对应，`details` 在四语下分别含 `degree`、`study_mode`、`major`，`projects` 按展示顺序列四语 `title` 和可选 `project_id`；无项目时填空数组。只有该 ID 对应的项目已发布且关联同一经历或学校，标题才会变成详情链接，否则只显示“待完善”。“其他项目”只展示站内介绍，不提供源码链接、下载或在线演示；不要将本机或局域网 IP 写入线上页面。项目图片与学术 PDF 保存在不开放公共域名的私有 R2 桶，并分别由 D1 的 `media`、`project_files` 表记录关联。项目正文、学术 PDF 和原始资料不得提交到公开 Git 仓库；导入文件前要检查其中的第三方联系方式。公开博客的教育卡片与登录后 D1 内容分别维护。
 
 ## 路径
 
 - `/{lang}/login/`：独立登录页；登录成功后仅返回本站内已验证的目标路径。
 - `/{lang}/request-access/`：申请查看，保存邮箱、理由和原目标位置；申请本身不授权访问。
-- `/{lang}/projects/`：工作及教育项目总览；`/{lang}/projects/work/{key}/` 和 `/{lang}/projects/education/{key}/`：总览中的对应位置。
-- `/{lang}/experiences/`：工作经历；`/{lang}/experiences/{key}/`：该经历关联的已发布项目。
+- `/{lang}/projects/`：其他项目列表；`/{lang}/projects/{id}/`：受保护的项目详情；`/{lang}/projects/education/`：完整教育时间线；`/{lang}/projects/education/{key}/`：单所学校及对应项目。
+- `/{lang}/experiences/`：完整工作经历时间线；`/{lang}/experiences/{key}/` 与 `/{lang}/projects/work/{key}/`：单段经历及对应的项目名单。
 - `/files/{id}`：仅登录后下载已发布项目的学术 PDF；草稿文件仅管理员可读。
-- `/{lang}/admin/`：内容管理；`/{lang}/admin/accounts/`：账号管理；`/{lang}/admin/requests/`：申请审核。
+- `/{lang}/admin/accounts/`：访客账号管理；`/{lang}/admin/requests/`：申请审核。原内容管理地址已关闭。
 - `/{lang}/logout/`：撤销当前会话并返回公开网站同语言的“关于我”。
 
-`lang` 为 `zh`、`en`、`ja` 或 `fr`。所有 HTML 和图片响应均禁用缓存和搜索索引。四语内容及至少一段工作或教育经历齐备后，项目才能发布。
+`lang` 为 `zh`、`en`、`ja` 或 `fr`。所有 HTML 和图片响应均禁用缓存和搜索索引。四语内容齐备后，项目才能发布。
