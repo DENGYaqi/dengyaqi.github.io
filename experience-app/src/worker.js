@@ -8,7 +8,7 @@ const ID = '[0-9a-f-]{36}';
 const publicOrigin = 'https://dengyaqi.github.io';
 const headers = {
   'Cache-Control': 'private, no-store',
-  'Content-Security-Policy': "default-src 'none'; style-src 'self'; img-src 'self'; form-action 'self'; base-uri 'none'; frame-ancestors 'none'",
+  'Content-Security-Policy': `default-src 'none'; style-src 'self'; img-src 'self'; form-action 'self' ${publicOrigin}; base-uri 'none'; frame-ancestors 'none'`,
   'Referrer-Policy': 'no-referrer',
   'X-Content-Type-Options': 'nosniff',
   'X-Frame-Options': 'DENY',

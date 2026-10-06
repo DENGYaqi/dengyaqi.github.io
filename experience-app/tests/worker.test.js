@@ -121,9 +121,15 @@ test('password login preserves target, limits role, and logout returns to the pu
   sqlite.prepare("UPDATE projects SET status = 'published' WHERE id = ?").run(id);
   assert.equal((await worker.fetch(request(`/zh/projects/${id}/`, cookie), env, {})).status, 200);
   const session = await sessionFromRequest(request('/zh/projects/', cookie), DB);
+  const privatePage = await worker.fetch(request('/zh/projects/', cookie), env, {});
+  assert.match(privatePage.headers.get('Content-Security-Policy'), /form-action 'self' https:\/\/dengyaqi\.github\.io;/);
+  const rejectedLogout = await worker.fetch(request('/zh/logout/', cookie, { method: 'POST', body: new URLSearchParams({ csrf: 'wrong' }) }), env, {});
+  assert.equal(rejectedLogout.status, 403);
+  assert.ok(await sessionFromRequest(request('/zh/projects/', cookie), DB));
   const signedOut = await worker.fetch(request('/zh/logout/', cookie, { method: 'POST', body: new URLSearchParams({ csrf: session.csrf_token }) }), env, {});
   assert.equal(signedOut.headers.get('Location'), 'https://dengyaqi.github.io/zh/about/');
   assert.match(signedOut.headers.get('Set-Cookie'), /Max-Age=0/);
+  assert.equal(await sessionFromRequest(request('/zh/projects/', cookie), DB), null);
   assert.equal((await worker.fetch(request('/zh/projects/', cookie), env, {})).status, 303);
   for (const lang of ['zh', 'en', 'ja', 'fr']) {
     const stale = await worker.fetch(request(`/${lang}/logout/`, cookie, { method: 'POST', body: new URLSearchParams() }), env, {});
