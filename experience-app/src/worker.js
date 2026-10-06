@@ -113,13 +113,11 @@ async function otherProjectsPage(db, lang) {
   return `<div class="work-hero"><span class="work-label">OTHER PROJECTS</span><h1>${c.otherProjects}</h1></div><section aria-label="${c.otherProjects}">${cards(items, lang)}</section>`;
 }
 
-async function workTimeline(db, lang, focus) {
+async function workTimeline(db, lang) {
   const c = copy[lang];
   const details = await workEntries(db);
   const published = new Map((await projects(db)).map(item => [item.id, item]));
-  const entries = focus ? experiences.filter(item => item.key === focus) : experiences;
-  if (!entries.length) return null;
-  const cards = entries.map(item => {
+  const cards = experiences.map(item => {
     const content = details.get(item.key);
     const description = content?.description?.[lang] || item.summary[lang] || item.summary.zh;
     const date = typeof item.date === 'object' ? item.date[lang] || item.date.zh : item.date;
@@ -129,7 +127,7 @@ async function workTimeline(db, lang, focus) {
       const title = escapeHtml(project.title[lang] || project.title.zh);
       return `<li>${linked ? `<a href="/${lang}/projects/${url(project.project_id)}/">${title}<span>${c.open} →</span></a>` : `<div>${title}<span class="work-pending">${c.pending}</span></div>`}</li>`;
     }).join('');
-    return `<article class="work-timeline-item"><div class="work-timeline-card"><div class="work-heading"><div><h2>${escapeHtml(experienceName(item, lang))}</h2><p class="work-company">${escapeHtml(item.company[lang] || item.company.zh)}</p></div><span class="work-date">${escapeHtml(date)}</span></div><p class="work-description">${escapeHtml(description)}</p><div class="work-tags">${tags}</div>${projectList ? `<div class="work-projects"><h3>${c.relatedProjects}</h3><ul>${projectList}</ul></div>` : ''}</div></article>`;
+    return `<article id="work-${url(item.key)}" class="work-timeline-item"><div class="work-timeline-card"><div class="work-heading"><div><h2>${escapeHtml(experienceName(item, lang))}</h2><p class="work-company">${escapeHtml(item.company[lang] || item.company.zh)}</p></div><span class="work-date">${escapeHtml(date)}</span></div><p class="work-description">${escapeHtml(description)}</p><div class="work-tags">${tags}</div>${projectList ? `<div class="work-projects"><h3>${c.relatedProjects}</h3><ul>${projectList}</ul></div>` : ''}</div></article>`;
   }).join('');
   return `<div class="work-hero"><span class="work-label">EXPERIENCE</span><h1>${c.experiences}</h1></div><section class="work-timeline" aria-label="${c.experiences}">${cards}</section>`;
 }
@@ -254,10 +252,9 @@ async function handleGet(env, lang, path, admin, token) {
   const workFocus = path.match(new RegExp(`^/${lang}/projects/work/([a-z0-9_]+)/$`));
   const schoolFocus = path.match(new RegExp(`^/${lang}/projects/education/([a-z0-9_]+)/$`));
   const expMatch = path.match(new RegExp(`^/${lang}/experiences/([a-z0-9_]+)/$`));
-  if (path === `/${lang}/experiences/` || workFocus || expMatch) {
-    const body = await workTimeline(env.DB, lang, workFocus?.[1] || expMatch?.[1]);
-    return body ? response(page(lang, c.experiences, body, admin, path, token)) : message(lang, c.notFound, 404);
-  }
+  const workKey = workFocus?.[1] || expMatch?.[1];
+  if (workKey) return experience(workKey) ? redirect(`/${lang}/experiences/#work-${workKey}`) : message(lang, c.notFound, 404);
+  if (path === `/${lang}/experiences/`) return response(page(lang, c.experiences, await workTimeline(env.DB, lang), admin, path, token));
   if (path === `/${lang}/projects/education/` || schoolFocus) {
     const body = await educationTimeline(env.DB, lang, schoolFocus?.[1]);
     return body ? response(page(lang, c.education, body, admin, path, token)) : message(lang, c.notFound, 404);

@@ -6,6 +6,7 @@ import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { DatabaseSync } from 'node:sqlite';
 import test from 'node:test';
+import experiences from '../src/experiences.json' with { type: 'json' };
 import worker, { escapeHtml, isAdmin } from '../src/worker.js';
 import { createSession, hashPassword, safeNext, sessionFromRequest, verifyPassword } from '../src/auth.js';
 
@@ -91,17 +92,14 @@ test('academic PDF requires a session and a published project', async () => {
   assert.equal(safeNext(`/files/${fileId}`, 'zh'), `/files/${fileId}`);
 });
 
-test('language menu matches the public site and keeps the selected work location', async () => {
-  const { env, DB } = fixture();
+test('login language menu matches the public site and keeps the selected work location', async () => {
+  const { env } = fixture();
   const target = '/zh/projects/work/ai_rd_lead/';
   const login = await (await worker.fetch(request(`/zh/login/?next=${encodeURIComponent(target)}`), env, {})).text();
   assert.match(login, /<details class="language-menu"><summary[^>]*>中文<\/summary>/);
   assert.match(login, /href="\/en\/login\/\?next=%2Fen%2Fprojects%2Fwork%2Fai_rd_lead%2F"[^>]*>English<\/a>/);
   const apply = await (await worker.fetch(request(`/zh/request-access/?next=${encodeURIComponent(target)}`), env, {})).text();
   assert.match(apply, /href="\/ja\/request-access\/\?next=%2Fja%2Fprojects%2Fwork%2Fai_rd_lead%2F"[^>]*>日本語<\/a>/);
-  const cookie = await loginCookie(DB, 'owner');
-  const projects = await (await worker.fetch(request(target, cookie), env, {})).text();
-  assert.match(projects, /href="\/fr\/projects\/work\/ai_rd_lead\/"[^>]*>Français<\/a>/);
 });
 
 test('password login preserves target, limits role, and logout returns to the public site', async () => {
@@ -115,7 +113,9 @@ test('password login preserves target, limits role, and logout returns to the pu
   assert.equal(signedIn.headers.get('Location'), body.next);
   assert.match(signedIn.headers.get('Set-Cookie'), /HttpOnly; SameSite=Lax; Secure/);
   const cookie = signedIn.headers.get('Set-Cookie').split(';')[0];
-  assert.equal((await worker.fetch(request(body.next, cookie), env, {})).status, 200);
+  const workRedirect = await worker.fetch(request(body.next, cookie), env, {});
+  assert.equal(workRedirect.status, 303);
+  assert.equal(workRedirect.headers.get('Location'), '/zh/experiences/#work-ai_rd_lead');
   assert.equal((await worker.fetch(request('/zh/admin/accounts/', cookie), env, {})).status, 403);
   assert.equal((await worker.fetch(request(`/${'zh'}/projects/${id}/`, cookie), env, {})).status, 404);
   sqlite.prepare("UPDATE projects SET status = 'published' WHERE id = ?").run(id);
@@ -275,17 +275,21 @@ test('work timeline shows private copy and links only published projects in all 
     assert.ok(all.includes(`Private work ${lang}`));
     assert.ok(all.includes(`Pending ${lang}`));
     assert.ok(!all.includes(`href="/${lang}/projects/${id}/"`));
-    const focused = await (await worker.fetch(request(`/${lang}/projects/work/ai_rd_lead/`, cookie), env, {})).text();
-    assert.equal((focused.match(/class="work-timeline-item"/g) || []).length, 1);
-    assert.ok(focused.includes(`Private work ${lang}`));
-    assert.equal((await worker.fetch(request(`/${lang}/experiences/ai_rd_lead/`, cookie), env, {})).status, 200);
-    assert.match(focused, new RegExp(`href="/${lang === 'zh' ? 'en' : 'zh'}/projects/work/ai_rd_lead/"`));
+    for (const item of experiences) {
+      assert.ok(all.includes(`id="work-${item.key}"`));
+      for (const path of [`/${lang}/projects/work/${item.key}/`, `/${lang}/experiences/${item.key}/`]) {
+        const redirect = await worker.fetch(request(path, cookie), env, {});
+        assert.equal(redirect.status, 303);
+        assert.equal(redirect.headers.get('Location'), `/${lang}/experiences/#work-${item.key}`);
+      }
+    }
   }
   sqlite.prepare("UPDATE projects SET status = 'published' WHERE id = ?").run(id);
   const published = await (await worker.fetch(request('/zh/experiences/', cookie), env, {})).text();
   assert.ok(published.includes(`href="/zh/projects/${id}/"`));
   assert.ok(!published.includes('href="/zh/projects/undefined/"'));
   assert.equal((await worker.fetch(request('/zh/projects/work/no_such_job/', cookie), env, {})).status, 404);
+  assert.equal((await worker.fetch(request('/zh/experiences/no_such_job/', cookie), env, {})).status, 404);
 });
 
 test('education timeline shows private details and only published linked projects in all languages', async () => {
