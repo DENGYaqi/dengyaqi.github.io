@@ -66,16 +66,16 @@ zh:
         tags: [RAG, LlamaIndex, Embedding, 混合检索, 文档解析, RAGAS]
       - title: NLP 与知识工程
         tags: [知识图谱, 本体建模, 本体融合, 信息抽取, NER, 多语言 NLP]
-      - title: 后端服务开发
-        tags: [Java, Python, FastAPI, Django REST Framework, Spring Boot, SOFABoot]
+      - title: 全栈服务开发
+        tags: [Java, Python, FastAPI, Django REST Framework, Spring Boot, SOFABoot, Android, Kotlin, Jetpack]
       - title: 数据存储与检索
         tags: [PostgreSQL, pgvector, MySQL, Redis, Elasticsearch, HBase]
       - title: Web 与浏览器扩展
         tags: [Vue 3, TypeScript, Pinia, SSE, Chrome MV3, Service Worker]
-      - title: Android 与设备交互
-        tags: [Android, Kotlin, Jetpack, MVVM, Bluetooth, Retrofit / OkHttp]
       - title: 分布式系统与部署
         tags: [Kafka, RocketMQ, Raft, Kubernetes, Nginx]
+      - title: 研发与团队管理
+        tags: [技术路线, 需求拆解, 研发排期, 跨团队协作, 上线验收, 迭代治理]
     interests:
       - { icon: '📚', title: 看书 }
       - { icon: '🥾', title: 徒步 }
@@ -161,6 +161,11 @@ zh:
     tag: Education
     title: 教育经历
     open: 查看教育经历
+    degree_label: "学历："
+    study_mode_label: "学习形式："
+    full_time: 全日制
+    major_label: "专业："
+    related_work_label: "相关论文与项目："
   blog:
     title: 博客
     description: 技术笔记、工程记录和生活随想。
@@ -233,16 +238,16 @@ en:
         tags: [RAG, LlamaIndex, Embedding, Hybrid Search, Document Parsing, RAGAS]
       - title: NLP and Knowledge Engineering
         tags: [Knowledge Graphs, Ontology Modeling, Ontology Fusion, Information Extraction, NER, Multilingual NLP]
-      - title: Backend Services
-        tags: [Java, Python, FastAPI, Django REST Framework, Spring Boot, SOFABoot]
+      - title: Full-Stack Development
+        tags: [Java, Python, FastAPI, Django REST Framework, Spring Boot, SOFABoot, Android, Kotlin, Jetpack]
       - title: Data Storage and Search
         tags: [PostgreSQL, pgvector, MySQL, Redis, Elasticsearch, HBase]
       - title: Web and Browser Extensions
         tags: [Vue 3, TypeScript, Pinia, SSE, Chrome MV3, Service Worker]
-      - title: Android and Device Integration
-        tags: [Android, Kotlin, Jetpack, MVVM, Bluetooth, Retrofit / OkHttp]
       - title: Distributed Systems and Deployment
         tags: [Kafka, RocketMQ, Raft, Kubernetes, Nginx]
+      - title: R&D and Team Management
+        tags: [Technical Direction, Requirements, Delivery Planning, Cross-team Coordination, Release Validation, Iteration Management]
     interests:
       - { icon: '📚', title: Reading }
       - { icon: '🥾', title: Hiking }
@@ -328,6 +333,11 @@ en:
     tag: Education
     title: Education
     open: View education
+    degree_label: "Degree: "
+    study_mode_label: "Study mode: "
+    full_time: Full-time
+    major_label: "Major: "
+    related_work_label: "Related papers and projects: "
   blog:
     title: Blog
     description: Engineering notes, field records, and reflections on life.
@@ -400,16 +410,16 @@ ja:
         tags: [RAG, LlamaIndex, Embedding, ハイブリッド検索, 文書解析, RAGAS]
       - title: NLP と知識工学
         tags: [知識グラフ, オントロジーモデリング, オントロジー融合, 情報抽出, NER, 多言語 NLP]
-      - title: バックエンドサービス開発
-        tags: [Java, Python, FastAPI, Django REST Framework, Spring Boot, SOFABoot]
+      - title: フルスタック開発
+        tags: [Java, Python, FastAPI, Django REST Framework, Spring Boot, SOFABoot, Android, Kotlin, Jetpack]
       - title: データ保存と検索
         tags: [PostgreSQL, pgvector, MySQL, Redis, Elasticsearch, HBase]
       - title: Web とブラウザ拡張
         tags: [Vue 3, TypeScript, Pinia, SSE, Chrome MV3, Service Worker]
-      - title: Android とデバイス連携
-        tags: [Android, Kotlin, Jetpack, MVVM, Bluetooth, Retrofit / OkHttp]
       - title: 分散システムとデプロイ
         tags: [Kafka, RocketMQ, Raft, Kubernetes, Nginx]
+      - title: 研究開発とチームマネジメント
+        tags: [技術方針, 要件分解, 開発計画, チーム間連携, リリース検証, 継続的改善]
     interests:
       - { icon: '📚', title: 読書 }
       - { icon: '🥾', title: ハイキング }
@@ -495,6 +505,11 @@ ja:
     tag: Education
     title: 学歴
     open: 学歴を見る
+    degree_label: "学位・課程："
+    study_mode_label: "履修形態："
+    full_time: 全日制
+    major_label: "専攻："
+    related_work_label: "関連論文・プロジェクト："
   blog:
     title: ブログ
     description: 技術メモ、実務の記録、暮らしの中で考えたこと。
@@ -567,16 +582,16 @@ fr:
         tags: [RAG, LlamaIndex, Embedding, Recherche hybride, Analyse de documents, RAGAS]
       - title: TAL et ingénierie des connaissances
         tags: [Graphes de connaissances, Modélisation d'ontologies, Fusion d'ontologies, Extraction d'information, NER, TAL multilingue]
-      - title: Développement de services backend
-        tags: [Java, Python, FastAPI, Django REST Framework, Spring Boot, SOFABoot]
+      - title: Développement full-stack
+        tags: [Java, Python, FastAPI, Django REST Framework, Spring Boot, SOFABoot, Android, Kotlin, Jetpack]
       - title: Stockage des données et recherche
         tags: [PostgreSQL, pgvector, MySQL, Redis, Elasticsearch, HBase]
       - title: Web et extensions de navigateur
         tags: [Vue 3, TypeScript, Pinia, SSE, Chrome MV3, Service Worker]
-      - title: Android et interaction avec les appareils
-        tags: [Android, Kotlin, Jetpack, MVVM, Bluetooth, Retrofit / OkHttp]
       - title: Systèmes distribués et déploiement
         tags: [Kafka, RocketMQ, Raft, Kubernetes, Nginx]
+      - title: Pilotage R&D et gestion d'équipe
+        tags: [Orientation technique, Analyse des besoins, Planification R&D, Coordination des équipes, Validation des livraisons, Amélioration continue]
     interests:
       - { icon: '📚', title: Lecture }
       - { icon: '🥾', title: Randonnée }
@@ -662,6 +677,11 @@ fr:
     tag: Formation
     title: Formation
     open: Voir la formation
+    degree_label: "Diplôme : "
+    study_mode_label: "Régime : "
+    full_time: Temps plein
+    major_label: "Spécialité : "
+    related_work_label: "Mémoires et projets associés : "
   blog:
     title: Blog
     description: Notes d'ingénierie, retours de terrain et réflexions sur la vie.

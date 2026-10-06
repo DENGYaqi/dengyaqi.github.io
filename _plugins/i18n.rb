@@ -109,6 +109,7 @@ class BlogI18nGenerator < Jekyll::Generator
     BlogI18n::LANGS.each do |lang|
       add_home(site, lang)
       add_static_pages(site, lang)
+      add_redirect_page(site, "/#{lang}/resume/", "/assets/files/resume/deng-yaqi-ai-rd-resume.pdf")
       add_life_entries(site, lang)
       add_redirect_page(site, "/#{lang}/life/diving-diary/", "/#{lang}/life/sports-diary/#diving")
       add_redirect_page(site, "/#{lang}/ai/", "/#{lang}/projects/") if site.config['show_projects']

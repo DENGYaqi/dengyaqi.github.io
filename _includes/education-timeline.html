@@ -11,11 +11,13 @@
           <div class="timeline-header">
             <div>
               <h3 class="timeline-title">{{ item.school[lang] }}</h3>
-              <p class="timeline-company">{{ item.degree[lang] }} · {{ item.major[lang] }}</p>
+              <p class="timeline-company">{{ t.education.degree_label }}{{ item.degree[lang] }} · {{ t.education.study_mode_label }}{{ t.education.full_time }} · {{ t.education.major_label }}{{ item.major[lang] }}</p>
             </div>
             <span class="timeline-date">{{ item.date }}</span>
           </div>
-          <p class="timeline-summary">{{ item.summary[lang] }}</p>
+          {% if item.related_work %}
+            <p class="timeline-summary">{{ t.education.related_work_label }}{{ item.related_work[lang] }}</p>
+          {% endif %}
         </a>
       </article>
       {% endfor %}

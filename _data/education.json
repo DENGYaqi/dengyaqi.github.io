@@ -5,7 +5,7 @@
     "degree": {"zh": "硕士", "en": "Master’s degree", "ja": "修士", "fr": "Master"},
     "date": "2017.09 – 2019.10",
     "major": {"zh": "语言与计算机，主修自然语言处理", "en": "Language and computing, specializing in natural language processing", "ja": "言語とコンピューター（自然言語処理専攻）", "fr": "Langue et informatique, spécialité traitement automatique des langues"},
-    "summary": {"zh": "围绕多语言文本分析、语音处理和自动摘要开展学习与研究。", "en": "Studied and researched multilingual text analysis, speech processing and automatic summarization.", "ja": "多言語テキスト分析、音声処理、自動要約を学び研究。", "fr": "Études et recherches en analyse de textes multilingues, traitement de la parole et résumé automatique."}
+    "related_work": {"zh": "多语言流行病检测与中文标注 ｜ 日语语音识别与合成 ｜ Steam 法语评论自动摘要", "en": "Multilingual epidemic detection and Chinese annotation | Japanese speech recognition and synthesis | Automatic summarization of French Steam reviews", "ja": "多言語の感染症検出と中国語アノテーション｜日本語の音声認識・合成｜Steam のフランス語レビュー自動要約", "fr": "Détection multilingue d'épidémies et annotation en chinois | Reconnaissance et synthèse vocales en japonais | Résumé automatique d'avis Steam en français"}
   },
   {
     "key": "paris_diderot",
@@ -13,15 +13,14 @@
     "degree": {"zh": "本科", "en": "Bachelor’s degree", "ja": "学士", "fr": "Licence"},
     "date": "2014.09 – 2017.09",
     "major": {"zh": "计算机语言科学，主修自然语言处理", "en": "Computational linguistics, specializing in natural language processing", "ja": "計算言語学（自然言語処理専攻）", "fr": "Linguistique informatique, spécialité traitement automatique des langues"},
-    "summary": {"zh": "学习语言科学与计算方法，并在课程实践中运用自然语言处理技术。", "en": "Studied language science and computational methods, applying natural language processing in coursework.", "ja": "言語科学と計算手法を学び、授業の実践で自然言語処理技術を活用。", "fr": "Études en sciences du langage et méthodes informatiques, avec mise en pratique du traitement automatique des langues."}
+    "related_work": {"zh": "文本语言识别", "en": "Text language identification", "ja": "テキストの言語識別", "fr": "Identification de la langue d'un texte"}
   },
   {
     "key": "esgci",
     "school": {"zh": "ESGCI（法国）", "en": "ESGCI, France", "ja": "ESGCI（フランス）", "fr": "ESGCI, France"},
     "degree": {"zh": "语言预科", "en": "Preparatory studies", "ja": "語学準備課程", "fr": "Année préparatoire"},
     "date": "2013.09 – 2014.09",
-    "major": {"zh": "法语与金融数学", "en": "French and financial mathematics", "ja": "フランス語・金融数学", "fr": "Français et mathématiques financières"},
-    "summary": {"zh": "完成法语与金融数学预科学习。", "en": "Completed preparatory studies in French and financial mathematics.", "ja": "フランス語と金融数学の準備課程を履修。", "fr": "Formation préparatoire en français et mathématiques financières."}
+    "major": {"zh": "法语与金融数学", "en": "French and financial mathematics", "ja": "フランス語・金融数学", "fr": "Français et mathématiques financières"}
   },
   {
     "key": "shenzhen_polytechnic",
@@ -29,6 +28,6 @@
     "degree": {"zh": "专科", "en": "Junior college diploma", "ja": "短期大学相当", "fr": "Diplôme d’études supérieures courtes"},
     "date": "2010.09 – 2013.06",
     "major": {"zh": "应用法语", "en": "Applied French", "ja": "応用フランス語", "fr": "Français appliqué"},
-    "summary": {"zh": "学习应用法语，建立语言与跨文化沟通基础。", "en": "Studied applied French and built a foundation in language and cross-cultural communication.", "ja": "応用フランス語を学び、言語と異文化コミュニケーションの基礎を習得。", "fr": "Études en français appliqué et acquisition de bases en communication interculturelle."}
+    "related_work": {"zh": "文化外交的经济影响—中法文化交流年案例分析", "en": "The economic impact of cultural diplomacy: a case study of the China–France Year of Culture", "ja": "文化外交の経済的影響――中仏文化交流年の事例分析", "fr": "L'impact économique de la diplomatie culturelle : étude de cas de l'Année de la culture Chine–France"}
   }
 ]
