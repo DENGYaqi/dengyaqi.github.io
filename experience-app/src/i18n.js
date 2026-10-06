@@ -2,7 +2,7 @@ export const languages = ['zh', 'en', 'ja', 'fr'];
 
 export const copy = {
   zh: {
-    site: '邓雅琪', projects: '项目展示', otherProjects: '其他项目', experiences: '工作经历', education: '教育经历', educationEmpty: '教育经历资料尚未添加。', downloads: '学术报告下载', admin: '内容管理', back: '返回公开网站', logout: '退出登录',
+    site: '邓雅琪', projects: '项目展示', otherProjects: '其他项目', experiences: '工作经历', education: '教育经历', backToWork: '返回工作经历', backToEducation: '返回教育经历', educationEmpty: '教育经历资料尚未添加。', downloads: '学术报告下载', admin: '内容管理', back: '返回公开网站', logout: '退出登录',
     auth: { title: '登录查看项目', intro: '请输入我提供给你的访客账号和密码。', email: '账号（邮箱）', password: '密码', submit: '登录', failed: '账号或密码不正确。', limited: '尝试次数过多，请稍后再试。', accounts: '访客账号', create: '创建账号', initialPassword: '初始密码（仅显示这一次）', copyNow: '请现在复制并安全地发给访客。', enabled: '可用', disabled: '已停用', reset: '重置密码', disable: '停用', enable: '启用', noAccounts: '还没有访客账号。', accountExists: '这个账号已存在。' },
     empty: '这里还没有已发布的项目。', experienceEmpty: '这段经历暂未关联已发布项目。', relatedProjects: '相关项目', pending: '待完善', degreeLabel: '学历：', studyModeLabel: '学习形式：', majorLabel: '专业：',
     open: '查看项目', allProjects: '全部项目', draft: '草稿', published: '已发布', new: '新建项目',
@@ -16,7 +16,7 @@ export const copy = {
     noTitle: '未命名项目', noImage: '暂未上传图片', switchLanguage: '语言', noProjects: '还没有项目。',
   },
   en: {
-    site: 'Deng Yaqi', projects: 'Projects', otherProjects: 'Other projects', experiences: 'Experience', education: 'Education', educationEmpty: 'Education details have not been added yet.', downloads: 'Academic reports', admin: 'Manage projects', back: 'Public website', logout: 'Sign out',
+    site: 'Deng Yaqi', projects: 'Projects', otherProjects: 'Other projects', experiences: 'Experience', education: 'Education', backToWork: 'Back to experience', backToEducation: 'Back to education', educationEmpty: 'Education details have not been added yet.', downloads: 'Academic reports', admin: 'Manage projects', back: 'Public website', logout: 'Sign out',
     auth: { title: 'Sign in to view projects', intro: 'Enter the visitor account and password provided to you.', email: 'Account (email)', password: 'Password', submit: 'Sign in', failed: 'Incorrect account or password.', limited: 'Too many attempts. Please try again later.', accounts: 'Visitor accounts', create: 'Create account', initialPassword: 'Initial password (shown only once)', copyNow: 'Copy it now and share it securely with the visitor.', enabled: 'Active', disabled: 'Disabled', reset: 'Reset password', disable: 'Disable', enable: 'Enable', noAccounts: 'No visitor accounts yet.', accountExists: 'This account already exists.' },
     empty: 'No published projects yet.', experienceEmpty: 'No published projects are linked to this experience yet.', relatedProjects: 'Related projects', pending: 'Coming later', degreeLabel: 'Degree: ', studyModeLabel: 'Study mode: ', majorLabel: 'Major: ',
     open: 'View project', allProjects: 'All projects', draft: 'Draft', published: 'Published', new: 'New project',
@@ -30,7 +30,7 @@ export const copy = {
     noTitle: 'Untitled project', noImage: 'No images yet', switchLanguage: 'Language', noProjects: 'No projects yet.',
   },
   ja: {
-    site: '鄧雅琪', projects: 'プロジェクト', otherProjects: 'その他のプロジェクト', experiences: '職歴', education: '学歴', educationEmpty: '学歴の詳細はまだ登録されていません。', downloads: '研究報告書', admin: 'コンテンツ管理', back: '公開サイトへ戻る', logout: 'ログアウト',
+    site: '鄧雅琪', projects: 'プロジェクト', otherProjects: 'その他のプロジェクト', experiences: '職歴', education: '学歴', backToWork: '職歴に戻る', backToEducation: '学歴に戻る', educationEmpty: '学歴の詳細はまだ登録されていません。', downloads: '研究報告書', admin: 'コンテンツ管理', back: '公開サイトへ戻る', logout: 'ログアウト',
     auth: { title: 'ログインしてプロジェクトを見る', intro: 'お渡しした訪問者アカウントとパスワードを入力してください。', email: 'アカウント（メールアドレス）', password: 'パスワード', submit: 'ログイン', failed: 'アカウントまたはパスワードが正しくありません。', limited: '試行回数が多すぎます。しばらくしてからお試しください。', accounts: '訪問者アカウント', create: 'アカウントを作成', initialPassword: '初期パスワード（今回のみ表示）', copyNow: '今すぐコピーして訪問者に安全に共有してください。', enabled: '有効', disabled: '無効', reset: 'パスワードを再設定', disable: '無効にする', enable: '有効にする', noAccounts: '訪問者アカウントはまだありません。', accountExists: 'このアカウントは既に存在します。' },
     empty: '公開済みのプロジェクトはまだありません。', experienceEmpty: 'この職歴に関連する公開済みプロジェクトはまだありません。', relatedProjects: '関連プロジェクト', pending: '準備中', degreeLabel: '学位・課程：', studyModeLabel: '履修形態：', majorLabel: '専攻：',
     open: 'プロジェクトを見る', allProjects: 'すべてのプロジェクト', draft: '下書き', published: '公開中', new: '新規プロジェクト',
@@ -44,7 +44,7 @@ export const copy = {
     noTitle: '無題のプロジェクト', noImage: '画像はまだありません', switchLanguage: '言語', noProjects: 'プロジェクトはまだありません。',
   },
   fr: {
-    site: 'Deng Yaqi', projects: 'Projets', otherProjects: 'Autres projets', experiences: 'Parcours', education: 'Formation', educationEmpty: 'Les informations de formation ne sont pas encore disponibles.', downloads: 'Rapports universitaires', admin: 'Gérer les projets', back: 'Site public', logout: 'Déconnexion',
+    site: 'Deng Yaqi', projects: 'Projets', otherProjects: 'Autres projets', experiences: 'Parcours', education: 'Formation', backToWork: 'Retour au parcours', backToEducation: 'Retour à la formation', educationEmpty: 'Les informations de formation ne sont pas encore disponibles.', downloads: 'Rapports universitaires', admin: 'Gérer les projets', back: 'Site public', logout: 'Déconnexion',
     auth: { title: 'Connexion aux projets', intro: 'Saisissez le compte visiteur et le mot de passe qui vous ont été communiqués.', email: 'Compte (e-mail)', password: 'Mot de passe', submit: 'Se connecter', failed: 'Compte ou mot de passe incorrect.', limited: 'Trop de tentatives. Réessayez plus tard.', accounts: 'Comptes visiteurs', create: 'Créer un compte', initialPassword: 'Mot de passe initial (affiché une seule fois)', copyNow: 'Copiez-le maintenant et transmettez-le au visiteur de manière sûre.', enabled: 'Actif', disabled: 'Désactivé', reset: 'Réinitialiser le mot de passe', disable: 'Désactiver', enable: 'Activer', noAccounts: 'Aucun compte visiteur.', accountExists: 'Ce compte existe déjà.' },
     empty: 'Aucun projet publié pour le moment.', experienceEmpty: 'Aucun projet publié ne correspond encore à cette expérience.', relatedProjects: 'Projets associés', pending: 'À compléter', degreeLabel: 'Diplôme : ', studyModeLabel: 'Régime : ', majorLabel: 'Spécialité : ',
     open: 'Voir le projet', allProjects: 'Tous les projets', draft: 'Brouillon', published: 'Publié', new: 'Nouveau projet',

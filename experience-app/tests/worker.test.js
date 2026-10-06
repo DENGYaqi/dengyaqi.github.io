@@ -265,6 +265,8 @@ test('login throttling, CSRF and unsafe redirects are rejected', async () => {
   assert.equal((await worker.fetch(request('/zh/login/', formCookie, { method: 'POST', body: new URLSearchParams({ email: 'guest@example.test', password: 'wrong', csrf }) }), env, {})).status, 429);
   assert.equal(safeNext('//attacker.test/', 'zh'), '/zh/projects/');
   assert.equal(safeNext('/zh/projects/work/ai_rd_lead/', 'zh'), '/zh/projects/work/ai_rd_lead/');
+  assert.equal(safeNext(`/zh/projects/${id}/?from=education-sample_school`, 'zh'), `/zh/projects/${id}/?from=education-sample_school`);
+  assert.equal(safeNext(`/zh/projects/${id}/?from=//attacker.test`, 'zh'), '/zh/projects/');
   const cookie = await loginCookie(DB, 'owner');
   const wrongCsrf = await worker.fetch(request('/zh/admin/accounts/', cookie, { method: 'POST', body: new URLSearchParams({ email: 'new@example.test', csrf: 'wrong' }) }), env, {});
   assert.equal(wrongCsrf.status, 403);
@@ -292,7 +294,7 @@ test('work timeline shows private copy and links only published projects in all 
   }
   sqlite.prepare("UPDATE projects SET status = 'published' WHERE id = ?").run(id);
   const published = await (await worker.fetch(request('/zh/experiences/', cookie), env, {})).text();
-  assert.ok(published.includes(`href="/zh/projects/${id}/"`));
+  assert.ok(published.includes(`href="/zh/projects/${id}/?from=work-ai_rd_lead"`));
   assert.ok(!published.includes('href="/zh/projects/undefined/"'));
   assert.equal((await worker.fetch(request('/zh/projects/work/no_such_job/', cookie), env, {})).status, 404);
   assert.equal((await worker.fetch(request('/zh/experiences/no_such_job/', cookie), env, {})).status, 404);
@@ -316,8 +318,45 @@ test('education timeline shows private details and only published linked project
   }
   sqlite.prepare("UPDATE projects SET status = 'published', education_keys = ? WHERE id = ?").run('["sample_school"]', id);
   const published = await (await worker.fetch(request('/zh/projects/education/', cookie), env, {})).text();
-  assert.ok(published.includes(`href="/zh/projects/${id}/"`));
+  assert.ok(published.includes(`href="/zh/projects/${id}/?from=education-sample_school"`));
   assert.equal((await worker.fetch(request('/zh/projects/education/no_school/', cookie), env, {})).status, 404);
+});
+
+test('project detail returns to the timeline it came from', async () => {
+  const { env, DB, sqlite } = fixture();
+  const cookie = await loginCookie(DB, 'guest');
+  sqlite.prepare("UPDATE projects SET status = 'published', education_keys = ? WHERE id = ?").run('["sample_school"]', id);
+  for (const lang of ['zh', 'en', 'ja', 'fr']) {
+    for (const [source, expected, other] of [['work-ai_rd_lead', 'work/ai_rd_lead', 'education/sample_school'], ['education-sample_school', 'education/sample_school', 'work/ai_rd_lead']]) {
+      const html = await (await worker.fetch(request(`/${lang}/projects/${id}/?from=${source}`, cookie), env, {})).text();
+      assert.match(html, new RegExp(`<nav class="detail-back"[^>]*><a href="/${lang}/projects/${expected}/">`));
+      assert.doesNotMatch(html, new RegExp(`<nav class="detail-back"[^>]*><a href="/${lang}/projects/${other}/">`));
+      assert.ok(html.includes(`href="/${lang === 'zh' ? 'en' : 'zh'}/projects/${id}/?from=${source}"`));
+    }
+    const direct = await (await worker.fetch(request(`/${lang}/projects/${id}/`, cookie), env, {})).text();
+    assert.match(direct, new RegExp(`<nav class="detail-back"[^>]*><a href="/${lang}/projects/work/ai_rd_lead/">`));
+  }
+  const login = await worker.fetch(request(`/zh/projects/${id}/?from=education-sample_school`), env, {});
+  assert.equal(login.status, 303);
+  assert.equal(login.headers.get('Location'), `/zh/login/?next=${encodeURIComponent(`/zh/projects/${id}/?from=education-sample_school`)}`);
+});
+
+test('GIF modules appear once per project and keep media access protected', async () => {
+  const { env, DB, sqlite } = fixture();
+  const gifId = '55555555-5555-4555-8555-555555555555';
+  const content = structuredClone(translations);
+  for (const lang of ['zh', 'en', 'ja', 'fr']) content[lang].modules = [{ title: `Browse ${lang}`, media_id: gifId }];
+  sqlite.prepare('UPDATE projects SET status = ?, translations = ? WHERE id = ?').run('published', JSON.stringify(content), id);
+  sqlite.prepare('INSERT INTO media (id, project_id, object_key, content_type, sort_order, created_at) VALUES (?, ?, ?, ?, 1, ?)').run(gifId, id, `${id}/${gifId}.gif`, 'image/gif', '');
+  const cookie = await loginCookie(DB, 'guest');
+  for (const lang of ['zh', 'en', 'ja', 'fr']) {
+    const html = await (await worker.fetch(request(`/${lang}/projects/${id}/`, cookie), env, {})).text();
+    assert.ok(html.includes(`<h2>Browse ${lang}</h2><img src="/media/${gifId}"`));
+    assert.equal((html.match(new RegExp(`/media/${gifId}`, 'g')) || []).length, 1);
+    assert.ok(html.includes(`/media/${imageId}`));
+  }
+  assert.equal((await worker.fetch(request(`/media/${gifId}`), env, {})).status, 303);
+  assert.equal((await worker.fetch(request(`/media/${gifId}`, cookie), env, {})).headers.get('Content-Type'), 'image/gif');
 });
 
 test('other projects lists only five standalone published projects in order', async () => {
@@ -377,9 +416,30 @@ test('private import accepts linked or standalone projects and requires four com
     item.experience_keys = [];
     writeFileSync(input, JSON.stringify({ projects: [item] }));
     assert.equal(spawnSync(process.execPath, [script, input], { encoding: 'utf8' }).status, 0);
+    for (const lang of ['zh', 'en', 'ja', 'fr']) item.translations[lang].modules = [{ title: `Demo ${lang}`, media_id: imageId }];
+    writeFileSync(input, JSON.stringify({ projects: [item] }));
+    assert.equal(spawnSync(process.execPath, [script, input], { encoding: 'utf8' }).status, 0);
+    item.translations.fr.modules[0].media_id = id;
+    writeFileSync(input, JSON.stringify({ projects: [item] }));
+    assert.notEqual(spawnSync(process.execPath, [script, input], { encoding: 'utf8' }).status, 0);
+    item.translations.fr.modules[0].media_id = imageId;
     delete item.translations.fr.body;
     writeFileSync(input, JSON.stringify({ projects: [item] }));
     assert.notEqual(spawnSync(process.execPath, [script, input], { encoding: 'utf8' }).status, 0);
+  } finally {
+    rmSync(directory, { recursive: true, force: true });
+  }
+});
+
+test('private GIF upload rejects non-GIF files before storage changes', () => {
+  const directory = mkdtempSync(join(tmpdir(), 'yaqi-gif-import-test-'));
+  const file = join(directory, 'fake.gif');
+  const input = join(directory, 'private.json');
+  try {
+    writeFileSync(file, 'not a GIF');
+    writeFileSync(input, JSON.stringify({ media: [{ id: imageId, project_id: id, file }] }));
+    const script = fileURLToPath(new URL('../scripts/upload-private-gifs.mjs', import.meta.url));
+    assert.notEqual(spawnSync(process.execPath, [script, input, '--local'], { encoding: 'utf8' }).status, 0);
   } finally {
     rmSync(directory, { recursive: true, force: true });
   }

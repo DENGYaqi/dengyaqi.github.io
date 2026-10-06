@@ -32,6 +32,8 @@ npm run dev
 
 项目与教育经历不提供网页编辑后台。将包含学校、项目草稿或已发布项目的私有 JSON 保存在公开仓库之外，运行 `node scripts/import-private-content.mjs <私有文件路径> --local|--remote` 导入。已发布项目须有四语标题、摘要和正文；同时未关联工作与学校的已发布项目显示在“其他项目”，无需新增数据库字段。学校 `key` 用于长期有效的定位链接。工作经历页面的私有内容也通过同一命令导入：`work_experiences` 数组按公开经历的 `key` 对应，每项含四语 `description` 和按显示顺序排列的 `projects`；每个项目有四语 `title`，已有详情时可填 `project_id`。教育时间线由 `education_experiences` 数组导入，每项按学校 `key` 对应，`details` 在四语下分别含 `degree`、`study_mode`、`major`，`projects` 按展示顺序列四语 `title` 和可选 `project_id`；无项目时填空数组。只有该 ID 对应的项目已发布且关联同一经历或学校，标题才会变成详情链接，否则只显示“待完善”。“其他项目”只展示站内介绍，不提供源码链接、下载或在线演示；不要将本机或局域网 IP 写入线上页面。项目图片与学术 PDF 保存在不开放公共域名的私有 R2 桶，并分别由 D1 的 `media`、`project_files` 表记录关联。项目正文、学术 PDF 和原始资料不得提交到公开 Git 仓库；导入文件前要检查其中的第三方联系方式。公开博客的教育卡片与登录后 D1 内容分别维护。
 
+项目详情可按模块展示 GIF。私有 JSON 中，每种语言的项目 `translations` 可添加同顺序的 `modules: [{"title":"模块名称","media_id":"GIF 的 UUID"}]`；四语使用相同的 `media_id`。同一文件可添加 `media: [{"id":"同一 UUID","project_id":"项目 UUID","file":"GIF 绝对路径","sort_order":0}]`，先运行上述内容导入，再运行 `node scripts/upload-private-gifs.mjs <私有文件路径> --local|--remote`。后者只接受 GIF，将文件放入私有 R2，并把关联写入 D1；旧图片继续显示在普通图库。项目从工作或学校页面打开时，详情底部只显示对应来源的返回链接。
+
 ## 路径
 
 - `/{lang}/login/`：独立登录页；登录成功后仅返回本站内已验证的目标路径。

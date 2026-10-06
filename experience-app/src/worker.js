@@ -125,7 +125,7 @@ async function workTimeline(db, lang) {
     const projectList = (content?.projects || []).map(project => {
       const linked = published.get(project.project_id)?.experience_keys.includes(item.key);
       const title = escapeHtml(project.title[lang] || project.title.zh);
-      return `<li>${linked ? `<a href="/${lang}/projects/${url(project.project_id)}/">${title}<span>${c.open} →</span></a>` : `<div>${title}<span class="work-pending">${c.pending}</span></div>`}</li>`;
+      return `<li>${linked ? `<a href="/${lang}/projects/${url(project.project_id)}/?from=work-${url(item.key)}">${title}<span>${c.open} →</span></a>` : `<div>${title}<span class="work-pending">${c.pending}</span></div>`}</li>`;
     }).join('');
     return `<article id="work-${url(item.key)}" class="work-timeline-item"><div class="work-timeline-card"><div class="work-heading"><div><h2>${escapeHtml(experienceName(item, lang))}</h2><p class="work-company">${escapeHtml(item.company[lang] || item.company.zh)}</p></div><span class="work-date">${escapeHtml(date)}</span></div><p class="work-description">${escapeHtml(description)}</p><div class="work-tags">${tags}</div>${projectList ? `<div class="work-projects"><h3>${c.relatedProjects}</h3><ul>${projectList}</ul></div>` : ''}</div></article>`;
   }).join('');
@@ -146,7 +146,7 @@ async function educationTimeline(db, lang, focus) {
     const projectList = (content?.projects || []).map(project => {
       const linked = published.get(project.project_id)?.education_keys.includes(item.key);
       const title = escapeHtml(project.title[lang] || project.title.zh);
-      return `<li>${linked ? `<a href="/${lang}/projects/${url(project.project_id)}/">${title}<span>${c.open} →</span></a>` : `<div>${title}<span class="work-pending">${c.pending}</span></div>`}</li>`;
+      return `<li>${linked ? `<a href="/${lang}/projects/${url(project.project_id)}/?from=education-${url(item.key)}">${title}<span>${c.open} →</span></a>` : `<div>${title}<span class="work-pending">${c.pending}</span></div>`}</li>`;
     }).join('');
     const facts = fields ? `<p class="education-facts"><span>${c.degreeLabel}${escapeHtml(fields.degree)}</span><span>${c.studyModeLabel}${escapeHtml(fields.study_mode)}</span><span>${c.majorLabel}${escapeHtml(fields.major)}</span></p>` : '';
     return `<article class="work-timeline-item"><div class="work-timeline-card"><div class="work-heading"><h2>${escapeHtml(educationName(item, lang))}</h2><span class="work-date">${escapeHtml(date)}</span></div>${facts}${projectList ? `<div class="work-projects"><h3>${c.relatedProjects}</h3><ul>${projectList}</ul></div>` : ''}</div></article>`;
@@ -247,7 +247,7 @@ async function handlePost(env, lang, path, form, token) {
   return message(lang, c.notFound, 404);
 }
 
-async function handleGet(env, lang, path, admin, token) {
+async function handleGet(env, lang, path, admin, token, source) {
   const c = copy[lang];
   const workFocus = path.match(new RegExp(`^/${lang}/projects/work/([a-z0-9_]+)/$`));
   const schoolFocus = path.match(new RegExp(`^/${lang}/projects/education/([a-z0-9_]+)/$`));
@@ -268,11 +268,25 @@ async function handleGet(env, lang, path, admin, token) {
     if (!item || (item.status !== 'published' && !admin)) return message(lang, c.notFound, 404);
     const photos = await images(env.DB, item.id), files = await projectFiles(env.DB, item.id), t = tr(item, lang);
     const schools = await educations(env.DB);
-    const linked = item.experience_keys.map(key => experience(key)).filter(Boolean).map(exp => `<a class="tag" href="/${lang}/projects/work/${url(exp.key)}/">${escapeHtml(experienceName(exp, lang))}</a>`).join('') + item.education_keys.map(key => schools.find(school => school.key === key)).filter(Boolean).map(school => `<a class="tag" href="/${lang}/projects/education/${url(school.key)}/">${escapeHtml(educationName(school, lang))}</a>`).join('');
-    const gallery = photos.length ? `<h2>${c.photos}</h2><div class="gallery">${photos.map(photo => `<a href="/media/${url(photo.id)}"><img src="/media/${url(photo.id)}" alt="${escapeHtml(t.title)}" loading="lazy"></a>`).join('')}</div>` : '';
+    const workLinks = item.experience_keys.map(key => experience(key)).filter(Boolean).map(exp => ({ key: exp.key, href: `/${lang}/projects/work/${url(exp.key)}/`, label: experienceName(exp, lang) }));
+    const educationLinks = item.education_keys.map(key => schools.find(school => school.key === key)).filter(Boolean).map(school => ({ key: school.key, href: `/${lang}/projects/education/${url(school.key)}/`, label: educationName(school, lang) }));
+    const linked = [...workLinks, ...educationLinks].map(link => `<a class="tag" href="${link.href}">${escapeHtml(link.label)}</a>`).join('');
+    const photosById = new Map(photos.map(photo => [photo.id, photo]));
+    const modules = (Array.isArray(t.modules) ? t.modules : []).filter(module => photosById.get(module.media_id)?.content_type === 'image/gif');
+    const moduleIds = new Set(modules.map(module => module.media_id));
+    const demonstrations = modules.map(module => `<section class="project-module"><h2>${escapeHtml(module.title)}</h2><img src="/media/${url(module.media_id)}" alt="${escapeHtml(module.title)}" loading="lazy"></section>`).join('');
+    const otherPhotos = photos.filter(photo => !moduleIds.has(photo.id));
+    const gallery = otherPhotos.length ? `<h2>${c.photos}</h2><div class="gallery">${otherPhotos.map(photo => `<a href="/media/${url(photo.id)}"><img src="/media/${url(photo.id)}" alt="${escapeHtml(t.title)}" loading="lazy"></a>`).join('')}</div>` : '';
     const downloads = files.length ? `<section><h2>${c.downloads}</h2><ul>${files.map(file => `<li><a href="/files/${url(file.id)}">${escapeHtml(file.download_name)}</a></li>`).join('')}</ul></section>` : '';
+    const selectedWork = source?.startsWith('work-') && workLinks.find(link => link.key === source.slice(5));
+    const selectedEducation = source?.startsWith('education-') && educationLinks.find(link => link.key === source.slice(10));
+    const destination = selectedWork || selectedEducation || workLinks[0] || educationLinks[0];
+    const backHref = destination?.href || `/${lang}/projects/`;
+    const backLabel = selectedEducation || (!selectedWork && !workLinks.length && educationLinks.length) ? c.backToEducation : destination ? c.backToWork : c.otherProjects;
+    const back = `<nav class="detail-back" aria-label="${c.projects}"><a href="${backHref}">← ${backLabel}</a></nav>`;
     const other = !item.experience_keys.length && !item.education_keys.length;
-    return response(page(lang, t.title || c.noTitle, `<p class="eyebrow">${other ? c.otherProjects : c.projects}${item.status === 'draft' ? ` · ${c.draft}` : ''}</p><h1>${escapeHtml(t.title || c.noTitle)}</h1><p class="lead">${escapeHtml(t.summary)}</p><div>${linked}</div><section class="prose">${prettyBody(t.body)}</section>${gallery}${downloads}${other ? `<p><a href="/${lang}/projects/">← ${c.otherProjects}</a></p>` : ''}`, admin, path, token));
+    const currentPath = selectedWork || selectedEducation ? `${path}?from=${source}` : path;
+    return response(page(lang, t.title || c.noTitle, `<p class="eyebrow">${other ? c.otherProjects : c.projects}${item.status === 'draft' ? ` · ${c.draft}` : ''}</p><h1>${escapeHtml(t.title || c.noTitle)}</h1><p class="lead">${escapeHtml(t.summary)}</p><div>${linked}</div><section class="prose">${prettyBody(t.body)}</section>${demonstrations}${gallery}${downloads}${back}`, admin, currentPath, token));
   }
   if (path === `/${lang}/admin/requests/` || path === `/${lang}/admin/accounts/`) {
     if (!admin) return message(lang, c.adminOnly, 403);
@@ -356,7 +370,7 @@ export default {
         return redirect(`${publicOrigin}/${lang}/about/`, expiredCookie(request));
       }
       if (!session) {
-        const next = safeNext(path, lang);
+        const next = safeNext(path + requestUrl.search, lang);
         return redirect(`/${lang}/login/?next=${encodeURIComponent(next)}`);
       }
       const admin = isAdmin(session);
@@ -379,7 +393,7 @@ export default {
         return new Response(object.body, { status: 200, headers: { ...headers, 'Content-Type': 'application/pdf', 'Content-Disposition': `attachment; filename="${name}"`, 'Content-Length': String(file.byte_size) } });
       }
       if (!match) return response('Not found', 404, 'text/plain; charset=utf-8');
-      if (request.method === 'GET') return handleGet(env, lang, path, admin, session.csrf_token);
+      if (request.method === 'GET') return handleGet(env, lang, path, admin, session.csrf_token, requestUrl.searchParams.get('from'));
       if (request.method === 'POST') {
         const accountAction = new RegExp(`^/${lang}/admin/accounts/${ID}/(reset|disable|enable)/$`);
         const requestAction = new RegExp(`^/${lang}/admin/requests/${ID}/(approve|dismiss)/$`);
