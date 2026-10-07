@@ -275,7 +275,7 @@ async function handleGet(env, lang, path, admin, token, source) {
     const photosById = new Map(photos.map(photo => [photo.id, photo]));
     const modules = (Array.isArray(t.modules) ? t.modules : []).filter(module => photosById.get(module.media_id)?.content_type === 'image/gif');
     const moduleIds = new Set(modules.map(module => module.media_id));
-    const demonstrations = modules.map(module => `<section class="project-module"><h2>${escapeHtml(module.title)}</h2><img src="/media/${url(module.media_id)}" alt="${escapeHtml(module.title)}" loading="lazy"></section>`).join('');
+    const demonstrations = modules.map(module => `<section class="project-module"><h2>${escapeHtml(module.title)}</h2><a href="/media/${url(module.media_id)}" target="_blank" rel="noopener"><img src="/media/${url(module.media_id)}" alt="${escapeHtml(module.title)}" loading="lazy"><span>${escapeHtml(c.viewOriginal)}</span></a></section>`).join('');
     const otherPhotos = photos.filter(photo => !moduleIds.has(photo.id));
     const gallery = otherPhotos.length ? `<h2>${c.photos}</h2><div class="gallery">${otherPhotos.map(photo => `<a href="/media/${url(photo.id)}"><img src="/media/${url(photo.id)}" alt="${escapeHtml(t.title)}" loading="lazy"></a>`).join('')}</div>` : '';
     const downloads = files.length ? `<section><h2>${c.downloads}</h2><ul>${files.map(file => `<li><a href="/files/${url(file.id)}">${escapeHtml(file.download_name)}</a></li>`).join('')}</ul></section>` : '';

@@ -8,6 +8,7 @@ import { DatabaseSync } from 'node:sqlite';
 import test from 'node:test';
 import experiences from '../src/experiences.json' with { type: 'json' };
 import worker, { escapeHtml, isAdmin } from '../src/worker.js';
+import { copy } from '../src/i18n.js';
 import { createSession, hashPassword, safeNext, sessionFromRequest, verifyPassword } from '../src/auth.js';
 
 const id = '11111111-1111-4111-8111-111111111111';
@@ -386,10 +387,13 @@ test('GIF modules appear once per project and keep media access protected', asyn
   const cookie = await loginCookie(DB, 'guest');
   for (const lang of ['zh', 'en', 'ja', 'fr']) {
     const html = await (await worker.fetch(request(`/${lang}/projects/${id}/`, cookie), env, {})).text();
-    assert.ok(html.includes(`<h2>Browse ${lang}</h2><img src="/media/${gifId}"`));
-    assert.equal((html.match(new RegExp(`/media/${gifId}`, 'g')) || []).length, 1);
+    assert.ok(html.includes(`<h2>Browse ${lang}</h2><a href="/media/${gifId}" target="_blank" rel="noopener"><img src="/media/${gifId}" alt="Browse ${lang}" loading="lazy"><span>${copy[lang].viewOriginal}</span></a>`));
+    assert.equal((html.match(new RegExp(`/media/${gifId}`, 'g')) || []).length, 2);
     assert.ok(html.includes(`/media/${imageId}`));
   }
+  const css = await (await worker.fetch(request('/style.css'), env, {})).text();
+  assert.match(css, /\.project-module\{max-width:720px/);
+  assert.match(css, /width:min\(100%,640px\)/);
   assert.equal((await worker.fetch(request(`/media/${gifId}`), env, {})).status, 303);
   assert.equal((await worker.fetch(request(`/media/${gifId}`, cookie), env, {})).headers.get('Content-Type'), 'image/gif');
 });
