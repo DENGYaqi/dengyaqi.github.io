@@ -417,3 +417,15 @@
     en: "Why prompt injection is dangerous for agents, and how to build defenses with untrusted content isolation, least privilege, read/write separation, human approval, sandboxing, and audit logs."
     ja: "Agent における Prompt Injection の危険性と、不信頼コンテンツ分離、最小権限、読み書き分離、人間確認、サンドボックス、監査ログによる防御。"
     fr: "Pourquoi le prompt injection est dangereux pour les agents et comment défendre avec isolation du contenu non fiable, moindre privilège, séparation lecture/écriture, validation humaine, sandbox et logs d'audit."
+
+2026-10-06-perplexity-next-token-prompt-compression:
+  title:
+    zh: "从零看懂困惑度：模型怎样预测下一个词元"
+    en: "Perplexity from Scratch: How a Model Predicts the Next Token"
+    ja: "ゼロからわかるパープレキシティ：モデルは次のトークンをどう予測するか"
+    fr: "Comprendre la perplexité depuis zéro : comment un modèle prédit le prochain token"
+  description:
+    zh: "用“我爱茶”的逐词元概率解释困惑度的计算，以及它在提示词压缩中的作用与局限。"
+    en: "Use a worked next-token example to understand perplexity and its role and limits in prompt compression."
+    ja: "「我爱茶」の次トークン確率を例に、パープレキシティの計算とプロンプト圧縮での役割・限界を解説。"
+    fr: "Un exemple de prédiction du prochain token pour comprendre le calcul de la perplexité, son rôle et ses limites dans la compression des prompts."
