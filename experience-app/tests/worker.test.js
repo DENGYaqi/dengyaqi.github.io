@@ -361,10 +361,11 @@ test('project detail returns to the timeline it came from', async () => {
   for (const lang of ['zh', 'en', 'ja', 'fr']) {
     for (const [source, expected, other] of [['work-ai_rd_lead', 'work/ai_rd_lead', 'education/sample_school'], ['education-sample_school', 'education/sample_school', 'work/ai_rd_lead']]) {
       const html = await (await worker.fetch(request(`/${lang}/projects/${id}/?from=${source}`, cookie), env, {})).text();
-      assert.match(html, new RegExp(`<nav class="detail-back"[^>]*><a href="/${lang}/projects/${expected}/">`));
-      assert.doesNotMatch(html, new RegExp(`<nav class="detail-back"[^>]*><a href="/${lang}/projects/${other}/">`));
-      assert.equal((html.match(/<nav class="detail-back"/g) || []).length, 2);
-      assert.ok(html.indexOf('<div class="detail-heading">') >= 0 && html.indexOf('<div class="detail-heading">') < html.indexOf('<h1>'));
+      assert.match(html, new RegExp(`<nav class="detail-back detail-back-top"[^>]*><a href="/${lang}/projects/${expected}/">`));
+      assert.doesNotMatch(html, new RegExp(`<nav class="detail-back(?: detail-back-top)?"[^>]*><a href="/${lang}/projects/${other}/">`));
+      assert.equal((html.match(/<nav class="detail-back(?: detail-back-top)?"/g) || []).length, 2);
+      assert.ok(html.indexOf('<nav class="detail-back detail-back-top"') < html.indexOf('<h1>'));
+      assert.doesNotMatch(html, /<p class="eyebrow">/);
       assert.ok(html.includes(`href="/${lang === 'zh' ? 'en' : 'zh'}/projects/${id}/?from=${source}"`));
     }
     const direct = await (await worker.fetch(request(`/${lang}/projects/${id}/`, cookie), env, {})).text();

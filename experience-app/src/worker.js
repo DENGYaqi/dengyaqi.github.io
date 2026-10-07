@@ -284,10 +284,11 @@ async function handleGet(env, lang, path, admin, token, source) {
     const destination = selectedWork || selectedEducation || workLinks[0] || educationLinks[0];
     const backHref = destination?.href || `/${lang}/projects/`;
     const backLabel = selectedEducation || (!selectedWork && !workLinks.length && educationLinks.length) ? c.backToEducation : destination ? c.backToWork : c.otherProjects;
-    const back = `<nav class="detail-back" aria-label="${c.projects}"><a href="${backHref}">← ${backLabel}</a></nav>`;
-    const other = !item.experience_keys.length && !item.education_keys.length;
+    const backLink = `<a href="${backHref}">← ${backLabel}</a>`;
+    const back = `<nav class="detail-back" aria-label="${c.projects}">${backLink}</nav>`;
+    const topBack = `<nav class="detail-back detail-back-top" aria-label="${c.projects}">${backLink}${item.status === 'draft' ? `<span class="tag">${c.draft}</span>` : ''}</nav>`;
     const currentPath = selectedWork || selectedEducation ? `${path}?from=${source}` : path;
-    return response(page(lang, t.title || c.noTitle, `<div class="detail-heading"><p class="eyebrow">${other ? c.otherProjects : c.projects}${item.status === 'draft' ? ` · ${c.draft}` : ''}</p>${back}</div><h1>${escapeHtml(t.title || c.noTitle)}</h1><p class="lead">${escapeHtml(t.summary)}</p><div>${linked}</div><section class="prose" data-glossary-url="/${lang}/projects/${url(item.id)}/glossary/">${prettyBody(t.body)}</section>${demonstrations}${gallery}${downloads}${back}<script src="/glossary.js" defer></script>`, admin, currentPath, token));
+    return response(page(lang, t.title || c.noTitle, `${topBack}<h1>${escapeHtml(t.title || c.noTitle)}</h1><p class="lead">${escapeHtml(t.summary)}</p><div>${linked}</div><section class="prose" data-glossary-url="/${lang}/projects/${url(item.id)}/glossary/">${prettyBody(t.body)}</section>${demonstrations}${gallery}${downloads}${back}<script src="/glossary.js" defer></script>`, admin, currentPath, token));
   }
   if (path === `/${lang}/admin/requests/` || path === `/${lang}/admin/accounts/`) {
     if (!admin) return message(lang, c.adminOnly, 403);
