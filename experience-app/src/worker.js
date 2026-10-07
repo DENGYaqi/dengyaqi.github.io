@@ -287,7 +287,7 @@ async function handleGet(env, lang, path, admin, token, source) {
     const back = `<nav class="detail-back" aria-label="${c.projects}"><a href="${backHref}">← ${backLabel}</a></nav>`;
     const other = !item.experience_keys.length && !item.education_keys.length;
     const currentPath = selectedWork || selectedEducation ? `${path}?from=${source}` : path;
-    return response(page(lang, t.title || c.noTitle, `<p class="eyebrow">${other ? c.otherProjects : c.projects}${item.status === 'draft' ? ` · ${c.draft}` : ''}</p><h1>${escapeHtml(t.title || c.noTitle)}</h1><p class="lead">${escapeHtml(t.summary)}</p><div>${linked}</div><section class="prose" data-glossary-url="/${lang}/projects/${url(item.id)}/glossary/">${prettyBody(t.body)}</section>${demonstrations}${gallery}${downloads}${back}<script src="/glossary.js" defer></script>`, admin, currentPath, token));
+    return response(page(lang, t.title || c.noTitle, `<div class="detail-heading"><p class="eyebrow">${other ? c.otherProjects : c.projects}${item.status === 'draft' ? ` · ${c.draft}` : ''}</p>${back}</div><h1>${escapeHtml(t.title || c.noTitle)}</h1><p class="lead">${escapeHtml(t.summary)}</p><div>${linked}</div><section class="prose" data-glossary-url="/${lang}/projects/${url(item.id)}/glossary/">${prettyBody(t.body)}</section>${demonstrations}${gallery}${downloads}${back}<script src="/glossary.js" defer></script>`, admin, currentPath, token));
   }
   if (path === `/${lang}/admin/requests/` || path === `/${lang}/admin/accounts/`) {
     if (!admin) return message(lang, c.adminOnly, 403);

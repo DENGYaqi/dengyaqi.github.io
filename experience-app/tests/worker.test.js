@@ -363,6 +363,8 @@ test('project detail returns to the timeline it came from', async () => {
       const html = await (await worker.fetch(request(`/${lang}/projects/${id}/?from=${source}`, cookie), env, {})).text();
       assert.match(html, new RegExp(`<nav class="detail-back"[^>]*><a href="/${lang}/projects/${expected}/">`));
       assert.doesNotMatch(html, new RegExp(`<nav class="detail-back"[^>]*><a href="/${lang}/projects/${other}/">`));
+      assert.equal((html.match(/<nav class="detail-back"/g) || []).length, 2);
+      assert.ok(html.indexOf('<div class="detail-heading">') >= 0 && html.indexOf('<div class="detail-heading">') < html.indexOf('<h1>'));
       assert.ok(html.includes(`href="/${lang === 'zh' ? 'en' : 'zh'}/projects/${id}/?from=${source}"`));
     }
     const direct = await (await worker.fetch(request(`/${lang}/projects/${id}/`, cookie), env, {})).text();
