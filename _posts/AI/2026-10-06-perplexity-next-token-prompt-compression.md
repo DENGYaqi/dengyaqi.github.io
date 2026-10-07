@@ -16,7 +16,7 @@ math: true
 
 ## 从“下一个字母”到“下一个词元”
 
-1948 年，香农在[《通信的数学理论》](https://people.math.harvard.edu/~ctm/home/text/others/shannon/entropy/entropy.pdf)中研究信息来源产生符号时的不确定性，以及语言中的统计规律如何带来冗余。比如，知道前面已经出现哪些字母，会改变我们对后续字母的预期。1951 年，他又在[《印刷英语的预测与熵》](https://sites.socsci.uci.edu/~rfutrell/teaching/itl-davis/readings/shannon1951prediction.pdf)中研究：给定前面的文字，人能在多大程度上预测**下一个字母**？他用这种预测性来研究英语的熵和冗余。（1948 年论文第 2 节；1951 年论文摘要与第 1 节）
+1948 年，香农在[《通信的数学理论》](https://people.math.harvard.edu/~ctm/home/text/others/shannon/entropy/entropy.pdf)中研究信息来源产生符号时的不确定性，以及语言中的统计规律如何带来冗余。比如，知道前面已经出现哪些字母，会改变我们对后续字母的预期。1951 年，他又在[《印刷英语的预测与熵》](https://sites.socsci.uci.edu/~rfutrell/teaching/itl-davis/readings/shannon1951prediction.pdf)中研究：给定前面的文字，人能在多大程度上预测**下一个字母**？他用这种预测性来研究英语的熵和冗余。[^shannon]
 
 **这里说的是思想脉络，不是说香农提出了今天语言模型使用的词元困惑度公式。** 两者相通的地方是：如果某个后续内容很容易由前文推知，它带来的新信息通常较少；如果它出乎预料，我们就需要更多信息才能确定它是什么。
 
@@ -116,7 +116,7 @@ $$\ln$$ 把连续的**乘法**改写成**加法**；除以 $$N$$ 求每个词元
 
 [Selective Context 第 2—3 节](https://arxiv.org/pdf/2304.12102)用实际词元的 $$-\log p$$ 衡量它的自信息量，并尝试保留分数较高的词元、短语或句子。[LLMLingua 的引言与第 4.1—4.2 节](https://aclanthology.org/2023.emnlp-main.825.pdf)沿着类似思路，使用较小的语言模型估计内容的困惑度：作者认为较容易预测的部分可能更冗余，较难预测的部分可能更值得保留。
 
-**这是论文采用的筛选思路，不是困惑度公式本身给出的保证。** LLMLingua 也没有只按一张词元分数表机械删词。它会给指令、示例和问题分配不同的压缩预算，先筛选较大的内容单位，再逐段进行词元级压缩，以考虑保留内容之间的关系。（LLMLingua 第 4.1—4.3 节）
+**这是论文采用的筛选思路，不是困惑度公式本身给出的保证。** LLMLingua 也没有只按一张词元分数表机械删词。它会给指令、示例和问题分配不同的压缩预算，先筛选较大的内容单位，再逐段进行词元级压缩，以考虑保留内容之间的关系。[^llmlingua]
 
 后续论文进一步说明了单看预测难度的局限：[LongLLMLingua 的引言及第 4 节](https://aclanthology.org/2024.acl-long.91.pdf)强调压缩长文档时要考虑**当前问题**，因为一段内容本身难预测，未必能回答用户的问题；[LLMLingua-2 的摘要及第 3—4 节](https://aclanthology.org/2024.findings-acl.57.pdf)则指出，依据因果语言模型得到的预测难度，未必与压缩目标一致，因此改为训练模型判断哪些词元应保留。
 
@@ -130,3 +130,8 @@ $$\ln$$ 把连续的**乘法**改写成**加法**；除以 $$N$$ 求每个词元
 4. [LLMLingua，2023](https://aclanthology.org/2023.emnlp-main.825.pdf)：将预测难度用于分层提示词压缩。
 5. [LongLLMLingua，2024](https://aclanthology.org/2024.acl-long.91.pdf)：在长上下文压缩中加入问题相关性。
 6. [LLMLingua-2，2024](https://aclanthology.org/2024.findings-acl.57.pdf)：用学习得到的词元保留判断替代原先的困惑度筛选。
+
+### 注释
+
+[^shannon]: 1948 年论文第 2 节；1951 年论文摘要与第 1 节
+[^llmlingua]: LLMLingua 第 4.1—4.3 节
