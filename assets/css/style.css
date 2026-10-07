@@ -893,6 +893,10 @@ section {
   animation: gradient-shift 15s ease infinite;
 }
 
+.contact-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
 .contact-card {
   display: block;
   color: var(--dark);
