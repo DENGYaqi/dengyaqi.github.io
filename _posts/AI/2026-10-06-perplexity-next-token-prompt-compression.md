@@ -10,7 +10,7 @@ math: true
 
 为什么一篇讨论**提示词压缩**的论文，会用到“困惑度”？
 
-给大模型的材料可能包含指令、示例、检索到的文档和先前对话。材料越长，处理它所需的计算和费用通常越高；但随手删去一段，又可能删掉回答问题所需的信息。[LLMLingua 的引言](https://aclanthology.org/2023.emnlp-main.825.pdf)提出的就是这个问题：怎样缩短输入，同时尽量保留有用内容？
+给大模型的材料可能包含指令、示例、检索到的文档和先前对话。材料越长，处理它所需的计算和费用通常越高；但随手删去一段，又可能删掉回答问题所需的信息。[LLMLingua](https://aclanthology.org/2023.emnlp-main.825.pdf)[^llmlingua-intro]提出的就是这个问题：怎样缩短输入，同时尽量保留有用内容？
 
 作者借用了一个更早的想法：**一段文字有多容易根据前文预测？** 要看懂它与压缩有什么关系，我们先从这个想法的来历讲起。
 
@@ -30,7 +30,7 @@ math: true
 
 ## 模型到底从哪里选“下一个”？
 
-模型有一张预先确定的**词元表**。读到“我爱”后，它会给词元表中的候选分配下一位出现的概率。候选不限于当前句子里已经出现的字，也不是从这句话中挑出一组“清洗过的词”。[Selective Context 论文第 2—3 节](https://arxiv.org/pdf/2304.12102)正是用语言模型给实际词元的这种条件概率，计算它有多出乎预料。
+模型有一张预先确定的**词元表**。读到“我爱”后，它会给词元表中的候选分配下一位出现的概率。候选不限于当前句子里已经出现的字，也不是从这句话中挑出一组“清洗过的词”。[Selective Context](https://arxiv.org/pdf/2304.12102)[^selective-context-prediction]正是用语言模型给实际词元的这种条件概率，计算它有多出乎预料。
 
 假设模型读到“我爱”后给出以下概率：
 
@@ -114,11 +114,11 @@ $$\ln$$ 把连续的**乘法**改写成**加法**；除以 $$N$$ 求每个词元
 
 ## 为什么“预测难度”会成为压缩依据？
 
-[Selective Context 第 2—3 节](https://arxiv.org/pdf/2304.12102)用实际词元的 $$-\log p$$ 衡量它的自信息量，并尝试保留分数较高的词元、短语或句子。[LLMLingua 的引言与第 4.1—4.2 节](https://aclanthology.org/2023.emnlp-main.825.pdf)沿着类似思路，使用较小的语言模型估计内容的困惑度：作者认为较容易预测的部分可能更冗余，较难预测的部分可能更值得保留。
+[Selective Context](https://arxiv.org/pdf/2304.12102)[^selective-context-compression]用实际词元的 $$-\log p$$ 衡量它的自信息量，并尝试保留分数较高的词元、短语或句子。[LLMLingua](https://aclanthology.org/2023.emnlp-main.825.pdf)[^llmlingua-method]沿着类似思路，使用较小的语言模型估计内容的困惑度：作者认为较容易预测的部分可能更冗余，较难预测的部分可能更值得保留。
 
 **这是论文采用的筛选思路，不是困惑度公式本身给出的保证。** LLMLingua[^llmlingua] 也没有只按一张词元分数表机械删词。它会给指令、示例和问题分配不同的压缩预算，先筛选较大的内容单位，再逐段进行词元级压缩，以考虑保留内容之间的关系。
 
-后续论文进一步说明了单看预测难度的局限：[LongLLMLingua 的引言及第 4 节](https://aclanthology.org/2024.acl-long.91.pdf)强调压缩长文档时要考虑**当前问题**，因为一段内容本身难预测，未必能回答用户的问题；[LLMLingua-2 的摘要及第 3—4 节](https://aclanthology.org/2024.findings-acl.57.pdf)则指出，依据因果语言模型得到的预测难度，未必与压缩目标一致，因此改为训练模型判断哪些词元应保留。
+后续论文进一步说明了单看预测难度的局限：[LongLLMLingua](https://aclanthology.org/2024.acl-long.91.pdf)[^longllmlingua]强调压缩长文档时要考虑**当前问题**，因为一段内容本身难预测，未必能回答用户的问题；[LLMLingua-2](https://aclanthology.org/2024.findings-acl.57.pdf)[^llmlingua2]则指出，依据因果语言模型得到的预测难度，未必与压缩目标一致，因此改为训练模型判断哪些词元应保留。
 
 可以这样记住全文的界限：**困惑度回答“这个模型有多难预测这段文字”，不直接回答“这段文字对当前任务有多重要”。** 它可以成为压缩的线索；是否该删除，还要看问题、上下文和删除后的实际效果。
 
@@ -133,6 +133,12 @@ $$\ln$$ 把连续的**乘法**改写成**加法**；除以 $$N$$ 求每个词元
 
 ### 注释
 
+[^llmlingua-intro]: LLMLingua 的引言
 [^shannon1948]: 1948 年论文第 2 节
 [^shannon1951]: 1951 年论文摘要与第 1 节
+[^selective-context-prediction]: Selective Context 论文第 2—3 节
+[^selective-context-compression]: Selective Context 第 2—3 节
+[^llmlingua-method]: LLMLingua 的引言与第 4.1—4.2 节
 [^llmlingua]: LLMLingua 第 4.1—4.3 节
+[^longllmlingua]: LongLLMLingua 的引言及第 4 节
+[^llmlingua2]: LLMLingua-2 的摘要及第 3—4 节
