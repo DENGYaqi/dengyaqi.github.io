@@ -34,11 +34,14 @@ npm run dev
 
 项目详情可按模块展示 GIF。私有 JSON 中，每种语言的项目 `translations` 可添加同顺序的 `modules: [{"title":"模块名称","media_id":"GIF 的 UUID"}]`；四语使用相同的 `media_id`。同一文件可添加 `media: [{"id":"同一 UUID","project_id":"项目 UUID","file":"GIF 绝对路径","sort_order":0}]`，先运行上述内容导入，再运行 `node scripts/upload-private-gifs.mjs <私有文件路径> --local|--remote`。后者只接受 GIF，将文件放入私有 R2，并把关联写入 D1；旧图片继续显示在普通图库。项目从工作或学校页面打开时，详情底部只显示对应来源的返回链接。
 
+项目术语词典由 D1 的 `glossary_terms` 和 `project_glossary_terms` 维护。先应用迁移，再将仓库外的私有 JSON 传给 `node scripts/import-private-glossary.mjs <私有文件路径> --local|--remote`。文件包含 `terms` 数组（每项有稳定 `key` 和 `translations`，其中 `zh`、`en`、`ja`、`fr` 各含非空 `text` 与 `definition`）及 `projects` 数组（每项有项目 `id` 和术语 `key` 的 `terms` 数组）。每个项目详情只请求一次受保护的 `/{lang}/projects/{id}/glossary/`；响应不缓存。同一词条可关联多个项目，词条和解释只存一份。导入时只更新文件列出的项目关联；需要清空某项目词条时，为该项目提供空 `terms` 数组。术语正文不进入公开仓库。
+
 ## 路径
 
 - `/{lang}/login/`：独立登录页；登录成功后仅返回本站内已验证的目标路径。
 - `/{lang}/request-access/`：申请查看，保存邮箱、理由和原目标位置；申请本身不授权访问。
 - `/{lang}/projects/`：其他项目列表；`/{lang}/projects/{id}/`：受保护的项目详情；`/{lang}/projects/education/`：完整教育时间线；`/{lang}/projects/education/{key}/`：单所学校及对应项目。
+- `/{lang}/projects/{id}/glossary/`：登录后一次读取该项目当前语言的术语；草稿仅管理员可读。
 - `/{lang}/experiences/`：完整工作经历时间线；`/{lang}/experiences/{key}/` 与 `/{lang}/projects/work/{key}/`：单段经历及对应的项目名单。
 - `/files/{id}`：仅登录后下载已发布项目的学术 PDF；草稿文件仅管理员可读。
 - `/{lang}/admin/accounts/`：访客账号管理；`/{lang}/admin/requests/`：申请审核。原内容管理地址已关闭。

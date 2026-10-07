@@ -18,7 +18,7 @@ const storedPassword = await hashPassword('correct horse battery staple', 'AAAAA
 
 function fixture() {
   const sqlite = new DatabaseSync(':memory:');
-  for (const name of ['0001_initial.sql', '0002_education.sql', '0003_accounts.sql', '0004_access_requests.sql', '0005_project_files.sql', '0006_work_experiences.sql', '0007_education_experiences.sql']) sqlite.exec(readFileSync(new URL(`../migrations/${name}`, import.meta.url), 'utf8'));
+  for (const name of ['0001_initial.sql', '0002_education.sql', '0003_accounts.sql', '0004_access_requests.sql', '0005_project_files.sql', '0006_work_experiences.sql', '0007_education_experiences.sql', '0008_glossary.sql']) sqlite.exec(readFileSync(new URL(`../migrations/${name}`, import.meta.url), 'utf8'));
   sqlite.prepare('INSERT INTO projects (id, status, sort_order, translations, experience_keys, education_keys, created_at, updated_at) VALUES (?, ?, 0, ?, ?, ?, ?, ?)').run(id, 'draft', JSON.stringify(translations), '["ai_rd_lead"]', '[]', '', '');
   sqlite.prepare('INSERT INTO educations (key, sort_order, translations) VALUES (?, 0, ?)').run('sample_school', JSON.stringify(Object.fromEntries(['zh', 'en', 'ja', 'fr'].map(lang => [lang, { school: `Example school ${lang}`, degree: `Degree ${lang}`, date: '2017–2019', summary: `Summary ${lang}` }]))));
   const educationDetails = Object.fromEntries(['zh', 'en', 'ja', 'fr'].map(lang => [lang, { degree: `Private degree ${lang}`, study_mode: `Full-time ${lang}`, major: `Major ${lang}` }]));
@@ -79,6 +79,37 @@ test('login page and every private content path require a site session', async (
   assert.equal((await worker.fetch(request('/style.css'), env, {})).status, 200);
 });
 
+test('project glossary returns one protected, uncached four-language response', async () => {
+  const { env, DB, sqlite } = fixture();
+  const glossaryPath = lang => `/${lang}/projects/${id}/glossary/`;
+  const anonymous = await worker.fetch(request(glossaryPath('zh')), env, {});
+  assert.equal(anonymous.status, 401);
+  assert.equal(anonymous.headers.get('Cache-Control'), 'private, no-store');
+  const guest = await loginCookie(DB, 'guest');
+  const admin = await loginCookie(DB, 'owner');
+  assert.equal((await worker.fetch(request(glossaryPath('zh'), guest), env, {})).status, 404);
+  const meanings = Object.fromEntries(['zh', 'en', 'ja', 'fr'].map(lang => [lang, { text: `Hibernate/JPA ${lang}`, definition: `Explanation ${lang}` }]));
+  sqlite.prepare('INSERT INTO glossary_terms (key, translations) VALUES (?, ?)').run('hibernate-jpa', JSON.stringify(meanings));
+  sqlite.prepare('INSERT INTO project_glossary_terms (project_id, term_key) VALUES (?, ?)').run(id, 'hibernate-jpa');
+  const draft = await worker.fetch(request(glossaryPath('zh'), admin), env, {});
+  assert.equal(draft.status, 200);
+  assert.deepEqual(await draft.json(), { terms: [{ key: 'hibernate-jpa', ...meanings.zh }] });
+  sqlite.prepare("UPDATE projects SET status = 'published' WHERE id = ?").run(id);
+  for (const lang of ['zh', 'en', 'ja', 'fr']) {
+    const result = await worker.fetch(request(glossaryPath(lang), guest), env, {});
+    assert.equal(result.status, 200);
+    assert.equal(result.headers.get('Cache-Control'), 'private, no-store');
+    assert.deepEqual(await result.json(), { terms: [{ key: 'hibernate-jpa', ...meanings[lang] }] });
+  }
+  const secondId = '44444444-4444-4444-8444-444444444444';
+  sqlite.prepare('INSERT INTO projects (id, status, sort_order, translations, experience_keys, education_keys, created_at, updated_at) VALUES (?, ?, 0, ?, ?, ?, ?, ?)').run(secondId, 'published', JSON.stringify(translations), '[]', '[]', '', '');
+  sqlite.prepare('INSERT INTO project_glossary_terms (project_id, term_key) VALUES (?, ?)').run(secondId, 'hibernate-jpa');
+  assert.equal((await (await worker.fetch(request(`/zh/projects/${secondId}/glossary/`, guest), env, {})).json()).terms[0].key, 'hibernate-jpa');
+  sqlite.prepare('DELETE FROM project_glossary_terms WHERE project_id = ?').run(secondId);
+  assert.deepEqual(await (await worker.fetch(request(`/zh/projects/${secondId}/glossary/`, guest), env, {})).json(), { terms: [] });
+  assert.equal((await worker.fetch(request('/zh/projects/55555555-5555-4555-8555-555555555555/glossary/', guest), env, {})).status, 404);
+});
+
 test('academic PDF requires a session and a published project', async () => {
   const { env, sqlite } = fixture();
   const cookie = await loginCookie(env.DB, 'guest');
@@ -123,6 +154,7 @@ test('password login preserves target, limits role, and logout returns to the pu
   const session = await sessionFromRequest(request('/zh/projects/', cookie), DB);
   const privatePage = await worker.fetch(request('/zh/projects/', cookie), env, {});
   assert.match(privatePage.headers.get('Content-Security-Policy'), /form-action 'self' https:\/\/dengyaqi\.github\.io;/);
+  assert.match(privatePage.headers.get('Content-Security-Policy'), /script-src 'self'; connect-src 'self';/);
   const rejectedLogout = await worker.fetch(request('/zh/logout/', cookie, { method: 'POST', body: new URLSearchParams({ csrf: 'wrong' }) }), env, {});
   assert.equal(rejectedLogout.status, 403);
   assert.ok(await sessionFromRequest(request('/zh/projects/', cookie), DB));

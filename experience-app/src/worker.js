@@ -1,6 +1,7 @@
 import experiences from './experiences.json' with { type: 'json' };
 import { copy, languages } from './i18n.js';
 import style from './style.js';
+import glossaryClient from './glossary-client.js';
 import { clearLoginAttempts, createSession, expiredCookie, formToken, hashPassword, newPassword, normalizeEmail, rateLimited, revokeSession, safeNext, sessionFromRequest, validCsrf, validFormToken, verifyPassword } from './auth.js';
 
 const MAX_ANONYMOUS_FORM_BYTES = 16 * 1024;
@@ -8,7 +9,7 @@ const ID = '[0-9a-f-]{36}';
 const publicOrigin = 'https://dengyaqi.github.io';
 const headers = {
   'Cache-Control': 'private, no-store',
-  'Content-Security-Policy': `default-src 'none'; style-src 'self'; img-src 'self'; form-action 'self' ${publicOrigin}; base-uri 'none'; frame-ancestors 'none'`,
+  'Content-Security-Policy': `default-src 'none'; style-src 'self'; script-src 'self'; connect-src 'self'; img-src 'self'; form-action 'self' ${publicOrigin}; base-uri 'none'; frame-ancestors 'none'`,
   'Referrer-Policy': 'no-referrer',
   'X-Content-Type-Options': 'nosniff',
   'X-Frame-Options': 'DENY',
@@ -286,7 +287,7 @@ async function handleGet(env, lang, path, admin, token, source) {
     const back = `<nav class="detail-back" aria-label="${c.projects}"><a href="${backHref}">← ${backLabel}</a></nav>`;
     const other = !item.experience_keys.length && !item.education_keys.length;
     const currentPath = selectedWork || selectedEducation ? `${path}?from=${source}` : path;
-    return response(page(lang, t.title || c.noTitle, `<p class="eyebrow">${other ? c.otherProjects : c.projects}${item.status === 'draft' ? ` · ${c.draft}` : ''}</p><h1>${escapeHtml(t.title || c.noTitle)}</h1><p class="lead">${escapeHtml(t.summary)}</p><div>${linked}</div><section class="prose">${prettyBody(t.body)}</section>${demonstrations}${gallery}${downloads}${back}`, admin, currentPath, token));
+    return response(page(lang, t.title || c.noTitle, `<p class="eyebrow">${other ? c.otherProjects : c.projects}${item.status === 'draft' ? ` · ${c.draft}` : ''}</p><h1>${escapeHtml(t.title || c.noTitle)}</h1><p class="lead">${escapeHtml(t.summary)}</p><div>${linked}</div><section class="prose" data-glossary-url="/${lang}/projects/${url(item.id)}/glossary/">${prettyBody(t.body)}</section>${demonstrations}${gallery}${downloads}${back}<script src="/glossary.js" defer></script>`, admin, currentPath, token));
   }
   if (path === `/${lang}/admin/requests/` || path === `/${lang}/admin/accounts/`) {
     if (!admin) return message(lang, c.adminOnly, 403);
@@ -301,10 +302,12 @@ export default {
     try {
       const requestUrl = new URL(request.url), path = requestUrl.pathname;
       if (request.method === 'GET' && path === '/style.css') return response(style, 200, 'text/css; charset=utf-8');
+      if (request.method === 'GET' && path === '/glossary.js') return response(glossaryClient, 200, 'text/javascript; charset=utf-8');
       if (request.method === 'GET' && path === '/robots.txt') return response('User-agent: *\nDisallow: /\n', 200, 'text/plain; charset=utf-8');
       if (request.method === 'GET' && path === '/') return redirect('/zh/projects/');
       const match = path.match(/^\/(zh|en|ja|fr)\//);
       const lang = match?.[1] || 'zh';
+      const glossaryMatch = match && path.match(new RegExp(`^/${lang}/projects/(${ID})/glossary/$`));
       if (match && (path === `/${lang}/admin/` || path.startsWith(`/${lang}/admin/projects/`) || path.startsWith(`/${lang}/admin/images/`))) {
         return response('Not found', 404, 'text/plain; charset=utf-8');
       }
@@ -370,10 +373,20 @@ export default {
         return redirect(`${publicOrigin}/${lang}/about/`, expiredCookie(request));
       }
       if (!session) {
+        if (glossaryMatch) return response('{"error":"unauthorized"}', 401, 'application/json; charset=utf-8');
         const next = safeNext(path + requestUrl.search, lang);
         return redirect(`/${lang}/login/?next=${encodeURIComponent(next)}`);
       }
       const admin = isAdmin(session);
+      if (request.method === 'GET' && glossaryMatch) {
+        const rows = await env.DB.prepare('SELECT p.status, g.key, g.translations FROM projects p LEFT JOIN project_glossary_terms pg ON pg.project_id = p.id LEFT JOIN glossary_terms g ON g.key = pg.term_key WHERE p.id = ? ORDER BY g.key').bind(glossaryMatch[1]).all();
+        if (!rows.results.length || (rows.results[0].status !== 'published' && !admin)) return response('{"error":"not_found"}', 404, 'application/json; charset=utf-8');
+        const terms = rows.results.filter(row => row.key).map(row => {
+          const translated = JSON.parse(row.translations)[lang];
+          return { key: row.key, text: translated.text, definition: translated.definition };
+        });
+        return response(JSON.stringify({ terms }), 200, 'application/json; charset=utf-8');
+      }
       if (request.method === 'GET' && path.startsWith('/media/')) {
         const id = path.slice('/media/'.length);
         if (!isUuid(id)) return response('Not found', 404, 'text/plain; charset=utf-8');
