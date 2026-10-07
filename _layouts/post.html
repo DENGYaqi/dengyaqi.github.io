@@ -13,6 +13,7 @@ layout: default
 <main class="article-shell">
   <article>
     <header class="article-header">
+      <a class="article-back" href="{{ lang_base | append: '/blog/' | relative_url }}" onclick="if (history.length > 1 && document.referrer && new URL(document.referrer).origin === location.origin && new URL(document.referrer).pathname !== location.pathname) { history.back(); return false; }">← {{ t.common.back_page }}</a>
       <h1>{{ page.title }}</h1>
       {% if page.description %}<p class="article-desc">{{ page.description }}</p>{% endif %}
       <p class="article-meta">

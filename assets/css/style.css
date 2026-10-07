@@ -1393,6 +1393,24 @@ section {
   margin-bottom: 2.2rem;
 }
 
+.article-back {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin-bottom: 1rem;
+  color: var(--orange);
+  font-weight: 700;
+}
+
+.article-back:hover {
+  text-decoration: underline;
+}
+
+.article-back:focus-visible {
+  outline: 3px solid var(--orange);
+  outline-offset: 3px;
+}
+
 .article-header h1 {
   color: var(--dark);
   font-size: clamp(2.4rem, 5vw, 4.2rem);

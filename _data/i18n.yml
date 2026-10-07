@@ -26,6 +26,7 @@ zh:
     contact: 联系
   common:
     posts_count: 篇文章
+    back_page: 返回上一页
     previous: 上一篇
     next: 下一篇
     none: 没有了
@@ -198,6 +199,7 @@ en:
     contact: Contact
   common:
     posts_count: posts
+    back_page: Back to previous page
     previous: Previous
     next: Next
     none: None
@@ -370,6 +372,7 @@ ja:
     contact: 連絡先
   common:
     posts_count: 件の記事
+    back_page: 前のページに戻る
     previous: 前の記事
     next: 次の記事
     none: ありません
@@ -542,6 +545,7 @@ fr:
     contact: Contact
   common:
     posts_count: articles
+    back_page: Retour à la page précédente
     previous: Précédent
     next: Suivant
     none: Aucun
