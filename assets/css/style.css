@@ -1429,6 +1429,10 @@ section {
   text-underline-offset: 3px;
 }
 
+.article-content.plain-links a {
+  text-decoration: none;
+}
+
 .article-content sup[id^="fnref:"],
 .article-content .footnotes li[id^="fn:"] {
   scroll-margin-top: 7rem;

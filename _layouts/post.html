@@ -21,7 +21,7 @@ layout: default
       </p>
     </header>
 
-    <div class="article-content">
+    <div class="article-content{% if page.plain_links %} plain-links{% endif %}">
       {{ content }}
     </div>
 

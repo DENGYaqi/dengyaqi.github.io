@@ -6,6 +6,7 @@ tags: [ai-core, llm, perplexity, prompt-compression]
 pin: false
 published: true
 math: true
+plain_links: true
 ---
 
 为什么一篇讨论**提示词压缩**的论文，会用到“困惑度”？
