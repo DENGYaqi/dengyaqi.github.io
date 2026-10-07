@@ -133,14 +133,12 @@ async function workTimeline(db, lang) {
   return `<div class="work-hero"><span class="work-label">EXPERIENCE</span><h1>${c.experiences}</h1></div><section class="work-timeline" aria-label="${c.experiences}">${cards}</section>`;
 }
 
-async function educationTimeline(db, lang, focus) {
+async function educationTimeline(db, lang) {
   const c = copy[lang];
   const schools = await educations(db);
-  const entries = focus ? schools.filter(item => item.key === focus) : schools;
-  if (!entries.length) return null;
   const details = await educationEntries(db);
   const published = new Map((await projects(db)).map(item => [item.id, item]));
-  const cards = entries.map(item => {
+  const cards = schools.map(item => {
     const content = details.get(item.key);
     const fields = content?.details?.[lang] || content?.details?.zh;
     const date = item.translations[lang]?.date || item.translations.zh?.date || '';
@@ -150,7 +148,7 @@ async function educationTimeline(db, lang, focus) {
       return `<li>${linked ? `<a href="/${lang}/projects/${url(project.project_id)}/?from=education-${url(item.key)}">${title}<span>${c.open} →</span></a>` : `<div>${title}<span class="work-pending">${c.pending}</span></div>`}</li>`;
     }).join('');
     const facts = fields ? `<p class="education-facts"><span>${c.degreeLabel}${escapeHtml(fields.degree)}</span><span>${c.studyModeLabel}${escapeHtml(fields.study_mode)}</span><span>${c.majorLabel}${escapeHtml(fields.major)}</span></p>` : '';
-    return `<article class="work-timeline-item"><div class="work-timeline-card"><div class="work-heading"><h2>${escapeHtml(educationName(item, lang))}</h2><span class="work-date">${escapeHtml(date)}</span></div>${facts}${projectList ? `<div class="work-projects"><h3>${c.relatedProjects}</h3><ul>${projectList}</ul></div>` : ''}</div></article>`;
+    return `<article id="school-${url(item.key)}" class="work-timeline-item"><div class="work-timeline-card"><div class="work-heading"><h2>${escapeHtml(educationName(item, lang))}</h2><span class="work-date">${escapeHtml(date)}</span></div>${facts}${projectList ? `<div class="work-projects"><h3>${c.relatedProjects}</h3><ul>${projectList}</ul></div>` : ''}</div></article>`;
   }).join('');
   return `<div class="work-hero"><span class="work-label">EDUCATION</span><h1>${c.education}</h1></div><section class="work-timeline" aria-label="${c.education}">${cards || `<p class="muted">${c.educationEmpty}</p>`}</section>`;
 }
@@ -256,10 +254,11 @@ async function handleGet(env, lang, path, admin, token, source) {
   const workKey = workFocus?.[1] || expMatch?.[1];
   if (workKey) return experience(workKey) ? redirect(`/${lang}/experiences/#work-${workKey}`) : message(lang, c.notFound, 404);
   if (path === `/${lang}/experiences/`) return response(page(lang, c.experiences, await workTimeline(env.DB, lang), admin, path, token));
-  if (path === `/${lang}/projects/education/` || schoolFocus) {
-    const body = await educationTimeline(env.DB, lang, schoolFocus?.[1]);
-    return body ? response(page(lang, c.education, body, admin, path, token)) : message(lang, c.notFound, 404);
+  if (schoolFocus) {
+    const school = await env.DB.prepare('SELECT key FROM educations WHERE key = ?').bind(schoolFocus[1]).first();
+    return school ? redirect(`/${lang}/projects/education/#school-${schoolFocus[1]}`) : message(lang, c.notFound, 404);
   }
+  if (path === `/${lang}/projects/education/`) return response(page(lang, c.education, await educationTimeline(env.DB, lang), admin, path, token));
   if (path === `/${lang}/projects/`) {
     return response(page(lang, c.otherProjects, await otherProjectsPage(env.DB, lang), admin, path, token));
   }

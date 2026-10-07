@@ -336,23 +336,28 @@ test('work timeline shows private copy and links only published projects in all 
 test('education timeline shows private details and only published linked projects in all languages', async () => {
   const { env, DB, sqlite } = fixture();
   const cookie = await loginCookie(DB, 'guest');
+  sqlite.prepare('INSERT INTO educations (key, sort_order, translations) VALUES (?, 1, ?)').run('other_school', JSON.stringify(Object.fromEntries(['zh', 'en', 'ja', 'fr'].map(lang => [lang, { school: `Other school ${lang}`, date: '2013–2014' }]))));
   for (const lang of ['zh', 'en', 'ja', 'fr']) {
     const all = await (await worker.fetch(request(`/${lang}/projects/education/`, cookie), env, {})).text();
-    assert.equal((all.match(/class="work-timeline-item"/g) || []).length, 1);
+    assert.equal((all.match(/class="work-timeline-item"/g) || []).length, 2);
+    assert.ok(all.includes('id="school-sample_school"'));
+    assert.ok(all.includes('id="school-other_school"'));
     assert.ok(all.includes(`Private degree ${lang}`));
     assert.ok(all.includes(`Full-time ${lang}`));
     assert.ok(all.includes(`Major ${lang}`));
     assert.ok(all.includes(`Pending ${lang}`));
     assert.ok(!all.includes(`Summary ${lang}`));
     assert.ok(!all.includes(`href="/${lang}/projects/${id}/"`));
-    const school = await (await worker.fetch(request(`/${lang}/projects/education/sample_school/`, cookie), env, {})).text();
-    assert.equal((school.match(/class="work-timeline-item"/g) || []).length, 1);
-    assert.match(school, new RegExp(`href="/${lang === 'zh' ? 'en' : 'zh'}/projects/education/sample_school/"`));
+    const school = await worker.fetch(request(`/${lang}/projects/education/sample_school/`, cookie), env, {});
+    assert.equal(school.status, 303);
+    assert.equal(school.headers.get('Location'), `/${lang}/projects/education/#school-sample_school`);
   }
   sqlite.prepare("UPDATE projects SET status = 'published', education_keys = ? WHERE id = ?").run('["sample_school"]', id);
   const published = await (await worker.fetch(request('/zh/projects/education/', cookie), env, {})).text();
   assert.ok(published.includes(`href="/zh/projects/${id}/?from=education-sample_school"`));
   assert.equal((await worker.fetch(request('/zh/projects/education/no_school/', cookie), env, {})).status, 404);
+  const anonymous = await worker.fetch(request('/zh/projects/education/sample_school/'), env, {});
+  assert.equal(anonymous.headers.get('Location'), '/zh/login/?next=%2Fzh%2Fprojects%2Feducation%2Fsample_school%2F');
 });
 
 test('project detail returns to the timeline it came from', async () => {
