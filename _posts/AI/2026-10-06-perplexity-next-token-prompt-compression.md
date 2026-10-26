@@ -1,5 +1,6 @@
 ---
 title: 从零看懂困惑度：模型怎样预测下一个词元
+description: 用“我爱茶”的逐词元概率解释困惑度的计算，以及它在提示词压缩中的作用与局限。
 date: 2026-10-06 00:00:00 +0800
 categories: [AI, Core]
 tags: [ai-core, llm, perplexity, prompt-compression]
