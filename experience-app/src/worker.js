@@ -280,7 +280,7 @@ async function handleGet(env, lang, path, admin, token, source, session) {
     const photosById = new Map(photos.map(photo => [photo.id, photo]));
     const modules = (Array.isArray(t.modules) ? t.modules : []).filter(module => photosById.get(module.media_id)?.content_type === 'image/gif');
     const local = localEnabled(env, session);
-    const launch = local ? localLaunchPanel(item.id, session, lang) : await launchPanel(env, item.id, session, lang);
+    const launch = local ? localLaunchPanel(item.id, session, lang, env) : await launchPanel(env, item.id, session, lang);
     const moduleIds = new Set(modules.map(module => module.media_id));
     const demonstrations = modules.map((module, index) => {
       const poster = photosById.get(module.poster_id);

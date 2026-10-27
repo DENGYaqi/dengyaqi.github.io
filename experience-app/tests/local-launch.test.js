@@ -1,7 +1,9 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { runInNewContext } from 'node:vm';
-import { mkdtemp, rm } from 'node:fs/promises';
+import { mkdtemp, rm, writeFile, readFile } from 'node:fs/promises';
+import { spawnSync } from 'node:child_process';
+import { fileURLToPath } from 'node:url';
 import { tmpdir } from 'node:os';
 import { join, resolve, sep } from 'node:path';
 import http from 'node:http';
@@ -23,7 +25,7 @@ const context = { name: 'desktop-linux', endpoint: 'npipe:////./pipe/dockerDeskt
 const uri = async (id = projectId, lang = 'zh') => `yaqi-local://launch?ticket=${await issueLocalTicket(privateKey, id, lang, issuer)}`;
 async function fixture() {
   const f = await runtimeFixture();
-  Object.assign(f.env, { LAUNCH_ENABLED: 'false', LOCAL_LAUNCH_ENABLED: 'true', LOCAL_LAUNCH_PRIVATE_KEY: JSON.stringify(privateKey), LOCAL_LAUNCH_ISSUER: issuer });
+  Object.assign(f.env, { LAUNCH_ENABLED: 'false', LOCAL_LAUNCH_ENABLED: 'true', LOCAL_LAUNCH_PRIVATE_KEY: JSON.stringify(privateKey), LOCAL_LAUNCH_ISSUER: issuer, LOCAL_LAUNCH_PROJECT_IDS: JSON.stringify([projectId]) });
   return f;
 }
 async function temporary(t) {
@@ -207,7 +209,7 @@ test('full helper flow verifies ticket, opens progress, records success, and rej
   await assert.rejects(launchLocal('yaqi-local://launch?ticket=forged', settings, dependencies), /ticket/);
 });
 
-test('browser flow prevents duplicate submits, keeps an explicit launch link and clears expired credentials', async () => {
+test('browser flow requires a real user click, prevents duplicate submits and clears expired credentials', async () => {
   let submit, expire, clicks = 0, resolveFetch;
   const button = {}, status = {}, help = {}, retry = { hidden: true, removeAttribute() { delete this.href; }, click() { clicks++; } };
   const form = { querySelector: () => button, addEventListener: (_, fn) => { submit = fn; } };
@@ -215,8 +217,46 @@ test('browser flow prevents duplicate submits, keeps an explicit launch link and
   runInNewContext(localClient, { document: { querySelectorAll: () => [panel] }, fetch: () => new Promise(resolve => { resolveFetch = resolve; }), FormData: class {}, URLSearchParams: class {}, Date, clearTimeout() {}, setTimeout(fn) { expire = fn; } });
   const first = submit({ preventDefault() {} }); await submit({ preventDefault() {} }); assert.equal(button.disabled,true);
   resolveFetch(Response.json({ uri: await uri(), expires_at: now()+60 })); await first;
-  assert.equal(clicks,1); assert.equal(button.disabled,false); assert.equal(retry.hidden,false); assert.equal(status.textContent,'sent');
-  expire(); assert.equal(retry.href,undefined); assert.equal(retry.hidden,true); assert.equal(status.textContent,'expired');
+  assert.equal(clicks,0); assert.equal(button.disabled,false); assert.equal(button.hidden,true); assert.equal(retry.hidden,false); assert.equal(status.textContent,'sent');
+  await submit({ preventDefault() {} }); assert.equal(clicks,0);
+  expire(); assert.equal(retry.href,undefined); assert.equal(retry.hidden,true); assert.equal(button.hidden,false); assert.equal(status.textContent,'expired');
   const next = submit({ preventDefault() {} }); resolveFetch(Response.json({ uri: 'javascript:alert(1)', expires_at: now()+60 })); await next;
-  assert.equal(clicks,1); assert.equal(status.textContent,'error');
+  assert.equal(clicks,0); assert.equal(status.textContent,'error');
+});
+
+test('unregistered project buttons and signing are disabled in all four languages', async () => {
+  const f = await fixture();
+  for (const value of [undefined, '[]', 'broken', '{}', JSON.stringify(['bad',projectId])]) {
+    f.env.LOCAL_LAUNCH_PROJECT_IDS = value;
+    for (const lang of ['zh','en','ja','fr']) {
+      const html = await (await f.call(`/${lang}/projects/${projectId}/`, {}, 'owner')).text();
+      assert.ok(html.includes(localCopy[lang].not_configured)); assert.doesNotMatch(html, /data-local-launch=/);
+    }
+    assert.equal((await f.post(path, {}, 'owner')).status,409);
+  }
+  assert.equal(f.sqlite.prepare('SELECT COUNT(*) AS n FROM login_attempts').get().n,0);
+});
+
+test('Windows protocol wrapper records safe diagnostics and builds hidden launch arguments without executing an app', { skip: process.platform !== 'win32' }, async t => {
+  const directory = await temporary(t), configuration = join(directory,'private config.json');
+  await writeFile(configuration,'{}');
+  // Replace only the process creation command; never invoke the actual Node app or protocol.
+  const script = `[Console]::OutputEncoding = [Text.UTF8Encoding]::new($false)
+  function global:Start-Process {
+    param($FilePath,$ArgumentList,$WindowStyle,$ErrorAction)
+    if ($env:YAQI_TEST_FAIL -eq 'true') { throw 'sensitive-test-error' }
+    @{ file=$FilePath; arguments=$ArgumentList; window=$WindowStyle } | ConvertTo-Json -Compress
+  }
+  & $env:YAQI_TEST_WRAPPER -ConfigPath $env:YAQI_TEST_CONFIG -NodePath $env:YAQI_TEST_NODE -Uri 'yaqi-local://launch?ticket=a.b.c'`;
+  for (const failure of [false,true]) {
+    const result = spawnSync(join(process.env.SystemRoot,'System32','WindowsPowerShell','v1.0','powershell.exe'), ['-NoProfile','-NonInteractive','-EncodedCommand',Buffer.from(script,'utf16le').toString('base64')], { encoding:'utf8', windowsHide:true, timeout:10000, env: { ...process.env, YAQI_TEST_FAIL:String(failure), YAQI_TEST_WRAPPER:fileURLToPath(new URL('../local-launcher/launch.ps1',import.meta.url)), YAQI_TEST_CONFIG:configuration, YAQI_TEST_NODE:process.execPath } });
+    const raw = await readFile(join(directory,'last-protocol-activation.json'),'utf8'), diagnostic = JSON.parse(raw.replace(/^\uFEFF/,''));
+    assert.equal(diagnostic.phase, failure ? 'node_start_failed' : 'node_started');
+    assert.doesNotMatch(raw,/ticket|a\.b\.c|sensitive-test-error|private config/);
+    if (!failure) {
+      assert.equal(result.status,0); const invocation = JSON.parse(result.stdout);
+      assert.equal(invocation.file,process.execPath); assert.equal(invocation.window,'Hidden');
+      assert.ok(invocation.arguments.includes(`--config "${configuration}"`));
+    } else assert.notEqual(result.status,0);
+  }
 });

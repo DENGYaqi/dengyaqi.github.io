@@ -5,8 +5,15 @@ import { localCopy } from './local-launch-copy.js';
 
 const escape = value => String(value ?? '').replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]);
 export const localEnabled = (env, session) => env.LOCAL_LAUNCH_ENABLED === 'true' && session?.role === 'admin';
-export function localLaunchPanel(id, session, lang) {
+export function localProjectEnabled(env, id) {
+  try {
+    const ids = JSON.parse(env.LOCAL_LAUNCH_PROJECT_IDS || '[]');
+    return Array.isArray(ids) && ids.every(value => typeof value === 'string' && uuidPattern.test(value)) && ids.includes(id);
+  } catch { return false; }
+}
+export function localLaunchPanel(id, session, lang, env) {
   const c = localCopy[lang];
+  if (!localProjectEnabled(env, id)) return `<section class="launch-panel"><h3>${c.title}</h3><p>${c.not_configured}</p></section>`;
   return `<section class="launch-panel" data-local-launch="/api/projects/${id}/local-launch" data-working="${c.working}" data-sent="${c.sent}" data-error="${c.error}" data-expired="${c.expired}"><h3>${c.title}</h3><p>${c.intro}</p><form method="post" action="/api/projects/${id}/local-launch"><input type="hidden" name="csrf" value="${escape(session.csrf_token)}"><input type="hidden" name="lang" value="${lang}"><button type="submit">${c.start} ↗</button></form><p role="status" aria-live="polite"></p><p><a data-local-retry hidden>${c.retry}</a></p><p><a href="/${lang}/local-launch/setup/">${c.setup}</a></p><p class="muted" data-local-help hidden>${c.help}</p></section>`;
 }
 export async function handleLocalLaunch(request, env, session, ui) {
@@ -30,6 +37,7 @@ export async function handleLocalLaunch(request, env, session, ui) {
   if (!localCopy[lang]) return json({ error: 'invalid' }, 400);
   const project = await env.DB.prepare("SELECT id FROM projects WHERE id = ? AND status = 'published'").bind(launch[1]).first();
   if (!project) return json({ error: 'not_found' }, 404);
+  if (!localProjectEnabled(env, project.id)) return json({ error: 'not_configured' }, 409);
   const timestamp = now(), key = `local-launch:${session.id}`;
   await env.DB.prepare('INSERT INTO login_attempts (key,hits,window_start) VALUES (?,1,?) ON CONFLICT(key) DO UPDATE SET hits=CASE WHEN window_start <= ? THEN 1 ELSE hits+1 END, window_start=CASE WHEN window_start <= ? THEN excluded.window_start ELSE window_start END').bind(key, timestamp, timestamp - 60, timestamp - 60).run();
   if ((await env.DB.prepare('SELECT hits FROM login_attempts WHERE key = ?').bind(key).first()).hits > 10) return json({ error: 'rate_limited' }, 429);
