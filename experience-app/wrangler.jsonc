@@ -3,7 +3,11 @@
   "main": "src/worker.js",
   "compatibility_date": "2026-09-27",
   "workers_dev": true,
-  "vars": { "LAUNCH_ENABLED": "false" },
+  "vars": {
+    "LAUNCH_ENABLED": "false",
+    "LOCAL_LAUNCH_ENABLED": "true",
+    "LOCAL_LAUNCH_ISSUER": "https://yaqi-projects.yaqidengtravail.workers.dev"
+  },
   "d1_databases": [
     {
       "binding": "DB",

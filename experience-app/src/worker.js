@@ -6,6 +6,8 @@ import demosClient from './demos-client.js';
 import launchClient from './launch-client.js';
 import { handleLaunch, launchPanel } from './launch.js';
 import { launchCopy } from './launch-copy.js';
+import { handleLocalLaunch, localEnabled, localLaunchPanel } from './local-launch.js';
+import localLaunchClient from './local-launch-client.js';
 import { clearLoginAttempts, createSession, expiredCookie, formToken, hashPassword, newPassword, normalizeEmail, rateLimited, revokeSession, safeNext, sessionFromRequest, validCsrf, validFormToken, verifyPassword } from './auth.js';
 
 const MAX_ANONYMOUS_FORM_BYTES = 16 * 1024;
@@ -277,7 +279,8 @@ async function handleGet(env, lang, path, admin, token, source, session) {
     const linked = [...workLinks, ...educationLinks].map(link => `<a class="tag" href="${link.href}">${escapeHtml(link.label)}</a>`).join('');
     const photosById = new Map(photos.map(photo => [photo.id, photo]));
     const modules = (Array.isArray(t.modules) ? t.modules : []).filter(module => photosById.get(module.media_id)?.content_type === 'image/gif');
-    const launch = await launchPanel(env, item.id, session, lang);
+    const local = localEnabled(env, session);
+    const launch = local ? localLaunchPanel(item.id, session, lang) : await launchPanel(env, item.id, session, lang);
     const moduleIds = new Set(modules.map(module => module.media_id));
     const demonstrations = modules.map((module, index) => {
       const poster = photosById.get(module.poster_id);
@@ -300,7 +303,7 @@ async function handleGet(env, lang, path, admin, token, source, session) {
     const back = `<nav class="detail-back" aria-label="${c.projects}">${backLink}</nav>`;
     const topBack = `<nav class="detail-back detail-back-top" aria-label="${c.projects}">${backLink}${item.status === 'draft' ? `<span class="tag">${c.draft}</span>` : ''}</nav>`;
     const currentPath = selectedWork || selectedEducation ? `${path}?from=${source}` : path;
-    return response(page(lang, t.title || c.noTitle, `${topBack}<h1>${escapeHtml(t.title || c.noTitle)}</h1><p class="lead">${escapeHtml(t.summary)}</p><div>${linked}</div><section class="prose" data-glossary-url="/${lang}/projects/${url(item.id)}/glossary/">${prettyBody(t.body)}</section>${demonstrations}${gallery}${downloads}${back}<script src="/glossary.js" defer></script>${modules.some(module => module.poster_id) ? '<script src="/demos.js" defer></script>' : ''}`, admin, currentPath, token));
+    return response(page(lang, t.title || c.noTitle, `${topBack}<h1>${escapeHtml(t.title || c.noTitle)}</h1><p class="lead">${escapeHtml(t.summary)}</p><div>${linked}</div><section class="prose" data-glossary-url="/${lang}/projects/${url(item.id)}/glossary/">${prettyBody(t.body)}</section>${demonstrations}${local ? '<script src="/local-launch.js" defer></script>' : ''}${gallery}${downloads}${back}<script src="/glossary.js" defer></script>${modules.some(module => module.poster_id) ? '<script src="/demos.js" defer></script>' : ''}`, admin, currentPath, token));
   }
   if (path === `/${lang}/admin/requests/` || path === `/${lang}/admin/accounts/`) {
     if (!admin) return message(lang, c.adminOnly, 403);
@@ -318,6 +321,7 @@ export default {
       if (request.method === 'GET' && path === '/glossary.js') return response(glossaryClient, 200, 'text/javascript; charset=utf-8');
       if (request.method === 'GET' && path === '/demos.js') return response(demosClient, 200, 'text/javascript; charset=utf-8');
       if (request.method === 'GET' && path === '/launch.js') return response(launchClient, 200, 'text/javascript; charset=utf-8');
+      if (request.method === 'GET' && path === '/local-launch.js') return response(localLaunchClient, 200, 'text/javascript; charset=utf-8');
       if (request.method === 'GET' && path === '/robots.txt') return response('User-agent: *\nDisallow: /\n', 200, 'text/plain; charset=utf-8');
       if (request.method === 'GET' && path === '/') return redirect('/zh/projects/');
       const match = path.match(/^\/(zh|en|ja|fr)\//);
@@ -327,6 +331,8 @@ export default {
         return response('Not found', 404, 'text/plain; charset=utf-8');
       }
       const session = await sessionFromRequest(request, env.DB);
+      const localResult = await handleLocalLaunch(request, env, session, { page, response, anonymousForm });
+      if (localResult) return localResult;
       const launchResult = await handleLaunch(request, env, session, { page, response, redirect, message, anonymousForm });
       if (launchResult) return launchResult;
       if (path === `/${lang}/login/`) {
