@@ -32,7 +32,21 @@ npm run dev
 
 项目与教育经历不提供网页编辑后台。将包含学校、项目草稿或已发布项目的私有 JSON 保存在公开仓库之外，运行 `node scripts/import-private-content.mjs <私有文件路径> --local|--remote` 导入。已发布项目须有四语标题、摘要和正文；同时未关联工作与学校的已发布项目显示在“其他项目”，无需新增数据库字段。学校 `key` 用于长期有效的定位链接。工作经历页面的私有内容也通过同一命令导入：`work_experiences` 数组按公开经历的 `key` 对应，每项含四语 `description` 和按显示顺序排列的 `projects`；每个项目有四语 `title`，已有详情时可填 `project_id`。教育时间线由 `education_experiences` 数组导入，每项按学校 `key` 对应，`details` 在四语下分别含 `degree`、`study_mode`、`major`，`projects` 按展示顺序列四语 `title` 和可选 `project_id`；无项目时填空数组。只有该 ID 对应的项目已发布且关联同一经历或学校，标题才会变成详情链接，否则只显示“待完善”。“其他项目”只展示站内介绍，不提供源码链接、下载或在线演示；不要将本机或局域网 IP 写入线上页面。项目图片与学术 PDF 保存在不开放公共域名的私有 R2 桶，并分别由 D1 的 `media`、`project_files` 表记录关联。项目正文、学术 PDF 和原始资料不得提交到公开 Git 仓库；导入文件前要检查其中的第三方联系方式。公开博客的教育卡片与登录后 D1 内容分别维护。
 
-项目详情可按模块展示 GIF。私有 JSON 中，每种语言的项目 `translations` 可添加同顺序的 `modules: [{"title":"模块名称","media_id":"GIF 的 UUID"}]`；四语使用相同的 `media_id`。同一文件可添加 `media: [{"id":"同一 UUID","project_id":"项目 UUID","file":"GIF 绝对路径","sort_order":0}]`，先运行上述内容导入，再运行 `node scripts/upload-private-gifs.mjs <私有文件路径> --local|--remote`。后者只接受 GIF，将文件放入私有 R2，并把关联写入 D1；旧图片继续显示在普通图库。项目从工作或学校页面打开时，详情底部只显示对应来源的返回链接。
+项目详情可按模块展示 GIF。每种语言的 `translations.modules` 使用同顺序的 `[{"title":"模块名称","media_id":"GIF UUID","poster_id":"封面 UUID","caption":"操作步骤及演示边界"}]`；四语使用相同的 GIF 和封面 ID。`poster_id`、`caption` 可选，旧模块仍兼容。带封面的模块默认只加载静态图，点击播放后加载 GIF；停止、关闭放大视图或切到后台时恢复封面。一次只播放一段，放大视图支持适应窗口、原尺寸和 Escape 关闭。项目从工作或学校页面打开时，详情顶部和底部保留对应来源的返回链接。
+
+同一私有清单添加 `media: [{"id":"媒体 UUID","project_id":"项目 UUID","file":"绝对路径","sort_order":0}]`。GIF 和封面使用独立的新 ID，封面支持 PNG、JPEG、WebP。GIF 限 24 MiB、2–600 帧，封面限 4 MiB、单帧；尺寸不超过 2560×1600。脚本检查实际格式并完整解码，拒绝截断文件、重复 ID、跨项目引用和四语模块不一致。
+
+采集前核对源码版本、真实入口、完整操作和结果，使用演示数据；不要录入客户信息、凭据或桌面通知。保留应用导航和结果区，长流程分段。缺少企业接口、设备或授权时，在四语介绍中说明已验证范围和具体阻碍；模拟数据、离线兜底及历史安装包必须标明。原录屏、私有清单、备份和项目正文均留在公开仓库外。
+
+替换顺序：
+
+1. 导出旧项目、关联与媒体记录，下载旧对象并记录 SHA-256。在清单的 `preserve_project_ids` 中列出本次不处理的项目 ID。
+2. 准备四语内容、GIF、封面。运行 `node scripts/upload-private-gifs.mjs <私有清单>` 仅校验。需要撤下的旧展示资源填入 `retire_media`，每项含 `id`、`project_id`、`object_key`、`backup_file`、`sha256`；只能指定同一清单中重整项目的旧媒体。
+3. 加 `--local` 进行本地演练。脚本先上传全部新对象，下载校验与本地文件一致后，才导入内容和媒体记录，并移除指定的旧媒体记录。旧 R2 对象此时仍保留。不能先导入带新媒体引用的内容。
+4. 本地验收后使用 `--remote`，检查四语项目链接、静态封面、播放/停止、放大、移动端、未登录访问和保留项目。重复使用已有媒体 ID 会拒绝，避免静默覆盖；失败时先核对 D1 当前状态，保留旧对象及备份，不直接重新生成清理清单。
+5. 页面验收完成后，运行 `node scripts/retire-private-media.mjs <私有清单> --local|--remote`。它再次检查当前数据库没有旧媒体记录或引用，且远程对象与备份一致。确认输出范围后加 `--delete-verified`，仅删除清单中的精确对象，不遍历或清空桶。
+
+D1 与 R2 不能跨服务原子更新。上传或导入失败时不要清理旧对象；若导入失败，应从备份和当前数据库确定是否需要恢复内容。恢复已清理的媒体时，先将备份按原 `object_key` 上传，再恢复相应媒体记录及旧内容。任何恢复操作都必须排除无关项目，且先备份当前状态。`project_files` 中的学术资料不属于 GIF 清理范围。
 
 项目术语词典由 D1 的 `glossary_terms` 和 `project_glossary_terms` 维护。先应用迁移，再将仓库外的私有 JSON 传给 `node scripts/import-private-glossary.mjs <私有文件路径> --local|--remote`。文件包含 `terms` 数组（每项有稳定 `key` 和 `translations`，其中 `zh`、`en`、`ja`、`fr` 各含非空 `text` 与 `definition`）及 `projects` 数组（每项有项目 `id` 和术语 `key` 的 `terms` 数组）。每个项目详情只请求一次受保护的 `/{lang}/projects/{id}/glossary/`；响应不缓存。同一词条可关联多个项目，词条和解释只存一份。导入时只更新文件列出的项目关联；需要清空某项目词条时，为该项目提供空 `terms` 数组。术语正文不进入公开仓库。
 

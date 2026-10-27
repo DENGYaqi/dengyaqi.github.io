@@ -403,6 +403,37 @@ test('GIF modules appear once per project and keep media access protected', asyn
   assert.equal((await worker.fetch(request(`/media/${gifId}`, cookie), env, {})).headers.get('Content-Type'), 'image/gif');
 });
 
+test('demo posters render once, escape captions and cannot reference another project', async () => {
+  const { env, DB, sqlite, state } = fixture();
+  const gifId = '55555555-5555-4555-8555-555555555555';
+  const content = structuredClone(translations);
+  for (const lang of ['zh', 'en', 'ja', 'fr']) content[lang].modules = [{ title: `Demo ${lang}`, caption: '<script>alert(1)</script>', media_id: gifId, poster_id: imageId }];
+  sqlite.prepare('UPDATE projects SET status = ?, translations = ? WHERE id = ?').run('published', JSON.stringify(content), id);
+  sqlite.prepare('INSERT INTO media (id, project_id, object_key, content_type, sort_order, created_at) VALUES (?, ?, ?, ?, 1, ?)').run(gifId, id, `${id}/${gifId}.gif`, 'image/gif', '');
+  const cookie = await loginCookie(DB, 'guest');
+  for (const lang of ['zh', 'en', 'ja', 'fr']) {
+    const html = await (await worker.fetch(request(`/${lang}/projects/${id}/`, cookie), env, {})).text();
+    assert.ok(html.includes(`data-demo="/media/${gifId}"`));
+    assert.ok(html.includes(`class="demo-preview" src="/media/${imageId}"`));
+    assert.ok(!html.includes(`src="/media/${gifId}"`));
+    assert.ok(html.includes(copy[lang].demoPlay));
+    assert.match(html, /&lt;script&gt;alert\(1\)&lt;\/script&gt;/);
+    assert.doesNotMatch(html, /class="gallery"/);
+    assert.match(html, /<dialog aria-labelledby="demo-title-0">/);
+  }
+  const script = await worker.fetch(request('/demos.js'), env, {});
+  assert.equal(script.headers.get('Content-Type'), 'text/javascript; charset=utf-8');
+  assert.match(await script.text(), /showModal/);
+  sqlite.prepare("UPDATE projects SET status = 'draft' WHERE id = ?").run(id);
+  assert.equal((await worker.fetch(request(`/media/${imageId}`, cookie), env, {})).status, 404);
+  assert.equal(state.reads, 0);
+  for (const lang of ['zh', 'en', 'ja', 'fr']) content[lang].modules[0].poster_id = '66666666-6666-4666-8666-666666666666';
+  sqlite.prepare("UPDATE projects SET status = 'published', translations = ? WHERE id = ?").run(JSON.stringify(content), id);
+  const html = await (await worker.fetch(request(`/zh/projects/${id}/`, cookie), env, {})).text();
+  assert.doesNotMatch(html, /data-demo=/);
+  assert.doesNotMatch(html, /media\/66666666/);
+});
+
 test('other projects lists only five standalone published projects in order', async () => {
   const { env, DB, sqlite } = fixture();
   const cookie = await loginCookie(DB, 'guest');

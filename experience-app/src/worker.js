@@ -2,6 +2,7 @@ import experiences from './experiences.json' with { type: 'json' };
 import { copy, languages } from './i18n.js';
 import style from './style.js';
 import glossaryClient from './glossary-client.js';
+import demosClient from './demos-client.js';
 import { clearLoginAttempts, createSession, expiredCookie, formToken, hashPassword, newPassword, normalizeEmail, rateLimited, revokeSession, safeNext, sessionFromRequest, validCsrf, validFormToken, verifyPassword } from './auth.js';
 
 const MAX_ANONYMOUS_FORM_BYTES = 16 * 1024;
@@ -274,7 +275,15 @@ async function handleGet(env, lang, path, admin, token, source) {
     const photosById = new Map(photos.map(photo => [photo.id, photo]));
     const modules = (Array.isArray(t.modules) ? t.modules : []).filter(module => photosById.get(module.media_id)?.content_type === 'image/gif');
     const moduleIds = new Set(modules.map(module => module.media_id));
-    const demonstrations = modules.map(module => `<section class="project-module"><h2>${escapeHtml(module.title)}</h2><a href="/media/${url(module.media_id)}" target="_blank" rel="noopener"><img src="/media/${url(module.media_id)}" alt="${escapeHtml(module.title)}" loading="lazy"><span>${escapeHtml(c.viewOriginal)}</span></a></section>`).join('');
+    const demonstrations = modules.map((module, index) => {
+      const poster = photosById.get(module.poster_id);
+      if (!poster || !['image/png', 'image/jpeg', 'image/webp'].includes(poster.content_type)) return `<section class="project-module"><h2>${escapeHtml(module.title)}</h2><a href="/media/${url(module.media_id)}" target="_blank" rel="noopener"><img src="/media/${url(module.media_id)}" alt="${escapeHtml(module.title)}" loading="lazy"><span>${escapeHtml(c.viewOriginal)}</span></a></section>`;
+      moduleIds.add(poster.id);
+      const gifUrl = `/media/${url(module.media_id)}`, posterUrl = `/media/${url(poster.id)}`, title = escapeHtml(module.title);
+      const play = `<button type="button" class="demo-play" aria-pressed="false">${c.demoPlay}</button>`;
+      const error = `<p class="demo-error notice error" role="status" hidden>${c.demoError}</p>`;
+      return `<section class="project-module" data-demo="${gifUrl}" data-poster="${posterUrl}" data-play="${c.demoPlay}" data-stop="${c.demoStop}"><h2 id="demo-title-${index}">${title}</h2>${module.caption ? `<p class="demo-caption">${escapeHtml(module.caption)}</p>` : ''}<img class="demo-preview" src="${posterUrl}" alt="${title}" loading="lazy"><div class="actions" data-demo-controls hidden>${play}<button type="button" class="demo-zoom secondary" aria-haspopup="dialog">${c.demoZoom}</button></div>${error}<a class="demo-original" href="${gifUrl}" target="_blank" rel="noopener">${c.viewOriginal}</a><dialog aria-labelledby="demo-title-${index}"><div class="actions">${play}<button type="button" class="demo-size secondary" aria-pressed="false">${c.demoSize}</button><button type="button" class="demo-close secondary">${c.demoClose}</button></div>${error}<div class="demo-viewport"><img alt="${title}"></div></dialog></section>`;
+    }).join('');
     const otherPhotos = photos.filter(photo => !moduleIds.has(photo.id));
     const gallery = otherPhotos.length ? `<h2>${c.photos}</h2><div class="gallery">${otherPhotos.map(photo => `<a href="/media/${url(photo.id)}"><img src="/media/${url(photo.id)}" alt="${escapeHtml(t.title)}" loading="lazy"></a>`).join('')}</div>` : '';
     const downloads = files.length ? `<section><h2>${c.downloads}</h2><ul>${files.map(file => `<li><a href="/files/${url(file.id)}">${escapeHtml(file.download_name)}</a></li>`).join('')}</ul></section>` : '';
@@ -287,7 +296,7 @@ async function handleGet(env, lang, path, admin, token, source) {
     const back = `<nav class="detail-back" aria-label="${c.projects}">${backLink}</nav>`;
     const topBack = `<nav class="detail-back detail-back-top" aria-label="${c.projects}">${backLink}${item.status === 'draft' ? `<span class="tag">${c.draft}</span>` : ''}</nav>`;
     const currentPath = selectedWork || selectedEducation ? `${path}?from=${source}` : path;
-    return response(page(lang, t.title || c.noTitle, `${topBack}<h1>${escapeHtml(t.title || c.noTitle)}</h1><p class="lead">${escapeHtml(t.summary)}</p><div>${linked}</div><section class="prose" data-glossary-url="/${lang}/projects/${url(item.id)}/glossary/">${prettyBody(t.body)}</section>${demonstrations}${gallery}${downloads}${back}<script src="/glossary.js" defer></script>`, admin, currentPath, token));
+    return response(page(lang, t.title || c.noTitle, `${topBack}<h1>${escapeHtml(t.title || c.noTitle)}</h1><p class="lead">${escapeHtml(t.summary)}</p><div>${linked}</div><section class="prose" data-glossary-url="/${lang}/projects/${url(item.id)}/glossary/">${prettyBody(t.body)}</section>${demonstrations}${gallery}${downloads}${back}<script src="/glossary.js" defer></script>${modules.some(module => module.poster_id) ? '<script src="/demos.js" defer></script>' : ''}`, admin, currentPath, token));
   }
   if (path === `/${lang}/admin/requests/` || path === `/${lang}/admin/accounts/`) {
     if (!admin) return message(lang, c.adminOnly, 403);
@@ -303,6 +312,7 @@ export default {
       const requestUrl = new URL(request.url), path = requestUrl.pathname;
       if (request.method === 'GET' && path === '/style.css') return response(style, 200, 'text/css; charset=utf-8');
       if (request.method === 'GET' && path === '/glossary.js') return response(glossaryClient, 200, 'text/javascript; charset=utf-8');
+      if (request.method === 'GET' && path === '/demos.js') return response(demosClient, 200, 'text/javascript; charset=utf-8');
       if (request.method === 'GET' && path === '/robots.txt') return response('User-agent: *\nDisallow: /\n', 200, 'text/plain; charset=utf-8');
       if (request.method === 'GET' && path === '/') return redirect('/zh/projects/');
       const match = path.match(/^\/(zh|en|ja|fr)\//);
