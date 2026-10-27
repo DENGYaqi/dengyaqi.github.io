@@ -30,7 +30,7 @@ npm run dev
 
 访客可在 `/{lang}/request-access/` 填写邮箱及申请理由。申请只进入 D1 待审核列表，不会自动开通账号或发信。管理员登录后在 `/{lang}/admin/requests/` 批准或拒绝申请；批准新访客会创建账号，批准已有访客会重置密码并撤销旧会话。系统生成的密码只在提交后的页面显示一次，由管理员自行发给对应邮箱。管理员也可在 `/{lang}/admin/accounts/` 创建、重置或停用账号。每位访客使用独立账号；停用或重置密码会撤销该账号已有会话。访客无注册或后台入口。本站会话最长 24 小时，退出时立即撤销。
 
-项目与教育经历不提供网页编辑后台。将包含学校、项目草稿或已发布项目的私有 JSON 保存在公开仓库之外，运行 `node scripts/import-private-content.mjs <私有文件路径> --local|--remote` 导入。已发布项目须有四语标题、摘要和正文；同时未关联工作与学校的已发布项目显示在“其他项目”，无需新增数据库字段。学校 `key` 用于长期有效的定位链接。工作经历页面的私有内容也通过同一命令导入：`work_experiences` 数组按公开经历的 `key` 对应，每项含四语 `description` 和按显示顺序排列的 `projects`；每个项目有四语 `title`，已有详情时可填 `project_id`。教育时间线由 `education_experiences` 数组导入，每项按学校 `key` 对应，`details` 在四语下分别含 `degree`、`study_mode`、`major`，`projects` 按展示顺序列四语 `title` 和可选 `project_id`；无项目时填空数组。只有该 ID 对应的项目已发布且关联同一经历或学校，标题才会变成详情链接，否则只显示“待完善”。“其他项目”只展示站内介绍，不提供源码链接、下载或在线演示；不要将本机或局域网 IP 写入线上页面。项目图片与学术 PDF 保存在不开放公共域名的私有 R2 桶，并分别由 D1 的 `media`、`project_files` 表记录关联。项目正文、学术 PDF 和原始资料不得提交到公开 Git 仓库；导入文件前要检查其中的第三方联系方式。公开博客的教育卡片与登录后 D1 内容分别维护。
+项目与教育经历不提供网页编辑后台。将包含学校、项目草稿或已发布项目的私有 JSON 保存在公开仓库之外，运行 `node scripts/import-private-content.mjs <私有文件路径> --local|--remote` 导入。已发布项目须有四语标题、摘要和正文；同时未关联工作与学校的已发布项目显示在“其他项目”，无需新增数据库字段。学校 `key` 用于长期有效的定位链接。工作经历页面的私有内容也通过同一命令导入：`work_experiences` 数组按公开经历的 `key` 对应，每项含四语 `description` 和按显示顺序排列的 `projects`；每个项目有四语 `title`，已有详情时可填 `project_id`。教育时间线由 `education_experiences` 数组导入，每项按学校 `key` 对应，`details` 在四语下分别含 `degree`、`study_mode`、`major`，`projects` 按展示顺序列四语 `title` 和可选 `project_id`；无项目时填空数组。只有该 ID 对应的项目已发布且关联同一经历或学校，标题才会变成详情链接，否则只显示“待完善”。“其他项目”保留站内介绍；在线体验按下述运行器流程单独授权，不直接公开本机入口；不要将本机或局域网 IP 写入线上页面。项目图片与学术 PDF 保存在不开放公共域名的私有 R2 桶，并分别由 D1 的 `media`、`project_files` 表记录关联。项目正文、学术 PDF 和原始资料不得提交到公开 Git 仓库；导入文件前要检查其中的第三方联系方式。公开博客的教育卡片与登录后 D1 内容分别维护。
 
 项目详情可按模块展示 GIF。每种语言的 `translations.modules` 使用同顺序的 `[{"title":"模块名称","media_id":"GIF UUID","poster_id":"封面 UUID","caption":"操作步骤及演示边界"}]`；四语使用相同的 GIF 和封面 ID。`poster_id`、`caption` 可选，旧模块仍兼容。带封面的模块默认只加载静态图，点击播放后加载 GIF；停止、关闭放大视图或切到后台时恢复封面。一次只播放一段，放大视图支持适应窗口、原尺寸和 Escape 关闭。项目从工作或学校页面打开时，详情顶部和底部保留对应来源的返回链接。
 
@@ -51,6 +51,15 @@ D1 与 R2 不能跨服务原子更新。上传或导入失败时不要清理旧�
 项目术语词典由 D1 的 `glossary_terms` 和 `project_glossary_terms` 维护。先应用迁移，再将仓库外的私有 JSON 传给 `node scripts/import-private-glossary.mjs <私有文件路径> --local|--remote`。文件包含 `terms` 数组（每项有稳定 `key` 和 `translations`，其中 `zh`、`en`、`ja`、`fr` 各含非空 `text` 与 `definition`）及 `projects` 数组（每项有项目 `id` 和术语 `key` 的 `terms` 数组）。每个项目详情只请求一次受保护的 `/{lang}/projects/{id}/glossary/`；响应不缓存。同一词条可关联多个项目，词条和解释只存一份。导入时只更新文件列出的项目关联；需要清空某项目词条时，为该项目提供空 `terms` 数组。术语正文不进入公开仓库。
 
 ## 路径
+
+新增“项目启动与演示”区域位于每段 GIF 下方。功能默认关闭，未配置项目只显示未开放提示；开启后只有获得项目授权的已登录访客能启动。授权管理、运行器配置、域名接入、隔离要求和验收步骤见 [本地演示启动器](demo-runner/README.md)。本机地址和密钥不进入项目页面或公开仓库。
+
+- `GET /api/projects/{id}/runtime`：读取当前访客的可用状态。
+- `POST /api/projects/{id}/launch`：经 CSRF 与项目授权校验后创建或复用任务。
+- `/{lang}/launch/{id}/`：等待、进入、结束体验。
+- `GET /api/launches/{id}`、`POST /api/launches/{id}/open|stop`：仅任务所属登录会话可用。
+- `POST /api/runner/poll`、`POST /api/runner/jobs/{id}/result`：仅持有启动器凭据及对应任务凭据的本地服务可用。
+- `/{lang}/admin/runtime-grants/`：管理员按项目授予或撤销访客体验权限。
 
 - `/{lang}/login/`：独立登录页；登录成功后仅返回本站内已验证的目标路径。
 - `/{lang}/request-access/`：申请查看，保存邮箱、理由和原目标位置；申请本身不授权访问。

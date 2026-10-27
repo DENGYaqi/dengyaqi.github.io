@@ -3,6 +3,9 @@ import { copy, languages } from './i18n.js';
 import style from './style.js';
 import glossaryClient from './glossary-client.js';
 import demosClient from './demos-client.js';
+import launchClient from './launch-client.js';
+import { handleLaunch, launchPanel } from './launch.js';
+import { launchCopy } from './launch-copy.js';
 import { clearLoginAttempts, createSession, expiredCookie, formToken, hashPassword, newPassword, normalizeEmail, rateLimited, revokeSession, safeNext, sessionFromRequest, validCsrf, validFormToken, verifyPassword } from './auth.js';
 
 const MAX_ANONYMOUS_FORM_BYTES = 16 * 1024;
@@ -44,7 +47,7 @@ function page(lang, title, body, admin = false, path = `/${lang}/projects/`, tok
   const c = copy[lang];
   const langs = languageMenu(lang, code => path.replace(/^\/(zh|en|ja|fr)\//, `/${code}/`));
   const logoutForm = token ? `<form method="post" action="/${lang}/logout/">${hiddenCsrf(token)}<button class="nav-logout" type="submit">${c.logout}</button></form>` : '';
-  return `<!doctype html><html lang="${lang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>${escapeHtml(title)} · ${c.site}</title><link rel="stylesheet" href="/style.css"></head><body><header><strong>${c.site}<span class="dot">.</span></strong><nav aria-label="${c.projects}"><a href="/${lang}/experiences/">${c.experiences}</a><a href="/${lang}/projects/education/">${c.education}</a><a href="/${lang}/projects/">${c.otherProjects}</a>${admin ? `<a href="/${lang}/admin/accounts/">${c.auth.accounts}</a><a href="/${lang}/admin/requests/">${requestsCopy[lang].adminTitle}</a>` : ''}<a href="${publicOrigin}/${lang}/about/">${c.back}</a>${logoutForm}</nav><div class="language" aria-label="${c.switchLanguage}">${langs}</div></header><main>${body}</main><footer>${c.site} · ${c.projects}</footer></body></html>`;
+  return `<!doctype html><html lang="${lang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>${escapeHtml(title)} · ${c.site}</title><link rel="stylesheet" href="/style.css"></head><body><header><strong>${c.site}<span class="dot">.</span></strong><nav aria-label="${c.projects}"><a href="/${lang}/experiences/">${c.experiences}</a><a href="/${lang}/projects/education/">${c.education}</a><a href="/${lang}/projects/">${c.otherProjects}</a>${admin ? `<a href="/${lang}/admin/accounts/">${c.auth.accounts}</a><a href="/${lang}/admin/requests/">${requestsCopy[lang].adminTitle}</a><a href="/${lang}/admin/runtime-grants/">${launchCopy[lang].grants}</a>` : ''}<a href="${publicOrigin}/${lang}/about/">${c.back}</a>${logoutForm}</nav><div class="language" aria-label="${c.switchLanguage}">${langs}</div></header><main>${body}</main><footer>${c.site} · ${c.projects}</footer></body></html>`;
 }
 
 const requestsCopy = {
@@ -247,7 +250,7 @@ async function handlePost(env, lang, path, form, token) {
   return message(lang, c.notFound, 404);
 }
 
-async function handleGet(env, lang, path, admin, token, source) {
+async function handleGet(env, lang, path, admin, token, source, session) {
   const c = copy[lang];
   const workFocus = path.match(new RegExp(`^/${lang}/projects/work/([a-z0-9_]+)/$`));
   const schoolFocus = path.match(new RegExp(`^/${lang}/projects/education/([a-z0-9_]+)/$`));
@@ -274,6 +277,7 @@ async function handleGet(env, lang, path, admin, token, source) {
     const linked = [...workLinks, ...educationLinks].map(link => `<a class="tag" href="${link.href}">${escapeHtml(link.label)}</a>`).join('');
     const photosById = new Map(photos.map(photo => [photo.id, photo]));
     const modules = (Array.isArray(t.modules) ? t.modules : []).filter(module => photosById.get(module.media_id)?.content_type === 'image/gif');
+    const launch = await launchPanel(env, item.id, session, lang);
     const moduleIds = new Set(modules.map(module => module.media_id));
     const demonstrations = modules.map((module, index) => {
       const poster = photosById.get(module.poster_id);
@@ -283,7 +287,7 @@ async function handleGet(env, lang, path, admin, token, source) {
       const play = `<button type="button" class="demo-play" aria-pressed="false">${c.demoPlay}</button>`;
       const error = `<p class="demo-error notice error" role="status" hidden>${c.demoError}</p>`;
       return `<section class="project-module" data-demo="${gifUrl}" data-poster="${posterUrl}" data-play="${c.demoPlay}" data-stop="${c.demoStop}"><h2 id="demo-title-${index}">${title}</h2>${module.caption ? `<p class="demo-caption">${escapeHtml(module.caption)}</p>` : ''}<img class="demo-preview" src="${posterUrl}" alt="${title}" loading="lazy"><div class="actions" data-demo-controls hidden>${play}<button type="button" class="demo-zoom secondary" aria-haspopup="dialog">${c.demoZoom}</button></div>${error}<a class="demo-original" href="${gifUrl}" target="_blank" rel="noopener">${c.viewOriginal}</a><dialog aria-labelledby="demo-title-${index}"><div class="actions">${play}<button type="button" class="demo-size secondary" aria-pressed="false">${c.demoSize}</button><button type="button" class="demo-close secondary">${c.demoClose}</button></div>${error}<div class="demo-viewport"><img alt="${title}"></div></dialog></section>`;
-    }).join('');
+    }).map(html => html + launch).join('') || launch;
     const otherPhotos = photos.filter(photo => !moduleIds.has(photo.id));
     const gallery = otherPhotos.length ? `<h2>${c.photos}</h2><div class="gallery">${otherPhotos.map(photo => `<a href="/media/${url(photo.id)}"><img src="/media/${url(photo.id)}" alt="${escapeHtml(t.title)}" loading="lazy"></a>`).join('')}</div>` : '';
     const downloads = files.length ? `<section><h2>${c.downloads}</h2><ul>${files.map(file => `<li><a href="/files/${url(file.id)}">${escapeHtml(file.download_name)}</a></li>`).join('')}</ul></section>` : '';
@@ -313,6 +317,7 @@ export default {
       if (request.method === 'GET' && path === '/style.css') return response(style, 200, 'text/css; charset=utf-8');
       if (request.method === 'GET' && path === '/glossary.js') return response(glossaryClient, 200, 'text/javascript; charset=utf-8');
       if (request.method === 'GET' && path === '/demos.js') return response(demosClient, 200, 'text/javascript; charset=utf-8');
+      if (request.method === 'GET' && path === '/launch.js') return response(launchClient, 200, 'text/javascript; charset=utf-8');
       if (request.method === 'GET' && path === '/robots.txt') return response('User-agent: *\nDisallow: /\n', 200, 'text/plain; charset=utf-8');
       if (request.method === 'GET' && path === '/') return redirect('/zh/projects/');
       const match = path.match(/^\/(zh|en|ja|fr)\//);
@@ -322,6 +327,8 @@ export default {
         return response('Not found', 404, 'text/plain; charset=utf-8');
       }
       const session = await sessionFromRequest(request, env.DB);
+      const launchResult = await handleLaunch(request, env, session, { page, response, redirect, message, anonymousForm });
+      if (launchResult) return launchResult;
       if (path === `/${lang}/login/`) {
         const next = safeNext(request.method === 'GET' ? requestUrl.searchParams.get('next') : null, lang);
         if (request.method === 'GET') {
@@ -416,7 +423,7 @@ export default {
         return new Response(object.body, { status: 200, headers: { ...headers, 'Content-Type': 'application/pdf', 'Content-Disposition': `attachment; filename="${name}"`, 'Content-Length': String(file.byte_size) } });
       }
       if (!match) return response('Not found', 404, 'text/plain; charset=utf-8');
-      if (request.method === 'GET') return handleGet(env, lang, path, admin, session.csrf_token, requestUrl.searchParams.get('from'));
+      if (request.method === 'GET') return handleGet(env, lang, path, admin, session.csrf_token, requestUrl.searchParams.get('from'), session);
       if (request.method === 'POST') {
         const accountAction = new RegExp(`^/${lang}/admin/accounts/${ID}/(reset|disable|enable)/$`);
         const requestAction = new RegExp(`^/${lang}/admin/requests/${ID}/(approve|dismiss)/$`);

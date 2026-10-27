@@ -17,6 +17,9 @@ experience-app/.dev.vars
 experience-app/.env
 experience-app/.wrangler
 experience-app/private-content*.json
+experience-app/demo-gateway/.dev.vars
+experience-app/demo-gateway/.wrangler
+experience-app/demo-runner/*.private.json
 package-lock.json
 !experience-app/package-lock.json
 
