@@ -45,35 +45,36 @@ export class LocalDocker {
     } catch { /* Retry until the project deadline. */ }
     return false;
   }
-  async launch(project, update, recordStarted) {
-    if (project.mode === 'docker') {
-      await this.ensureEngine(update);
-      const serviceDeadline = Date.now() + project.timeout_seconds * 1000;
-      // Validate the complete allowlist before starting any container.
-      for (const item of project.containers) await this.inspect(item);
-      update('starting');
-      for (const item of project.containers) {
-        if (Date.now() >= serviceDeadline) throw new Error('health');
-        const info = await this.inspect(item);
-        if (info.State?.Paused || info.State?.Restarting) throw new Error('container');
-        if (!info.State?.Running) {
-          await this.commandLocal(['start',item.id]);
-          recordStarted(item.id);
+  async startContainers(project, update, recordStarted) {
+    await this.ensureEngine(update);
+    const serviceDeadline = Date.now() + project.timeout_seconds * 1000;
+    // Validate the complete allowlist before starting any container.
+    for (const item of project.containers) await this.inspect(item);
+    update('starting');
+    for (const item of project.containers) {
+      if (Date.now() >= serviceDeadline) throw new Error('health');
+      const info = await this.inspect(item);
+      if (info.State?.Paused || info.State?.Restarting) throw new Error('container');
+      if (!info.State?.Running) {
+        await this.commandLocal(['start',item.id]);
+        recordStarted(item.id);
+      }
+      if (info.Config?.Healthcheck && info.Config.Healthcheck.Test?.[0] !== 'NONE') {
+        let healthy = false;
+        for (let attempt = 0; attempt < 60; attempt++) {
+          if (Date.now() >= serviceDeadline) throw new Error('health');
+          update('starting');
+          const refreshed = await this.inspect(item);
+          if (refreshed.State?.Health?.Status === 'healthy') { healthy = true; break; }
+          if (!refreshed.State?.Running || refreshed.State?.Health?.Status === 'unhealthy') throw new Error('health');
+          await this.sleep(1000);
         }
-        if (info.Config?.Healthcheck && info.Config.Healthcheck.Test?.[0] !== 'NONE') {
-          let healthy = false;
-          for (let attempt = 0; attempt < 60; attempt++) {
-            if (Date.now() >= serviceDeadline) throw new Error('health');
-            update('starting');
-            const refreshed = await this.inspect(item);
-            if (refreshed.State?.Health?.Status === 'healthy') { healthy = true; break; }
-            if (!refreshed.State?.Running || refreshed.State?.Health?.Status === 'unhealthy') throw new Error('health');
-            await this.sleep(1000);
-          }
-          if (!healthy) throw new Error('health');
-        }
+        if (!healthy) throw new Error('health');
       }
     }
+  }
+  async launch(project, update, recordStarted) {
+    if (project.mode === 'docker') await this.startContainers(project, update, recordStarted);
     update('waiting');
     const deadline = Date.now() + project.timeout_seconds * 1000;
     do {

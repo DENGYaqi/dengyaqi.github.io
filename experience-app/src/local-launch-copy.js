@@ -4,3 +4,60 @@ export const localCopy = {
   ja: { title: 'このパソコンで起動', start: '本機で起動', intro: 'このパソコンで起動して開きます。初回は起動ツールの設定が必要です。', setup: '初回設定', working: '起動を準備中…', sent: '起動リンクを準備しました。下の「起動ツールを開く」をクリックし、ブラウザーの確認に対応してください。', retry: '起動ツールを開く', help: '下のリンクをクリックして起動します。60秒以内に操作してください。反応がない場合は設定手順をご覧ください。', error: '起動要求に失敗しました。再読み込みまたは再ログインしてください。', expired: 'リンクの期限が切れました。もう一度起動してください。', instructions: '起動ツールとプロジェクト設定があるパソコンで利用してください。ユーザー用のプロトコルを登録してからプロジェクトへ戻ります。ブラウザーの確認が表示される場合があります。実行中のサービスは再利用し、未設定の場合は理由を表示します。', privacy: 'パスとアドレスは本機に保存されます。リモート体験は無効のままです。', access: '管理者アカウントでログインしてください。', back: 'プロジェクトに戻る', checking: '環境を確認中', docker: 'Docker Desktop を起動中', starting: 'サービスを起動中', waiting: '準備完了を待っています', ready: '準備完了', open: 'プロジェクトを開く', failed: '起動できませんでした', unchanged: '実行中のサービスは停止・再作成していません。', not_configured: '本機の起動設定がありません。', blocked: 'このプロジェクトの本機起動は対象外です。', ticket: '無効・使用済み・期限切れの起動情報です。サイトから再度起動してください。', context: 'Docker の接続先が登録済みの本機環境と異なります。', container: 'コンテナーの識別情報またはポートが変更されています。', unavailable: 'Docker Desktop を開き、準備状態とアクセス権を確認してください。', health: '準備が時間内に完了しませんでした。サービスログを確認してください。', busy: '起動処理が進行中です。しばらくお待ちください。', config: '本機設定が無効です。設定チェックを実行してください。', unknown: '起動に失敗しました。本機の記録を確認してください。', partial: '今回起動したサービスは動作を継続します。Docker Desktop で管理してください。', setupSteps: ['リポジトリーの local-launcher/install.ps1 に私有設定ファイルを指定して実行します。', '現在の Windows ユーザーにのみ yaqi-local を登録します。公開ポートは不要です。', 'プロジェクトページに戻って起動し、ブラウザーの確認に対応してください。'] },
   fr: { title: 'Lancer sur cet ordinateur', start: 'Lancer localement', intro: 'Démarrez et ouvrez le projet sur cet ordinateur. Configurez le lanceur au préalable.', setup: 'Première configuration', working: 'Préparation du lancement…', sent: 'Le lien est prêt. Cliquez sur Ouvrir le lanceur, puis confirmez dans le navigateur.', retry: 'Ouvrir le lanceur', help: 'Cliquez sur Ouvrir le lanceur pour demander le lancement. Le lien expire après 60 secondes. Consultez la configuration si rien ne se passe.', error: 'Échec de la demande. Actualisez ou reconnectez-vous.', expired: 'Le lien a expiré. Relancez la demande.', instructions: 'Utilisez un ordinateur équipé du lanceur et de la configuration du projet. Enregistrez le protocole pour votre utilisateur Windows, puis revenez au projet. Le navigateur peut demander confirmation. Les services actifs sont réutilisés ; une configuration manquante est signalée.', privacy: 'Les chemins et adresses restent sur cet ordinateur. L’accès distant reste désactivé.', access: 'Connectez-vous avec un compte administrateur.', back: 'Retour au projet', checking: 'Vérification de l’environnement', docker: 'Démarrage de Docker Desktop', starting: 'Démarrage des services', waiting: 'Attente du projet', ready: 'Projet prêt', open: 'Ouvrir le projet', failed: 'Le projet n’a pas démarré', unchanged: 'Les services actifs n’ont pas été arrêtés ni reconstruits.', not_configured: 'Ce projet n’a pas de configuration locale.', blocked: 'Le lancement local est indisponible pour ce projet.', ticket: 'Autorisation invalide, utilisée ou expirée. Relancez depuis le site.', context: 'Le contexte Docker ne correspond pas à l’environnement local enregistré.', container: 'L’identité ou les ports du conteneur ont changé. Actualisez la configuration.', unavailable: 'Docker Desktop est indisponible ou l’accès est refusé. Vérifiez son état.', health: 'Les services ne sont pas prêts dans le délai prévu. Consultez leurs journaux.', busy: 'Un lancement est déjà en cours. Réessayez bientôt.', config: 'Configuration locale invalide. Exécutez sa vérification.', unknown: 'Échec du lancement. Consultez le journal local.', partial: 'Les services démarrés restent actifs. Gérez-les dans Docker Desktop.', setupSteps: ['Exécutez local-launcher/install.ps1 du dépôt avec le chemin de votre configuration privée.', 'Le script enregistre yaqi-local uniquement pour l’utilisateur Windows actuel, sans port public.', 'Revenez au projet et lancez-le localement. Répondez à la confirmation du navigateur.'] },
 };
+
+// Labels shared by the portal and local progress window.
+const runtimeCopy = {
+  "zh": {
+    "artifact": "本机程序或文件已变更，请重新核验启动配置。",
+    "process": "本机程序未能正常运行，请检查其运行环境。",
+    "device": "指定模拟器或应用尚未就绪，请先完成本机配置。",
+    "emulator": "正在启动 Android 模拟器",
+    "kinds": {
+      "web": "启动网页项目",
+      "desktop": "打开桌面应用",
+      "android": "打开 Android 演示",
+      "sample": "运行本地样例",
+      "document": "查看研究资料"
+    }
+  },
+  "en": {
+    "artifact": "A local program or file changed. Review its launch configuration.",
+    "process": "The local program could not run. Check its runtime.",
+    "device": "The configured emulator or app is not ready. Complete local setup first.",
+    "emulator": "Starting the Android emulator",
+    "kinds": {
+      "web": "Start web project",
+      "desktop": "Open desktop app",
+      "android": "Open Android demo",
+      "sample": "Run local sample",
+      "document": "View research materials"
+    }
+  },
+  "ja": {
+    "artifact": "本機のプログラムまたはファイルが変更されています。設定を再確認してください。",
+    "process": "本機のプログラムを実行できません。実行環境を確認してください。",
+    "device": "指定のエミュレーターまたはアプリの準備ができていません。",
+    "emulator": "Android エミュレーターを起動中",
+    "kinds": {
+      "web": "Web プロジェクトを起動",
+      "desktop": "デスクトップアプリを開く",
+      "android": "Android デモを開く",
+      "sample": "ローカル例を実行",
+      "document": "研究資料を見る"
+    }
+  },
+  "fr": {
+    "artifact": "Un programme ou fichier local a changé. Vérifiez sa configuration.",
+    "process": "Le programme local ne fonctionne pas. Vérifiez son environnement.",
+    "device": "L’émulateur ou l’application configurée n’est pas prêt.",
+    "emulator": "Démarrage de l’émulateur Android",
+    "kinds": {
+      "web": "Démarrer le projet web",
+      "desktop": "Ouvrir l’application",
+      "android": "Ouvrir la démo Android",
+      "sample": "Exécuter un exemple",
+      "document": "Consulter les documents"
+    }
+  }
+};
+for (const lang of Object.keys(runtimeCopy)) Object.assign(localCopy[lang], runtimeCopy[lang]);

@@ -1,7 +1,7 @@
 param(
     [Parameter(Mandatory = $true)][string]$ConfigPath,
     [Parameter(Mandatory = $true)][string]$NodePath,
-    [Parameter(Mandatory = $true)][ValidatePattern('^yaqi-local://launch\?ticket=[A-Za-z0-9_.-]{1,1800}$')][string]$Uri
+    [Parameter(Mandatory = $true)][ValidatePattern('^yaqi-local://launch/?\?ticket=[A-Za-z0-9_.-]{1,1800}\z')][string]$Uri
 )
 $ErrorActionPreference = 'Stop'
 function Write-LauncherDiagnostic([string]$Phase) {

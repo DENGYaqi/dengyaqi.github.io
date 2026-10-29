@@ -8,6 +8,7 @@ import { validateConfig } from './config.mjs';
 import { LocalState } from './state.mjs';
 import { LocalDocker } from './docker.mjs';
 import { statusServer } from './status.mjs';
+import { NativeRuntime } from './native.mjs';
 
 const execute = promisify(execFile);
 export async function openBrowser(url) {
@@ -29,11 +30,15 @@ export async function launchLocal(uri, config, dependencies = {}) {
     if (!project) throw new Error('not_configured');
     if (project.mode === 'unavailable') throw new Error('blocked');
     const docker = dependencies.docker || new LocalDocker(config);
-    const url = await docker.launch(project, stage => { store.update(operation, started); status.set(stage); }, id => { started.push(id); store.update(operation, started); });
-    store.update(operation, started, 'ready'); status.set('ready','',url);
-    return { state: 'ready', url, started, status };
+    const update = stage => { store.update(operation, started); status.set(stage); };
+    const recordStarted = id => { started.push(id); store.update(operation, started); };
+    const result = ['native','sample','android'].includes(project.mode)
+      ? await (dependencies.native || new NativeRuntime(config,{docker})).launch(project,ticket.sub,store,update,recordStarted)
+      : {url:await docker.launch(project,update,recordStarted)};
+    store.update(operation, started, 'ready'); status.set('ready','',result.url || '',false,project.reason?.[ticket.lang] || project.reason?.zh || '',result.output || '');
+    return { state: 'ready', ...result, started, status };
   } catch (error) {
-    const code = ['ticket','busy','not_configured','blocked','context','container','unavailable','health','config'].includes(error.message) ? error.message : 'unknown';
+    const code = ['ticket','busy','not_configured','blocked','context','container','unavailable','health','config','artifact','process','device'].includes(error.message) ? error.message : 'unknown';
     if (operation) store.update(operation, started, 'failed', code);
     status.set('failed', code, '', started.length > 0, code === 'blocked' ? project.reason?.[ticket.lang] || project.reason?.zh || '' : '');
     if (!operation) await (dependencies.openBrowser || openBrowser)(status.url);

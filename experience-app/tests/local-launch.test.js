@@ -39,6 +39,32 @@ async function temporary(t) {
 function config(directory, projects = {}) { return { version: 1, issuer, public_key: publicKey, docker_path: resolve('docker.exe'), state_path: join(directory,'state.sqlite'), context, projects }; }
 const project = { title: 'Demo', mode: 'open', open_url: 'http://127.0.0.1:8765/', health_urls: ['http://127.0.0.1:8765/'], timeout_seconds: 5 };
 
+test('signed native launches share replay protection and return text without a browser redirect', async t => {
+  const directory = await temporary(t);
+  const p = {title:'Sample',mode:'sample',timeout_seconds:5,programs:[{executable:process.execPath,cwd:directory,sha256:'a'.repeat(64),args:[],files:[]}],reason:{zh:'离线样例'}};
+  let calls = 0;
+  const dependencies = {openBrowser:async()=>{},native:{launch:async(_p,id,_store,update)=>{calls++;assert.equal(id,projectId);update('starting');return {output:'PASS sample'};}},docker:{launch:()=>{throw new Error('Wrong runtime');}}};
+  const ticketUri = await uri(), cfg = config(directory,{[projectId]:p});
+  const first = await launchLocal(ticketUri,cfg,dependencies);
+  try {
+    assert.equal(first.state,'ready');assert.equal(first.url,undefined);
+    const state = await (await fetch(new URL('state',first.status.url))).json();
+    assert.equal(state.output,'PASS sample');assert.match(state.message,/离线样例/);
+  } finally { first.status.close(); }
+  const replay = await launchLocal(ticketUri,cfg,dependencies);
+  try { assert.equal(replay.error,'ticket');assert.equal(calls,1); } finally { replay.status.close(); }
+});
+
+test('catalog-blocked and document projects cannot issue local launch tickets', async () => {
+  const f = await fixture(), note={zh:'说明',en:'Note',ja:'説明',fr:'Note'};
+  for(const kind of ['unavailable','document']) {
+    f.env.LOCAL_LAUNCH_CATALOG=JSON.stringify({[projectId]:{kind,note,file_id:projectId}});
+    assert.equal((await f.post(path,{},'owner')).status,409);
+  }
+  f.env.LOCAL_LAUNCH_CATALOG='{invalid';
+  assert.equal((await f.post(path,{},'owner')).status,409);
+});
+
 test('local launch is admin-only, POST-only, CSRF-protected and independent from remote launch', async () => {
   const f = await fixture();
   assert.equal((await f.call(path, {}, null)).status, 401);
@@ -91,6 +117,16 @@ test('signed tickets reject tampering, algorithm confusion, extra claims, wrong 
   const signed = Buffer.from(await crypto.subtle.sign({ name: 'ECDSA', hash: 'SHA-256' }, keys.privateKey, new TextEncoder().encode(data))).toString('base64url');
   await assert.rejects(verifyLocalTicket(`${data}.${signed}`, publicKey, issuer, 1030));
   for (const bad of ['yaqi-local://launch?ticket=x&command=start', 'yaqi-local://launch?ticket=x&ticket=y', 'yaqi-local://launch/path?ticket=x', 'https://launch?ticket=x', 'yaqi-local://launch?ticket=x#fragment', 'yaqi-local://launch?ticket=x";calc', 'yaqi-local://user@launch?ticket=x']) assert.throws(() => parseLocalUri(bad));
+});
+
+test('local URI accepts the Windows root slash without accepting other paths or changing signed claims', async () => {
+  const original = await uri(), normalized = original.replace('launch?', 'launch/?');
+  assert.equal(parseLocalUri(normalized), parseLocalUri(original));
+  assert.equal((await verifyLocalTicket(parseLocalUri(normalized), publicKey, issuer)).sub, projectId);
+  for (const path of ['//', '/path', '/./', '/%2e/', '/path/..']) {
+    assert.throws(() => parseLocalUri(original.replace('launch?', `launch${path}?`)), /ticket/);
+  }
+  for (const suffix of ['&ticket=other', '&command=start', '#fragment', '\n', '\r\n', ' ']) assert.throws(() => parseLocalUri(normalized + suffix), /ticket/);
 });
 
 test('local state serializes starts across processes and rejects replay without stopping services', async t => {
@@ -198,7 +234,7 @@ test('local status has an unguessable read-only URL, no cross-site access and es
 test('full helper flow verifies ticket, opens progress, records success, and rejects replays or excluded projects', async t => {
   const directory = await temporary(t), settings = config(directory, { [projectId]: project }), opened = [];
   const dependencies = { openBrowser: async url => opened.push(url), docker: { launch: async () => project.open_url } };
-  const ticket = await uri();
+  const ticket = (await uri()).replace('launch?', 'launch/?');
   const result = await launchLocal(ticket, settings, dependencies); t.after(() => result.status.close());
   assert.equal(result.state, 'ready'); assert.equal(opened.length, 1);
   assert.equal((await (await fetch(new URL('state',result.status.url))).json()).url, project.open_url);
@@ -247,9 +283,9 @@ test('Windows protocol wrapper records safe diagnostics and builds hidden launch
     if ($env:YAQI_TEST_FAIL -eq 'true') { throw 'sensitive-test-error' }
     @{ file=$FilePath; arguments=$ArgumentList; window=$WindowStyle } | ConvertTo-Json -Compress
   }
-  & $env:YAQI_TEST_WRAPPER -ConfigPath $env:YAQI_TEST_CONFIG -NodePath $env:YAQI_TEST_NODE -Uri 'yaqi-local://launch?ticket=a.b.c'`;
-  for (const failure of [false,true]) {
-    const result = spawnSync(join(process.env.SystemRoot,'System32','WindowsPowerShell','v1.0','powershell.exe'), ['-NoProfile','-NonInteractive','-EncodedCommand',Buffer.from(script,'utf16le').toString('base64')], { encoding:'utf8', windowsHide:true, timeout:10000, env: { ...process.env, YAQI_TEST_FAIL:String(failure), YAQI_TEST_WRAPPER:fileURLToPath(new URL('../local-launcher/launch.ps1',import.meta.url)), YAQI_TEST_CONFIG:configuration, YAQI_TEST_NODE:process.execPath } });
+  & $env:YAQI_TEST_WRAPPER -ConfigPath $env:YAQI_TEST_CONFIG -NodePath $env:YAQI_TEST_NODE -Uri $env:YAQI_TEST_URI`;
+  for (const [failure, localUri] of [[false,'yaqi-local://launch?ticket=a.b.c'],[false,'yaqi-local://launch/?ticket=a.b.c'],[true,'yaqi-local://launch/?ticket=a.b.c']]) {
+    const result = spawnSync(join(process.env.SystemRoot,'System32','WindowsPowerShell','v1.0','powershell.exe'), ['-NoProfile','-NonInteractive','-EncodedCommand',Buffer.from(script,'utf16le').toString('base64')], { encoding:'utf8', windowsHide:true, timeout:10000, env: { ...process.env, YAQI_TEST_FAIL:String(failure), YAQI_TEST_URI:localUri, YAQI_TEST_WRAPPER:fileURLToPath(new URL('../local-launcher/launch.ps1',import.meta.url)), YAQI_TEST_CONFIG:configuration, YAQI_TEST_NODE:process.execPath } });
     const raw = await readFile(join(directory,'last-protocol-activation.json'),'utf8'), diagnostic = JSON.parse(raw.replace(/^\uFEFF/,''));
     assert.equal(diagnostic.phase, failure ? 'node_start_failed' : 'node_started');
     assert.doesNotMatch(raw,/ticket|a\.b\.c|sensitive-test-error|private config/);
@@ -257,6 +293,71 @@ test('Windows protocol wrapper records safe diagnostics and builds hidden launch
       assert.equal(result.status,0); const invocation = JSON.parse(result.stdout);
       assert.equal(invocation.file,process.execPath); assert.equal(invocation.window,'Hidden');
       assert.ok(invocation.arguments.includes(`--config "${configuration}"`));
+      assert.ok(invocation.arguments.endsWith(`"${localUri}"`));
     } else assert.notEqual(result.status,0);
   }
+  for (const localUri of ['yaqi-local://launch/path?ticket=a.b.c', 'yaqi-local://launch/?ticket=a.b.c&command=start', 'yaqi-local://launch/?ticket=a.b.c\n']) {
+    const result = spawnSync(join(process.env.SystemRoot,'System32','WindowsPowerShell','v1.0','powershell.exe'), ['-NoProfile','-NonInteractive','-EncodedCommand',Buffer.from(script,'utf16le').toString('base64')], { encoding:'utf8', windowsHide:true, timeout:10000, env: { ...process.env, YAQI_TEST_FAIL:'false', YAQI_TEST_URI:localUri, YAQI_TEST_WRAPPER:fileURLToPath(new URL('../local-launcher/launch.ps1',import.meta.url)), YAQI_TEST_CONFIG:configuration, YAQI_TEST_NODE:process.execPath } });
+    assert.notEqual(result.status,0);
+    assert.equal(result.stdout.trim(),''); // Invalid URI must never reach the mocked process launcher.
+  }
+});
+
+test('Windows registration refreshes and resolves new and updated commands without launching them', { skip: process.platform !== 'win32' }, () => {
+  // Exercise the real Windows association API under a disposable protocol, never yaqi-local.
+  const script = `[Console]::OutputEncoding = [Text.UTF8Encoding]::new($false)
+  $ErrorActionPreference = 'Stop'
+  . $env:YAQI_TEST_PROTOCOL
+  $name = 'yaqi-local-test-' + [Guid]::NewGuid().ToString('N')
+  $key = 'HKCU:\\Software\\Classes\\' + $name
+  if (Test-Path -LiteralPath $key) { throw 'Test protocol already exists' }
+  try {
+    $command = '"' + $env:YAQI_TEST_NODE + '" --version "%1"'
+    Register-LocalProtocol -Name $name -Command $command
+    if ([YaqiLocalProtocolAssociation]::Command($name) -cne $command) { throw 'New registration not visible' }
+    $command = '"' + $env:YAQI_TEST_NODE + '" --help "%1"'
+    Register-LocalProtocol -Name $name -Command $command
+    if ([YaqiLocalProtocolAssociation]::Command($name) -cne $command) { throw 'Updated registration not visible' }
+    Remove-ItemProperty -LiteralPath $key -Name 'YaqiLocalLauncher'
+    $refused = $false
+    try { Register-LocalProtocol -Name $name -Command 'must-not-be-written' } catch { $refused = $true }
+    if (-not $refused -or [YaqiLocalProtocolAssociation]::Command($name) -cne $command) { throw 'Foreign registration overwritten' }
+    'registration-verified'
+  } finally {
+    if ($name -notmatch '^yaqi-local-test-[a-f0-9]{32}$') { throw 'Unsafe test cleanup' }
+    Remove-Item -LiteralPath $key -Recurse -Force -ErrorAction SilentlyContinue
+    [YaqiLocalProtocolAssociation]::Refresh()
+  }`;
+  const result = spawnSync(join(process.env.SystemRoot,'System32','WindowsPowerShell','v1.0','powershell.exe'), ['-NoProfile','-NonInteractive','-EncodedCommand',Buffer.from(script,'utf16le').toString('base64')], { encoding:'utf8', windowsHide:true, timeout:20000, env: { ...process.env, YAQI_TEST_PROTOCOL:fileURLToPath(new URL('../local-launcher/protocol.ps1',import.meta.url)), YAQI_TEST_NODE:process.execPath } });
+  assert.equal(result.status,0,result.stderr);
+  assert.match(result.stdout,/registration-verified/);
+});
+
+test('installer rejects an association visible only inside its process and checks the desktop user hive', { skip: process.platform !== 'win32' }, async () => {
+  const script = `[Console]::OutputEncoding = [Text.UTF8Encoding]::new($false)
+  $ErrorActionPreference = 'Stop'
+  . $env:YAQI_TEST_PROTOCOL
+  function global:Invoke-CimMethod {
+    param($Namespace,$ClassName,$MethodName,$Arguments,$ErrorAction)
+    $sid = [Security.Principal.WindowsIdentity]::GetCurrent().User.Value
+    if ($Namespace -ne 'root/default' -or $ClassName -ne 'StdRegProv' -or $MethodName -ne 'GetStringValue') { throw 'Wrong independent reader' }
+    if ($Arguments.hDefKey -ne 2147483651 -or $Arguments.sSubKeyName -cne ($sid + '\\Software\\Classes\\yaqi-local\\shell\\open\\command') -or $Arguments.sValueName -cne '') { throw 'Wrong desktop user hive' }
+    if ($global:reply -eq 'error') { throw 'Registry service unavailable' }
+    return $global:reply
+  }
+  foreach ($reply in @(@{ReturnValue=2;sValue=$null},@{ReturnValue=5;sValue=$null},@{ReturnValue=0;sValue='other command'},'error')) {
+    $global:reply = $reply
+    $rejected = $false
+    try { Assert-LocalProtocolVisible -Name 'yaqi-local' -Command 'expected command' } catch { $rejected = $true }
+    if (-not $rejected) { throw 'Invisible registration accepted' }
+  }
+  $global:reply = @{ReturnValue=0;sValue='expected command'}
+  Assert-LocalProtocolVisible -Name 'yaqi-local' -Command 'expected command'
+  'independent-visibility-verified'`;
+  const result = spawnSync(join(process.env.SystemRoot,'System32','WindowsPowerShell','v1.0','powershell.exe'), ['-NoProfile','-NonInteractive','-EncodedCommand',Buffer.from(script,'utf16le').toString('base64')], { encoding:'utf8', windowsHide:true, timeout:10000, env: { ...process.env, YAQI_TEST_PROTOCOL:fileURLToPath(new URL('../local-launcher/protocol.ps1',import.meta.url)) } });
+  assert.equal(result.status,0,result.stderr);
+  assert.match(result.stdout,/independent-visibility-verified/);
+  const installer = await readFile(new URL('../local-launcher/install.ps1',import.meta.url),'utf8');
+  const check = installer.indexOf('Assert-LocalProtocolVisible');
+  assert.ok(check >= 0 && check < installer.indexOf("Write-Output 'Installed"));
 });

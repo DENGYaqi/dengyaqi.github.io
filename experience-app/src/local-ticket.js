@@ -26,8 +26,8 @@ export async function verifyLocalTicket(ticket, publicKey, issuer, timestamp = n
 }
 
 export function parseLocalUri(value) {
-  if (typeof value !== 'string' || value.length > 2000 || /[\s"'\\]/.test(value)) throw new Error('ticket');
-  const url = new URL(value);
-  if (url.protocol !== 'yaqi-local:' || url.host !== 'launch' || url.pathname || url.username || url.password || url.hash || [...url.searchParams.keys()].join(',') !== 'ticket') throw new Error('ticket');
-  return url.searchParams.get('ticket');
+  // Windows may add the root slash when handing the URI to the protocol handler.
+  // Validate before URL normalization so dot segments cannot become an allowed root path.
+  if (typeof value !== 'string' || /\s/.test(value) || !/^yaqi-local:\/\/launch\/?\?ticket=[A-Za-z0-9_.-]{1,1800}$/.test(value)) throw new Error('ticket');
+  return new URL(value).searchParams.get('ticket');
 }
