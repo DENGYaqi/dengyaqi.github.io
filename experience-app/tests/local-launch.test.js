@@ -17,6 +17,7 @@ import { LocalState } from '../local-launcher/state.mjs';
 import { fingerprint, validateConfig, localUrl } from '../local-launcher/config.mjs';
 import { statusServer } from '../local-launcher/status.mjs';
 import { launchLocal } from '../local-launcher/index.mjs';
+import { NativeRuntime } from '../local-launcher/native.mjs';
 
 const keys = await crypto.subtle.generateKey({ name: 'ECDSA', namedCurve: 'P-256' }, true, ['sign','verify']);
 const privateKey = await crypto.subtle.exportKey('jwk', keys.privateKey), publicKey = await crypto.subtle.exportKey('jwk', keys.publicKey);
@@ -53,6 +54,118 @@ test('signed native launches share replay protection and return text without a b
   } finally { first.status.close(); }
   const replay = await launchLocal(ticketUri,cfg,dependencies);
   try { assert.equal(replay.error,'ticket');assert.equal(calls,1); } finally { replay.status.close(); }
+});
+
+test('partial native and mixed starts are journaled and explained in all four languages', async t => {
+  for (const lang of ['zh','en','ja','fr']) for (const withContainer of [false,true]) {
+    const directory = await temporary(t), containerId = 'b'.repeat(64);
+    const program = {executable:process.execPath,cwd:directory,sha256:'a'.repeat(64),args:[],files:[]};
+    const p = {title:'Native demo',mode:'native',timeout_seconds:5,programs:[program,program],...(withContainer ? {containers:[{id:containerId,fingerprint:'c'.repeat(64)}]} : {})};
+    const cfg = config(directory,{[projectId]:p});let spawned=0;
+    const native = new NativeRuntime(cfg, {verify:async()=>{},sleep:async()=>{},spawn:async()=>{if(++spawned===2)throw new Error('process');return 101;},inspect:async pid=>({pid,started_at:'first',executable:program.executable}),docker:{startContainers:async(_p,_update,record)=>record(containerId)}});
+    const result = await launchLocal(await uri(projectId,lang),cfg,{openBrowser:async()=>{},native});
+    try {
+      const expected = [...(withContainer ? [containerId] : []),'native:101'];
+      assert.equal(result.state,'failed');assert.equal(result.error,'process');assert.deepEqual(result.started,expected);
+      const state = await (await fetch(new URL('state',result.status.url))).json();
+      assert.equal(state.message,`${localCopy[lang].process} ${localCopy[lang].partial}`);
+      assert.doesNotMatch(state.message,/Docker Desktop|native:101|node\.exe/);
+      const journal = new LocalState(cfg.state_path);
+      try { const row=journal.db.prepare('SELECT state,started_ids FROM operations').get();assert.equal(row.state,'failed');assert.deepEqual(JSON.parse(row.started_ids),expected); }
+      finally { journal.close(); }
+    } finally { await result.status.close(); }
+  }
+});
+
+test('native creation is reported even when later identity confirmation fails', async t => {
+  const directory = await temporary(t), program={executable:process.execPath,cwd:directory,sha256:'a'.repeat(64),args:[],files:[]};
+  const cfg=config(directory,{[projectId]:{title:'Demo',mode:'native',timeout_seconds:5,programs:[program]}});
+  const native=new NativeRuntime(cfg,{verify:async()=>{},sleep:async()=>{},spawn:async()=>102,inspect:async()=>{throw new Error('private diagnostic');}});
+  const result=await launchLocal(await uri(),cfg,{openBrowser:async()=>{},native});
+  try {
+    assert.equal(result.error,'process');assert.deepEqual(result.started,['native:102']);
+    const state=await (await fetch(new URL('state',result.status.url))).json();
+    assert.equal(state.message,`${localCopy.zh.process} ${localCopy.zh.partial}`);assert.doesNotMatch(state.message,/private diagnostic/);
+  } finally { await result.status.close(); }
+});
+
+test('PID write failure shows partial startup even when all later database writes fail',async t=>{
+  for(const readonly of [false,true]) {
+    const directory=await temporary(t),program={executable:process.execPath,cwd:directory,sha256:'a'.repeat(64),args:[],files:[]};
+    const cfg=config(directory,{[projectId]:{title:'Demo',mode:'native',timeout_seconds:5,programs:[program]}});let spawned=0;
+    const native={launch:async(p,id,store,update,record)=>{
+      if(!readonly)store.db.exec("CREATE TEMP TRIGGER reject_pid BEFORE INSERT ON native_instances WHEN NEW.pid > 0 BEGIN SELECT RAISE(FAIL,'private storage diagnostic'); END");
+      const runtime=new NativeRuntime(cfg,{verify:async()=>{},sleep:async()=>{},spawn:async()=>{spawned++;if(readonly)store.db.exec('PRAGMA query_only=ON');return 105;}});
+      return runtime.launch(p,id,store,update,record);
+    }};
+    const progress=async(...args)=>{const server=await statusServer(...args);t.after(()=>server.close());return server;};
+    const result=await launchLocal(await uri(),cfg,{openBrowser:async()=>{},native,statusServer:progress});
+    try {
+      assert.equal(result.state,'failed');assert.equal(result.error,'unknown');assert.deepEqual(result.started,['native:105']);assert.equal(result.url,undefined);
+      const state=await (await fetch(new URL('state',result.status.url))).json();
+      assert.equal(state.message,`${localCopy.zh.unknown} ${localCopy.zh.partial}`);assert.equal(state.url,undefined);
+      assert.doesNotMatch(JSON.stringify(state),/private storage|SQLITE|native:105/);
+      const store=new LocalState(cfg.state_path);
+      try {
+        assert.equal(store.instance(`${projectId}:0`).pid,0);
+        const operation=store.db.prepare('SELECT state,started_ids FROM operations').get();
+        if(!readonly){assert.equal(operation.state,'failed');assert.deepEqual(JSON.parse(operation.started_ids),['native:105']);}
+        const runtime=new NativeRuntime(cfg,{verify:async()=>{},spawn:async()=>{spawned++;return 106;}});
+        await assert.rejects(runtime.ensureProgram(program,`${projectId}:0`,store,false),/busy/);
+        assert.equal(spawned,1);
+      } finally {store.close();}
+    } finally {await result.status.close();}
+  }
+});
+
+test('database write failure before process creation does not show partial startup',async t=>{
+  const directory=await temporary(t),program={executable:process.execPath,cwd:directory,sha256:'a'.repeat(64),args:[],files:[]};
+  const cfg=config(directory,{[projectId]:{title:'Demo',mode:'native',timeout_seconds:5,programs:[program]}});let spawned=0;
+  const native={launch:async(p,id,store,update,record)=>{
+    store.db.exec('PRAGMA query_only=ON');
+    return new NativeRuntime(cfg,{verify:async()=>{},spawn:async()=>{spawned++;return 105;}}).launch(p,id,store,update,record);
+  }};
+  const progress=async(...args)=>{const server=await statusServer(...args);t.after(()=>server.close());return server;};
+  const result=await launchLocal(await uri(),cfg,{openBrowser:async()=>{},native,statusServer:progress});
+  try {
+    assert.equal(result.state,'failed');assert.deepEqual(result.started,[]);assert.equal(spawned,0);
+    assert.equal((await (await fetch(new URL('state',result.status.url))).json()).message,localCopy.zh.unknown);
+  } finally {await result.status.close();}
+});
+
+test('HTTP success after the native process exits cannot publish ready or a redirect URL',async t=>{
+  const directory=await temporary(t),program={executable:process.execPath,cwd:directory,sha256:'a'.repeat(64),args:[],files:[]};
+  const cfg=config(directory,{[projectId]:{...project,mode:'native',programs:[program]}});let alive=true,probes=0;
+  const docker=new LocalDocker(cfg,{fetch:async()=>{probes++;alive=false;return new Response('another service',{status:200});}});
+  const native=new NativeRuntime(cfg,{docker,verify:async()=>{},sleep:async()=>{},spawn:async()=>104,inspect:async pid=>alive?{pid,started_at:'original',executable:program.executable}:null});
+  const result=await launchLocal(await uri(),cfg,{openBrowser:async()=>{},native});
+  try {
+    assert.equal(probes,1);assert.equal(result.state,'failed');assert.equal(result.error,'process');assert.equal(result.url,undefined);
+    const state=await (await fetch(new URL('state',result.status.url))).json();
+    assert.equal(state.stage,'failed');assert.equal(state.url,undefined);
+    assert.equal(state.message,`${localCopy.zh.process} ${localCopy.zh.partial}`);
+    const store=new LocalState(cfg.state_path);
+    try {assert.equal(store.db.prepare('SELECT state FROM operations').get().state,'failed');}finally{store.close();}
+  } finally {await result.status.close();}
+});
+
+test('preflight failures, rejected spawns and reused native processes do not claim new partial starts', async t => {
+  for(const scenario of ['preflight','spawn','reuse']) {
+    const directory=await temporary(t), program={executable:process.execPath,cwd:directory,sha256:'a'.repeat(64),args:[],files:[]};
+    const cfg=config(directory,{[projectId]:{title:'Demo',mode:'native',timeout_seconds:5,programs:[program,program]}});
+    const native=new NativeRuntime(cfg,{verify:async()=>{if(scenario==='preflight')throw new Error('artifact');},sleep:async()=>{},spawn:async()=>{throw new Error('process');},inspect:async pid=>({pid,started_at:'existing',executable:program.executable})});
+    if(scenario==='reuse') {
+      const store=new LocalState(cfg.state_path), spawn=native.spawn;
+      try { native.spawn=async()=>103;await native.ensureProgram(program,`${projectId}:0`,store,false); }
+      finally { native.spawn=spawn;store.close(); }
+    }
+    const result=await launchLocal(await uri(),cfg,{openBrowser:async()=>{},native});
+    try {
+      assert.equal(result.state,'failed');assert.deepEqual(result.started,[]);
+      const state=await (await fetch(new URL('state',result.status.url))).json();
+      assert.equal(state.message,localCopy.zh[scenario==='preflight'?'artifact':'process']);
+    } finally { await result.status.close(); }
+  }
 });
 
 test('catalog-blocked and document projects cannot issue local launch tickets', async () => {

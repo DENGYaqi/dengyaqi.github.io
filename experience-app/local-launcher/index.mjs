@@ -39,7 +39,8 @@ export async function launchLocal(uri, config, dependencies = {}) {
     return { state: 'ready', ...result, started, status };
   } catch (error) {
     const code = ['ticket','busy','not_configured','blocked','context','container','unavailable','health','config','artifact','process','device'].includes(error.message) ? error.message : 'unknown';
-    if (operation) store.update(operation, started, 'failed', code);
+    try { if (operation) store.update(operation, started, 'failed', code); }
+    catch { /* Failed storage must not hide the original error or the in-memory started list. */ }
     status.set('failed', code, '', started.length > 0, code === 'blocked' ? project.reason?.[ticket.lang] || project.reason?.zh || '' : '');
     if (!operation) await (dependencies.openBrowser || openBrowser)(status.url);
     return { state: 'failed', error: code, started, status };
