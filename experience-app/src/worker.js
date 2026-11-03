@@ -1,6 +1,7 @@
 import experiences from './experiences.json' with { type: 'json' };
 import { copy, languages } from './i18n.js';
 import style from './style.js';
+import { academicProjects, academicCopy, educationSources } from './academic-projects.js';
 import glossaryClient from './glossary-client.js';
 import demosClient from './demos-client.js';
 import launchClient from './launch-client.js';
@@ -104,7 +105,7 @@ async function projectFiles(db, projectId) {
 }
 function experience(key) { return experiences.find(item => item.key === key); }
 function experienceName(item, lang) { return item.title[lang] || item.title.zh; }
-function educationName(item, lang) { return item.translations[lang]?.school || item.translations.zh?.school || item.key; }
+function educationName(item, lang) { return educationSources[item.key]?.name || item.translations[lang]?.school || item.translations.zh?.school || item.key; }
 function cards(items, lang) {
   const c = copy[lang];
   if (!items.length) return `<p class="muted">${c.empty}</p>`;
@@ -112,6 +113,26 @@ function cards(items, lang) {
 }
 function prettyBody(text) {
   return String(text || '').split(/\n\s*\n/).filter(Boolean).map(part => `<p>${escapeHtml(part)}</p>`).join('');
+}
+
+function externalLink(href, label, className = '') {
+  if (!href) return escapeHtml(label);
+  return `<a${className ? ` class="${className}"` : ''} href="${url(href)}" target="_blank" rel="noopener noreferrer">${escapeHtml(label)}</a>`;
+}
+
+function academicDetails(id, lang) {
+  const info = academicProjects[id];
+  if (!info) return '';
+  const c = academicCopy[lang];
+  const fields = [
+    [c.author, info.authors.map(author => externalLink(author.url, author.name)).join(' · ')],
+    [c.year, escapeHtml(info.year)],
+    [c.type, escapeHtml(info.type[lang])],
+    [c.institution, externalLink(educationSources[info.school]?.url, info.institution)],
+  ];
+  const papers = (info.papers || []).map(paper => `<p class="academic-title" lang="${url(paper.lang)}">${externalLink(paper.url, paper.title)}</p>`).join('');
+  const supervisors = (info.supervisors || []).map(person => `<div class="academic-supervisor"><h3>${c.supervisor} · ${externalLink(person.url, person.name)}</h3>${person.bio?.[lang] ? `<p>${escapeHtml(person.bio[lang])}</p>` : ''}</div>`).join('');
+  return `<section class="academic-details" aria-labelledby="academic-heading"><h2 id="academic-heading">${c.heading}</h2>${papers ? `<p class="academic-label">${c.originalTitle}</p>${papers}` : ''}<dl class="academic-facts">${fields.filter(([, value]) => value).map(([label, value]) => `<div><dt>${label}</dt><dd>${value}</dd></div>`).join('')}</dl>${supervisors}${info.supervision ? `<p class="academic-links">${externalLink(info.supervision, c.supervision)}</p>` : ''}</section>`;
 }
 
 async function otherProjectsPage(db, lang) {
@@ -153,8 +174,8 @@ async function educationTimeline(db, lang) {
       const title = escapeHtml(project.title[lang] || project.title.zh);
       return `<li>${linked ? `<a href="/${lang}/projects/${url(project.project_id)}/?from=education-${url(item.key)}">${title}<span>${c.open} →</span></a>` : `<div>${title}<span class="work-pending">${c.pending}</span></div>`}</li>`;
     }).join('');
-    const facts = fields ? `<p class="education-facts"><span>${c.degreeLabel}${escapeHtml(fields.degree)}</span><span>${c.studyModeLabel}${escapeHtml(fields.study_mode)}</span><span>${c.majorLabel}${escapeHtml(fields.major)}</span></p>` : '';
-    return `<article id="school-${url(item.key)}" class="work-timeline-item"><div class="work-timeline-card"><div class="work-heading"><h2>${escapeHtml(educationName(item, lang))}</h2><span class="work-date">${escapeHtml(date)}</span></div>${facts}${projectList ? `<div class="work-projects"><h3>${c.relatedProjects}</h3><ul>${projectList}</ul></div>` : ''}</div></article>`;
+    const facts = fields ? `<p class="education-facts"><span>${c.degreeLabel}${escapeHtml(fields.degree)}</span><span>${c.studyModeLabel}${escapeHtml(fields.study_mode)}</span><span>${c.majorLabel}${externalLink(educationSources[item.key]?.program, fields.major, 'education-source')}</span></p>` : '';
+    return `<article id="school-${url(item.key)}" class="work-timeline-item"><div class="work-timeline-card"><div class="work-heading"><h2>${externalLink(educationSources[item.key]?.url, educationName(item, lang), 'education-source')}</h2><span class="work-date">${escapeHtml(date)}</span></div>${facts}${projectList ? `<div class="work-projects"><h3>${c.relatedProjects}</h3><ul>${projectList}</ul></div>` : ''}</div></article>`;
   }).join('');
   return `<div class="work-hero"><span class="work-label">EDUCATION</span><h1>${c.education}</h1></div><section class="work-timeline" aria-label="${c.education}">${cards || `<p class="muted">${c.educationEmpty}</p>`}</section>`;
 }
@@ -217,13 +238,14 @@ async function handlePost(env, lang, path, form, token) {
     const password = newPassword(), { salt, hash } = await hashPassword(password);
     const existing = await env.DB.prepare('SELECT id, role FROM accounts WHERE email = ?').bind(item.email).first();
     if (existing?.role === 'admin') return message(lang, c.invalid, 409);
-    if (existing) {
-      await env.DB.prepare('UPDATE accounts SET password_salt = ?, password_hash = ?, enabled = 1 WHERE id = ?').bind(salt, hash, existing.id).run();
-      await env.DB.prepare('DELETE FROM sessions WHERE account_id = ?').bind(existing.id).run();
-    } else {
-      await env.DB.prepare('INSERT INTO accounts (id, email, role, password_salt, password_hash, enabled, created_at) VALUES (?, ?, ?, ?, ?, 1, ?)').bind(crypto.randomUUID(), item.email, 'viewer', salt, hash, now).run();
-    }
-    await env.DB.prepare("UPDATE access_requests SET status = 'approved', handled_at = ? WHERE id = ? AND status = 'pending'").bind(now, item.id).run();
+    const statements = existing ? [
+      env.DB.prepare('UPDATE accounts SET password_salt = ?, password_hash = ?, enabled = 1 WHERE id = ?').bind(salt, hash, existing.id),
+      env.DB.prepare('DELETE FROM sessions WHERE account_id = ?').bind(existing.id),
+    ] : [
+      env.DB.prepare('INSERT INTO accounts (id, email, role, password_salt, password_hash, enabled, created_at) VALUES (?, ?, ?, ?, ?, 1, ?)').bind(crypto.randomUUID(), item.email, 'viewer', salt, hash, now),
+    ];
+    statements.push(env.DB.prepare("UPDATE access_requests SET status = 'approved', handled_at = ? WHERE id = ? AND status = 'pending'").bind(now, item.id));
+    await env.DB.batch(statements);
     return response(await requestsPage(env.DB, lang, token, password));
   }
   if (path === `${base}accounts/`) {
@@ -241,8 +263,10 @@ async function handlePost(env, lang, path, form, token) {
     if (!account) return message(lang, c.notFound, 404);
     if (accountAction[2] === 'reset') {
       const password = newPassword(), { salt, hash } = await hashPassword(password);
-      await env.DB.prepare('UPDATE accounts SET password_salt = ?, password_hash = ? WHERE id = ?').bind(salt, hash, account.id).run();
-      await env.DB.prepare('DELETE FROM sessions WHERE account_id = ?').bind(account.id).run();
+      await env.DB.batch([
+        env.DB.prepare('UPDATE accounts SET password_salt = ?, password_hash = ? WHERE id = ?').bind(salt, hash, account.id),
+        env.DB.prepare('DELETE FROM sessions WHERE account_id = ?').bind(account.id),
+      ]);
       return response(await accountsPage(env.DB, lang, token, password));
     }
     await env.DB.prepare('UPDATE accounts SET enabled = ? WHERE id = ?').bind(accountAction[2] === 'enable' ? 1 : 0, account.id).run();
@@ -276,7 +300,7 @@ async function handleGet(env, lang, path, admin, token, source, session) {
     const schools = await educations(env.DB);
     const workLinks = item.experience_keys.map(key => experience(key)).filter(Boolean).map(exp => ({ key: exp.key, href: `/${lang}/projects/work/${url(exp.key)}/`, label: experienceName(exp, lang) }));
     const educationLinks = item.education_keys.map(key => schools.find(school => school.key === key)).filter(Boolean).map(school => ({ key: school.key, href: `/${lang}/projects/education/${url(school.key)}/`, label: educationName(school, lang) }));
-    const linked = [...workLinks, ...educationLinks].map(link => `<a class="tag" href="${link.href}">${escapeHtml(link.label)}</a>`).join('');
+    const linked = workLinks.map(link => `<a class="tag" href="${link.href}">${escapeHtml(link.label)}</a>`).join('') + educationLinks.map(link => educationSources[link.key]?.url ? externalLink(educationSources[link.key].url, link.label, 'tag education-source') : `<a class="tag" href="${link.href}">${escapeHtml(link.label)}</a>`).join('');
     const photosById = new Map(photos.map(photo => [photo.id, photo]));
     const modules = (Array.isArray(t.modules) ? t.modules : []).filter(module => photosById.get(module.media_id)?.content_type === 'image/gif');
     const local = localEnabled(env, session);
@@ -290,10 +314,10 @@ async function handleGet(env, lang, path, admin, token, source, session) {
       const play = `<button type="button" class="demo-play" aria-pressed="false">${c.demoPlay}</button>`;
       const error = `<p class="demo-error notice error" role="status" hidden>${c.demoError}</p>`;
       return `<section class="project-module" data-demo="${gifUrl}" data-poster="${posterUrl}" data-play="${c.demoPlay}" data-stop="${c.demoStop}"><h2 id="demo-title-${index}">${title}</h2>${module.caption ? `<p class="demo-caption">${escapeHtml(module.caption)}</p>` : ''}<img class="demo-preview" src="${posterUrl}" alt="${title}" loading="lazy"><div class="actions" data-demo-controls hidden>${play}<button type="button" class="demo-zoom secondary" aria-haspopup="dialog">${c.demoZoom}</button></div>${error}<a class="demo-original" href="${gifUrl}" target="_blank" rel="noopener">${c.viewOriginal}</a><dialog aria-labelledby="demo-title-${index}"><div class="actions">${play}<button type="button" class="demo-size secondary" aria-pressed="false">${c.demoSize}</button><button type="button" class="demo-close secondary">${c.demoClose}</button></div>${error}<div class="demo-viewport"><img alt="${title}"></div></dialog></section>`;
-    }).map(html => html + launch).join('') || launch;
+    }).join('');
     const otherPhotos = photos.filter(photo => !moduleIds.has(photo.id));
     const gallery = otherPhotos.length ? `<h2>${c.photos}</h2><div class="gallery">${otherPhotos.map(photo => `<a href="/media/${url(photo.id)}"><img src="/media/${url(photo.id)}" alt="${escapeHtml(t.title)}" loading="lazy"></a>`).join('')}</div>` : '';
-    const downloads = files.length ? `<section><h2>${c.downloads}</h2><ul>${files.map(file => `<li><a href="/files/${url(file.id)}">${escapeHtml(file.download_name)}</a></li>`).join('')}</ul></section>` : '';
+    const downloads = files.length && !academicProjects[item.id]?.hideDownloads ? `<section><h2>${c.downloads}</h2><ul>${files.map(file => `<li><a href="/files/${url(file.id)}">${escapeHtml(file.download_name)}</a></li>`).join('')}</ul></section>` : '';
     const selectedWork = source?.startsWith('work-') && workLinks.find(link => link.key === source.slice(5));
     const selectedEducation = source?.startsWith('education-') && educationLinks.find(link => link.key === source.slice(10));
     const destination = selectedWork || selectedEducation || workLinks[0] || educationLinks[0];
@@ -303,7 +327,7 @@ async function handleGet(env, lang, path, admin, token, source, session) {
     const back = `<nav class="detail-back" aria-label="${c.projects}">${backLink}</nav>`;
     const topBack = `<nav class="detail-back detail-back-top" aria-label="${c.projects}">${backLink}${item.status === 'draft' ? `<span class="tag">${c.draft}</span>` : ''}</nav>`;
     const currentPath = selectedWork || selectedEducation ? `${path}?from=${source}` : path;
-    return response(page(lang, t.title || c.noTitle, `${topBack}<h1>${escapeHtml(t.title || c.noTitle)}</h1><p class="lead">${escapeHtml(t.summary)}</p><div>${linked}</div><section class="prose" data-glossary-url="/${lang}/projects/${url(item.id)}/glossary/">${prettyBody(t.body)}</section>${demonstrations}${local ? '<script src="/local-launch.js" defer></script>' : ''}${gallery}${downloads}${back}<script src="/glossary.js" defer></script>${modules.some(module => module.poster_id) ? '<script src="/demos.js" defer></script>' : ''}`, admin, currentPath, token));
+    return response(page(lang, t.title || c.noTitle, `${topBack}<h1>${escapeHtml(t.title || c.noTitle)}</h1><p class="lead">${escapeHtml(t.summary)}</p><div>${linked}</div>${academicDetails(item.id, lang)}<section class="prose" data-glossary-url="/${lang}/projects/${url(item.id)}/glossary/">${prettyBody(t.body)}</section>${demonstrations}${local ? '<script src="/local-launch.js" defer></script>' : ''}${gallery}${downloads}${launch}${back}<script src="/glossary.js" defer></script>${modules.some(module => module.poster_id) ? '<script src="/demos.js" defer></script>' : ''}`, admin, currentPath, token));
   }
   if (path === `/${lang}/admin/requests/` || path === `/${lang}/admin/accounts/`) {
     if (!admin) return message(lang, c.adminOnly, 403);
@@ -429,7 +453,7 @@ export default {
         return new Response(object.body, { status: 200, headers: { ...headers, 'Content-Type': 'application/pdf', 'Content-Disposition': `attachment; filename="${name}"`, 'Content-Length': String(file.byte_size) } });
       }
       if (!match) return response('Not found', 404, 'text/plain; charset=utf-8');
-      if (request.method === 'GET') return handleGet(env, lang, path, admin, session.csrf_token, requestUrl.searchParams.get('from'), session);
+      if (request.method === 'GET') return await handleGet(env, lang, path, admin, session.csrf_token, requestUrl.searchParams.get('from'), session);
       if (request.method === 'POST') {
         const accountAction = new RegExp(`^/${lang}/admin/accounts/${ID}/(reset|disable|enable)/$`);
         const requestAction = new RegExp(`^/${lang}/admin/requests/${ID}/(approve|dismiss)/$`);
@@ -438,7 +462,7 @@ export default {
         let form;
         try { form = await anonymousForm(request); } catch { return message(lang, copy[lang].invalid, 400); }
         if (!validCsrf(session, form.get('csrf'))) return message(lang, copy[lang].csrf, 403);
-        return handlePost(env, lang, path, form, session.csrf_token);
+        return await handlePost(env, lang, path, form, session.csrf_token);
       }
       return response('Method not allowed', 405, 'text/plain; charset=utf-8');
     } catch (error) {

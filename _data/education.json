@@ -17,7 +17,7 @@
   },
   {
     "key": "esgci",
-    "school": {"zh": "ESGCI（法国）", "en": "ESGCI, France", "ja": "ESGCI（フランス）", "fr": "ESGCI, France"},
+    "school": {"zh": "ESGCI（École de Commerce International et Marketing à Paris）", "en": "ESGCI (École de Commerce International et Marketing à Paris)", "ja": "ESGCI（École de Commerce International et Marketing à Paris）", "fr": "ESGCI (École de Commerce International et Marketing à Paris)"},
     "degree": {"zh": "语言预科", "en": "Preparatory studies", "ja": "語学準備課程", "fr": "Année préparatoire"},
     "date": "2013.09 – 2014.09",
     "major": {"zh": "法语与金融数学", "en": "French and financial mathematics", "ja": "フランス語・金融数学", "fr": "Français et mathématiques financières"}

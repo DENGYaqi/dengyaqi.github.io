@@ -9,6 +9,7 @@ import test from 'node:test';
 import experiences from '../src/experiences.json' with { type: 'json' };
 import worker, { escapeHtml, isAdmin } from '../src/worker.js';
 import { copy } from '../src/i18n.js';
+import { academicProjects, educationSources } from '../src/academic-projects.js';
 import { createSession, hashPassword, safeNext, sessionFromRequest, verifyPassword } from '../src/auth.js';
 
 const id = '11111111-1111-4111-8111-111111111111';
@@ -44,7 +45,18 @@ function fixture() {
         async run() { return stmt.run(...args); },
       };
     },
-    async batch(statements) { return Promise.all(statements.map(statement => statement.run())); },
+    async batch(statements) {
+      sqlite.exec('BEGIN');
+      try {
+        const results = [];
+        for (const statement of statements) results.push(await statement.run());
+        sqlite.exec('COMMIT');
+        return results;
+      } catch (error) {
+        sqlite.exec('ROLLBACK');
+        throw error;
+      }
+    },
   };
   const state = { reads: 0 };
   const MEDIA = { async get() { state.reads++; return { body: new Blob(['image']).stream() }; } };
@@ -80,6 +92,32 @@ test('login page and every private content path require a site session', async (
   assert.equal((await worker.fetch(request('/style.css'), env, {})).status, 200);
 });
 
+test('asynchronous GET failures return the unified error response without exposing details', async t => {
+  const { env, DB, sqlite } = fixture();
+  try {
+    const cookie = await loginCookie(DB, 'guest');
+    const failure = new Error('private database diagnostic');
+    const logged = t.mock.method(console, 'error', () => {});
+    const prepare = DB.prepare.bind(DB);
+    t.mock.method(DB, 'prepare', sql => {
+      const statement = prepare(sql);
+      if (sql.startsWith('SELECT * FROM projects WHERE status')) {
+        statement.all = async () => { await Promise.resolve(); throw failure; };
+      }
+      return statement;
+    });
+    const result = await worker.fetch(request('/zh/projects/', cookie), env, {});
+    assert.equal(result.status, 500);
+    assert.equal(await result.text(), 'Server error');
+    assert.equal(result.headers.get('Content-Type'), 'text/plain; charset=utf-8');
+    assert.equal(result.headers.get('Cache-Control'), 'private, no-store');
+    assert.equal(logged.mock.callCount(), 1);
+    assert.equal(logged.mock.calls[0].arguments[0], failure);
+  } finally {
+    sqlite.close();
+  }
+});
+
 test('project glossary returns one protected, uncached four-language response', async () => {
   const { env, DB, sqlite } = fixture();
   const glossaryPath = lang => `/${lang}/projects/${id}/glossary/`;
@@ -109,6 +147,88 @@ test('project glossary returns one protected, uncached four-language response', 
   sqlite.prepare('DELETE FROM project_glossary_terms WHERE project_id = ?').run(secondId);
   assert.deepEqual(await (await worker.fetch(request(`/zh/projects/${secondId}/glossary/`, guest), env, {})).json(), { terms: [] });
   assert.equal((await worker.fetch(request('/zh/projects/55555555-5555-4555-8555-555555555555/glossary/', guest), env, {})).status, 404);
+});
+
+test('DAnIEL shows sourced academic details in four languages without a download entry', async () => {
+  const { env, DB, sqlite } = fixture();
+  try {
+    const academicId = 'e43d72d5-dd2c-4f3e-9381-d5036c7057c0';
+    sqlite.prepare("INSERT INTO projects (id,status,sort_order,translations,experience_keys,education_keys,created_at,updated_at) SELECT ?,status,sort_order,translations,experience_keys,education_keys,created_at,updated_at FROM projects WHERE id=?").run(academicId, id);
+    sqlite.prepare('INSERT INTO project_files (id,project_id,object_key,download_name,byte_size,created_at) VALUES (?,?,?,?,5,?)').run(crypto.randomUUID(), academicId, 'test/academic.pdf', 'academic.pdf', '');
+    const cookie = await loginCookie(DB, 'guest');
+    assert.equal((await worker.fetch(request(`/zh/projects/${academicId}/`), env, {})).status, 303);
+    assert.equal((await worker.fetch(request(`/zh/projects/${academicId}/`, cookie), env, {})).status, 404);
+    sqlite.prepare("UPDATE projects SET status='published'").run();
+    for (const lang of ['zh','en','ja','fr']) {
+      const result = await worker.fetch(request(`/${lang}/projects/${academicId}/`, cookie), env, {});
+      assert.equal(result.status, 200);
+      assert.equal(result.headers.get('Cache-Control'), 'private, no-store');
+      const html = await result.text();
+      assert.match(html, /L’analyse d’annotation de textes en chinois dans un système de veille épidémiologique multilingue<\/a>/);
+      for (const value of ['Yaqi DENG', '2017–2018', 'Gaël Lejeune', 'Sorbonne Université', 'STIH']) assert.ok(html.includes(value));
+      assert.match(html, /href="https:\/\/www.lejeunegael.fr\/" target="_blank" rel="noopener noreferrer"/);
+      assert.ok(html.includes('cours.html#:~:text=Yaqi%20Deng'));
+      assert.ok(html.includes('https://www.academia.edu/179687730/'));
+      assert.ok(html.indexOf('class="academic-details"') < html.indexOf('class="prose"'));
+      assert.ok(!html.includes('href="/files/'));
+    }
+    const ordinary = await (await worker.fetch(request(`/zh/projects/${id}/`, cookie), env, {})).text();
+    assert.ok(!ordinary.includes('class="academic-details"'));
+    assert.ok(ordinary.includes(`href="/files/${fileId}"`));
+  } finally { sqlite.close(); }
+});
+
+test('education research cards preserve authors, advisors, external links and internal back navigation', async () => {
+  const { env, DB, sqlite } = fixture();
+  try {
+    const cookie = await loginCookie(DB, 'guest');
+    for (const key of Object.keys(educationSources)) {
+      sqlite.prepare('INSERT INTO educations (key,sort_order,translations) SELECT ?,0,translations FROM educations WHERE key=?').run(key, 'sample_school');
+      sqlite.prepare('INSERT INTO education_experiences (key,details,projects) SELECT ?,details,projects FROM education_experiences WHERE key=?').run(key, 'sample_school');
+    }
+    for (const [projectId, info] of Object.entries(academicProjects)) {
+      sqlite.prepare("INSERT INTO projects (id,status,sort_order,translations,experience_keys,education_keys,created_at,updated_at) VALUES (?,'published',0,?,'[]',?,'','')").run(projectId, JSON.stringify(translations), JSON.stringify([info.school]));
+      sqlite.prepare('INSERT INTO project_files (id,project_id,object_key,download_name,byte_size,created_at) VALUES (?,?,?,?,5,?)').run(crypto.randomUUID(), projectId, `test/${projectId}.pdf`, 'report.pdf', '');
+      for (const lang of ['zh', 'en', 'ja', 'fr']) {
+        const result = await worker.fetch(request(`/${lang}/projects/${projectId}/?from=education-${info.school}`, cookie), env, {});
+        assert.equal(result.status, 200);
+        const html = await result.text();
+        assert.match(html, /class="academic-details"/);
+        assert.ok(html.includes(`href="/${lang}/projects/education/${info.school}/"`));
+        assert.ok(html.includes(`class="tag education-source" href="${educationSources[info.school].url}" target="_blank" rel="noopener noreferrer"`));
+        assert.ok(!html.includes('href="/files/'));
+        assert.ok(!html.includes('undefined'));
+        for (const person of [...info.authors, ...(info.supervisors || [])]) {
+          assert.ok(html.includes(escapeHtml(person.name)));
+          if (person.url) assert.ok(html.includes(`href="${escapeHtml(person.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(person.name)}</a>`));
+        }
+        for (const paper of info.papers || []) assert.ok(html.includes(escapeHtml(paper.title)));
+        if (projectId === 'd59c29b4-cb02-4e35-aa19-48ec280b8cf8') {
+          assert.ok(html.includes('<p class="academic-title" lang="fr"><a href="https://www.academia.edu/180113308/L_apport_%C3%A9conomique_de_la_diplomatie_culturelle_une_analyse_des_Ann%C3%A9es_crois%C3%A9es_France_Chine" target="_blank" rel="noopener noreferrer">L’apport économique de la diplomatique culturelle à travers d’analyse des années France-Chine</a></p>'));
+        }
+        if (['4b2af7dc-d579-4ca4-8ca0-99eea7680cbb', '6c31d42f-ee8b-4761-a226-6e36956845ce'].includes(projectId)) {
+          const reportTitle = 'Matching Ontology basée sur WordNet et MeSH and Implémentation de Browser et de REST API Lexicon';
+          const reportUrl = 'https://www.academia.edu/179754362/Matching_Ontology_bas%C3%A9e_sur_WordNet_et_MeSH_and_Impl%C3%A9mentation_de_Browser_et_de_REST_API_Lexicon';
+          assert.ok(html.includes(`<p class="academic-title" lang="fr"><a href="${reportUrl}" target="_blank" rel="noopener noreferrer">${reportTitle}</a></p>`));
+          if (lang === 'zh') assert.ok(html.includes('硕士二年级实习报告'));
+        }
+        if (projectId === '389ee095-c0fc-4a22-bb0e-47a323aa43d8') {
+          assert.ok(html.includes('<p class="academic-title" lang="fr"><a href="https://www.academia.edu/180113617/D%C3%A9tection_de_la_langue_d_un_texte" target="_blank" rel="noopener noreferrer">Détection de la langue d’un texte</a></p>'));
+          assert.ok(html.includes('Huan WANG'));
+          assert.ok(html.includes('Marie CANDITO'));
+          assert.ok(!html.includes('Gaël Lejeune'));
+        }
+      }
+    }
+    for (const lang of ['zh', 'en', 'ja', 'fr']) {
+      const html = await (await worker.fetch(request(`/${lang}/projects/education/`, cookie), env, {})).text();
+      for (const source of Object.values(educationSources)) {
+        for (const href of [source.url, source.program].filter(Boolean)) assert.ok(html.includes(`href="${escapeHtml(href)}" target="_blank" rel="noopener noreferrer"`));
+      }
+      assert.ok(html.includes('ESGCI（École de Commerce International et Marketing à Paris）</a>'));
+      assert.ok(!html.includes('ESGCI（法国）'));
+    }
+  } finally { sqlite.close(); }
 });
 
 test('academic PDF requires a session and a published project', async () => {
@@ -272,6 +392,65 @@ test('approving an existing visitor request revokes old sessions', async () => {
   assert.equal(sqlite.prepare('SELECT count(*) AS n FROM accounts WHERE email = ?').get('guest@example.test').n, 1);
 });
 
+for (const [action, failure, existing] of [
+  ['reset', 'sessions', true],
+  ['approve', 'sessions', true],
+  ['approve', 'access_requests', true],
+  ['approve', 'access_requests', false],
+]) {
+  test(`${action} rolls back all account changes when ${failure} fails (${existing ? 'existing' : 'new'} visitor)`, async t => {
+    const { env, DB, sqlite } = fixture();
+    try {
+      const accountId = crypto.randomUUID(), requestId = crypto.randomUUID();
+      const email = 'rollback@example.test';
+      if (existing) {
+        sqlite.prepare('INSERT INTO accounts (id, email, role, password_salt, password_hash, enabled, created_at) VALUES (?, ?, ?, ?, ?, 1, 0)').run(accountId, email, 'viewer', storedPassword.salt, storedPassword.hash);
+        await loginCookie(DB, accountId);
+        await loginCookie(DB, accountId);
+      }
+      if (action === 'approve') {
+        sqlite.prepare("INSERT INTO access_requests (id, email, reason, target_path, status, created_at) VALUES (?, ?, 'Restore access', '/zh/projects/', 'pending', 0)").run(requestId, email);
+      }
+      const adminCookie = await loginCookie(DB, 'owner');
+      const session = await sessionFromRequest(request('/zh/admin/accounts/', adminCookie), DB);
+      const snapshot = () => ({
+        accounts: sqlite.prepare('SELECT * FROM accounts ORDER BY id').all(),
+        sessions: sqlite.prepare('SELECT * FROM sessions ORDER BY token_hash').all(),
+        requests: sqlite.prepare('SELECT * FROM access_requests ORDER BY id').all(),
+      });
+      const before = snapshot();
+      sqlite.exec(failure === 'sessions'
+        ? "CREATE TRIGGER fail_write BEFORE DELETE ON sessions BEGIN SELECT RAISE(ABORT, 'injected write failure'); END"
+        : "CREATE TRIGGER fail_write BEFORE UPDATE ON access_requests BEGIN SELECT RAISE(ABORT, 'injected write failure'); END");
+      const path = action === 'reset' ? `/zh/admin/accounts/${accountId}/reset/` : `/zh/admin/requests/${requestId}/approve/`;
+      const submit = () => worker.fetch(request(path, adminCookie, { method: 'POST', body: new URLSearchParams({ csrf: session.csrf_token }) }), env, {});
+      const logged = t.mock.method(console, 'error', () => {});
+      const failed = await submit();
+      assert.equal(failed.status, 500);
+      assert.equal(await failed.text(), 'Server error');
+      assert.equal(failed.headers.get('Content-Type'), 'text/plain; charset=utf-8');
+      assert.equal(failed.headers.get('Cache-Control'), 'private, no-store');
+      assert.equal(logged.mock.callCount(), 1);
+      assert.match(logged.mock.calls[0].arguments[0].message, /injected write failure/);
+      assert.deepEqual(snapshot(), before, 'failed operation must leave accounts, sessions and requests unchanged');
+
+      sqlite.exec('DROP TRIGGER fail_write');
+      const result = await submit();
+      assert.equal(result.status, 200);
+      const password = (await result.text()).match(/<code>([^<]+)<\/code>/)?.[1];
+      assert.ok(password, 'successful retry must return the new password');
+      const account = sqlite.prepare('SELECT * FROM accounts WHERE email = ?').get(email);
+      assert.equal(await verifyPassword(password, account), true);
+      assert.equal(await verifyPassword('correct horse battery staple', account), false);
+      assert.equal(sqlite.prepare('SELECT count(*) AS n FROM sessions WHERE account_id = ?').get(account.id).n, 0);
+      assert.ok(await sessionFromRequest(request('/zh/admin/accounts/', adminCookie), DB), 'administrator session must remain valid');
+      if (action === 'approve') assert.equal(sqlite.prepare('SELECT status FROM access_requests WHERE id = ?').get(requestId).status, 'approved');
+    } finally {
+      sqlite.close();
+    }
+  });
+}
+
 test('anonymous forms enforce their token and accept a 1000-character Chinese reason', async () => {
   const { env, sqlite } = fixture();
   const state = await anonymousFormState(env, '/zh/request-access/');
@@ -380,6 +559,35 @@ test('project detail returns to the timeline it came from', async () => {
   const login = await worker.fetch(request(`/zh/projects/${id}/?from=education-sample_school`), env, {});
   assert.equal(login.status, 303);
   assert.equal(login.headers.get('Location'), `/zh/login/?next=${encodeURIComponent(`/zh/projects/${id}/?from=education-sample_school`)}`);
+});
+
+test('one launch panel follows all project content with zero, one or multiple GIFs', async () => {
+  const { env, DB, sqlite } = fixture();
+  try {
+    const guest = await loginCookie(DB, 'guest');
+    const owner = await loginCookie(DB, 'owner');
+    const gifs = Array.from({ length: 3 }, () => crypto.randomUUID());
+    for (const gif of gifs) sqlite.prepare('INSERT INTO media (id,project_id,object_key,content_type,sort_order,created_at) VALUES (?,?,?,?,1,?)').run(gif, id, `${id}/${gif}`, 'image/gif', '');
+    for (const count of [0, 1, 3]) {
+      const content = structuredClone(translations);
+      for (const lang of ['zh', 'en', 'ja', 'fr']) content[lang].modules = gifs.slice(0, count).map((gif, index) => ({ title: `Demo ${index}`, media_id: gif, ...(index === 1 ? { poster_id: imageId } : {}) }));
+      sqlite.prepare("UPDATE projects SET status='published',translations=? WHERE id=?").run(JSON.stringify(content), id);
+      for (const local of [false, true]) {
+        const settings = local ? { ...env, LOCAL_LAUNCH_ENABLED: 'true', LOCAL_LAUNCH_PROJECT_IDS: JSON.stringify([id]) } : env;
+        for (const lang of ['zh', 'en', 'ja', 'fr']) {
+          const html = await (await worker.fetch(request(`/${lang}/projects/${id}/`, local ? owner : guest), settings, {})).text();
+          assert.equal((html.match(/class="launch-panel"/g) || []).length, 1);
+          assert.equal((html.match(/class="project-module"/g) || []).length, count);
+          const launchIndex = html.indexOf('class="launch-panel"');
+          assert.ok(launchIndex > html.lastIndexOf('class="project-module"'));
+          assert.ok(launchIndex > html.lastIndexOf('class="gallery"'));
+          assert.ok(launchIndex > html.indexOf(`href="/files/${fileId}"`));
+          assert.ok(launchIndex < html.lastIndexOf('class="detail-back"'));
+          assert.equal(html.includes('data-local-launch='), local);
+        }
+      }
+    }
+  } finally { sqlite.close(); }
 });
 
 test('GIF modules appear once per project and keep media access protected', async () => {
