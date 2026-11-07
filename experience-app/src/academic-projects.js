@@ -7,14 +7,16 @@ export const educationSources = {
     "program": "https://formations-lettres.sorbonne-universite.fr/fr/index/master-XB/arts-lettres-langues-ALL/master-sciences-du-langage-langue-et-informatique-MSCLA1L_613.html"
   },
   "paris_diderot": {
-    "url": "https://u-pariscite.fr/"
+    "url": "https://u-pariscite.fr/",
+    "program": "https://odf.u-paris.fr/plugins/odf-web/uparis/_content/subprogram-cdmfr-fruai0751723rprjri2gc2k-fr/Licence%20Sciences%20du%20langage%20%28L3%29%20parcours%20linguistique%20et%20informatique.pdf"
   },
   "esgci": {
     "name": "ESGCI（École de Commerce International et Marketing à Paris）",
     "url": "https://www.esgci.com/"
   },
   "shenzhen_polytechnic": {
-    "url": "https://www.szpu.edu.cn/"
+    "url": "https://www.szpu.edu.cn/",
+    "program": "https://sflb.szpu.edu.cn/info/1029/1380.htm"
   }
 };
 
@@ -160,10 +162,10 @@ export const academicProjects = {
         "name": "Hugues de Mazancourt",
         "url": "https://nooj.univ-fcomte.fr/nooj2021/program.html",
         "bio": {
-          "zh": "企业导师。NooJ 2021 大会介绍记载其当时担任 Yseop 创新副总裁，负责自然语言理解和 Yseop Lab。",
-          "en": "Industry supervisor. The NooJ 2021 biography describes his role at that time as Yseop VP of Innovation, responsible for NLU and Yseop Lab.",
-          "ja": "企業側の指導者。NooJ 2021 の紹介では、当時 Yseop のイノベーション担当副社長として NLU と Yseop Lab を担当。",
-          "fr": "Encadrant en entreprise. La notice NooJ 2021 le présente alors comme VP of Innovation chez Yseop, responsable du NLU et du Yseop Lab."
+          "zh": "企业导师，专长为机器学习与自然语言理解，曾负责 Yseop Lab 及自然语言理解技术研发。",
+          "en": "Industry supervisor with expertise in machine learning and natural language understanding. Previously led NLU development and Yseop Lab at Yseop.",
+          "ja": "企業側の指導者。機械学習と自然言語理解を専門とし、Yseop で自然言語理解の技術開発と Yseop Lab を担当した経験があります。",
+          "fr": "Encadrant en entreprise, spécialiste de l’apprentissage automatique et de la compréhension du langage naturel. A dirigé les développements NLU et le Yseop Lab chez Yseop."
         }
       }
     ]
@@ -206,10 +208,10 @@ export const academicProjects = {
         "name": "Hugues de Mazancourt",
         "url": "https://nooj.univ-fcomte.fr/nooj2021/program.html",
         "bio": {
-          "zh": "企业导师。NooJ 2021 大会介绍记载其当时担任 Yseop 创新副总裁，负责自然语言理解和 Yseop Lab。",
-          "en": "Industry supervisor. The NooJ 2021 biography describes his role at that time as Yseop VP of Innovation, responsible for NLU and Yseop Lab.",
-          "ja": "企業側の指導者。NooJ 2021 の紹介では、当時 Yseop のイノベーション担当副社長として NLU と Yseop Lab を担当。",
-          "fr": "Encadrant en entreprise. La notice NooJ 2021 le présente alors comme VP of Innovation chez Yseop, responsable du NLU et du Yseop Lab."
+          "zh": "企业导师，专长为机器学习与自然语言理解，曾负责 Yseop Lab 及自然语言理解技术研发。",
+          "en": "Industry supervisor with expertise in machine learning and natural language understanding. Previously led NLU development and Yseop Lab at Yseop.",
+          "ja": "企業側の指導者。機械学習と自然言語理解を専門とし、Yseop で自然言語理解の技術開発と Yseop Lab を担当した経験があります。",
+          "fr": "Encadrant en entreprise, spécialiste de l’apprentissage automatique et de la compréhension du langage naturel. A dirigé les développements NLU et le Yseop Lab chez Yseop."
         }
       }
     ]
@@ -245,10 +247,10 @@ export const academicProjects = {
         "name": "Marie CANDITO",
         "url": "https://master.math.u-paris.fr/modules/m2-linguist-tal/",
         "bio": {
-          "zh": "报告封面署名的指导教师；链接为其自然语言处理课程介绍。",
-          "en": "Supervisor credited on the report cover; the link leads to her NLP course page.",
-          "ja": "報告書の表紙に記載された指導教員。リンクは自然言語処理の授業紹介。",
-          "fr": "Directrice mentionnée sur la couverture du rapport ; lien vers sa page de cours de TAL."
+          "zh": "巴黎西岱大学自然语言处理课程教师，教学涵盖语言建模、词法标注、句法分析与机器翻译。",
+          "en": "Teaches natural language processing at Université Paris Cité, covering language modeling, morphosyntactic tagging, parsing and machine translation.",
+          "ja": "パリ・シテ大学で自然言語処理を担当。言語モデル、形態統語タグ付け、構文解析、機械翻訳を教えています。",
+          "fr": "Enseigne le traitement automatique des langues à Université Paris Cité : modélisation du langage, étiquetage morphosyntaxique, analyse syntaxique et traduction automatique."
         }
       }
     ],

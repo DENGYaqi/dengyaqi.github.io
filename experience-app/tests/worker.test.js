@@ -222,6 +222,22 @@ test('education research cards preserve authors, advisors, external links and in
     }
     for (const lang of ['zh', 'en', 'ja', 'fr']) {
       const html = await (await worker.fetch(request(`/${lang}/projects/education/`, cookie), env, {})).text();
+      // Require each verified program explicitly, so missing data cannot silently pass.
+      const expectedPrograms = {
+        sorbonne_universite: 'https://formations-lettres.sorbonne-universite.fr/fr/index/master-XB/arts-lettres-langues-ALL/master-sciences-du-langage-langue-et-informatique-MSCLA1L_613.html',
+        paris_diderot: 'https://odf.u-paris.fr/plugins/odf-web/uparis/_content/subprogram-cdmfr-fruai0751723rprjri2gc2k-fr/Licence%20Sciences%20du%20langage%20%28L3%29%20parcours%20linguistique%20et%20informatique.pdf',
+        shenzhen_polytechnic: 'https://sflb.szpu.edu.cn/info/1029/1380.htm',
+        esgci: null,
+      };
+      for (const [key, href] of Object.entries(expectedPrograms)) {
+        const card = html.match(new RegExp(`<article id="school-${key}"[\\s\\S]*?</article>`))?.[0];
+        assert.ok(card, `${lang}: missing education card ${key}`);
+        if (href) {
+          assert.ok(card.includes(`<a class="education-source" href="${href}" target="_blank" rel="noopener noreferrer">Major ${lang}</a>`), `${lang}: missing or incorrect program link for ${key}`);
+        } else {
+          assert.ok(card.includes(`${copy[lang].majorLabel}Major ${lang}</span>`), `${lang}: unverified program should remain plain text`);
+        }
+      }
       for (const source of Object.values(educationSources)) {
         for (const href of [source.url, source.program].filter(Boolean)) assert.ok(html.includes(`href="${escapeHtml(href)}" target="_blank" rel="noopener noreferrer"`));
       }
