@@ -89,6 +89,46 @@ test('native creation is reported even when later identity confirmation fails', 
   } finally { await result.status.close(); }
 });
 
+test('Android reports a newly started emulator if device verification fails', async t => {
+  const directory = await temporary(t);
+  const hash = 'a'.repeat(64);
+  const android = {
+    adb:process.execPath,adb_sha256:hash,apk:join(directory,'app.apk'),apk_sha256:hash,
+    serial:'emulator-5554',avd:'Demo',package:'com.demo.app',activity:'com.demo.app/.Main',version_code:'1',
+    emulator:{executable:process.execPath,cwd:directory,sha256:hash,args:['-avd','Demo','-port','5554','-no-snapshot-save'],files:[]},
+  };
+  const cfg = config(directory,{[projectId]:{title:'Android demo',mode:'android',timeout_seconds:5,android}});
+  for (const alreadyRunning of [false,true]) {
+    let spawns = 0;
+    const native = new NativeRuntime(cfg,{
+      verify:async()=>{},
+      spawn:async()=>{spawns++;return 106;},
+      run:async(_file,args)=>{
+        const command = args.slice(2).join(' ');
+        if (command === 'get-state') return {stdout:alreadyRunning ? 'device' : 'offline'};
+        if (command === 'shell getprop sys.boot_completed') return {stdout:'1'};
+        assert.equal(command,'emu avd name');
+        return {stdout:'WrongAVD'};
+      },
+    });
+    const result = await launchLocal(await uri(),cfg,{openBrowser:async()=>{},native});
+    try {
+      const started = alreadyRunning ? [] : ['native:106'];
+      assert.equal(spawns,started.length);
+      assert.equal(result.state,'failed');
+      assert.equal(result.error,'device');
+      assert.deepEqual(result.started,started);
+      const state = await (await fetch(new URL('state',result.status.url))).json();
+      assert.equal(state.message,alreadyRunning ? localCopy.zh.device : `${localCopy.zh.device} ${localCopy.zh.partial}`);
+      const store = new LocalState(cfg.state_path);
+      try {
+        const row = store.db.prepare('SELECT started_ids FROM operations ORDER BY rowid DESC LIMIT 1').get();
+        assert.deepEqual(JSON.parse(row.started_ids),started);
+      } finally { store.close(); }
+    } finally { await result.status.close(); }
+  }
+});
+
 test('PID write failure shows partial startup even when all later database writes fail',async t=>{
   for(const readonly of [false,true]) {
     const directory=await temporary(t),program={executable:process.execPath,cwd:directory,sha256:'a'.repeat(64),args:[],files:[]};

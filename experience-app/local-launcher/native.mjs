@@ -100,7 +100,7 @@ export class NativeRuntime {
     return current;
   }
   async launch(project, id, store, update, recordStarted) {
-    if (project.mode === 'android') return this.android(project,store,update);
+    if (project.mode === 'android') return this.android(project,store,update,recordStarted);
     // Check every executable and artifact before starting dependencies or programs.
     for (const program of project.programs) await this.preflight(program);
     if (project.containers) await this.docker.startContainers(project,update,recordStarted);
@@ -122,7 +122,7 @@ export class NativeRuntime {
     }
     return url ? {url} : {};
   }
-  async android(project, store, update) {
+  async android(project, store, update, recordStarted) {
     const a = project.android, key = `android:${a.serial}`;
     await this.verify([{path:a.adb,sha256:a.adb_sha256},{path:a.apk,sha256:a.apk_sha256}]);
     await this.preflight(a.emulator);
@@ -131,7 +131,11 @@ export class NativeRuntime {
     try {
       let ready = false;
       try { ready = await adb(['get-state']) === 'device'; } catch { /* Only the registered AVD may be started. */ }
-      if (!ready) { update('emulator'); await this.spawn(a.emulator,await this.environment(a.emulator),true); }
+      if (!ready) {
+        update('emulator');
+        const pid = await this.spawn(a.emulator,await this.environment(a.emulator),true);
+        recordStarted(`native:${pid}`);
+      }
       const deadline = Date.now()+project.timeout_seconds*1000;
       do {
         try {
